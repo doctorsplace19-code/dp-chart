@@ -56,16 +56,16 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1a3a6e;
-    --teal: #00b4a0;
-    --teal-light: #00d4bc;
-    --cream: #eef7ff;
-    --warm-white: #f4faff;
-    --gold: #ff7c2a;
-    --gold-light: #ff9a50;
-    --text: #0f2340;
-    --text-muted: #4a6a8a;
-    --border: #c8dff0;
+    --navy: #1e40af;
+    --teal: #0891b2;
+    --teal-light: #22d3ee;
+    --cream: #eff6ff;
+    --warm-white: #f8faff;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #bfdbfe;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -81,58 +81,60 @@
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(15,45,94,0.97);
+    background: rgba(255,255,255,0.97);
     backdrop-filter: blur(12px);
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 40px;
     height: 68px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(30,64,175,0.1);
+    box-shadow: 0 1px 12px rgba(0,0,0,0.06);
   }
   .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .nav-logo-mark {
     width: 38px; height: 38px;
-    background: linear-gradient(135deg, #00c4b0, #00e8d0);
+    background: linear-gradient(135deg, #1e40af, #0891b2);
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     font-family: 'DM Serif Display', serif;
     font-size: 20px; color: white;
+    box-shadow: 0 2px 8px rgba(30,64,175,0.3);
   }
-  .nav-logo-text { font-family: 'DM Serif Display', serif; font-size: 17px; color: white; letter-spacing: 0.01em; line-height: 1.2; }
-  .nav-logo-sub { font-family: 'DM Sans', sans-serif; font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-logo-text { font-family: 'DM Serif Display', serif; font-size: 17px; color: #1e293b; letter-spacing: 0.01em; line-height: 1.2; }
+  .nav-logo-sub { font-family: 'DM Sans', sans-serif; font-size: 10px; color: #94a3b8; letter-spacing: 0.12em; text-transform: uppercase; }
   .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-  .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; transition: color 0.2s; }
-  .nav-links a:hover { color: white; }
+  .nav-links a { color: #475569; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+  .nav-links a:hover { color: #1e40af; }
   .nav-cta { display: flex; gap: 10px; align-items: center; }
   .btn-nav {
-    padding: 9px 20px; border-radius: 8px;
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    padding: 8px 18px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
     cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap;
   }
-  .btn-nav-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); }
-  .btn-nav-ghost:hover { border-color: rgba(255,255,255,0.5); color: white; }
-  .btn-nav-primary { background: linear-gradient(135deg, #00b4a0, #0096cc); border: none; color: white; }
+  .btn-nav-ghost { background: transparent; border: 1px solid #e2e8f0; color: #475569; }
+  .btn-nav-ghost:hover { border-color: #93c5fd; color: #1e40af; }
+  .btn-nav-primary { background: linear-gradient(135deg, #1e40af, #0891b2); border: none; color: white; box-shadow: 0 2px 8px rgba(30,64,175,0.3); }
   .btn-nav-primary:hover { filter: brightness(1.1); }
   .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
-  .hamburger span { width: 22px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s; }
+  .hamburger span { width: 22px; height: 2px; background: #1e293b; border-radius: 2px; transition: all 0.3s; }
   .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   .mobile-nav {
     display: none;
     position: fixed; top: 68px; left: 0; right: 0; bottom: 0; z-index: 99;
-    background: rgba(10,28,60,0.98);
+    background: rgba(255,255,255,0.99);
     flex-direction: column; align-items: center; justify-content: center;
     gap: 32px; padding: 40px;
   }
   .mobile-nav.open { display: flex; }
-  .mobile-nav a { color: white; text-decoration: none; font-size: 22px; font-family: 'DM Serif Display', serif; }
+  .mobile-nav a { color: #1e293b; text-decoration: none; font-size: 22px; font-family: 'DM Serif Display', serif; }
   .mobile-nav .mobile-cta { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 280px; }
   .mobile-nav .btn-nav { text-align: center; padding: 14px; font-size: 15px; }
 
   /* ─── HERO ─── */
   .page-hero {
     padding: 140px 80px 80px;
-    background: linear-gradient(135deg, #0e2d6e 0%, #1355a8 50%, #0d8fa0 100%);
+    background: linear-gradient(135deg, #1e40af 0%, #0891b2 60%, #06b6d4 100%);
     position: relative; overflow: hidden;
   }
   .page-hero::before {
@@ -605,6 +607,47 @@
         </div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- CLEARINGHOUSE FAQ -->
+<section id="clearinghouse" style="background:#f0f9ff;">
+  <div style="margin-bottom:48px;">
+    <div class="section-label">FMCSA Clearinghouse</div>
+    <h2 class="section-title">Owner-Operators &amp;<br><em>the Clearinghouse.</em></h2>
+    <p class="section-desc">The federal Drug &amp; Alcohol Clearinghouse tracks CDL driver violations. Here's what you need to know — and what you can handle yourself.</p>
+  </div>
+
+  <div style="max-width:860px; display:flex; flex-direction:column; gap:20px;">
+
+    <div class="reg-card">
+      <div class="reg-tag">What Is It</div>
+      <h3>The FMCSA Drug &amp; Alcohol Clearinghouse</h3>
+      <p>The Clearinghouse is a federal database that records CDL drivers' drug and alcohol violations — positive tests, refusals, return-to-duty activity, and follow-up results. Employers are required to query it before a driver operates under their authority, and annually after that.</p>
+    </div>
+
+    <div class="reg-card">
+      <div class="reg-tag">Owner-Operators</div>
+      <h3>Can I Do the Query Myself?</h3>
+      <p>Yes. If you hold your own DOT authority, you can register at <strong>clearinghouse.fmcsa.dot.gov</strong> as both employer and driver, give yourself consent, and run the required queries on your own record. There is no rule that says you must use a C/TPA for this step.</p>
+    </div>
+
+    <div class="reg-card" style="border-color: var(--teal);">
+      <div class="reg-tag" style="background:rgba(0,180,160,0.12); color:var(--teal);">Why Use a C/TPA</div>
+      <h3>Where Doctors Place Adds Value</h3>
+      <p style="margin-bottom:14px;">Managing it yourself is possible — but easy to let slip. A missed annual query can result in fines up to <strong>$16,000+</strong> per violation. Here's what we handle on your behalf:</p>
+      <ul style="list-style:none; display:flex; flex-direction:column; gap:8px;">
+        <li style="display:flex; gap:10px; font-size:14px; color:var(--text-muted);"><span style="color:var(--teal); font-weight:700; flex-shrink:0;">✓</span> Annual limited query run on time — no missed deadlines</li>
+        <li style="display:flex; gap:10px; font-size:14px; color:var(--text-muted);"><span style="color:var(--teal); font-weight:700; flex-shrink:0;">✓</span> Pre-employment full query before you begin operating</li>
+        <li style="display:flex; gap:10px; font-size:14px; color:var(--text-muted);"><span style="color:var(--teal); font-weight:700; flex-shrink:0;">✓</span> Records kept audit-ready for DOT compliance inspections</li>
+        <li style="display:flex; gap:10px; font-size:14px; color:var(--text-muted);"><span style="color:var(--teal); font-weight:700; flex-shrink:0;">✓</span> Bundled with your random testing program — one less thing to track</li>
+      </ul>
+    </div>
+
+    <div style="background:rgba(26,58,110,0.05); border:1px solid var(--border); border-radius:12px; padding:18px 24px; font-size:14px; color:var(--text-muted); line-height:1.7;">
+      <strong style="color:var(--navy);">Required queries under 49 CFR Part 382.701:</strong> A <em>full query</em> (with driver consent) before hiring or beginning operations — plus an <em>annual limited query</em> every 12 months thereafter. Both are required whether you use a C/TPA or do it yourself.
+    </div>
+
   </div>
 </section>
 

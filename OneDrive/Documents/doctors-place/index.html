@@ -83,16 +83,16 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1a3a6e;
-    --teal: #00b4a0;
-    --teal-light: #00d4bc;
-    --cream: #eef7ff;
-    --warm-white: #f4faff;
-    --gold: #ff7c2a;
-    --gold-light: #ff9a50;
-    --text: #0f2340;
-    --text-muted: #4a6a8a;
-    --border: #c8dff0;
+    --navy: #1e40af;
+    --teal: #0891b2;
+    --teal-light: #22d3ee;
+    --cream: #eff6ff;
+    --warm-white: #f8faff;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #bfdbfe;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -108,12 +108,13 @@
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(15,45,94,0.97);
+    background: rgba(255,255,255,0.97);
     backdrop-filter: blur(12px);
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 40px;
     height: 68px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(30,64,175,0.1);
+    box-shadow: 0 1px 12px rgba(0,0,0,0.06);
   }
   .nav-logo {
     display: flex; align-items: center; gap: 12px;
@@ -121,39 +122,40 @@
   }
   .nav-logo-mark {
     width: 38px; height: 38px;
-    background: linear-gradient(135deg, #00c4b0, #00e8d0);
+    background: linear-gradient(135deg, #1e40af, #0891b2);
     border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
     font-family: 'DM Serif Display', serif;
     font-size: 20px; color: white;
+    box-shadow: 0 2px 8px rgba(30,64,175,0.3);
   }
-  .nav-logo-text { font-family: 'DM Serif Display', serif; font-size: 17px; color: white; letter-spacing: 0.01em; line-height: 1.2; }
-  .nav-logo-sub { font-family: 'DM Sans', sans-serif; font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-logo-text { font-family: 'DM Serif Display', serif; font-size: 17px; color: #1e293b; letter-spacing: 0.01em; line-height: 1.2; }
+  .nav-logo-sub { font-family: 'DM Sans', sans-serif; font-size: 10px; color: #94a3b8; letter-spacing: 0.12em; text-transform: uppercase; }
   .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-  .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; font-weight: 400; letter-spacing: 0.02em; transition: color 0.2s; }
-  .nav-links a:hover { color: white; }
+  .nav-links a { color: #475569; text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
+  .nav-links a:hover { color: #1e40af; }
   .nav-cta { display: flex; gap: 10px; align-items: center; }
   .btn-nav {
-    padding: 9px 20px; border-radius: 8px;
-    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+    padding: 8px 18px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600;
     cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap;
   }
-  .btn-nav-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); }
-  .btn-nav-ghost:hover { border-color: rgba(255,255,255,0.5); color: white; }
-  .btn-nav-primary { background: linear-gradient(135deg, #00b4a0, #0096cc); border: none; color: white; }
+  .btn-nav-ghost { background: transparent; border: 1px solid #e2e8f0; color: #475569; }
+  .btn-nav-ghost:hover { border-color: #93c5fd; color: #1e40af; }
+  .btn-nav-primary { background: linear-gradient(135deg, #1e40af, #0891b2); border: none; color: white; box-shadow: 0 2px 8px rgba(30,64,175,0.3); }
   .btn-nav-primary:hover { filter: brightness(1.1); }
 
   /* Mobile nav overlay */
   .mobile-nav {
     display: none;
     position: fixed; top: 68px; left: 0; right: 0; bottom: 0; z-index: 99;
-    background: rgba(10,28,60,0.98);
+    background: rgba(255,255,255,0.99);
     flex-direction: column; align-items: center; justify-content: center;
     gap: 32px; padding: 40px;
   }
   .mobile-nav.open { display: flex; }
   .mobile-nav a {
-    color: white; text-decoration: none; font-size: 22px;
+    color: #1e293b; text-decoration: none; font-size: 22px;
     font-family: 'DM Serif Display', serif; letter-spacing: 0.01em;
     transition: color 0.2s;
   }
@@ -168,7 +170,7 @@
   /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
-    background: linear-gradient(135deg, #0e2d6e 0%, #1355a8 50%, #0d8fa0 100%);
+    background: linear-gradient(135deg, #1e40af 0%, #0891b2 55%, #06b6d4 100%);
     display: grid; grid-template-columns: 1fr 1fr;
     position: relative; overflow: hidden;
   }
@@ -577,6 +579,57 @@
     .appt-form-grid { grid-template-columns: 1fr; }
   }
 
+  /* ─── HERO SEARCH ─── */
+  .hero-search {
+    display: flex; gap: 0; margin: 20px 0 0; max-width: 440px;
+  }
+  .hero-search input {
+    flex: 1; padding: 12px 18px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+    border: none; border-radius: 10px 0 0 10px; outline: none;
+    color: var(--text); background: rgba(255,255,255,0.95);
+  }
+  .hero-search input::placeholder { color: #94a3b8; }
+  .hero-search button {
+    padding: 12px 20px; background: linear-gradient(135deg, #f59e0b, #fbbf24);
+    border: none; border-radius: 0 10px 10px 0; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 600;
+    color: #1e293b; white-space: nowrap; transition: filter 0.2s;
+  }
+  .hero-search button:hover { filter: brightness(1.08); }
+
+  /* ─── PARTNERS SECTION ─── */
+  #partners-cta {
+    background: linear-gradient(135deg, #f5f3ff 0%, #eff6ff 60%, #f0fdf4 100%);
+    border-top: 1px solid #e0e7ff; border-bottom: 1px solid #e0e7ff;
+    padding: 80px 80px;
+  }
+  .partners-cta-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1100px; margin: 0 auto;
+  }
+  .partner-type-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px;
+  }
+  .partner-type-pill {
+    display: flex; align-items: center; gap: 8px;
+    background: white; border: 1px solid #e0e7ff; border-radius: 10px;
+    padding: 10px 14px; font-size: 13px; font-weight: 500; color: var(--text);
+    box-shadow: 0 1px 4px rgba(30,64,175,0.06);
+  }
+  .partner-benefits { display: flex; flex-direction: column; gap: 16px; }
+  .partner-benefit {
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .partner-benefit-icon {
+    width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .pbi-purple { background: #f5f3ff; }
+  .pbi-blue   { background: #eff6ff; }
+  .pbi-teal   { background: #f0fdfa; }
+  .pbi-gold   { background: #fffbeb; }
+  .partner-benefit-text h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .partner-benefit-text p  { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
   /* ─── CONTACT ─── */
   #contact {
     background: #eef6ff;
@@ -653,7 +706,7 @@
 
   /* ─── HAMBURGER ─── */
   .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; z-index: 101; }
-  .hamburger span { width: 22px; height: 2px; background: white; border-radius: 2px; transition: all 0.3s; }
+  .hamburger span { width: 22px; height: 2px; background: #1e293b; border-radius: 2px; transition: all 0.3s; }
   .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .hamburger.open span:nth-child(2) { opacity: 0; }
   .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
@@ -705,25 +758,24 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">
+  <a href="https://portal.dot-physical.net" class="nav-logo">
     <div class="nav-logo-mark">D</div>
     <div>
       <div class="nav-logo-text">Doctors Place</div>
-      <div class="nav-logo-sub">Medical · Hackensack, NJ</div>
+      <div class="nav-logo-sub">DOT &amp; Occupational Health</div>
     </div>
   </a>
   <ul class="nav-links">
     <li><a href="#services">Services</a></li>
-    <li><a href="#how">How It Works</a></li>
     <li><a href="#employer">For Employers</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="https://portal.dot-physical.net/join-consortium" target="_blank">Consortium</a></li>
+    <li><a href="https://portal.dot-physical.net/partners" target="_blank">Partners</a></li>
     <li><a href="/std-testing">STD Testing</a></li>
-    <li><a href="https://portal.dot-physical.net/schedule" target="_blank">Book Online</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-cta">
-    <a href="tel:2013455803" class="btn-nav btn-nav-ghost">📞 (201) 345-5803</a>
-    <a href="https://portal.dot-physical.net/schedule" class="btn-nav btn-nav-primary" target="_blank">Book Appointment</a>
+    <a href="https://portal.dot-physical.net" class="btn-nav btn-nav-ghost" target="_blank">Employer Portal</a>
+    <a href="https://portal.dot-physical.net/order" class="btn-nav btn-nav-primary" target="_blank">Order Now →</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -733,14 +785,14 @@
 <!-- MOBILE NAV -->
 <div class="mobile-nav" id="mobileNav" role="dialog" aria-label="Navigation menu">
   <a href="#services" class="mobile-nav-link">Services</a>
-  <a href="#how" class="mobile-nav-link">How It Works</a>
   <a href="#employer" class="mobile-nav-link">For Employers</a>
-  <a href="#testimonials" class="mobile-nav-link">Reviews</a>
+  <a href="https://portal.dot-physical.net/join-consortium" target="_blank" class="mobile-nav-link">Consortium</a>
+  <a href="https://portal.dot-physical.net/partners" target="_blank" class="mobile-nav-link">Partners</a>
   <a href="/std-testing" class="mobile-nav-link">STD Testing</a>
   <a href="#contact" class="mobile-nav-link">Contact</a>
   <div class="mobile-cta">
-    <a href="tel:2013455803" class="btn-nav btn-nav-ghost" style="text-align:center">📞 (201) 345-5803</a>
-    <a href="https://portal.dot-physical.net/schedule" class="btn-nav btn-nav-primary" target="_blank" style="text-align:center">Book Appointment</a>
+    <a href="https://portal.dot-physical.net/order" class="btn-nav btn-nav-primary" target="_blank" style="text-align:center">Order Now →</a>
+    <a href="https://portal.dot-physical.net" class="btn-nav btn-nav-ghost" target="_blank" style="text-align:center">Employer Portal</a>
   </div>
 </div>
 
@@ -759,6 +811,13 @@
       </a>
       <a href="#services" class="btn-secondary">View Our Services</a>
     </div>
+
+    <!-- Search bar -->
+    <form class="hero-search" onsubmit="heroSearch(event)">
+      <input type="text" id="heroSearchInput" placeholder="Search services, conditions, or topics…" autocomplete="off">
+      <button type="submit">Search</button>
+    </form>
+
     <div class="hero-info-strip">
       <div class="hero-info-item">
         <span class="hero-info-label">Location</span>
@@ -1005,15 +1064,82 @@
   </div>
 </section>
 
+<!-- PARTNERS CTA -->
+<section id="partners-cta">
+  <div class="partners-cta-inner">
+
+    <!-- Left: messaging -->
+    <div>
+      <div class="section-label">Partner Program</div>
+      <h2 class="section-title">Grow your business<br>with our <em>white-label</em> platform.</h2>
+      <p class="section-desc">PEOs, staffing agencies, HR platforms, and fleet companies use our branded portal to offer DOT compliance and occupational health to their clients — and earn revenue on every order.</p>
+
+      <div class="partner-type-grid">
+        <div class="partner-type-pill">🏢 PEOs</div>
+        <div class="partner-type-pill">👥 Staffing Agencies</div>
+        <div class="partner-type-pill">🧑‍💼 HR Software</div>
+        <div class="partner-type-pill">🚛 Fleet Management</div>
+        <div class="partner-type-pill">🏗️ Industry Associations</div>
+        <div class="partner-type-pill">⚕️ Occ. Health Brokers</div>
+      </div>
+
+      <div style="margin-top:36px; display:flex; gap:12px; flex-wrap:wrap;">
+        <a href="https://portal.dot-physical.net/partners" class="btn-primary" target="_blank" style="background:linear-gradient(135deg,#1e40af,#0891b2);">
+          Learn About Partnering →
+        </a>
+        <a href="mailto:occmed@doctors-place.com?subject=Partner Program" class="btn-secondary">
+          Email Us
+        </a>
+      </div>
+    </div>
+
+    <!-- Right: benefits -->
+    <div class="partner-benefits">
+      <div class="partner-benefit">
+        <div class="partner-benefit-icon pbi-purple">💰</div>
+        <div class="partner-benefit-text">
+          <h4>8–12% Revenue Share</h4>
+          <p>Earn a percentage of every order placed through your network — deposited automatically to your Stripe account. Tier upgrades happen automatically.</p>
+        </div>
+      </div>
+      <div class="partner-benefit">
+        <div class="partner-benefit-icon pbi-blue">🎨</div>
+        <div class="partner-benefit-text">
+          <h4>White-Label Portal</h4>
+          <p>Your own branded employer portal at <em>yourname.dot-physical.net</em> — your logo, your colors. Powered by Doctors Place behind the scenes.</p>
+        </div>
+      </div>
+      <div class="partner-benefit">
+        <div class="partner-benefit-icon pbi-teal">🔄</div>
+        <div class="partner-benefit-text">
+          <h4>DOT Consortium Included</h4>
+          <p>Enroll your employer clients in our FMCSA-compliant random testing consortium. We manage the draws, MRO review, and Clearinghouse reporting.</p>
+        </div>
+      </div>
+      <div class="partner-benefit">
+        <div class="partner-benefit-icon pbi-gold">📊</div>
+        <div class="partner-benefit-text">
+          <h4>Partner Dashboard</h4>
+          <p>One dashboard showing all your employers, their orders, enrollments, and your earnings — all in real time. $350 setup · $99/month.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- INSURANCE -->
 <section id="insurance">
   <div style="display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start;">
     <div>
-      <div class="section-label">Insurance & Payment</div>
+      <div class="section-label">Walk-in & General Medical Visits</div>
       <h2 class="section-title">We accept most<br><em>major plans.</em></h2>
-      <p class="section-desc">Don't see yours? Call us — we work with many additional plans and offer self-pay rates for uninsured patients.</p>
+      <p class="section-desc">Insurance is accepted for walk-in urgent care and general medical visits. Don't see yours? Call us — we work with many additional plans.</p>
       <div class="insurance-note" style="margin-top:28px;">
         <strong>No insurance?</strong> Ask about our Medical Discount Plans — affordable flat-rate care for individuals and families, no insurance required.
+      </div>
+      <div class="insurance-note" style="margin-top:16px; background:rgba(234,179,8,0.08); border-color:rgba(234,179,8,0.3);">
+        <strong style="color:#92400e;">Occupational health services are not billed to insurance.</strong> DOT physicals, drug screens, pre-employment exams, and other occupational services are <strong>employer-pay or self-pay only</strong>. Payment is collected at time of service or invoiced to the employer.
       </div>
     </div>
     <div>
@@ -1565,6 +1691,13 @@
       btn.textContent = 'Submitting…';
       btn.disabled = true;
     });
+  }
+
+  function heroSearch(e) {
+    e.preventDefault();
+    var q = document.getElementById('heroSearchInput').value.trim();
+    if (!q) return;
+    window.open('https://portal.dot-physical.net/?q=' + encodeURIComponent(q), '_blank');
   }
 </script>
 </body>

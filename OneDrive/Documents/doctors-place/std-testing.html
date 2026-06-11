@@ -53,16 +53,16 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1a3a6e;
-    --teal: #00b4a0;
-    --teal-light: #00d4bc;
-    --cream: #eef7ff;
-    --warm-white: #f4faff;
-    --gold: #ff7c2a;
-    --gold-light: #ff9a50;
-    --text: #0f2340;
-    --text-muted: #4a6a8a;
-    --border: #c8dff0;
+    --navy: #1e40af;
+    --teal: #0891b2;
+    --teal-light: #22d3ee;
+    --cream: #eff6ff;
+    --warm-white: #f8faff;
+    --gold: #f59e0b;
+    --gold-light: #fbbf24;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #bfdbfe;
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -72,42 +72,44 @@
   /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(15,45,94,0.97); backdrop-filter: blur(12px);
+    background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
     display: flex; align-items: center; justify-content: space-between;
     padding: 0 40px; height: 68px;
-    border-bottom: 1px solid rgba(255,255,255,0.07);
+    border-bottom: 1px solid rgba(30,64,175,0.1);
+    box-shadow: 0 1px 12px rgba(0,0,0,0.06);
   }
   .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
   .nav-logo-mark {
     width: 38px; height: 38px;
-    background: linear-gradient(135deg, #00c4b0, #00e8d0);
+    background: linear-gradient(135deg, #1e40af, #0891b2);
     border-radius: 10px; display: flex; align-items: center; justify-content: center;
     font-family: 'DM Serif Display', serif; font-size: 20px; color: white;
+    box-shadow: 0 2px 8px rgba(30,64,175,0.3);
   }
-  .nav-logo-text { font-family: 'DM Serif Display', serif; font-size: 17px; color: white; letter-spacing: 0.01em; line-height: 1.2; }
-  .nav-logo-sub { font-family: 'DM Sans', sans-serif; font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing: 0.12em; text-transform: uppercase; }
+  .nav-logo-text { font-family: 'DM Serif Display', serif; font-size: 17px; color: #1e293b; letter-spacing: 0.01em; line-height: 1.2; }
+  .nav-logo-sub { font-family: 'DM Sans', sans-serif; font-size: 10px; color: #94a3b8; letter-spacing: 0.12em; text-transform: uppercase; }
   .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
-  .nav-links a { color: rgba(255,255,255,0.72); text-decoration: none; font-size: 14px; font-weight: 400; letter-spacing: 0.02em; transition: color 0.2s; }
-  .nav-links a:hover, .nav-links a.active { color: white; }
+  .nav-links a { color: #475569; text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.02em; transition: color 0.2s; }
+  .nav-links a:hover, .nav-links a.active { color: #1e40af; }
   .nav-cta { display: flex; gap: 10px; align-items: center; }
-  .btn-nav { padding: 9px 20px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
-  .btn-nav-ghost { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.8); }
-  .btn-nav-ghost:hover { border-color: rgba(255,255,255,0.5); color: white; }
-  .btn-nav-primary { background: linear-gradient(135deg, #00b4a0, #0096cc); border: none; color: white; }
+  .btn-nav { padding: 8px 18px; border-radius: 8px; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+  .btn-nav-ghost { background: transparent; border: 1px solid #e2e8f0; color: #475569; }
+  .btn-nav-ghost:hover { border-color: #93c5fd; color: #1e40af; }
+  .btn-nav-primary { background: linear-gradient(135deg, #1e40af, #0891b2); border: none; color: white; box-shadow: 0 2px 8px rgba(30,64,175,0.3); }
   .btn-nav-primary:hover { filter: brightness(1.1); }
   .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 8px; }
-  .hamburger span { display: block; width: 22px; height: 2px; background: white; margin: 5px 0; border-radius: 2px; transition: all 0.3s; }
-  .mobile-nav { display: none; position: fixed; top: 68px; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(10,28,60,0.98); flex-direction: column; align-items: center; justify-content: center; gap: 32px; padding: 40px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #1e293b; margin: 5px 0; border-radius: 2px; transition: all 0.3s; }
+  .mobile-nav { display: none; position: fixed; top: 68px; left: 0; right: 0; bottom: 0; z-index: 99; background: rgba(255,255,255,0.99); flex-direction: column; align-items: center; justify-content: center; gap: 32px; padding: 40px; }
   .mobile-nav.open { display: flex; }
-  .mobile-nav a { color: white; text-decoration: none; font-size: 22px; font-family: 'DM Serif Display', serif; letter-spacing: 0.01em; transition: color 0.2s; }
-  .mobile-nav a:hover { color: var(--teal-light); }
+  .mobile-nav a { color: #1e293b; text-decoration: none; font-size: 22px; font-family: 'DM Serif Display', serif; letter-spacing: 0.01em; transition: color 0.2s; }
+  .mobile-nav a:hover { color: #1e40af; }
   .mobile-nav .mobile-cta { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 280px; }
   .mobile-nav .btn-nav { text-align: center; padding: 14px; font-size: 15px; }
 
   /* ─── PAGE HERO ─── */
   .page-hero {
     padding: 140px 80px 80px;
-    background: linear-gradient(135deg, #0e2d6e 0%, #1355a8 55%, #0d8fa0 100%);
+    background: linear-gradient(135deg, #1e40af 0%, #0891b2 55%, #06b6d4 100%);
     position: relative; overflow: hidden;
   }
   .page-hero::before {
