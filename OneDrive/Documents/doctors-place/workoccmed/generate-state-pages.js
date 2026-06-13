@@ -113,7 +113,7 @@ const SHARED_CSS = `
   .city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:32px;}
   .city-chip{background:white;border:1px solid var(--border);border-radius:10px;padding:11px 15px;text-decoration:none;color:#334155;font-size:13px;font-weight:500;transition:all .2s;display:flex;align-items:center;gap:8px;}
   .city-chip:hover{border-color:#1e40af;color:#1e40af;background:#eff6ff;}
-  .city-chip::before{content:'📍';font-size:12px;}
+  .city-chip::before{content:'';}
   .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:white;}
   .how-step{padding:28px;border-right:1px solid var(--border);}
   .how-step:last-child{border-right:none;}
@@ -224,12 +224,12 @@ function statePageHtml(state) {
       <span>›</span>
       <span style="color:rgba(255,255,255,.85);">${name}</span>
     </div>
-    <div class="hero-badge">📍 ${name} · All Major Cities</div>
+    <div class="hero-badge">${name} · All Major Cities</div>
     <h1>Occupational Health<br><span>${name}</span></h1>
     <p class="hero-sub">DOT physicals, pre-employment drug testing, workplace drug screening, random testing programs, and fitness-for-duty evaluations for employers throughout ${name}. Order online — results in 24–72 hours.</p>
     <div class="hero-ctas">
       <a href="https://portal.dot-physical.net/order" class="btn-white">Order Now →</a>
-      <a href="tel:+18882334567" class="btn-outline">📞 (888) 233-4567</a>
+      <a href="tel:+18882334567" class="btn-outline">(888) 233-4567</a>
     </div>
   </div>
 </section>
@@ -248,37 +248,31 @@ function statePageHtml(state) {
     <p class="sub">Whether you employ CDL drivers, construction workers, healthcare staff, or warehouse teams in ${name}, Work OccMed manages your entire occupational health program online.</p>
     <div class="grid-3">
       <div class="card">
-        <div class="card-icon">🩺</div>
         <h3>DOT Physical Exam</h3>
         <p>FMCSA-certified DOT physical examinations for CDL drivers and DOT-regulated employees in ${name}. MCSA-5875 form and Medical Examiner Certificate issued.</p>
         <span class="price-tag">From $110</span>
       </div>
       <div class="card">
-        <div class="card-icon">🧪</div>
         <h3>Pre-Employment Drug Screen</h3>
         <p>5-panel and 10-panel urine drug screens for new hires across ${name}. MRO-reviewed results delivered to your employer portal in 24–72 hours.</p>
         <span class="price-tag">From $80</span>
       </div>
       <div class="card">
-        <div class="card-icon">🚛</div>
         <h3>DOT Drug & Alcohol Testing</h3>
         <p>DOT-compliant drug and alcohol testing for CDL drivers in ${name} — pre-employment, random, post-accident, reasonable suspicion, and return to duty.</p>
         <span class="price-tag">From $80</span>
       </div>
       <div class="card">
-        <div class="card-icon">🔄</div>
         <h3>DOT Consortium Enrollment</h3>
         <p>Enroll your ${name} drivers in our FMCSA-compliant random testing consortium. Annual plans include random selection pool, recordkeeping, and compliance reports.</p>
         <span class="price-tag">From $49/yr</span>
       </div>
       <div class="card">
-        <div class="card-icon">🏗️</div>
         <h3>Pre-Employment Physical</h3>
         <p>Non-DOT pre-employment physicals for construction, manufacturing, healthcare, and all industries in ${name}. Vision, hearing, lift testing, and more.</p>
         <span class="price-tag">From $110</span>
       </div>
       <div class="card">
-        <div class="card-icon">📋</div>
         <h3>Return to Duty Testing</h3>
         <p>DOT return to duty drug testing after SAP completion, and non-DOT fitness-for-duty evaluations after injury or illness for ${name} employees.</p>
         <a href="../return-to-duty.html" style="display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:#1e40af;text-decoration:none;">Learn more →</a>
@@ -357,8 +351,8 @@ function statePageHtml(state) {
   <p>Set up your employer account in minutes. No setup fees.</p>
   <div class="cta-btns">
     <a href="https://portal.dot-physical.net/signup" class="cta-btn-primary">Create Free Account →</a>
-    <a href="mailto:occmed@doctors-place.com" class="cta-btn-outline">✉️ occmed@doctors-place.com</a>
-    <a href="tel:+18882334567" class="cta-btn-outline">📞 (888) 233-4567</a>
+    <a href="mailto:occmed@doctors-place.com" class="cta-btn-outline">occmed@doctors-place.com</a>
+    <a href="tel:+18882334567" class="cta-btn-outline">(888) 233-4567</a>
   </div>
 </div>
 
@@ -462,12 +456,12 @@ function cityPageHtml(state, city) {
       <span>›</span>
       <span style="color:rgba(255,255,255,.85);">${city}</span>
     </div>
-    <div class="hero-badge">📍 ${city}, ${stateName}</div>
+    <div class="hero-badge">${city}, ${stateName}</div>
     <h1>Occupational Health<br><span>${city}, ${abbr}</span></h1>
     <p class="hero-sub">DOT physicals, pre-employment drug testing, and workplace drug screening for employers in ${city}, ${stateName}. Order online — authorized collection sites near ${city}, results in 24–72 hours.</p>
     <div class="hero-ctas">
       <a href="https://portal.dot-physical.net/order" class="btn-white">Order Now →</a>
-      <a href="tel:+18882334567" class="btn-outline">📞 (888) 233-4567</a>
+      <a href="tel:+18882334567" class="btn-outline">(888) 233-4567</a>
     </div>
   </div>
 </section>
@@ -486,37 +480,31 @@ function cityPageHtml(state, city) {
     <p class="sub">Work OccMed connects ${city} employers with DOT-certified examiners and drug testing collection sites — manage everything online through your free employer portal.</p>
     <div class="grid-3">
       <div class="card">
-        <div class="card-icon">🩺</div>
         <h3>DOT Physical — ${city}</h3>
         <p>FMCSA-certified DOT physical exams for CDL drivers based in or near ${city}, ${stateName}. Medical Examiner Certificate issued on exam day.</p>
         <span class="price-tag">From $110</span>
       </div>
       <div class="card">
-        <div class="card-icon">🧪</div>
         <h3>Pre-Employment Drug Screen</h3>
         <p>5-panel and 10-panel urine drug screens for new hires in ${city}. Collection sites near ${city} — no appointment needed at most locations.</p>
         <span class="price-tag">From $80</span>
       </div>
       <div class="card">
-        <div class="card-icon">🚛</div>
         <h3>DOT Drug Testing — ${city}</h3>
         <p>DOT pre-employment, random, post-accident, and return to duty drug testing for ${city}-area CDL drivers and DOT-regulated employees.</p>
         <span class="price-tag">From $80</span>
       </div>
       <div class="card">
-        <div class="card-icon">🔄</div>
         <h3>DOT Consortium</h3>
         <p>Enroll your ${city} CDL drivers in an FMCSA-compliant random testing consortium. $49+/yr per driver with full compliance management.</p>
         <span class="price-tag">From $49/yr</span>
       </div>
       <div class="card">
-        <div class="card-icon">🏗️</div>
         <h3>Pre-Employment Physical</h3>
         <p>Non-DOT pre-employment physicals for construction, healthcare, warehouse, and all industries in the ${city} area.</p>
         <span class="price-tag">From $110</span>
       </div>
       <div class="card">
-        <div class="card-icon">📋</div>
         <h3>Return to Duty</h3>
         <p>DOT return to duty testing after SAP process and non-DOT fitness-for-duty evaluations for ${city} employees returning after injury or violation.</p>
         <a href="../return-to-duty.html" style="display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:#1e40af;text-decoration:none;">Learn more →</a>
@@ -558,9 +546,9 @@ function cityPageHtml(state, city) {
   <h2>Start Managing ${city} Occupational Health</h2>
   <p>Free employer account. No setup fees. Nationwide coverage including ${city}, ${stateName}.</p>
   <div class="cta-btns">
-    <a href="https://portal.dot-physical.net/signup" class="btn-white">Create Free Account →</a>
-    <a href="../states/${stateSlug}.html" class="btn-outline">← All ${stateName} Cities</a>
-    <a href="tel:+18882334567" class="btn-outline">📞 (888) 233-4567</a>
+    <a href="https://portal.dot-physical.net/signup" class="cta-btn-primary">Create Free Account →</a>
+    <a href="../states/${stateSlug}.html" class="cta-btn-outline">← All ${stateName} Cities</a>
+    <a href="tel:+18882334567" class="cta-btn-outline">(888) 233-4567</a>
   </div>
 </div>
 
