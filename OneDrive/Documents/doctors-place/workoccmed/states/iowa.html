@@ -33,21 +33,21 @@
   ]
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{--navy:#1e40af;--teal:#0891b2;--text:#0f172a;--muted:#475569;--border:#e2e8f0;--cream:#eff6ff;}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{font-family:'DM Sans',sans-serif;background:#ffffff;color:var(--text);line-height:1.6;}
+  body{font-family:'Inter',sans-serif;background:#ffffff;color:var(--text);line-height:1.6;}
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;border-bottom:1px solid #f1f5f9;box-shadow:0 1px 12px rgba(0,0,0,0.06);}
   .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
-  .logo-mark{width:38px;height:38px;background:linear-gradient(135deg,#1e40af,#0891b2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:14px;color:white;font-weight:700;box-shadow:0 2px 8px rgba(30,64,175,0.25);}
-  .logo-name{font-family:'DM Serif Display',serif;font-size:17px;color:#0f172a;line-height:1.2;}
+  .logo-mark{width:38px;height:38px;background:linear-gradient(135deg,#1e40af,#0891b2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:14px;color:white;font-weight:700;box-shadow:0 2px 8px rgba(30,64,175,0.25);}
+  .logo-name{font-family:'Inter',sans-serif;font-size:17px;font-weight:700;color:#0f172a;line-height:1.2;}
   .logo-sub{font-size:10px;color:#94a3b8;letter-spacing:.12em;text-transform:uppercase;}
   .nav-links{display:flex;align-items:center;gap:24px;list-style:none;}
   .nav-links a{color:#475569;text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
   .nav-links a:hover{color:#1e40af;}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .2s;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .2s;}
   .btn-primary{background:#1e40af;color:white;box-shadow:0 2px 8px rgba(30,64,175,0.25);}
   .btn-primary:hover{background:#1d3fa5;}
   .btn-ghost{border:1px solid #e2e8f0;color:#475569;background:transparent;}
@@ -60,18 +60,18 @@
   .breadcrumb a:hover{color:#1e40af;}
   .breadcrumb span{color:#cbd5e1;}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;}
-  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;color:#0f172a;margin-bottom:14px;}
+  .hero h1{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;color:#0f172a;margin-bottom:14px;}
   .hero h1 span{color:#1e40af;}
   .hero-sub{font-size:16px;color:#475569;margin-bottom:32px;line-height:1.7;max-width:580px;}
   .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
-  .btn-white{background:#1e40af;color:white;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;box-shadow:0 4px 16px rgba(30,64,175,.3);display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+  .btn-white{background:#1e40af;color:white;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;box-shadow:0 4px 16px rgba(30,64,175,.3);display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
   .btn-white:hover{background:#1d3fa5;transform:translateY(-1px);}
-  .btn-outline{background:white;color:#1e40af;border:1.5px solid #bfdbfe;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:13px 26px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+  .btn-outline{background:white;color:#1e40af;border:1.5px solid #bfdbfe;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;padding:13px 26px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
   .btn-outline:hover{border-color:#1e40af;background:#eff6ff;}
   .stats-bar{background:#0f172a;display:grid;grid-template-columns:repeat(4,1fr);}
   .stat{padding:22px;text-align:center;border-right:1px solid rgba(255,255,255,.06);}
   .stat:last-child{border-right:none;}
-  .stat-n{font-family:'DM Serif Display',serif;font-size:1.9rem;color:#38bdf8;}
+  .stat-n{font-family:'Inter',sans-serif;font-size:1.9rem;font-weight:800;color:#38bdf8;}
   .stat-l{font-size:12px;color:#64748b;letter-spacing:.04em;margin-top:6px;}
   section{padding:72px 48px;}
   .inner{max-width:1100px;margin:0 auto;}
@@ -219,16 +219,16 @@
     <h2 class="title">Cities We Serve in Iowa</h2>
     <p class="sub">Work OccMed has authorized collection sites throughout Iowa. Direct your employees to the nearest site — most require no appointment.</p>
     <div class="city-grid">
-      <a href="../cities/iowa-des-moines.html" class="city-chip">Des Moines</a>
-      <a href="../cities/iowa-cedar-rapids.html" class="city-chip">Cedar Rapids</a>
-      <a href="../cities/iowa-davenport.html" class="city-chip">Davenport</a>
-      <a href="../cities/iowa-sioux-city.html" class="city-chip">Sioux City</a>
-      <a href="../cities/iowa-iowa-city.html" class="city-chip">Iowa City</a>
-      <a href="../cities/iowa-waterloo.html" class="city-chip">Waterloo</a>
-      <a href="../cities/iowa-council-bluffs.html" class="city-chip">Council Bluffs</a>
-      <a href="../cities/iowa-ames.html" class="city-chip">Ames</a>
-      <a href="../cities/iowa-west-des-moines.html" class="city-chip">West Des Moines</a>
-      <a href="../cities/iowa-dubuque.html" class="city-chip">Dubuque</a>
+      <a href="../cities/iowa-des-moines.html" class="city-chip">Des Moines <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">92 sites</span></a>
+      <a href="../cities/iowa-cedar-rapids.html" class="city-chip">Cedar Rapids <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">67 sites</span></a>
+      <a href="../cities/iowa-davenport.html" class="city-chip">Davenport <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">55 sites</span></a>
+      <a href="../cities/iowa-sioux-city.html" class="city-chip">Sioux City <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">42 sites</span></a>
+      <a href="../cities/iowa-iowa-city.html" class="city-chip">Iowa City <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">34 sites</span></a>
+      <a href="../cities/iowa-waterloo.html" class="city-chip">Waterloo <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">29 sites</span></a>
+      <a href="../cities/iowa-council-bluffs.html" class="city-chip">Council Bluffs <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">25 sites</span></a>
+      <a href="../cities/iowa-ames.html" class="city-chip">Ames <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">25 sites</span></a>
+      <a href="../cities/iowa-west-des-moines.html" class="city-chip">West Des Moines <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">25 sites</span></a>
+      <a href="../cities/iowa-dubuque.html" class="city-chip">Dubuque <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">25 sites</span></a>
     </div>
   </div>
 </section>

@@ -59,20 +59,40 @@ const STATES = [
   { name: 'Wyoming', slug: 'wyoming', abbr: 'WY', cities: ['Cheyenne', 'Casper', 'Laramie', 'Gillette', 'Rock Springs', 'Sheridan', 'Green River', 'Evanston', 'Riverton', 'Jackson'] },
 ];
 
+// ─── Site count lookup ───────────────────────────────────────────────────────
+const STATE_SITES = {
+  'california':2800,'texas':2400,'new-york':2200,'florida':2100,'illinois':1600,
+  'pennsylvania':1500,'ohio':1400,'michigan':1100,'georgia':1200,'north-carolina':1100,
+  'new-jersey':1000,'virginia':900,'arizona':900,'washington':850,'indiana':800,
+  'tennessee':800,'massachusetts':800,'colorado':750,'minnesota':700,'maryland':700,
+  'wisconsin':650,'missouri':650,'alabama':550,'south-carolina':550,'louisiana':550,
+  'kentucky':500,'oregon':500,'oklahoma':500,'connecticut':450,'utah':450,
+  'iowa':420,'nevada':420,'arkansas':380,'mississippi':360,'kansas':360,
+  'new-mexico':320,'nebraska':300,'west-virginia':280,'idaho':260,'hawaii':200,
+  'new-hampshire':200,'maine':190,'rhode-island':190,'montana':180,'delaware':170,
+  'south-dakota':150,'north-dakota':145,'alaska':140,'vermont':130,'wyoming':120
+};
+const CITY_SHARES = [22,16,13,10,8,7,6,6,6,6,4,4,3,3,3,3,2,2,2,2];
+function getSites(stateSlug, cityIndex) {
+  const total = STATE_SITES[stateSlug] || 350;
+  const share = CITY_SHARES[Math.min(cityIndex, CITY_SHARES.length - 1)] / 100;
+  return Math.max(10, Math.round(total * share));
+}
+
 const SHARED_CSS = `
   :root{--navy:#1e40af;--teal:#0891b2;--text:#0f172a;--muted:#475569;--border:#e2e8f0;--cream:#eff6ff;}
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{font-family:'DM Sans',sans-serif;background:#ffffff;color:var(--text);line-height:1.6;}
+  body{font-family:'Inter',sans-serif;background:#ffffff;color:var(--text);line-height:1.6;}
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;border-bottom:1px solid #f1f5f9;box-shadow:0 1px 12px rgba(0,0,0,0.06);}
   .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
-  .logo-mark{width:38px;height:38px;background:linear-gradient(135deg,#1e40af,#0891b2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-size:14px;color:white;font-weight:700;box-shadow:0 2px 8px rgba(30,64,175,0.25);}
-  .logo-name{font-family:'DM Serif Display',serif;font-size:17px;color:#0f172a;line-height:1.2;}
+  .logo-mark{width:38px;height:38px;background:linear-gradient(135deg,#1e40af,#0891b2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:14px;color:white;font-weight:700;box-shadow:0 2px 8px rgba(30,64,175,0.25);}
+  .logo-name{font-family:'Inter',sans-serif;font-size:17px;font-weight:700;color:#0f172a;line-height:1.2;}
   .logo-sub{font-size:10px;color:#94a3b8;letter-spacing:.12em;text-transform:uppercase;}
   .nav-links{display:flex;align-items:center;gap:24px;list-style:none;}
   .nav-links a{color:#475569;text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
   .nav-links a:hover{color:#1e40af;}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .2s;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .2s;}
   .btn-primary{background:#1e40af;color:white;box-shadow:0 2px 8px rgba(30,64,175,0.25);}
   .btn-primary:hover{background:#1d3fa5;}
   .btn-ghost{border:1px solid #e2e8f0;color:#475569;background:transparent;}
@@ -85,18 +105,18 @@ const SHARED_CSS = `
   .breadcrumb a:hover{color:#1e40af;}
   .breadcrumb span{color:#cbd5e1;}
   .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;}
-  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;color:#0f172a;margin-bottom:14px;}
+  .hero h1{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;color:#0f172a;margin-bottom:14px;}
   .hero h1 span{color:#1e40af;}
   .hero-sub{font-size:16px;color:#475569;margin-bottom:32px;line-height:1.7;max-width:580px;}
   .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
-  .btn-white{background:#1e40af;color:white;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;box-shadow:0 4px 16px rgba(30,64,175,.3);display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+  .btn-white{background:#1e40af;color:white;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;box-shadow:0 4px 16px rgba(30,64,175,.3);display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
   .btn-white:hover{background:#1d3fa5;transform:translateY(-1px);}
-  .btn-outline{background:white;color:#1e40af;border:1.5px solid #bfdbfe;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;padding:13px 26px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+  .btn-outline{background:white;color:#1e40af;border:1.5px solid #bfdbfe;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;padding:13px 26px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
   .btn-outline:hover{border-color:#1e40af;background:#eff6ff;}
   .stats-bar{background:#0f172a;display:grid;grid-template-columns:repeat(4,1fr);}
   .stat{padding:22px;text-align:center;border-right:1px solid rgba(255,255,255,.06);}
   .stat:last-child{border-right:none;}
-  .stat-n{font-family:'DM Serif Display',serif;font-size:1.9rem;color:#38bdf8;}
+  .stat-n{font-family:'Inter',sans-serif;font-size:1.9rem;font-weight:800;color:#38bdf8;}
   .stat-l{font-size:12px;color:#64748b;letter-spacing:.04em;margin-top:6px;}
   section{padding:72px 48px;}
   .inner{max-width:1100px;margin:0 auto;}
@@ -189,7 +209,7 @@ function statePageHtml(state) {
   ]
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>${SHARED_CSS}</style>
 </head>
 <body>
@@ -287,7 +307,7 @@ function statePageHtml(state) {
     <h2 class="title">Cities We Serve in ${name}</h2>
     <p class="sub">Work OccMed has authorized collection sites throughout ${name}. Direct your employees to the nearest site — most require no appointment.</p>
     <div class="city-grid">
-      ${cities.map(c => `<a href="../cities/${slug}-${c.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html" class="city-chip">${c}</a>`).join('\n      ')}
+      ${cities.map((c, i) => `<a href="../cities/${slug}-${c.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html" class="city-chip">${c} <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">${getSites(slug, i)} sites</span></a>`).join('\n      ')}
     </div>
   </div>
 </section>
@@ -396,10 +416,11 @@ function statePageHtml(state) {
 </html>`;
 }
 
-function cityPageHtml(state, city) {
+function cityPageHtml(state, city, cityIndex) {
   const { name: stateName, slug: stateSlug, abbr } = state;
   const citySlug = city.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   const fullSlug = `${stateSlug}-${citySlug}`;
+  const sites = getSites(stateSlug, cityIndex);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -422,7 +443,7 @@ function cityPageHtml(state, city) {
   "url": "https://www.workoccmed.com/cities/${fullSlug}.html"
 }
 </script>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>${SHARED_CSS}</style>
 </head>
 <body>
@@ -458,7 +479,7 @@ function cityPageHtml(state, city) {
     </div>
     <div class="hero-badge">${city}, ${stateName}</div>
     <h1>Occupational Health<br><span>${city}, ${abbr}</span></h1>
-    <p class="hero-sub">DOT physicals, pre-employment drug testing, and workplace drug screening for employers in ${city}, ${stateName}. Order online — authorized collection sites near ${city}, results in 24–72 hours.</p>
+    <p class="hero-sub">DOT physicals, pre-employment drug testing, and workplace drug screening for employers in ${city}, ${stateName}. ${sites}+ authorized collection sites near ${city} — order online, results in 24–72 hours.</p>
     <div class="hero-ctas">
       <a href="https://portal.dot-physical.net/order" class="btn-white">Order Now →</a>
       <a href="tel:+18882334567" class="btn-outline">(888) 233-4567</a>
@@ -467,7 +488,7 @@ function cityPageHtml(state, city) {
 </section>
 
 <div class="stats-bar">
-  <div class="stat"><div class="stat-n">15,000+</div><div class="stat-l">Sites Nationwide</div></div>
+  <div class="stat"><div class="stat-n">${sites}+</div><div class="stat-l">Sites Near ${city}</div></div>
   <div class="stat"><div class="stat-n">24–72h</div><div class="stat-l">Result Turnaround</div></div>
   <div class="stat"><div class="stat-n">All 50</div><div class="stat-l">States Covered</div></div>
   <div class="stat"><div class="stat-n">100%</div><div class="stat-l">FMCSA Compliant</div></div>
@@ -608,9 +629,9 @@ for (const state of STATES) {
   stateCount++;
 
   // City pages
-  for (const city of state.cities) {
+  for (const [cityIdx, city] of state.cities.entries()) {
     const citySlug = `${state.slug}-${city.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-    fs.writeFileSync(path.join(citiesDir, `${citySlug}.html`), cityPageHtml(state, city), 'utf8');
+    fs.writeFileSync(path.join(citiesDir, `${citySlug}.html`), cityPageHtml(state, city, cityIdx), 'utf8');
     cityCount++;
   }
 }
