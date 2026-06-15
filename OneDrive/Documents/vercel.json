@@ -1,0 +1,7 @@
+{
+  "buildCommand": "",
+  "outputDirectory": "doctors-place/workoccmed",
+  "installCommand": "",
+  "cleanUrls": true,
+  "trailingSlash": false
+}
