@@ -4,7 +4,7 @@
   "redirects": [
     {
       "source": "/book.html",
-      "destination": "https://portal.dot-physical.net/order",
+      "destination": "https://portal.dot-physical.net/orders",
       "permanent": true
     }
   ],
