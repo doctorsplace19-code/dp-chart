@@ -321,61 +321,90 @@
 </head>
 <body>
 
+<!-- ANNOUNCEMENT BAR -->
+<div style="background:#10b981;padding:10px 24px;text-align:center;">
+  <p style="font-family:'Inter',sans-serif;font-size:13px;font-weight:600;color:white;margin:0;letter-spacing:.01em;">
+    All 50 States &nbsp;·&nbsp; 15,000+ Sites &nbsp;·&nbsp; Same-Day Authorization &nbsp;·&nbsp; Orders Processed Within 1 Hour
+  </p>
+</div>
+
 <!-- NAV -->
-<nav>
-  <a href="/" class="nav-logo">
-    <div class="nav-logo-mark">W</div>
-    <span class="nav-logo-text">WorkOccMed</span>
+<nav style="background:#0d1b2a;padding:0 40px;height:64px;display:flex;align-items:center;gap:32px;position:sticky;top:0;z-index:100;">
+  <a href="/" style="display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:8px;">
+    <div style="width:40px;height:40px;background:white;border-radius:8px;display:flex;align-items:center;justify-content:center;">
+      <img src="/wom-logo.png" alt="WorkOccMed" style="width:36px;height:36px;object-fit:contain;" onerror="this.style.display='none';this.parentElement.innerHTML='<span style=\'font-family:Inter,sans-serif;font-size:11px;font-weight:800;color:#0d1b2a;\'>WOM</span>'">
+    </div>
   </a>
-  <ul class="nav-links">
-    <li><a href="#services">Services</a></li>
-    <li><a href="#how-it-works">How It Works</a></li>
-    <li><a href="#coverage">Who We Serve</a></li>
-    <li><a href="partners.html">Partners</a></li>
-  </ul>
-  <div class="nav-cta-desktop" style="display:flex;gap:10px;align-items:center;">
-    <a href="https://portal.dot-physical.net/sign-in" class="btn-nav btn-login">Login</a>
-    <a href="https://portal.dot-physical.net/signup" class="btn-nav btn-getstarted">Get Started</a>
+  <div style="display:flex;gap:28px;align-items:center;flex:1;">
+    <a href="#services" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:white;text-decoration:none;">Services</a>
+    <a href="#employers" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:white;text-decoration:none;">For Employers</a>
+    <a href="find-a-location.html" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;color:white;text-decoration:none;">Find a Location</a>
+    <a href="partners.html" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:#10b981;text-decoration:none;">Become a Partner</a>
   </div>
-  <button class="hamburger-btn" onclick="document.getElementById('mobileNav').classList.toggle('open')" aria-label="Menu">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-  </button>
+  <div style="display:flex;align-items:center;gap:16px;">
+    <a href="tel:+18882334567" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:white;text-decoration:none;display:flex;align-items:center;gap:6px;">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (888) 233-4567
+    </a>
+    <a href="https://portal.dot-physical.net/order" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:700;color:white;background:#10b981;padding:9px 20px;border-radius:8px;text-decoration:none;">Order Now</a>
+    <a href="https://portal.dot-physical.net/sign-in" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:600;color:white;border:1.5px solid rgba(255,255,255,0.3);padding:8px 18px;border-radius:8px;text-decoration:none;">Employer Portal</a>
+  </div>
 </nav>
 
+<!-- MOBILE NAV -->
 <div id="mobileNav" class="mobile-nav">
   <a href="#services" onclick="document.getElementById('mobileNav').classList.remove('open')">Services</a>
-  <a href="#how-it-works" onclick="document.getElementById('mobileNav').classList.remove('open')">How It Works</a>
-  <a href="#coverage" onclick="document.getElementById('mobileNav').classList.remove('open')">Who We Serve</a>
-  <a href="partners.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Partners</a>
+  <a href="#employers" onclick="document.getElementById('mobileNav').classList.remove('open')">For Employers</a>
+  <a href="find-a-location.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Find a Location</a>
+  <a href="partners.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Become a Partner</a>
   <div class="mobile-cta">
-    <a href="https://portal.dot-physical.net/signup" style="background:#0f172a;color:white;">Get Started</a>
-    <a href="https://portal.dot-physical.net/sign-in" style="border:1.5px solid #d1d5db;color:#374151;background:white;">Login</a>
+    <a href="https://portal.dot-physical.net/order" style="background:#10b981;color:white;">Order Now</a>
+    <a href="https://portal.dot-physical.net/sign-in" style="border:1.5px solid #d1d5db;color:#374151;background:white;">Employer Portal</a>
   </div>
 </div>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-badge">FMCSA Certified · 15,000+ Sites · All 50 States</div>
-      <h1>Occupational Health for the Modern Workforce</h1>
-      <p class="hero-sub">Nationwide occupational health solutions that keep your workforce healthy, productive, and compliant. Built for employers. Backed by experts.</p>
-      <div class="hero-ctas">
-        <a href="https://portal.dot-physical.net/signup" class="btn-hero-primary">Employer Portal →</a>
-        <a href="https://portal.dot-physical.net/order" class="btn-hero-secondary">Order as Individual →</a>
+<section style="position:relative;min-height:580px;display:flex;align-items:center;overflow:hidden;background:#0d1b2a;">
+  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1400&q=80"
+    alt="Occupational health professional"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;"
+    onerror="this.style.display='none'">
+  <div style="position:relative;z-index:1;width:100%;max-width:1200px;margin:0 auto;padding:72px 48px;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;">
+    <!-- Left: copy -->
+    <div>
+      <div style="font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#10b981;margin-bottom:20px;">FMCSA CERTIFIED · NATIONWIDE COVERAGE</div>
+      <h1 style="font-family:'Inter',sans-serif;font-size:56px;font-weight:900;line-height:1.05;color:white;margin:0 0 24px;">
+        DOT Physicals. Drug Tests.<br>
+        <span style="color:#10b981;">All 50 States.</span><br>
+        Order in 2 Minutes.
+      </h1>
+      <p style="font-family:'Inter',sans-serif;font-size:16px;color:rgba(255,255,255,0.80);line-height:1.7;max-width:500px;margin:0 0 36px;">Nationwide occupational health for employers and individuals. 15,000+ certified collection sites. Pre-employment physicals, titer tests, PPD placement, respirator fit testing — all managed online.</p>
+      <div style="display:flex;gap:14px;flex-wrap:wrap;">
+        <a href="https://portal.dot-physical.net/order" style="font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:white;background:#10b981;padding:14px 28px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;">Order Now — No Account Needed &rarr;</a>
+        <a href="https://portal.dot-physical.net/signup" style="font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:white;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.3);padding:14px 28px;border-radius:10px;text-decoration:none;">Create Free Employer Account</a>
       </div>
-      <p class="hero-trust">Employer or individual — no account required for personal orders</p>
+    </div>
+    <!-- Right: stat cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px 20px;text-align:center;">
+        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#10b981;margin-bottom:6px;">15,000+</div>
+        <div style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.75);">Collection Sites</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px 20px;text-align:center;">
+        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#10b981;margin-bottom:6px;">50</div>
+        <div style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.75);">States Covered</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px 20px;text-align:center;">
+        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#10b981;margin-bottom:6px;">24–48h</div>
+        <div style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.75);">Result Turnaround</div>
+      </div>
+      <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px 20px;text-align:center;">
+        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#10b981;margin-bottom:6px;">100%</div>
+        <div style="font-family:'Inter',sans-serif;font-size:13px;color:rgba(255,255,255,0.75);">FMCSA Compliant</div>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- STATS -->
-<div class="stats-bar">
-  <div class="stat-cell"><div class="stat-num">15,000+</div><div class="stat-label">Collection Sites</div></div>
-  <div class="stat-cell"><div class="stat-num">50</div><div class="stat-label">States Covered</div></div>
-  <div class="stat-cell"><div class="stat-num">24–72h</div><div class="stat-label">Result Turnaround</div></div>
-  <div class="stat-cell"><div class="stat-num">100%</div><div class="stat-label">FMCSA Compliant</div></div>
-</div>
 
 <!-- WHO ARE YOU -->
 <div style="background:#f8fafc;padding:56px 48px;">
