@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find a Location | WorkOccMed</title>
+<meta name="description" content="Find a LabCorp, Quest Diagnostics, or CRL collection site near you. Search by ZIP code or city. 15,000+ sites across all 50 states.">
+<link rel="canonical" href="https://www.workoccmed.com/find-a-location">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #10b981;
+    --green-dark: #059669;
+    --navy: #0d1b2a;
+    --navy2: #1a2e42;
+    --text: #111827;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: white; color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+  /* ANNOUNCE BAR */
+  .announce-bar {
+    background: var(--green); color: white;
+    text-align: center; padding: 10px 20px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.01em;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--navy);
+    display: flex; align-items: center; gap: 32px;
+    padding: 0 40px; height: 64px;
+    position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; margin-right: 8px; }
+  .nav-logo-mark {
+    width: 40px; height: 40px; background: white;
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 11px; color: var(--navy); font-weight: 900;
+  }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; flex: 1; }
+  .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 14px; font-weight: 500; }
+  .nav-links a:hover { color: white; }
+  .nav-links a.partner { color: var(--green); font-weight: 600; }
+  .nav-right { display: flex; align-items: center; gap: 16px; }
+  .nav-phone { color: white; font-size: 14px; font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+  .btn-order-now {
+    background: var(--green); color: white; border: none;
+    padding: 9px 20px; border-radius: 8px; font-size: 14px; font-weight: 700;
+    cursor: pointer; text-decoration: none; white-space: nowrap;
+  }
+  .btn-emp-portal {
+    background: transparent; color: white;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    padding: 8px 18px; border-radius: 8px; font-size: 14px; font-weight: 600;
+    text-decoration: none; white-space: nowrap;
+  }
+  .hamburger-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: white; }
+  .mobile-nav { display: none; position: fixed; top: 100px; left: 0; right: 0; bottom: 0; z-index: 99; background: var(--navy); flex-direction: column; align-items: center; justify-content: center; gap: 28px; padding: 40px; }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a { color: white; text-decoration: none; font-size: 20px; font-weight: 700; }
+  .mobile-cta { margin-top: 16px; display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 280px; }
+  .mobile-cta a { text-align: center; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 15px; text-decoration: none; }
+
+  /* PAGE BODY */
+  .page-wrap { background: #f8fafc; }
+
+  /* FINDER SECTION */
+  .finder-section {
+    padding: 60px 24px 48px;
+    background: white;
+    text-align: center;
+  }
+  .finder-badge {
+    display: inline-block;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--green); margin-bottom: 16px;
+  }
+  .finder-section h1 {
+    font-size: clamp(1.8rem, 4vw, 2.4rem); font-weight: 800;
+    color: var(--navy); letter-spacing: -0.02em;
+    margin-bottom: 14px; line-height: 1.2;
+  }
+  .finder-subtitle {
+    font-size: 15px; color: var(--muted);
+    max-width: 620px; margin: 0 auto 36px; line-height: 1.7;
+  }
+  .finder-subtitle a { color: var(--green); font-weight: 600; text-decoration: none; }
+
+  /* WARNING BANNER */
+  .auth-banner {
+    max-width: 960px; margin: 0 auto 28px;
+    background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px;
+    padding: 14px 18px;
+    display: flex; align-items: flex-start; gap: 12px;
+    text-align: left; font-size: 14px; color: #78350f; line-height: 1.55;
+  }
+  .auth-banner-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+  .auth-banner a { color: #92400e; font-weight: 700; }
+
+  /* SEARCH */
+  .search-row {
+    max-width: 960px; margin: 0 auto 18px;
+    display: flex; gap: 10px;
+  }
+  .search-input {
+    flex: 1; padding: 13px 18px;
+    border: 1.5px solid var(--border); border-radius: 10px;
+    font-family: 'Inter', sans-serif; font-size: 15px; color: var(--text);
+    outline: none; transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--green); }
+  .search-input::placeholder { color: #9ca3af; }
+  .search-btn {
+    padding: 13px 26px; background: var(--green); color: white; border: none;
+    border-radius: 10px; font-family: 'Inter', sans-serif;
+    font-size: 15px; font-weight: 700;
+    cursor: pointer; transition: background 0.2s; white-space: nowrap;
+  }
+  .search-btn:hover { background: var(--green-dark); }
+
+  /* FILTER PILLS */
+  .filter-row {
+    max-width: 960px; margin: 0 auto 10px;
+    display: flex; gap: 8px; align-items: center; flex-wrap: wrap;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 7px 16px; border-radius: 100px;
+    border: 1.5px solid var(--border);
+    font-size: 14px; font-weight: 600;
+    cursor: pointer; transition: all 0.18s;
+    background: white; color: var(--text); user-select: none;
+  }
+  .pill.active { background: #1f2937; color: white; border-color: #1f2937; }
+  .pill:hover:not(.active) { border-color: #9ca3af; background: #f9fafb; }
+  .dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .dot-red { background: #ef4444; }
+  .dot-blue { background: #3b82f6; }
+  .dot-purple { background: #7c3aed; }
+
+  /* LEGEND */
+  .legend-row {
+    max-width: 960px; margin: 0 auto 18px;
+    display: flex; gap: 20px; align-items: center; flex-wrap: wrap;
+    font-size: 13px; color: var(--muted);
+  }
+  .legend-item { display: flex; align-items: center; gap: 7px; }
+
+  /* MAP */
+  .map-wrap { max-width: 960px; margin: 0 auto 56px; }
+  .map-frame {
+    border-radius: 12px; overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  }
+  .map-frame iframe { display: block; width: 100%; height: 520px; border: none; }
+
+  /* BOTTOM CTA */
+  .bottom-cta {
+    background: var(--navy); color: white;
+    text-align: center; padding: 56px 24px;
+  }
+  .bottom-cta h2 {
+    font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 800;
+    margin-bottom: 10px; letter-spacing: -0.02em;
+  }
+  .bottom-cta p { font-size: 15px; color: rgba(255,255,255,0.6); margin-bottom: 30px; }
+  .bottom-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-cta-green {
+    background: var(--green); color: white;
+    padding: 14px 28px; border-radius: 10px;
+    font-size: 15px; font-weight: 700; text-decoration: none;
+    transition: background 0.2s; display: inline-flex; align-items: center; gap: 8px;
+  }
+  .btn-cta-green:hover { background: var(--green-dark); }
+  .btn-cta-outline {
+    background: transparent; color: white;
+    border: 1.5px solid rgba(255,255,255,0.35);
+    padding: 14px 28px; border-radius: 10px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: border-color 0.2s;
+  }
+  .btn-cta-outline:hover { border-color: white; }
+
+  /* FOOTER */
+  footer {
+    background: #f9fafb; border-top: 1px solid var(--border);
+    padding: 28px 40px; text-align: center;
+    font-size: 13px; color: #9ca3af;
+  }
+  footer a { color: #9ca3af; text-decoration: none; }
+  footer a:hover { color: #6b7280; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    nav { padding: 0 18px; }
+    .nav-links, .nav-right { display: none; }
+    .hamburger-btn { display: block; }
+    .search-row { flex-direction: column; }
+    .search-btn { width: 100%; }
+    .map-frame iframe { height: 360px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCE BAR -->
+<div class="announce-bar">
+  All 50 States &nbsp;·&nbsp; 15,000+ Sites &nbsp;·&nbsp; Same-Day Authorization &nbsp;·&nbsp; Orders Processed Within 1 Hour
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="nav-logo-mark">WOM</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#employers">For Employers</a></li>
+    <li><a href="/find-a-location.html">Find a Location</a></li>
+    <li><a href="/partners.html" class="partner">Become a Partner</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:+18882334567" class="nav-phone">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      (888) 233-4567
+    </a>
+    <a href="https://portal.dot-physical.net/order" class="btn-order-now">Order Now</a>
+    <a href="https://portal.dot-physical.net/sign-in" class="btn-emp-portal">Employer Portal</a>
+  </div>
+  <button class="hamburger-btn" onclick="document.getElementById('mobileNav').classList.toggle('open')" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<div id="mobileNav" class="mobile-nav">
+  <a href="/#services" onclick="document.getElementById('mobileNav').classList.remove('open')">Services</a>
+  <a href="/#coverage" onclick="document.getElementById('mobileNav').classList.remove('open')">For Employers</a>
+  <a href="/find-a-location.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Find a Location</a>
+  <a href="/partners.html" onclick="document.getElementById('mobileNav').classList.remove('open')">Become a Partner</a>
+  <div class="mobile-cta">
+    <a href="https://portal.dot-physical.net/order" style="background:var(--green);color:white;">Order Now</a>
+    <a href="https://portal.dot-physical.net/sign-in" style="border:1.5px solid rgba(255,255,255,0.3);color:white;">Employer Portal</a>
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page-wrap">
+
+  <div class="finder-section">
+
+    <div class="finder-badge">15,000+ Collection Sites</div>
+    <h1>Find a Collection Site Near You</h1>
+    <p class="finder-subtitle">
+      Browse all LabCorp, Quest Diagnostics, and CRL sites nationwide — or search by ZIP
+      to zoom to your area. <em>All visits require prior authorization — create your order first.</em>
+    </p>
+
+    <!-- WARNING -->
+    <div class="auth-banner">
+      <span class="auth-banner-icon">&#9888;&#65039;</span>
+      <div>
+        <strong>Prior Authorization Required:</strong> A form or authorization must be created before going to any collection site.
+        Click <a href="https://portal.dot-physical.net/order">"Order Now"</a> to create your authorization first.
+      </div>
+    </div>
+
+    <!-- SEARCH -->
+    <div class="search-row">
+      <input
+        type="text"
+        class="search-input"
+        id="zipInput"
+        placeholder="Enter ZIP code or city (e.g. 10001 or Houston TX)"
+        onkeydown="if(event.key==='Enter') doSearch()"
+      />
+      <button class="search-btn" onclick="doSearch()">Search</button>
+    </div>
+
+    <!-- FILTERS -->
+    <div class="filter-row">
+      <button class="pill active" id="pill-all" onclick="setFilter('all')">All Labs</button>
+      <button class="pill" id="pill-labcorp" onclick="setFilter('labcorp')">
+        <span class="dot dot-red"></span> LabCorp
+      </button>
+      <button class="pill" id="pill-quest" onclick="setFilter('quest')">
+        <span class="dot dot-blue"></span> Quest Diagnostics
+      </button>
+      <button class="pill" id="pill-crl" onclick="setFilter('crl')">
+        <span class="dot dot-purple"></span> CRL
+      </button>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="legend-row">
+      <div class="legend-item"><span class="dot dot-red"></span> LabCorp</div>
+      <div class="legend-item"><span class="dot dot-blue"></span> Quest Diagnostics</div>
+      <div class="legend-item"><span class="dot dot-purple"></span> CRL</div>
+    </div>
+
+    <!-- MAP -->
+    <div class="map-wrap">
+      <div class="map-frame">
+        <iframe
+          id="mapFrame"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d24000000!2d-95.7129!3d37.0902!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1718000000000!5m2!1sen!2sus"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Drug testing collection site map"
+        ></iframe>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div class="bottom-cta">
+    <h2>Ready to Order? Create Your Authorization First.</h2>
+    <p>No account needed for individuals. Employers can set up a free portal in minutes.</p>
+    <div class="bottom-btns">
+      <a href="https://portal.dot-physical.net/order" class="btn-cta-green">Order Now — No Account Needed →</a>
+      <a href="https://portal.dot-physical.net/signup" class="btn-cta-outline">Create Free Employer Account</a>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  &copy; 2026 WorkOccMed &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="/">Home</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="tel:+18882334567">(888) 233-4567</a> &nbsp;&nbsp;|&nbsp;&nbsp;
+  <a href="mailto:occmed@doctors-place.com">occmed@doctors-place.com</a>
+</footer>
+
+<script>
+  var currentFilter = 'all';
+
+  function setFilter(type) {
+    currentFilter = type;
+    ['all','labcorp','quest','crl'].forEach(function(t) {
+      document.getElementById('pill-' + t).classList.remove('active');
+    });
+    document.getElementById('pill-' + type).classList.add('active');
+  }
+
+  function doSearch() {
+    var q = document.getElementById('zipInput').value.trim();
+    if (!q) return;
+    var labQuery = {
+      all: 'drug testing lab near',
+      labcorp: 'LabCorp near',
+      quest: 'Quest Diagnostics near',
+      crl: 'CRL drug testing near'
+    }[currentFilter];
+    window.open('https://www.google.com/maps/search/' + encodeURIComponent(labQuery + ' ' + q), '_blank');
+  }
+</script>
+
+</body>
+</html>
