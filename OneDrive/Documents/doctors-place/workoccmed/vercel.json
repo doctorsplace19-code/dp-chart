@@ -3,5 +3,22 @@
   "trailingSlash": false,
   "buildCommand": "",
   "outputDirectory": ".",
-  "installCommand": ""
+  "installCommand": "",
+  "redirects": [
+    { "source": "/order",              "destination": "https://portal.dot-physical.net/order",          "permanent": false },
+    { "source": "/order/:path*",       "destination": "https://portal.dot-physical.net/order/:path*",   "permanent": false },
+    { "source": "/signup",             "destination": "https://portal.dot-physical.net/signup",         "permanent": false },
+    { "source": "/sign-in",            "destination": "https://portal.dot-physical.net/sign-in",        "permanent": false },
+    { "source": "/join-consortium",    "destination": "https://portal.dot-physical.net/join-consortium","permanent": false },
+    { "source": "/schedule",           "destination": "https://portal.dot-physical.net/schedule",       "permanent": false },
+    { "source": "/schedule/:path*",    "destination": "https://portal.dot-physical.net/schedule/:path*","permanent": false },
+    { "source": "/owner-operator",     "destination": "https://portal.dot-physical.net/owner-operator", "permanent": false },
+    { "source": "/rates",              "destination": "https://portal.dot-physical.net/rates",          "permanent": false },
+    { "source": "/who-we-serve",       "destination": "https://portal.dot-physical.net/who-we-serve",   "permanent": false },
+    { "source": "/locations",          "destination": "https://portal.dot-physical.net/locations",      "permanent": false },
+    { "source": "/blog",               "destination": "https://portal.dot-physical.net/blog",           "permanent": false },
+    { "source": "/blog/:path*",        "destination": "https://portal.dot-physical.net/blog/:path*",    "permanent": false },
+    { "source": "/dashboard",          "destination": "https://portal.dot-physical.net/dashboard",      "permanent": false },
+    { "source": "/dashboard/:path*",   "destination": "https://portal.dot-physical.net/dashboard/:path*","permanent": false }
+  ]
 }
