@@ -2,11 +2,17 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    {
-      "source": "/book.html",
-      "destination": "https://portal.dot-physical.net/orders",
-      "permanent": true
-    }
+    { "source": "/book.html",       "destination": "https://portal.dot-physical.net/order",          "permanent": true },
+    { "source": "/order",           "destination": "https://portal.dot-physical.net/order",          "permanent": false },
+    { "source": "/order/:path*",    "destination": "https://portal.dot-physical.net/order/:path*",   "permanent": false },
+    { "source": "/signup",          "destination": "https://portal.dot-physical.net/signup",         "permanent": false },
+    { "source": "/sign-in",         "destination": "https://portal.dot-physical.net/sign-in",        "permanent": false },
+    { "source": "/join-consortium", "destination": "https://portal.dot-physical.net/join-consortium","permanent": false },
+    { "source": "/schedule",        "destination": "https://portal.dot-physical.net/schedule",       "permanent": false },
+    { "source": "/owner-operator",  "destination": "https://portal.dot-physical.net/owner-operator", "permanent": false },
+    { "source": "/rates",           "destination": "https://portal.dot-physical.net/rates",          "permanent": false },
+    { "source": "/blog",            "destination": "https://portal.dot-physical.net/blog",           "permanent": false },
+    { "source": "/blog/:path*",     "destination": "https://portal.dot-physical.net/blog/:path*",    "permanent": false }
   ],
   "headers": [
     {
