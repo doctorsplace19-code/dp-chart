@@ -368,11 +368,34 @@
 </div>
 
 <!-- HERO -->
-<section style="position:relative;min-height:580px;display:flex;align-items:center;overflow:hidden;background:#0d1b2a;">
-  <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1400&q=80"
-    alt="Occupational health professional"
-    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 65%;opacity:0.35;"
+<section id="hero-rotating-section" style="position:relative;min-height:580px;display:flex;align-items:center;overflow:hidden;background:#0d1b2a;">
+  <img id="hero-rotating-img" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/XeUsTaVNPYdAwiHQ.png"
+    alt="WorkOccMed Occupational Health Clinic"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.35;transition: opacity 1s ease-in-out;"
     onerror="this.style.display='none'">
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const heroImg = document.getElementById('hero-rotating-img');
+      const images = [
+        'https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/XeUsTaVNPYdAwiHQ.png', // Clinic
+        'https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/kcKEgpCzpwyteECM.png', // Truck Driver
+        'https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/kdXuaKAgdnGuOUFo.png', // Nurse
+        'https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/cjPMKJkOrqjbsfYM.png', // Construction
+        'https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/AuVJBgksTAoTdnrn.png'  // HR Manager
+      ];
+      let currentIndex = 0;
+      images.forEach(src => { const img = new Image(); img.src = src; });
+      function rotateImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        heroImg.style.opacity = '0';
+        setTimeout(() => {
+          heroImg.src = images[currentIndex];
+          heroImg.style.opacity = '0.35';
+        }, 1000);
+      }
+      setInterval(rotateImage, 5000);
+    });
+  </script>
   <div style="position:relative;z-index:1;width:100%;max-width:100%;margin:0 auto;padding:72px 48px;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;">
     <!-- Left: copy -->
     <div>
@@ -409,41 +432,6 @@
     </div>
   </div>
 </section>
-
-<!-- IMAGE CAROUSEL -->
-<div style="background:#ffffff;padding:56px 48px;">
-  <div style="max-width:100%;margin:0 auto;">
-    <div id="womCarousel" style="position:relative;width:100%;aspect-ratio:21/9;max-height:520px;border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);background:#0d1b2a;">
-      <img class="wom-slide" src="/images/office.jpg" alt="WorkOccMed occupational health office" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 1s ease;" onerror="this.style.display='none'">
-      <img class="wom-slide" src="/images/workforce.jpg" alt="Truckers, nurses, and construction workers" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease;" onerror="this.style.display='none'">
-      <img class="wom-slide" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=1600&q=80" alt="CDL truck driver" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease;" onerror="this.style.display='none'">
-      <!-- Dots -->
-      <div id="womDots" style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2;"></div>
-    </div>
-  </div>
-</div>
-<script>
-(function(){
-  var slides = document.querySelectorAll('#womCarousel .wom-slide');
-  var dotsWrap = document.getElementById('womDots');
-  if (!slides.length) return;
-  var i = 0;
-  slides.forEach(function(_, idx){
-    var d = document.createElement('button');
-    d.style.cssText = 'width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;padding:0;background:'+(idx===0?'#ffffff':'rgba(255,255,255,0.45)')+';';
-    d.onclick = function(){ show(idx); };
-    dotsWrap.appendChild(d);
-  });
-  function show(n){
-    slides[i].style.opacity = '0';
-    dotsWrap.children[i].style.background = 'rgba(255,255,255,0.45)';
-    i = n;
-    slides[i].style.opacity = '1';
-    dotsWrap.children[i].style.background = '#ffffff';
-  }
-  setInterval(function(){ show((i+1) % slides.length); }, 4500);
-})();
-</script>
 
 <!-- WHO ARE YOU -->
 <div id="employers" style="background:#f8fafc;padding:56px 48px;scroll-margin-top:120px;">
@@ -542,8 +530,8 @@
     </div>
     <div>
       <img class="photo-img"
-        src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=900&q=80"
-        alt="Occupational health examination"
+        src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/AuVJBgksTAoTdnrn.png"
+        alt="WorkOccMed Employer Portal Management"
         onerror="this.style.background='linear-gradient(135deg,#134e4a,#0f172a)';this.removeAttribute('src')">
     </div>
   </div>
@@ -616,7 +604,7 @@
         <div style="margin-bottom:14px;">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
             <path d="M2 20h20M4 20V10l8-7 8 7v10"/><path d="M9 20v-5h6v5"/>
-            <path d="M12 3v4M8 7h8" stroke-width="0"/><circle cx="12" cy="7" r="3" fill="none" stroke="#1e3a8a" stroke-width="1.8"/><path d="M12 4v6M9 7h6"/>
+            <circle cx="12" cy="7" r="3" fill="none" stroke="#1e3a8a" stroke-width="1.8"/><path d="M12 4v6M9 7h6"/>
           </svg>
         </div>
         <div style="font-family:'Inter',sans-serif;font-size:17px;font-weight:700;color:#0d1b2a;">Construction</div>
@@ -670,7 +658,7 @@
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
       <div style="border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10);background:#0d1b2a;">
-        <img src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=800&q=80"
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/kcKEgpCzpwyteECM.png"
           alt="CDL truck driver"
           style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;"
           onerror="this.style.display='none'">
@@ -680,7 +668,7 @@
         </div>
       </div>
       <div style="border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10);background:#0d1b2a;">
-        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80"
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/cjPMKJkOrqjbsfYM.png"
           alt="Construction worker on site"
           style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;"
           onerror="this.style.display='none'">
@@ -690,7 +678,7 @@
         </div>
       </div>
       <div style="border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10);background:#0d1b2a;">
-        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=800&q=80"
+        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/kdXuaKAgdnGuOUFo.png"
           alt="Nurse and healthcare worker"
           style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;"
           onerror="this.style.display='none'">
