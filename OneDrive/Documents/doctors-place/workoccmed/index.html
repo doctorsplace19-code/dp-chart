@@ -410,6 +410,41 @@
   </div>
 </section>
 
+<!-- IMAGE CAROUSEL -->
+<div style="background:#ffffff;padding:56px 48px;">
+  <div style="max-width:100%;margin:0 auto;">
+    <div id="womCarousel" style="position:relative;width:100%;aspect-ratio:21/9;max-height:520px;border-radius:20px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.12);background:#0d1b2a;">
+      <img class="wom-slide" src="/images/office.jpg" alt="WorkOccMed occupational health office" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity 1s ease;" onerror="this.style.display='none'">
+      <img class="wom-slide" src="/images/workforce.jpg" alt="Truckers, nurses, and construction workers" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease;" onerror="this.style.display='none'">
+      <img class="wom-slide" src="https://images.unsplash.com/photo-1601597111158-2fceff292cdc?auto=format&fit=crop&w=1600&q=80" alt="CDL truck driver" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease;" onerror="this.style.display='none'">
+      <!-- Dots -->
+      <div id="womDots" style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:2;"></div>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var slides = document.querySelectorAll('#womCarousel .wom-slide');
+  var dotsWrap = document.getElementById('womDots');
+  if (!slides.length) return;
+  var i = 0;
+  slides.forEach(function(_, idx){
+    var d = document.createElement('button');
+    d.style.cssText = 'width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;padding:0;background:'+(idx===0?'#ffffff':'rgba(255,255,255,0.45)')+';';
+    d.onclick = function(){ show(idx); };
+    dotsWrap.appendChild(d);
+  });
+  function show(n){
+    slides[i].style.opacity = '0';
+    dotsWrap.children[i].style.background = 'rgba(255,255,255,0.45)';
+    i = n;
+    slides[i].style.opacity = '1';
+    dotsWrap.children[i].style.background = '#ffffff';
+  }
+  setInterval(function(){ show((i+1) % slides.length); }, 4500);
+})();
+</script>
+
 <!-- WHO ARE YOU -->
 <div id="employers" style="background:#f8fafc;padding:56px 48px;scroll-margin-top:120px;">
   <div style="max-width:100%;margin:0 auto;">
