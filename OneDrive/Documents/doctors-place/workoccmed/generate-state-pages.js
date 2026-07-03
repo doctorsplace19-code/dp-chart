@@ -188,8 +188,8 @@ function statePageHtml(state) {
   gtag('config', 'GT-K8FTWVMH');
   gtag('config', 'AW-18239837170');
 </script>
-<title>Occupational Health Services ${name} | DOT Physicals & Drug Testing | Work OccMed</title>
-<meta name="description" content="Occupational health services in ${name} — DOT physicals, pre-employment drug testing, workplace drug screening, fit-for-duty exams, and return to duty testing. Order online, results in 24–72 hours.">
+<title>${name} DOT Physicals & Drug Testing — $110, Same-Day | WorkOccMed</title>
+<meta name="description" content="Order DOT physicals ($110) & drug testing online in ${name}. FMCSA-certified, same-day medical card, 15,000+ sites statewide. No account needed — order in 2 minutes.">
 <link rel="canonical" href="https://www.workoccmed.com/states/${slug}">
 <meta property="og:title" content="Occupational Health ${name} | Work OccMed">
 <meta property="og:description" content="DOT physicals, pre-employment drug testing, and workplace drug screening in ${name}. 15,000+ collection sites. Order online.">
@@ -445,8 +445,8 @@ function cityPageHtml(state, city, cityIndex) {
   gtag('config', 'GT-K8FTWVMH');
   gtag('config', 'AW-18239837170');
 </script>
-<title>Occupational Health ${city}, ${stateName} | DOT Physicals & Drug Testing | Work OccMed</title>
-<meta name="description" content="Occupational health services in ${city}, ${stateName} — DOT physicals, pre-employment drug testing, workplace drug screening, and fitness-for-duty evaluations. Order online, 24–72h results.">
+<title>${city} DOT Physical $110 & Drug Testing — Order Online | WorkOccMed</title>
+<meta name="description" content="DOT physicals & drug testing in ${city}, ${stateName}. $110, same-day medical card, FMCSA-certified sites near you. Order online in 2 minutes — no account needed.">
 <link rel="canonical" href="https://www.workoccmed.com/cities/${fullSlug}">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="DOT physical ${city}, occupational health ${city} ${stateName}, drug testing ${city} ${abbr}, pre-employment physical ${city}, workplace drug screen ${city}, CDL physical ${city} ${abbr}, drug test ${city} ${stateName}, work occmed ${city}">
