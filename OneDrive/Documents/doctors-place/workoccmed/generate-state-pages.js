@@ -86,86 +86,86 @@ const SHARED_CSS = `
   body{font-family:'Inter',sans-serif;background:#ffffff;color:var(--text);line-height:1.6;}
   nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:space-between;padding:0 40px;height:68px;border-bottom:1px solid #f1f5f9;box-shadow:0 1px 12px rgba(0,0,0,0.06);}
   .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
-  .logo-mark{width:38px;height:38px;background:linear-gradient(135deg,#1e40af,#0891b2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:14px;color:white;font-weight:700;box-shadow:0 2px 8px rgba(30,64,175,0.25);}
-  .logo-name{font-family:'Inter',sans-serif;font-size:17px;font-weight:700;color:#0f172a;line-height:1.2;}
-  .logo-sub{font-size:10px;color:#94a3b8;letter-spacing:.12em;text-transform:uppercase;}
+  .logo-mark{width:38px;height:38px;background:linear-gradient(135deg,#1e40af,#0891b2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:19px;color:white;font-weight:700;box-shadow:0 2px 8px rgba(30,64,175,0.25);}
+  .logo-name{font-family:'Inter',sans-serif;font-size:22px;font-weight:700;color:#0f172a;line-height:1.2;}
+  .logo-sub{font-size:15px;color:#94a3b8;letter-spacing:.12em;text-transform:uppercase;}
   .nav-links{display:flex;align-items:center;gap:24px;list-style:none;}
-  .nav-links a{color:#475569;text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
+  .nav-links a{color:#475569;text-decoration:none;font-size:19px;font-weight:500;transition:color .2s;}
   .nav-links a:hover{color:#1e40af;}
-  .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;font-family:'Inter',sans-serif;font-size:13px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .2s;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:8px;font-family:'Inter',sans-serif;font-size:18px;font-weight:600;text-decoration:none;white-space:nowrap;transition:all .2s;}
   .btn-primary{background:#1e40af;color:white;box-shadow:0 2px 8px rgba(30,64,175,0.25);}
   .btn-primary:hover{background:#1d3fa5;}
   .btn-ghost{border:1px solid #e2e8f0;color:#475569;background:transparent;}
   .btn-ghost:hover{border-color:#93c5fd;color:#1e40af;}
   .hero{padding-top:68px;background:#ffffff;position:relative;overflow:hidden;min-height:420px;display:flex;align-items:center;}
   .hero::after{content:'';position:absolute;top:0;right:0;width:42%;height:100%;background:linear-gradient(135deg,#eff6ff 0%,#dbeafe 100%);clip-path:polygon(12% 0,100% 0,100% 100%,0 100%);pointer-events:none;}
-  .hero-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:72px 48px 64px;width:100%;}
-  .breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:13px;color:#94a3b8;}
+  .hero-inner{position:relative;z-index:2;max-width:100%;margin:0 auto;padding:72px 48px 64px;width:100%;}
+  .breadcrumb{display:flex;align-items:center;gap:8px;margin-bottom:20px;font-size:18px;color:#94a3b8;}
   .breadcrumb a{color:#94a3b8;text-decoration:none;transition:color .2s;}
   .breadcrumb a:hover{color:#1e40af;}
   .breadcrumb span{color:#cbd5e1;}
-  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:#eff6ff;border:1px solid #bfdbfe;color:#1d4ed8;padding:6px 14px;border-radius:100px;font-size:17px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:18px;}
   .hero h1{font-family:'Inter',sans-serif;font-weight:800;font-size:clamp(2rem,3.5vw,3rem);line-height:1.1;color:#0f172a;margin-bottom:14px;}
   .hero h1 span{color:#1e40af;}
-  .hero-sub{font-size:16px;color:#475569;margin-bottom:32px;line-height:1.7;max-width:580px;}
+  .hero-sub{font-size:21px;color:#475569;margin-bottom:32px;line-height:1.7;max-width:580px;}
   .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;}
-  .btn-white{background:#1e40af;color:white;font-family:'Inter',sans-serif;font-size:15px;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;box-shadow:0 4px 16px rgba(30,64,175,.3);display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+  .btn-white{background:#1e40af;color:white;font-family:'Inter',sans-serif;font-size:20px;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;box-shadow:0 4px 16px rgba(30,64,175,.3);display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
   .btn-white:hover{background:#1d3fa5;transform:translateY(-1px);}
-  .btn-outline{background:white;color:#1e40af;border:1.5px solid #bfdbfe;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;padding:13px 26px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+  .btn-outline{background:white;color:#1e40af;border:1.5px solid #bfdbfe;font-family:'Inter',sans-serif;font-size:20px;font-weight:600;padding:13px 26px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
   .btn-outline:hover{border-color:#1e40af;background:#eff6ff;}
   .stats-bar{background:#0f172a;display:grid;grid-template-columns:repeat(4,1fr);}
   .stat{padding:22px;text-align:center;border-right:1px solid rgba(255,255,255,.06);}
   .stat:last-child{border-right:none;}
-  .stat-n{font-family:'Inter',sans-serif;font-size:1.9rem;font-weight:800;color:#38bdf8;}
-  .stat-l{font-size:12px;color:#64748b;letter-spacing:.04em;margin-top:6px;}
+  .stat-n{font-family:'Inter',sans-serif;font-size:2.6rem;font-weight:800;color:#38bdf8;}
+  .stat-l{font-size:17px;color:#64748b;letter-spacing:.04em;margin-top:6px;}
   section{padding:72px 48px;}
-  .inner{max-width:1100px;margin:0 auto;}
-  .label{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
+  .inner{max-width:100%;margin:0 auto;}
+  .label{font-size:17px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px;}
   .title{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.4rem);color:var(--text);margin-bottom:14px;line-height:1.2;}
-  .sub{font-size:16px;color:var(--muted);line-height:1.7;max-width:640px;}
+  .sub{font-size:21px;color:var(--muted);line-height:1.7;max-width:640px;}
   .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px;}
   .card{background:white;border:1px solid var(--border);border-radius:16px;padding:28px;transition:all .2s;}
   .card:hover{box-shadow:0 8px 24px rgba(30,64,175,.08);border-color:#bfdbfe;transform:translateY(-2px);}
-  .card-icon{font-size:28px;margin-bottom:14px;}
-  .card h3{font-size:16px;font-weight:700;margin-bottom:8px;color:#0f172a;}
-  .card p{font-size:13px;color:var(--muted);line-height:1.65;}
-  .price-tag{display:inline-block;margin-top:14px;font-size:13px;font-weight:700;color:#1e40af;background:#eff6ff;padding:4px 12px;border-radius:100px;}
+  .card-icon{font-size:34px;margin-bottom:14px;}
+  .card h3{font-size:21px;font-weight:700;margin-bottom:8px;color:#0f172a;}
+  .card p{font-size:18px;color:var(--muted);line-height:1.65;}
+  .price-tag{display:inline-block;margin-top:14px;font-size:18px;font-weight:700;color:#1e40af;background:#eff6ff;padding:4px 12px;border-radius:100px;}
   .city-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px;margin-top:32px;}
-  .city-chip{background:white;border:1px solid var(--border);border-radius:10px;padding:11px 15px;text-decoration:none;color:#334155;font-size:13px;font-weight:500;transition:all .2s;display:flex;align-items:center;gap:8px;}
+  .city-chip{background:white;border:1px solid var(--border);border-radius:10px;padding:11px 15px;text-decoration:none;color:#334155;font-size:18px;font-weight:500;transition:all .2s;display:flex;align-items:center;gap:8px;}
   .city-chip:hover{border-color:#1e40af;color:#1e40af;background:#eff6ff;}
   .city-chip::before{content:'';}
   .how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:white;}
   .how-step{padding:28px;border-right:1px solid var(--border);}
   .how-step:last-child{border-right:none;}
-  .step-n{width:40px;height:40px;border-radius:50%;background:#1e40af;color:white;font-weight:800;font-size:16px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
-  .how-step h3{font-size:15px;font-weight:700;margin-bottom:8px;color:#0f172a;}
-  .how-step p{font-size:13px;color:var(--muted);line-height:1.6;}
-  .faq-list{max-width:780px;margin-top:40px;display:flex;flex-direction:column;gap:10px;}
+  .step-n{width:40px;height:40px;border-radius:50%;background:#1e40af;color:white;font-weight:800;font-size:21px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+  .how-step h3{font-size:20px;font-weight:700;margin-bottom:8px;color:#0f172a;}
+  .how-step p{font-size:18px;color:var(--muted);line-height:1.6;}
+  .faq-list{max-width:100%;margin-top:40px;display:flex;flex-direction:column;gap:10px;}
   .faq-item{background:white;border:1px solid var(--border);border-radius:14px;overflow:hidden;}
-  .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:18px 22px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:600;color:#0f172a;display:flex;justify-content:space-between;align-items:center;gap:16px;}
-  .faq-q::after{content:'+';font-size:20px;color:#0891b2;flex-shrink:0;}
+  .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:18px 22px;font-family:'DM Sans',sans-serif;font-size:20px;font-weight:600;color:#0f172a;display:flex;justify-content:space-between;align-items:center;gap:16px;}
+  .faq-q::after{content:'+';font-size:26px;color:#0891b2;flex-shrink:0;}
   .faq-q.open::after{content:'−';}
-  .faq-a{display:none;padding:0 22px 18px;font-size:14px;color:var(--muted);line-height:1.7;}
+  .faq-a{display:none;padding:0 22px 18px;font-size:19px;color:var(--muted);line-height:1.7;}
   .faq-a.open{display:block;}
   .cta-strip{background:#0f172a;padding:72px 48px;text-align:center;}
   .cta-strip h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);color:white;margin-bottom:14px;}
-  .cta-strip p{font-size:17px;color:#94a3b8;margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;}
+  .cta-strip p{font-size:22px;color:#94a3b8;margin-bottom:36px;max-width:500px;margin-left:auto;margin-right:auto;}
   .cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;}
-  .cta-btn-primary{background:white;color:#1e40af;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;padding:14px 28px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
-  .cta-btn-outline{background:rgba(255,255,255,.08);color:#94a3b8;border:1px solid rgba(255,255,255,.12);font-family:'DM Sans',sans-serif;font-size:15px;font-weight:500;padding:14px 28px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+  .cta-btn-primary{background:white;color:#1e40af;font-family:'DM Sans',sans-serif;font-size:20px;font-weight:700;padding:14px 28px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
+  .cta-btn-outline{background:rgba(255,255,255,.08);color:#94a3b8;border:1px solid rgba(255,255,255,.12);font-family:'DM Sans',sans-serif;font-size:20px;font-weight:500;padding:14px 28px;border-radius:10px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;}
   footer{background:#0f172a;color:#94a3b8;padding:48px;border-top:1px solid #1e293b;}
-  .footer-inner{max-width:1100px;margin:0 auto;}
+  .footer-inner{max-width:100%;margin:0 auto;}
   .footer-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px;}
-  .f-brand-name{font-family:'DM Serif Display',serif;font-size:20px;color:white;margin-bottom:4px;}
-  .f-brand-sub{font-size:12px;color:#475569;margin-bottom:14px;}
-  .f-brand-desc{font-size:13px;color:#64748b;line-height:1.6;}
-  .f-col h4{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#475569;margin-bottom:16px;}
-  .f-col a{display:block;font-size:13px;color:#64748b;text-decoration:none;margin-bottom:10px;transition:color .2s;}
+  .f-brand-name{font-family:'DM Serif Display',serif;font-size:26px;color:white;margin-bottom:4px;}
+  .f-brand-sub{font-size:17px;color:#475569;margin-bottom:14px;}
+  .f-brand-desc{font-size:18px;color:#64748b;line-height:1.6;}
+  .f-col h4{font-size:17px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#475569;margin-bottom:16px;}
+  .f-col a{display:block;font-size:18px;color:#64748b;text-decoration:none;margin-bottom:10px;transition:color .2s;}
   .f-col a:hover{color:white;}
   .footer-bottom{border-top:1px solid #1e293b;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
-  .f-legal{font-size:12px;color:#475569;}
+  .f-legal{font-size:17px;color:#475569;}
   .f-legal a{color:#475569;text-decoration:none;}
-  @media(max-width:960px){nav{padding:0 20px;}.nav-links,.nav-cta{display:none;}section{padding:48px 24px;}.hero-inner{padding:52px 24px 44px;}.hero::after{width:100%;clip-path:none;opacity:.3;}.grid-3{grid-template-columns:1fr;}.how-grid{grid-template-columns:1fr 1fr;}.stats-bar{grid-template-columns:repeat(2,1fr);}.footer-top{grid-template-columns:1fr 1fr;}.cta-strip{padding:56px 24px;}footer{padding:40px 24px;}}
+  @media(max-width:100%){nav{padding:0 20px;}.nav-links,.nav-cta{display:none;}section{padding:48px 24px;}.hero-inner{padding:52px 24px 44px;}.hero::after{width:100%;clip-path:none;opacity:.3;}.grid-3{grid-template-columns:1fr;}.how-grid{grid-template-columns:1fr 1fr;}.stats-bar{grid-template-columns:repeat(2,1fr);}.footer-top{grid-template-columns:1fr 1fr;}.cta-strip{padding:56px 24px;}footer{padding:40px 24px;}}
   @media(max-width:600px){.footer-top{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;text-align:center;}.how-grid{grid-template-columns:1fr;}.hero-ctas{flex-direction:column;}.hero-ctas a{text-align:center;justify-content:center;}}
 `;
 
@@ -181,10 +181,10 @@ function statePageHtml(state) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Occupational Health Services ${name} | DOT Physicals & Drug Testing | Work OccMed</title>
 <meta name="description" content="Occupational health services in ${name} — DOT physicals, pre-employment drug testing, workplace drug screening, fit-for-duty exams, and return to duty testing. Order online, results in 24–72 hours.">
-<link rel="canonical" href="https://www.workoccmed.com/states/${slug}.html">
+<link rel="canonical" href="https://www.workoccmed.com/states/${slug}">
 <meta property="og:title" content="Occupational Health ${name} | Work OccMed">
 <meta property="og:description" content="DOT physicals, pre-employment drug testing, and workplace drug screening in ${name}. 15,000+ collection sites. Order online.">
-<meta property="og:url" content="https://www.workoccmed.com/states/${slug}.html">
+<meta property="og:url" content="https://www.workoccmed.com/states/${slug}">
 <meta property="og:site_name" content="Work OccMed">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="occupational health ${name}, DOT physical ${name}, DOT physical ${abbr}, workplace drug testing ${name}, pre-employment drug test ${name}, drug screening ${name}, CDL physical ${name}, FMCSA physical ${name}, fit for duty ${name}, occupational medicine ${name}, employer drug testing ${name}, random drug testing ${name}, work occmed ${name}">
@@ -196,7 +196,7 @@ function statePageHtml(state) {
   "provider": { "@type": "Organization", "name": "Work OccMed", "url": "https://www.workoccmed.com", "telephone": "+18882334567" },
   "areaServed": { "@type": "State", "name": "${name}", "containedInPlace": { "@type": "Country", "name": "United States" } },
   "serviceType": ["DOT Physical Examination","Pre-Employment Drug Testing","Workplace Drug Screening","Fit for Duty Evaluation","Return to Duty Drug Testing","Random Drug Testing Program"],
-  "url": "https://www.workoccmed.com/states/${slug}.html"
+  "url": "https://www.workoccmed.com/states/${slug}"
 }
 </script>
 <script type="application/ld+json">
@@ -215,7 +215,7 @@ function statePageHtml(state) {
 <body>
 
 <nav>
-  <a href="../index.html" class="nav-logo">
+  <a href="../" class="nav-logo">
     <div class="logo-mark">WO</div>
     <div>
       <div class="logo-name">Work OccMed</div>
@@ -223,10 +223,10 @@ function statePageHtml(state) {
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="../index.html#services">Services</a></li>
-    <li><a href="../index.html#how-it-works">How It Works</a></li>
-    <li><a href="../index.html#coverage">All States</a></li>
-    <li><a href="../return-to-duty.html">Return to Duty</a></li>
+    <li><a href="../#services">Services</a></li>
+    <li><a href="../#how-it-works">How It Works</a></li>
+    <li><a href="../#coverage">All States</a></li>
+    <li><a href="../return-to-duty">Return to Duty</a></li>
   </ul>
   <div class="nav-cta" style="display:flex;gap:10px;align-items:center;">
     <a href="tel:+18882334567" class="btn btn-ghost">(888) 233-4567</a>
@@ -238,9 +238,9 @@ function statePageHtml(state) {
   <div class="hero-grid"></div>
   <div class="hero-inner">
     <div class="breadcrumb">
-      <a href="../index.html">Work OccMed</a>
+      <a href="../">Work OccMed</a>
       <span>›</span>
-      <a href="../index.html#coverage">States</a>
+      <a href="../#coverage">States</a>
       <span>›</span>
       <span style="color:rgba(255,255,255,.85);">${name}</span>
     </div>
@@ -295,7 +295,7 @@ function statePageHtml(state) {
       <div class="card">
         <h3>Return to Duty Testing</h3>
         <p>DOT return to duty drug testing after SAP completion, and non-DOT fitness-for-duty evaluations after injury or illness for ${name} employees.</p>
-        <a href="../return-to-duty.html" style="display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:#1e40af;text-decoration:none;">Learn more →</a>
+        <a href="../return-to-duty" style="display:inline-block;margin-top:12px;font-size:18px;font-weight:600;color:#1e40af;text-decoration:none;">Learn more →</a>
       </div>
     </div>
   </div>
@@ -307,7 +307,7 @@ function statePageHtml(state) {
     <h2 class="title">Cities We Serve in ${name}</h2>
     <p class="sub">Work OccMed has authorized collection sites throughout ${name}. Direct your employees to the nearest site — most require no appointment.</p>
     <div class="city-grid">
-      ${cities.map((c, i) => `<a href="../cities/${slug}-${c.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.html" class="city-chip">${c} <span style="font-size:11px;font-weight:500;opacity:0.7;margin-left:3px;">${getSites(slug, i)} sites</span></a>`).join('\n      ')}
+      ${cities.map((c, i) => `<a href="../cities/${slug}-${c.toLowerCase().replace(/[^a-z0-9]+/g, '-')}" class="city-chip">${c} <span style="font-size:16px;font-weight:500;opacity:0.7;margin-left:3px;">${getSites(slug, i)} sites</span></a>`).join('\n      ')}
     </div>
   </div>
 </section>
@@ -386,18 +386,18 @@ function statePageHtml(state) {
       </div>
       <div class="f-col">
         <h4>Services</h4>
-        <a href="../index.html#services">Pre-Employment Physical</a>
-        <a href="../index.html#services">DOT Physical Exam</a>
-        <a href="../index.html#services">Drug Testing</a>
-        <a href="../index.html#services">Random Testing</a>
-        <a href="../return-to-duty.html">Return to Duty</a>
+        <a href="../#services">Pre-Employment Physical</a>
+        <a href="../#services">DOT Physical Exam</a>
+        <a href="../#services">Drug Testing</a>
+        <a href="../#services">Random Testing</a>
+        <a href="../return-to-duty">Return to Duty</a>
       </div>
       <div class="f-col">
         <h4>Employers</h4>
         <a href="https://portal.dot-physical.net/signup">Create Account</a>
         <a href="https://portal.dot-physical.net/join-consortium">DOT Consortium</a>
         <a href="https://portal.dot-physical.net/order">Order a Test</a>
-        <a href="../index.html#coverage">All States</a>
+        <a href="../#coverage">All States</a>
       </div>
       <div class="f-col">
         <h4>Contact</h4>
@@ -408,7 +408,7 @@ function statePageHtml(state) {
     </div>
     <div class="footer-bottom">
       <div class="f-legal">© 2026 Work OccMed · A Doctors Place Company · Doctors Place Inc.</div>
-      <div class="f-legal"><a href="https://portal.dot-physical.net/privacy">Privacy Policy</a> · <a href="../index.html">Work OccMed Home</a></div>
+      <div class="f-legal"><a href="https://portal.dot-physical.net/privacy">Privacy Policy</a> · <a href="../">Work OccMed Home</a></div>
     </div>
   </div>
 </footer>
@@ -429,7 +429,7 @@ function cityPageHtml(state, city, cityIndex) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Occupational Health ${city}, ${stateName} | DOT Physicals & Drug Testing | Work OccMed</title>
 <meta name="description" content="Occupational health services in ${city}, ${stateName} — DOT physicals, pre-employment drug testing, workplace drug screening, and fitness-for-duty evaluations. Order online, 24–72h results.">
-<link rel="canonical" href="https://www.workoccmed.com/cities/${fullSlug}.html">
+<link rel="canonical" href="https://www.workoccmed.com/cities/${fullSlug}">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="DOT physical ${city}, occupational health ${city} ${stateName}, drug testing ${city} ${abbr}, pre-employment physical ${city}, workplace drug screen ${city}, CDL physical ${city} ${abbr}, drug test ${city} ${stateName}, work occmed ${city}">
 <script type="application/ld+json">
@@ -440,7 +440,7 @@ function cityPageHtml(state, city, cityIndex) {
   "provider": { "@type": "Organization", "name": "Work OccMed", "url": "https://www.workoccmed.com", "telephone": "+18882334567" },
   "areaServed": { "@type": "City", "name": "${city}", "containedInPlace": { "@type": "State", "name": "${stateName}" } },
   "serviceType": ["DOT Physical Examination","Pre-Employment Drug Testing","Workplace Drug Screening","Fit for Duty Evaluation","Return to Duty Drug Testing"],
-  "url": "https://www.workoccmed.com/cities/${fullSlug}.html"
+  "url": "https://www.workoccmed.com/cities/${fullSlug}"
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -449,7 +449,7 @@ function cityPageHtml(state, city, cityIndex) {
 <body>
 
 <nav>
-  <a href="../index.html" class="nav-logo">
+  <a href="../" class="nav-logo">
     <div class="logo-mark">WO</div>
     <div>
       <div class="logo-name">Work OccMed</div>
@@ -457,9 +457,9 @@ function cityPageHtml(state, city, cityIndex) {
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="../index.html#services">Services</a></li>
-    <li><a href="../states/${stateSlug}.html">${stateName}</a></li>
-    <li><a href="../return-to-duty.html">Return to Duty</a></li>
+    <li><a href="../#services">Services</a></li>
+    <li><a href="../states/${stateSlug}">${stateName}</a></li>
+    <li><a href="../return-to-duty">Return to Duty</a></li>
   </ul>
   <div class="nav-cta" style="display:flex;gap:10px;align-items:center;">
     <a href="tel:+18882334567" class="btn btn-ghost">(888) 233-4567</a>
@@ -471,9 +471,9 @@ function cityPageHtml(state, city, cityIndex) {
   <div class="hero-grid"></div>
   <div class="hero-inner">
     <div class="breadcrumb">
-      <a href="../index.html">Work OccMed</a>
+      <a href="../">Work OccMed</a>
       <span>›</span>
-      <a href="../states/${stateSlug}.html">${stateName}</a>
+      <a href="../states/${stateSlug}">${stateName}</a>
       <span>›</span>
       <span style="color:rgba(255,255,255,.85);">${city}</span>
     </div>
@@ -528,7 +528,7 @@ function cityPageHtml(state, city, cityIndex) {
       <div class="card">
         <h3>Return to Duty</h3>
         <p>DOT return to duty testing after SAP process and non-DOT fitness-for-duty evaluations for ${city} employees returning after injury or violation.</p>
-        <a href="../return-to-duty.html" style="display:inline-block;margin-top:12px;font-size:13px;font-weight:600;color:#1e40af;text-decoration:none;">Learn more →</a>
+        <a href="../return-to-duty" style="display:inline-block;margin-top:12px;font-size:18px;font-weight:600;color:#1e40af;text-decoration:none;">Learn more →</a>
       </div>
     </div>
   </div>
@@ -568,7 +568,7 @@ function cityPageHtml(state, city, cityIndex) {
   <p>Free employer account. No setup fees. Nationwide coverage including ${city}, ${stateName}.</p>
   <div class="cta-btns">
     <a href="https://portal.dot-physical.net/signup" class="cta-btn-primary">Create Free Account →</a>
-    <a href="../states/${stateSlug}.html" class="cta-btn-outline">← All ${stateName} Cities</a>
+    <a href="../states/${stateSlug}" class="cta-btn-outline">← All ${stateName} Cities</a>
     <a href="tel:+18882334567" class="cta-btn-outline">(888) 233-4567</a>
   </div>
 </div>
@@ -583,17 +583,17 @@ function cityPageHtml(state, city, cityIndex) {
       </div>
       <div class="f-col">
         <h4>Services</h4>
-        <a href="../index.html#services">Pre-Employment Physical</a>
-        <a href="../index.html#services">DOT Physical Exam</a>
-        <a href="../index.html#services">Drug Testing</a>
-        <a href="../return-to-duty.html">Return to Duty</a>
+        <a href="../#services">Pre-Employment Physical</a>
+        <a href="../#services">DOT Physical Exam</a>
+        <a href="../#services">Drug Testing</a>
+        <a href="../return-to-duty">Return to Duty</a>
       </div>
       <div class="f-col">
         <h4>${stateName}</h4>
-        <a href="../states/${stateSlug}.html">All ${stateName} Cities</a>
+        <a href="../states/${stateSlug}">All ${stateName} Cities</a>
         <a href="https://portal.dot-physical.net/signup">Create Account</a>
         <a href="https://portal.dot-physical.net/join-consortium">DOT Consortium</a>
-        <a href="../index.html#coverage">All States</a>
+        <a href="../#coverage">All States</a>
       </div>
       <div class="f-col">
         <h4>Contact</h4>
@@ -604,7 +604,7 @@ function cityPageHtml(state, city, cityIndex) {
     </div>
     <div class="footer-bottom">
       <div class="f-legal">© 2026 Work OccMed · A Doctors Place Company · Doctors Place Inc.</div>
-      <div class="f-legal"><a href="https://portal.dot-physical.net/privacy">Privacy Policy</a> · <a href="../index.html">Work OccMed Home</a></div>
+      <div class="f-legal"><a href="https://portal.dot-physical.net/privacy">Privacy Policy</a> · <a href="../">Work OccMed Home</a></div>
     </div>
   </div>
 </footer>
