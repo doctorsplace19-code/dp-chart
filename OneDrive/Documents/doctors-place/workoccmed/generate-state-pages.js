@@ -179,6 +179,15 @@ function statePageHtml(state) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GT-K8FTWVMH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GT-K8FTWVMH');
+  gtag('config', 'AW-18239837170');
+</script>
 <title>Occupational Health Services ${name} | DOT Physicals & Drug Testing | Work OccMed</title>
 <meta name="description" content="Occupational health services in ${name} — DOT physicals, pre-employment drug testing, workplace drug screening, fit-for-duty exams, and return to duty testing. Order online, results in 24–72 hours.">
 <link rel="canonical" href="https://www.workoccmed.com/states/${slug}">
@@ -427,6 +436,15 @@ function cityPageHtml(state, city, cityIndex) {
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=GT-K8FTWVMH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'GT-K8FTWVMH');
+  gtag('config', 'AW-18239837170');
+</script>
 <title>Occupational Health ${city}, ${stateName} | DOT Physicals & Drug Testing | Work OccMed</title>
 <meta name="description" content="Occupational health services in ${city}, ${stateName} — DOT physicals, pre-employment drug testing, workplace drug screening, and fitness-for-duty evaluations. Order online, 24–72h results.">
 <link rel="canonical" href="https://www.workoccmed.com/cities/${fullSlug}">
