@@ -33,7 +33,7 @@ const CSS = `
 // Middle nav content (dropdowns + plain links). Relative links (pages live at site root).
 const NAV_INNER = `
     <div class="wom-drop">
-      <a href="/#services" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:500;color:white;text-decoration:none;">Services <span class="wom-caret"></span></a>
+      <a href="/#services" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:white;text-decoration:none;">Services <span class="wom-caret"></span></a>
       <div class="wom-panel">
         <div class="wom-col">
           <div class="wom-col-h">Exams &amp; Testing</div>
@@ -51,9 +51,9 @@ const NAV_INNER = `
         </div>
       </div>
     </div>
-    <a href="find-a-location" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:500;color:white;text-decoration:none;">Find a Location</a>
+    <a href="find-a-location" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:white;text-decoration:none;">Find a Location</a>
     <div class="wom-drop">
-      <a href="guides" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:500;color:white;text-decoration:none;">Guides <span class="wom-caret"></span></a>
+      <a href="guides" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:white;text-decoration:none;">Guides <span class="wom-caret"></span></a>
       <div class="wom-panel">
         <div class="wom-col">
           <div class="wom-col-h">Popular Guides</div>
@@ -70,8 +70,8 @@ const NAV_INNER = `
         </div>
       </div>
     </div>
-    <a href="return-to-duty" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:500;color:white;text-decoration:none;">Return to Duty</a>
-    <a href="partners" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:600;color:#1d4ed8;text-decoration:none;">Become a Partner</a>
+    <a href="return-to-duty" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:500;color:white;text-decoration:none;">Return to Duty</a>
+    <a href="partners" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:600;color:#1d4ed8;text-decoration:none;">Become a Partner</a>
   `;
 
 function patch(file) {
