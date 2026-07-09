@@ -13,7 +13,7 @@
   gtag('config', 'AW-18239837170');
 </script>
 <title>Texas DOT Physicals & Drug Testing — Houston, San Antonio, Dallas | WorkOccMed</title>
-<meta name="description" content="DOT physicals ($110) & drug testing in Texas — Houston, San Antonio, Dallas, Austin & more. FMCSA-certified, same-day medical card, 15,000+ sites statewide. Order online in 2 minutes.">
+<meta name="description" content="DOT physicals ($110) & drug testing across Texas — Houston, San Antonio, Dallas, Austin & more, along I-35, I-10, I-45, I-20 and I-30. FMCSA-certified, same-day medical card. Order online in 2 minutes.">
 <link rel="canonical" href="https://www.workoccmed.com/states/texas">
 <meta property="og:title" content="Occupational Health Texas | Work OccMed">
 <meta property="og:description" content="DOT physicals, pre-employment drug testing, and workplace drug screening in Texas. 15,000+ collection sites. Order online.">
@@ -131,6 +131,20 @@
   .f-legal a{color:#475569;text-decoration:none;}
   @media(max-width:100%){nav{padding:0 20px;}.nav-links,.nav-cta{display:none;}section{padding:48px 24px;}.hero-inner{padding:52px 24px 44px;}.hero::after{width:100%;clip-path:none;opacity:.3;}.grid-3{grid-template-columns:1fr;}.how-grid{grid-template-columns:1fr 1fr;}.stats-bar{grid-template-columns:repeat(2,1fr);}.footer-top{grid-template-columns:1fr 1fr;}.cta-strip{padding:56px 24px;}footer{padding:40px 24px;}}
   @media(max-width:600px){.footer-top{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;text-align:center;}.how-grid{grid-template-columns:1fr;}.hero-ctas{flex-direction:column;}.hero-ctas a{text-align:center;justify-content:center;}}
+  /* ── Mega-menu dropdowns (light nav) ── */
+  .wom-drop{position:relative;display:flex;align-items:center;height:68px;}
+  .wom-drop>a{display:flex;align-items:center;gap:7px;}
+  .wom-caret{width:7px;height:7px;border-right:2px solid #1e40af;border-bottom:2px solid #1e40af;transform:rotate(45deg) translateY(-2px);transition:transform .2s ease;}
+  .wom-drop:hover .wom-caret{transform:rotate(225deg) translateY(-2px);}
+  .wom-panel{position:absolute;top:68px;left:-24px;background:#fff;border-top:3px solid #1e40af;border-radius:0 0 14px 14px;box-shadow:0 24px 48px rgba(15,23,42,.18);padding:24px 28px;display:flex;gap:40px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .18s ease,transform .18s ease,visibility .18s;z-index:300;}
+  .wom-drop:hover .wom-panel{opacity:1;visibility:visible;transform:translateY(0);}
+  .wom-col{display:flex;flex-direction:column;gap:4px;min-width:220px;}
+  .wom-col-h{font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px;}
+  .wom-panel a{font-family:'Inter',sans-serif;text-decoration:none;padding:9px 12px;border-radius:8px;display:block;transition:background .15s ease;}
+  .wom-panel a:hover{background:#eff6ff;}
+  .wom-panel a .wom-t{display:block;font-size:16px;font-weight:600;color:#0f172a;line-height:1.3;}
+  .wom-panel a .wom-d{display:block;font-size:13px;font-weight:400;color:#64748b;margin-top:1px;}
+  @media(max-width:900px){.wom-drop{height:auto;}.wom-caret{display:none;}.wom-panel{display:none !important;}}
 </style>
 </head>
 <body>
@@ -144,8 +158,43 @@
     </div>
   </a>
   <ul class="nav-links">
-    <li><a href="../#services">Services</a></li>
-    <li><a href="../#how-it-works">How It Works</a></li>
+    <li class="wom-drop">
+      <a href="../#services">Services <span class="wom-caret"></span></a>
+      <div class="wom-panel">
+        <div class="wom-col">
+          <div class="wom-col-h">Exams &amp; Testing</div>
+          <a href="../dot-physical"><span class="wom-t">DOT Physical</span><span class="wom-d">$110 · same-day medical card</span></a>
+          <a href="../drug-test"><span class="wom-t">Drug &amp; Alcohol Testing</span><span class="wom-d">DOT &amp; non-DOT · 15,000+ sites</span></a>
+          <a href="../pre-employment-physical"><span class="wom-t">Pre-Employment Physical</span><span class="wom-d">Fitness-for-duty for new hires</span></a>
+          <a href="../return-to-duty"><span class="wom-t">Return to Duty</span><span class="wom-d">SAP &amp; follow-up testing</span></a>
+        </div>
+        <div class="wom-col">
+          <div class="wom-col-h">Employers &amp; Compliance</div>
+          <a href="../consortium"><span class="wom-t">DOT Consortium</span><span class="wom-d">Random testing · $49/yr</span></a>
+          <a href="../corporate-invoicing"><span class="wom-t">Corporate Invoicing</span><span class="wom-d">Net-30 billing for fleets</span></a>
+          <a href="../find-a-location"><span class="wom-t">Find a Location</span><span class="wom-d">Certified sites near you</span></a>
+          <a href="../partners"><span class="wom-t">Become a Partner</span><span class="wom-d">Add your clinic to our network</span></a>
+        </div>
+      </div>
+    </li>
+    <li class="wom-drop">
+      <a href="../guides">Guides <span class="wom-caret"></span></a>
+      <div class="wom-panel">
+        <div class="wom-col">
+          <div class="wom-col-h">Popular Guides</div>
+          <a href="../dot-physical-requirements-2026"><span class="wom-t">DOT Physical Requirements 2026</span><span class="wom-d">Complete driver checklist</span></a>
+          <a href="../what-disqualifies-you-from-a-dot-physical"><span class="wom-t">What Disqualifies You?</span><span class="wom-d">Conditions &amp; how to still pass</span></a>
+          <a href="../fmcsa-drug-testing-rules"><span class="wom-t">FMCSA Drug Testing Rules</span><span class="wom-d">Test types, random rates, Clearinghouse</span></a>
+        </div>
+        <div class="wom-col">
+          <div class="wom-col-h">More Resources</div>
+          <a href="../cdl-medical-card-renewal"><span class="wom-t">CDL Medical Card Renewal</span><span class="wom-d">How &amp; when to renew</span></a>
+          <a href="../dot-physical-vs-pre-employment-physical"><span class="wom-t">DOT vs. Pre-Employment</span><span class="wom-d">Which exam do you need?</span></a>
+          <a href="../medical-team"><span class="wom-t">Our Medical Team</span><span class="wom-d">Physician-led occupational health</span></a>
+          <a href="../guides"><span class="wom-t">All Guides →</span><span class="wom-d">Full resource center</span></a>
+        </div>
+      </div>
+    </li>
     <li><a href="../#coverage">All States</a></li>
     <li><a href="../return-to-duty">Return to Duty</a></li>
   </ul>
@@ -217,6 +266,24 @@
         <h3>Return to Duty Testing</h3>
         <p>DOT return to duty drug testing after SAP completion, and non-DOT fitness-for-duty evaluations after injury or illness for Texas employees.</p>
         <a href="../return-to-duty" style="display:inline-block;margin-top:12px;font-size:18px;font-weight:600;color:#1e40af;text-decoration:none;">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:white;">
+  <div class="inner">
+    <div class="label">DOT & CDL in Texas</div>
+    <h2 class="title">DOT Physicals & Trucking Compliance in Texas</h2>
+    <p class="sub">Texas's commercial freight moves through the I-35 NAFTA corridor, the Ports of Houston and Laredo, and the nation’s largest network of truck freight, along I-35, I-10, I-45, I-20 and I-30. WorkOccMed keeps Texas drivers and employers in energy, logistics, construction, and manufacturing compliant with fast, FMCSA-certified DOT physicals and DOT/non-DOT drug testing.</p>
+    <div style="margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div class="card">
+        <h3>Texas CDL Drivers</h3>
+        <p>Order a $110 DOT physical online and complete it at a certified site anywhere in Texas. Texas CDL drivers submit their Medical Examiner’s Certificate to the DPS/DMV to stay certified.</p>
+      </div>
+      <div class="card">
+        <h3>Texas Employers & Fleets</h3>
+        <p>Whether you run a small fleet or hire across energy, logistics, construction, and manufacturing, manage every DOT physical, drug screen, and random-testing consortium from one online portal — across all of Texas.</p>
       </div>
     </div>
   </div>

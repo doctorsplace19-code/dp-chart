@@ -5,6 +5,65 @@
 
 const fs = require('fs');
 const path = require('path');
+const { STATE_FACTS, CITY_INTERSTATES } = require('./geo-facts');
+
+// Returns the interstates serving a city (or falls back to the state's corridors).
+function cityRoads(stateSlug, fullSlug) {
+  if (CITY_INTERSTATES[fullSlug]) return CITY_INTERSTATES[fullSlug];
+  const f = STATE_FACTS[stateSlug];
+  return f ? f.interstates : 'major interstate highways';
+}
+
+// Up to 4 other cities in the same state (excludes the current one) — differs per city.
+function neighborCities(state, city) {
+  return state.cities.filter(c => c !== city).slice(0, 4);
+}
+
+// Nav <ul> with Services + Guides mega-menus for the light (state/city) nav.
+// extraLis = additional <li> items inserted between the dropdowns and Return to Duty.
+function navUl(extraLis) {
+  return `<ul class="nav-links">
+    <li class="wom-drop">
+      <a href="../#services">Services <span class="wom-caret"></span></a>
+      <div class="wom-panel">
+        <div class="wom-col">
+          <div class="wom-col-h">Exams &amp; Testing</div>
+          <a href="../dot-physical"><span class="wom-t">DOT Physical</span><span class="wom-d">$110 · same-day medical card</span></a>
+          <a href="../drug-test"><span class="wom-t">Drug &amp; Alcohol Testing</span><span class="wom-d">DOT &amp; non-DOT · 15,000+ sites</span></a>
+          <a href="../pre-employment-physical"><span class="wom-t">Pre-Employment Physical</span><span class="wom-d">Fitness-for-duty for new hires</span></a>
+          <a href="../return-to-duty"><span class="wom-t">Return to Duty</span><span class="wom-d">SAP &amp; follow-up testing</span></a>
+        </div>
+        <div class="wom-col">
+          <div class="wom-col-h">Employers &amp; Compliance</div>
+          <a href="../consortium"><span class="wom-t">DOT Consortium</span><span class="wom-d">Random testing · $49/yr</span></a>
+          <a href="../corporate-invoicing"><span class="wom-t">Corporate Invoicing</span><span class="wom-d">Net-30 billing for fleets</span></a>
+          <a href="../find-a-location"><span class="wom-t">Find a Location</span><span class="wom-d">Certified sites near you</span></a>
+          <a href="../partners"><span class="wom-t">Become a Partner</span><span class="wom-d">Add your clinic to our network</span></a>
+        </div>
+      </div>
+    </li>
+    <li class="wom-drop">
+      <a href="../guides">Guides <span class="wom-caret"></span></a>
+      <div class="wom-panel">
+        <div class="wom-col">
+          <div class="wom-col-h">Popular Guides</div>
+          <a href="../dot-physical-requirements-2026"><span class="wom-t">DOT Physical Requirements 2026</span><span class="wom-d">Complete driver checklist</span></a>
+          <a href="../what-disqualifies-you-from-a-dot-physical"><span class="wom-t">What Disqualifies You?</span><span class="wom-d">Conditions &amp; how to still pass</span></a>
+          <a href="../fmcsa-drug-testing-rules"><span class="wom-t">FMCSA Drug Testing Rules</span><span class="wom-d">Test types, random rates, Clearinghouse</span></a>
+        </div>
+        <div class="wom-col">
+          <div class="wom-col-h">More Resources</div>
+          <a href="../cdl-medical-card-renewal"><span class="wom-t">CDL Medical Card Renewal</span><span class="wom-d">How &amp; when to renew</span></a>
+          <a href="../dot-physical-vs-pre-employment-physical"><span class="wom-t">DOT vs. Pre-Employment</span><span class="wom-d">Which exam do you need?</span></a>
+          <a href="../medical-team"><span class="wom-t">Our Medical Team</span><span class="wom-d">Physician-led occupational health</span></a>
+          <a href="../guides"><span class="wom-t">All Guides →</span><span class="wom-d">Full resource center</span></a>
+        </div>
+      </div>
+    </li>
+    ${extraLis}
+    <li><a href="../return-to-duty">Return to Duty</a></li>
+  </ul>`;
+}
 
 const STATES = [
   { name: 'Alabama', slug: 'alabama', abbr: 'AL', cities: ['Birmingham', 'Montgomery', 'Huntsville', 'Mobile', 'Tuscaloosa', 'Hoover', 'Dothan', 'Auburn', 'Decatur', 'Madison'] },
@@ -167,12 +226,27 @@ const SHARED_CSS = `
   .f-legal a{color:#475569;text-decoration:none;}
   @media(max-width:100%){nav{padding:0 20px;}.nav-links,.nav-cta{display:none;}section{padding:48px 24px;}.hero-inner{padding:52px 24px 44px;}.hero::after{width:100%;clip-path:none;opacity:.3;}.grid-3{grid-template-columns:1fr;}.how-grid{grid-template-columns:1fr 1fr;}.stats-bar{grid-template-columns:repeat(2,1fr);}.footer-top{grid-template-columns:1fr 1fr;}.cta-strip{padding:56px 24px;}footer{padding:40px 24px;}}
   @media(max-width:600px){.footer-top{grid-template-columns:1fr;}.footer-bottom{flex-direction:column;text-align:center;}.how-grid{grid-template-columns:1fr;}.hero-ctas{flex-direction:column;}.hero-ctas a{text-align:center;justify-content:center;}}
+  /* ── Mega-menu dropdowns (light nav) ── */
+  .wom-drop{position:relative;display:flex;align-items:center;height:68px;}
+  .wom-drop>a{display:flex;align-items:center;gap:7px;}
+  .wom-caret{width:7px;height:7px;border-right:2px solid #1e40af;border-bottom:2px solid #1e40af;transform:rotate(45deg) translateY(-2px);transition:transform .2s ease;}
+  .wom-drop:hover .wom-caret{transform:rotate(225deg) translateY(-2px);}
+  .wom-panel{position:absolute;top:68px;left:-24px;background:#fff;border-top:3px solid #1e40af;border-radius:0 0 14px 14px;box-shadow:0 24px 48px rgba(15,23,42,.18);padding:24px 28px;display:flex;gap:40px;opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .18s ease,transform .18s ease,visibility .18s;z-index:300;}
+  .wom-drop:hover .wom-panel{opacity:1;visibility:visible;transform:translateY(0);}
+  .wom-col{display:flex;flex-direction:column;gap:4px;min-width:220px;}
+  .wom-col-h{font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px;}
+  .wom-panel a{font-family:'Inter',sans-serif;text-decoration:none;padding:9px 12px;border-radius:8px;display:block;transition:background .15s ease;}
+  .wom-panel a:hover{background:#eff6ff;}
+  .wom-panel a .wom-t{display:block;font-size:16px;font-weight:600;color:#0f172a;line-height:1.3;}
+  .wom-panel a .wom-d{display:block;font-size:13px;font-weight:400;color:#64748b;margin-top:1px;}
+  @media(max-width:900px){.wom-drop{height:auto;}.wom-caret{display:none;}.wom-panel{display:none !important;}}
 `;
 
 function statePageHtml(state) {
   const { name, slug, abbr, cities } = state;
   const cityList = cities.slice(0, 10);
   const topCity = cities[0];
+  const facts = STATE_FACTS[slug] || { interstates: 'major interstate highways', corridor: 'regional freight routes', industries: 'trucking, construction, and healthcare', cdlNote: 'CDL drivers must keep a current Medical Examiner’s Certificate on file with their state.' };
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -189,7 +263,7 @@ function statePageHtml(state) {
   gtag('config', 'AW-18239837170');
 </script>
 <title>${name} DOT Physicals & Drug Testing — ${cities.slice(0,3).join(', ')} | WorkOccMed</title>
-<meta name="description" content="DOT physicals ($110) & drug testing in ${name} — ${cities.slice(0,4).join(', ')} & more. FMCSA-certified, same-day medical card, 15,000+ sites statewide. Order online in 2 minutes.">
+<meta name="description" content="DOT physicals ($110) & drug testing across ${name} — ${cities.slice(0,4).join(', ')} & more, along ${facts.interstates}. FMCSA-certified, same-day medical card. Order online in 2 minutes.">
 <link rel="canonical" href="https://www.workoccmed.com/states/${slug}">
 <meta property="og:title" content="Occupational Health ${name} | Work OccMed">
 <meta property="og:description" content="DOT physicals, pre-employment drug testing, and workplace drug screening in ${name}. 15,000+ collection sites. Order online.">
@@ -231,12 +305,7 @@ function statePageHtml(state) {
       <div class="logo-sub">Occupational Health Services</div>
     </div>
   </a>
-  <ul class="nav-links">
-    <li><a href="../#services">Services</a></li>
-    <li><a href="../#how-it-works">How It Works</a></li>
-    <li><a href="../#coverage">All States</a></li>
-    <li><a href="../return-to-duty">Return to Duty</a></li>
-  </ul>
+  ${navUl('<li><a href="../#coverage">All States</a></li>')}
   <div class="nav-cta" style="display:flex;gap:10px;align-items:center;">
     <a href="tel:+18882334567" class="btn btn-ghost">(888) 233-4567</a>
     <a href="https://portal.dot-physical.net/signup" class="btn btn-primary">Employer Portal →</a>
@@ -305,6 +374,24 @@ function statePageHtml(state) {
         <h3>Return to Duty Testing</h3>
         <p>DOT return to duty drug testing after SAP completion, and non-DOT fitness-for-duty evaluations after injury or illness for ${name} employees.</p>
         <a href="../return-to-duty" style="display:inline-block;margin-top:12px;font-size:18px;font-weight:600;color:#1e40af;text-decoration:none;">Learn more →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:white;">
+  <div class="inner">
+    <div class="label">DOT & CDL in ${name}</div>
+    <h2 class="title">DOT Physicals & Trucking Compliance in ${name}</h2>
+    <p class="sub">${name}'s commercial freight moves through ${facts.corridor}, along ${facts.interstates}. WorkOccMed keeps ${name} drivers and employers in ${facts.industries} compliant with fast, FMCSA-certified DOT physicals and DOT/non-DOT drug testing.</p>
+    <div style="margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div class="card">
+        <h3>${name} CDL Drivers</h3>
+        <p>Order a $110 DOT physical online and complete it at a certified site anywhere in ${name}. ${facts.cdlNote}</p>
+      </div>
+      <div class="card">
+        <h3>${name} Employers & Fleets</h3>
+        <p>Whether you run a small fleet or hire across ${facts.industries}, manage every DOT physical, drug screen, and random-testing consortium from one online portal — across all of ${name}.</p>
       </div>
     </div>
   </div>
@@ -430,6 +517,10 @@ function cityPageHtml(state, city, cityIndex) {
   const citySlug = city.toLowerCase().replace(/[^a-z0-9]+/g, '-');
   const fullSlug = `${stateSlug}-${citySlug}`;
   const sites = getSites(stateSlug, cityIndex);
+  const facts = STATE_FACTS[stateSlug] || { interstates: 'major interstate highways', corridor: 'regional freight routes', industries: 'trucking, construction, and healthcare', cdlNote: 'CDL drivers must keep a current Medical Examiner’s Certificate on file with their state.' };
+  const roads = cityRoads(stateSlug, fullSlug);
+  const neighbors = neighborCities(state, city);
+  const neighborTxt = neighbors.length ? neighbors.slice(0, 3).join(', ') : stateName;
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -446,7 +537,7 @@ function cityPageHtml(state, city, cityIndex) {
   gtag('config', 'AW-18239837170');
 </script>
 <title>${city} DOT Physical $110 & Drug Testing — Order Online | WorkOccMed</title>
-<meta name="description" content="DOT physicals & drug testing in ${city}, ${stateName}. $110, same-day medical card, FMCSA-certified sites near you. Order online in 2 minutes — no account needed.">
+<meta name="description" content="DOT physicals & drug testing for drivers and employers near ${city}, ${stateName} along ${roads}. $110, same-day medical card, FMCSA-certified sites. Order online in 2 minutes.">
 <link rel="canonical" href="https://www.workoccmed.com/cities/${fullSlug}">
 <meta name="robots" content="index, follow">
 <meta name="keywords" content="DOT physical ${city}, occupational health ${city} ${stateName}, drug testing ${city} ${abbr}, pre-employment physical ${city}, workplace drug screen ${city}, CDL physical ${city} ${abbr}, drug test ${city} ${stateName}, work occmed ${city}">
@@ -459,6 +550,17 @@ function cityPageHtml(state, city, cityIndex) {
   "areaServed": { "@type": "City", "name": "${city}", "containedInPlace": { "@type": "State", "name": "${stateName}" } },
   "serviceType": ["DOT Physical Examination","Pre-Employment Drug Testing","Workplace Drug Screening","Fit for Duty Evaluation","Return to Duty Drug Testing"],
   "url": "https://www.workoccmed.com/cities/${fullSlug}"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Where can I get a DOT physical in ${city}, ${abbr}?", "acceptedAnswer": { "@type": "Answer", "text": "WorkOccMed has FMCSA-certified exam and collection sites near ${city} and along ${roads}. Order online at workoccmed.com for $110, then walk into the nearest authorized site — most require no appointment and issue your Medical Examiner's Certificate the same day." } },
+    { "@type": "Question", "name": "How much is a DOT physical near ${city}?", "acceptedAnswer": { "@type": "Answer", "text": "A DOT physical through WorkOccMed is $110 near ${city}, ${stateName}, and includes your Medical Examiner's Certificate. Drug testing and pre-employment physicals can be added to the same order." } },
+    { "@type": "Question", "name": "Do you serve employers in ${city} and nearby cities?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. WorkOccMed serves employers in ${city} and across ${stateName}, including ${neighborTxt}. Manage DOT physicals, drug testing, and random-testing consortium enrollment for your whole team from one online portal." } }
+  ]
 }
 </script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -474,11 +576,7 @@ function cityPageHtml(state, city, cityIndex) {
       <div class="logo-sub">Occupational Health Services</div>
     </div>
   </a>
-  <ul class="nav-links">
-    <li><a href="../#services">Services</a></li>
-    <li><a href="../states/${stateSlug}">${stateName}</a></li>
-    <li><a href="../return-to-duty">Return to Duty</a></li>
-  </ul>
+  ${navUl(`<li><a href="../states/${stateSlug}">${stateName}</a></li>`)}
   <div class="nav-cta" style="display:flex;gap:10px;align-items:center;">
     <a href="tel:+18882334567" class="btn btn-ghost">(888) 233-4567</a>
     <a href="https://portal.dot-physical.net/signup" class="btn btn-primary">Employer Portal →</a>
@@ -553,6 +651,38 @@ function cityPageHtml(state, city, cityIndex) {
 </section>
 
 <section style="background:#f8faff;">
+  <div class="inner">
+    <div class="label">DOT & CDL in ${city}</div>
+    <h2 class="title">DOT Physicals & Drug Testing Near ${city}, ${abbr}</h2>
+    <p class="sub">${city} is part of ${stateName}'s freight economy — anchored by ${facts.corridor} — with local commercial traffic moving along ${roads}. WorkOccMed connects ${city}-area drivers and employers in ${facts.industries} with FMCSA-certified DOT physicals and DOT/non-DOT drug testing, without the wait of calling around local clinics.</p>
+    <div style="margin-top:26px;display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+      <div class="card">
+        <h3>For ${city} Drivers</h3>
+        <p>Order your $110 DOT physical online and complete it at a certified site near ${city} or anywhere along ${roads}. Same-day Medical Examiner's Certificate, no appointment needed at most locations. ${facts.cdlNote}</p>
+      </div>
+      <div class="card">
+        <h3>For ${city} Employers</h3>
+        <p>Run DOT physicals, pre-employment and random drug testing, and consortium enrollment for your ${city}-area team from one portal. Also serving nearby ${neighborTxt} and the rest of ${stateName}.</p>
+      </div>
+    </div>
+    <div class="faq-list" style="margin-top:36px;">
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Where can I get a DOT physical in ${city}, ${abbr}?</button>
+        <div class="faq-a">WorkOccMed has FMCSA-certified exam and collection sites near ${city} and along ${roads}. Order online for $110, then walk into the nearest authorized site — most require no appointment and issue your Medical Examiner's Certificate the same day.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">How much is a DOT physical near ${city}?</button>
+        <div class="faq-a">A DOT physical through WorkOccMed is $110 near ${city}, ${stateName}, and includes your Medical Examiner's Certificate. You can add drug testing or a pre-employment physical to the same order.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open')">Do you serve employers in ${city} and nearby cities?</button>
+        <div class="faq-a">Yes. WorkOccMed serves employers in ${city} and across ${stateName}, including ${neighborTxt}. Manage DOT physicals, drug testing, and random-testing consortium enrollment for your whole team from one online portal.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:white;">
   <div class="inner">
     <div class="label">How It Works</div>
     <h2 class="title">Order ${city} Occupational Health Services in 4 Steps</h2>
