@@ -17,7 +17,7 @@ const CSS = `
   /* ── Mega-menu dropdowns ── */
   .wom-drop { position: relative; display: flex; align-items: center; height: 64px; }
   .wom-drop > a { display: flex; align-items: center; gap: 7px; }
-  .wom-caret { width: 7px; height: 7px; border-right: 2px solid #93c5fd; border-bottom: 2px solid #93c5fd; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
+  .wom-caret { display: inline-block; width: 7px; height: 7px; border-right: 2px solid #93c5fd; border-bottom: 2px solid #93c5fd; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
   .wom-drop:hover .wom-caret { transform: rotate(225deg) translateY(-2px); }
   .wom-panel { position: absolute; top: 64px; left: -24px; background: #0d1b2a; border-top: 3px solid #1d4ed8; border-radius: 0 0 14px 14px; box-shadow: 0 24px 48px rgba(0,0,0,.4); padding: 24px 28px; display: flex; gap: 40px; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 300; }
   .wom-drop:hover .wom-panel { opacity: 1; visibility: visible; transform: translateY(0); }
