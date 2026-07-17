@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Find a Location | WorkOccMed</title>
+<meta name="description" content="Find WorkOccMed partner testing regions by state. Order your DOT physical, drug test, breath alcohol test, or physical exam — WorkOccMed assigns the correct LabCorp, Quest, or CRL partner clinic." />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#0d1b2a; --blue:#1d4ed8; --lblue:#93c5fd; --cream:#eff6ff;
+    --ink:#1f2937; --muted:#64748b; --line:#e2e8f0;
+    --labcorp:#d63031; --quest:#0984e3; --crl:#059669;
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f5f7fa;color:var(--ink);line-height:1.6;}
+  a{color:inherit;}
+
+  /* Announcement + nav */
+  .bar{background:var(--blue);text-align:center;padding:10px 20px;}
+  .bar p{color:#fff;font-size:14px;font-weight:600;letter-spacing:.01em;}
+  nav{background:var(--navy);height:64px;display:flex;align-items:center;gap:14px;padding:0 24px;position:sticky;top:0;z-index:50;}
+  nav .logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+  nav .mark{width:38px;height:38px;background:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:var(--navy);}
+  nav .name{color:#fff;font-weight:800;font-size:18px;line-height:1;}
+  nav .sub{color:var(--lblue);font-size:11px;}
+  nav .spacer{flex:1;}
+  nav .cta{background:var(--blue);color:#fff;font-weight:700;font-size:14px;padding:9px 18px;border-radius:8px;text-decoration:none;}
+
+  .page{max-width:1040px;margin:0 auto;padding:32px 16px 72px;}
+
+  .hero{background:#fff;border-radius:14px;padding:28px;box-shadow:0 8px 20px rgba(15,23,42,.06);margin-bottom:20px;}
+  .hero h1{font-size:clamp(1.6rem,3vw,2.1rem);font-weight:800;color:var(--navy);margin-bottom:8px;}
+  .hero p{font-size:15px;color:var(--muted);max-width:640px;}
+
+  /* Mandatory notice */
+  .notice{background:#fffbeb;border:1px solid #fde68a;border-left:5px solid #f59e0b;border-radius:12px;padding:16px 20px;margin-bottom:20px;display:flex;gap:12px;align-items:flex-start;}
+  .notice .ic{font-size:20px;line-height:1;}
+  .notice p{font-size:14.5px;color:#92400e;font-weight:600;}
+
+  /* Order buttons */
+  .orders{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:24px;}
+  .order-btn{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--blue);color:#fff;font-weight:700;font-size:15px;padding:15px 16px;border-radius:12px;text-decoration:none;box-shadow:0 4px 14px rgba(29,78,216,.28);transition:transform .15s,background .15s;}
+  .order-btn:hover{background:#1e40af;transform:translateY(-1px);}
+  .order-btn.alt{background:var(--navy);box-shadow:0 4px 14px rgba(13,27,42,.25);}
+  .order-btn.alt:hover{background:#132537;}
+
+  /* Selector */
+  .selector{background:#fff;border-radius:14px;padding:24px;box-shadow:0 8px 20px rgba(15,23,42,.06);margin-bottom:20px;}
+  .selector label{display:block;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:8px;}
+  .selector select{width:100%;max-width:420px;font-family:inherit;font-size:16px;padding:13px 15px;border:1.5px solid #cbd5e1;border-radius:10px;background:#fff;color:var(--ink);cursor:pointer;}
+  .selector select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(29,78,216,.15);}
+
+  /* Results */
+  #results{display:none;}
+  #results.show{display:block;}
+  .results-head{font-size:15px;color:var(--muted);margin-bottom:14px;}
+  .results-head strong{color:var(--navy);}
+  .brands{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+  .brand{background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 4px 14px rgba(15,23,42,.05);}
+  .brand h3{font-size:18px;font-weight:800;margin-bottom:4px;display:flex;align-items:center;gap:10px;}
+  .brand .badge{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+  .brand.labcorp h3{color:var(--labcorp);} .brand.labcorp .badge{background:var(--labcorp);}
+  .brand.quest h3{color:var(--quest);}     .brand.quest .badge{background:var(--quest);}
+  .brand.crl h3{color:var(--crl);}         .brand.crl .badge{background:var(--crl);}
+  .brand .cap{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:10px 0 8px;}
+  .brand ul{list-style:none;display:flex;flex-direction:column;gap:7px;}
+  .brand li{font-size:15px;color:#374151;display:flex;align-items:center;gap:9px;}
+  .brand li::before{content:'';width:6px;height:6px;border-radius:50%;background:currentColor;opacity:.55;flex-shrink:0;}
+  .empty{background:#fff;border:1px dashed var(--line);border-radius:14px;padding:40px;text-align:center;color:var(--muted);font-size:15px;}
+
+  /* How it works */
+  .how{background:#fff;border-radius:14px;padding:28px;box-shadow:0 8px 20px rgba(15,23,42,.06);margin-top:28px;}
+  .how h2{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:20px;}
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;}
+  .step{position:relative;padding-left:6px;}
+  .step .n{width:38px;height:38px;border-radius:50%;background:var(--blue);color:#fff;font-weight:800;font-size:17px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
+  .step h4{font-size:15px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+  .step p{font-size:14px;color:var(--muted);}
+
+  footer{background:var(--navy);color:#94a3b8;text-align:center;padding:32px 24px;margin-top:40px;}
+  footer .fname{color:#fff;font-weight:800;font-size:17px;}
+  footer .fsub{font-size:13px;color:#64748b;margin-top:4px;}
+  footer .legal{font-size:12px;color:#475569;margin-top:14px;max-width:720px;margin-left:auto;margin-right:auto;}
+
+  @media(max-width:640px){ nav .links{display:none;} }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT -->
+<div class="bar"><p>FMCSA Certified &nbsp;·&nbsp; Nationwide Partner Network &nbsp;·&nbsp; Scheduled Through WorkOccMed &nbsp;·&nbsp; All 50 States</p></div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="/">
+    <span class="mark">WOM</span>
+    <span>
+      <span class="name">WorkOccMed</span><br>
+      <span class="sub">a Doctors Place Inc. company</span>
+    </span>
+  </a>
+  <span class="spacer"></span>
+  <a class="cta" href="https://portal.dot-physical.net/order">Order Now</a>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Find a Location</h1>
+    <p>WorkOccMed partners with the nation's leading collection networks. Choose your state to see the service regions available near you — then place your order and we'll assign the right partner clinic.</p>
+  </section>
+
+  <!-- MANDATORY NOTICE -->
+  <div class="notice">
+    <span class="ic">⚠️</span>
+    <p>All services must be scheduled through WorkOccMed. Partner clinics do not accept walk-ins or direct appointments for WorkOccMed clients.</p>
+  </div>
+
+  <!-- ORDER BUTTONS -->
+  <div class="orders">
+    <a class="order-btn" href="https://portal.dot-physical.net/order?service=dot-physical">Order DOT Physical</a>
+    <a class="order-btn" href="https://portal.dot-physical.net/order">Order Drug Test</a>
+    <a class="order-btn alt" href="https://portal.dot-physical.net/order">Order Breath Alcohol Test</a>
+    <a class="order-btn alt" href="https://portal.dot-physical.net/order?service=pre-employment">Order Physical Exam</a>
+  </div>
+
+  <!-- STATE SELECTOR -->
+  <section class="selector">
+    <label for="stateSelect">Select Your State</label>
+    <select id="stateSelect">
+      <option value="">Choose a state…</option>
+    </select>
+  </section>
+
+  <!-- RESULTS -->
+  <section id="results">
+    <p class="results-head">Partner service regions in <strong id="stateName"></strong>:</p>
+    <div class="brands" id="brands"></div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>Choose Your State</h4><p>Select your state from the dropdown above.</p></div>
+      <div class="step"><div class="n">2</div><h4>Select a Region</h4><p>Review the partner service regions available near you.</p></div>
+      <div class="step"><div class="n">3</div><h4>Place Your Order</h4><p>Order your service directly through WorkOccMed.</p></div>
+      <div class="step"><div class="n">4</div><h4>We Assign the Clinic</h4><p>WorkOccMed assigns the correct partner clinic for your service.</p></div>
+      <div class="step"><div class="n">5</div><h4>Visit With Authorization</h4><p>Bring your WorkOccMed authorization to the assigned clinic.</p></div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="fname">WorkOccMed</div>
+  <div class="fsub">A specialized division of Doctors Place Inc. · New Jersey</div>
+  <div class="legal">© 2026 Doctors Place Inc. · WorkOccMed is a national occupational health platform. Partner clinics (LabCorp, Quest Diagnostics, CRL) provide collection services and do not accept walk-ins or direct appointments for WorkOccMed clients. All services are scheduled and authorized through WorkOccMed.</div>
+</footer>
+
+<script>
+/* ─────────────────────────────────────────────────────────────
+   REGION DATA — add more states by adding an entry here.
+   Each state lists region-only names per partner brand.
+   ───────────────────────────────────────────────────────────── */
+const STATE_DATA = {
+  "New Jersey": {
+    "LabCorp":           ["Newark / North Jersey Area", "Jersey City Area", "Edison / Middlesex Area", "Trenton Area", "Camden Area", "Atlantic City Area"],
+    "Quest Diagnostics": ["Newark / North Jersey Area", "Jersey City Area", "Edison / Middlesex Area", "Trenton Area", "Camden Area"],
+    "CRL":               ["Newark / North Jersey Area", "Jersey City Area", "Trenton Area"]
+  },
+  "New York": {
+    "LabCorp":           ["NYC Metro Area", "Long Island Area", "Westchester Area", "Buffalo Area", "Rochester Area", "Albany Area", "Syracuse Area"],
+    "Quest Diagnostics": ["NYC Metro Area", "Long Island Area", "Westchester Area", "Rochester Area", "Albany Area"],
+    "CRL":               ["NYC Metro Area", "Long Island Area", "Albany Area"]
+  },
+  "Pennsylvania": {
+    "LabCorp":           ["Philadelphia Area", "Pittsburgh Area", "Lehigh Valley / Allentown Area", "Harrisburg Area", "Scranton / Wilkes-Barre Area", "Erie Area"],
+    "Quest Diagnostics": ["Philadelphia Area", "Pittsburgh Area", "Lehigh Valley / Allentown Area", "Harrisburg Area"],
+    "CRL":               ["Philadelphia Area", "Pittsburgh Area"]
+  },
+  "Connecticut": {
+    "LabCorp":           ["Hartford Area", "New Haven Area", "Bridgeport / Stamford Area", "Waterbury Area"],
+    "Quest Diagnostics": ["Hartford Area", "New Haven Area", "Bridgeport / Stamford Area"],
+    "CRL":               ["Hartford Area", "New Haven Area"]
+  },
+  "Massachusetts": {
+    "LabCorp":           ["Greater Boston Area", "Worcester Area", "Springfield Area", "Cape Cod Area"],
+    "Quest Diagnostics": ["Greater Boston Area", "Worcester Area", "Springfield Area"],
+    "CRL":               ["Greater Boston Area", "Worcester Area"]
+  },
+  "Virginia": {
+    "LabCorp":           ["Northern Virginia Area", "Richmond Area", "Virginia Beach / Norfolk Area", "Roanoke Area"],
+    "Quest Diagnostics": ["Northern Virginia Area", "Richmond Area", "Virginia Beach / Norfolk Area"],
+    "CRL":               ["Northern Virginia Area", "Richmond Area"]
+  },
+  "North Carolina": {
+    "LabCorp":           ["Charlotte Area", "Raleigh–Durham Area", "Greensboro Area", "Winston-Salem Area", "Wilmington Area"],
+    "Quest Diagnostics": ["Charlotte Area", "Raleigh–Durham Area", "Greensboro Area"],
+    "CRL":               ["Charlotte Area", "Raleigh–Durham Area"]
+  },
+  "Georgia": {
+    "LabCorp":           ["Atlanta Metro Area", "Savannah Area", "Augusta Area", "Columbus Area", "Macon Area"],
+    "Quest Diagnostics": ["Atlanta Metro Area", "Savannah Area", "Augusta Area"],
+    "CRL":               ["Atlanta Metro Area", "Savannah Area"]
+  },
+  "Florida": {
+    "LabCorp":           ["Miami Area", "Fort Lauderdale Area", "Orlando Area", "Tampa Bay Area", "Jacksonville Area", "Tallahassee Area"],
+    "Quest Diagnostics": ["Miami Area", "Fort Lauderdale Area", "Orlando Area", "Tampa Bay Area", "Jacksonville Area"],
+    "CRL":               ["Miami Area", "Orlando Area", "Tampa Bay Area"]
+  },
+  "Tennessee": {
+    "LabCorp":           ["Nashville Area", "Memphis Area", "Knoxville Area", "Chattanooga Area"],
+    "Quest Diagnostics": ["Nashville Area", "Memphis Area", "Knoxville Area"],
+    "CRL":               ["Nashville Area", "Memphis Area"]
+  },
+  "Ohio": {
+    "LabCorp":           ["Columbus Area", "Cleveland Area", "Cincinnati Area", "Toledo Area", "Akron Area", "Dayton Area"],
+    "Quest Diagnostics": ["Columbus Area", "Cleveland Area", "Cincinnati Area", "Dayton Area"],
+    "CRL":               ["Columbus Area", "Cleveland Area", "Cincinnati Area"]
+  },
+  "Michigan": {
+    "LabCorp":           ["Detroit Metro Area", "Grand Rapids Area", "Lansing Area", "Flint Area", "Ann Arbor Area"],
+    "Quest Diagnostics": ["Detroit Metro Area", "Grand Rapids Area", "Lansing Area"],
+    "CRL":               ["Detroit Metro Area", "Grand Rapids Area"]
+  },
+  "Illinois": {
+    "LabCorp":           ["Chicago Metro Area", "Rockford Area", "Peoria Area", "Springfield Area", "Champaign Area"],
+    "Quest Diagnostics": ["Chicago Metro Area", "Rockford Area", "Peoria Area"],
+    "CRL":               ["Chicago Metro Area", "Rockford Area"]
+  },
+  "Missouri": {
+    "LabCorp":           ["St. Louis Area", "Kansas City Area", "Springfield Area", "Columbia Area"],
+    "Quest Diagnostics": ["St. Louis Area", "Kansas City Area", "Springfield Area"],
+    "CRL":               ["St. Louis Area", "Kansas City Area"]
+  },
+  "Texas": {
+    "LabCorp":           ["Houston Area", "Dallas–Fort Worth Area", "San Antonio Area", "Austin Area", "El Paso Area", "Laredo Area"],
+    "Quest Diagnostics": ["Houston Area", "Dallas–Fort Worth Area", "San Antonio Area", "Austin Area"],
+    "CRL":               ["Houston Area", "Dallas–Fort Worth Area", "San Antonio Area"]
+  },
+  "Colorado": {
+    "LabCorp":           ["Denver Metro Area", "Colorado Springs Area", "Fort Collins Area", "Pueblo Area"],
+    "Quest Diagnostics": ["Denver Metro Area", "Colorado Springs Area", "Fort Collins Area"],
+    "CRL":               ["Denver Metro Area", "Colorado Springs Area"]
+  },
+  "Arizona": {
+    "LabCorp":           ["Phoenix Metro Area", "Mesa / Gilbert Area", "Scottsdale Area", "Tucson Area", "Flagstaff Area"],
+    "Quest Diagnostics": ["Phoenix Metro Area", "Tempe Area", "Tucson Area"],
+    "CRL":               ["Phoenix Metro Area", "Tucson Area"]
+  },
+  "Utah": {
+    "LabCorp":           ["Salt Lake City Area", "Ogden Area", "Provo / Orem Area", "St. George Area", "Logan Area"],
+    "Quest Diagnostics": ["Salt Lake City Area", "West Valley Area", "Layton Area", "Provo / Orem Area"],
+    "CRL":               ["Salt Lake City Area", "Ogden Area"]
+  },
+  "Washington": {
+    "LabCorp":           ["Seattle Area", "Tacoma Area", "Spokane Area", "Vancouver Area", "Everett Area"],
+    "Quest Diagnostics": ["Seattle Area", "Tacoma Area", "Spokane Area"],
+    "CRL":               ["Seattle Area", "Tacoma Area"]
+  },
+  "California": {
+    "LabCorp":           ["Los Angeles Area", "San Diego Area", "San Francisco Bay Area", "Sacramento Area", "Fresno Area", "Inland Empire Area"],
+    "Quest Diagnostics": ["Los Angeles Area", "San Diego Area", "San Francisco Bay Area", "Sacramento Area", "Fresno Area"],
+    "CRL":               ["Los Angeles Area", "San Diego Area", "San Francisco Bay Area"]
+  },
+  "Alabama": {
+    "LabCorp":           ["Birmingham Area", "Montgomery Area", "Huntsville Area", "Mobile Area", "Tuscaloosa Area"],
+    "Quest Diagnostics": ["Birmingham Area", "Montgomery Area", "Huntsville Area", "Mobile Area"],
+    "CRL":               ["Birmingham Area", "Huntsville Area"]
+  },
+  "Alaska": {
+    "LabCorp":           ["Anchorage Area", "Fairbanks Area", "Juneau Area"],
+    "Quest Diagnostics": ["Anchorage Area", "Fairbanks Area"],
+    "CRL":               ["Anchorage Area"]
+  },
+  "Arkansas": {
+    "LabCorp":           ["Little Rock Area", "Fayetteville / Springdale Area", "Fort Smith Area", "Jonesboro Area"],
+    "Quest Diagnostics": ["Little Rock Area", "Fayetteville / Springdale Area", "Fort Smith Area"],
+    "CRL":               ["Little Rock Area", "Fayetteville / Springdale Area"]
+  },
+  "Delaware": {
+    "LabCorp":           ["Wilmington Area", "Dover Area", "Newark Area"],
+    "Quest Diagnostics": ["Wilmington Area", "Dover Area"],
+    "CRL":               ["Wilmington Area"]
+  },
+  "Hawaii": {
+    "LabCorp":           ["Honolulu / Oahu Area", "Maui Area", "Hilo / Big Island Area"],
+    "Quest Diagnostics": ["Honolulu / Oahu Area", "Maui Area"],
+    "CRL":               ["Honolulu / Oahu Area"]
+  },
+  "Idaho": {
+    "LabCorp":           ["Boise Area", "Idaho Falls Area", "Coeur d'Alene Area", "Twin Falls Area"],
+    "Quest Diagnostics": ["Boise Area", "Idaho Falls Area", "Coeur d'Alene Area"],
+    "CRL":               ["Boise Area", "Idaho Falls Area"]
+  },
+  "Indiana": {
+    "LabCorp":           ["Indianapolis Area", "Fort Wayne Area", "Evansville Area", "South Bend Area", "Bloomington Area"],
+    "Quest Diagnostics": ["Indianapolis Area", "Fort Wayne Area", "Evansville Area"],
+    "CRL":               ["Indianapolis Area", "Fort Wayne Area"]
+  },
+  "Iowa": {
+    "LabCorp":           ["Des Moines Area", "Cedar Rapids Area", "Davenport / Quad Cities Area", "Sioux City Area"],
+    "Quest Diagnostics": ["Des Moines Area", "Cedar Rapids Area", "Davenport / Quad Cities Area"],
+    "CRL":               ["Des Moines Area", "Cedar Rapids Area"]
+  },
+  "Kansas": {
+    "LabCorp":           ["Wichita Area", "Kansas City (KS) Area", "Topeka Area", "Overland Park Area"],
+    "Quest Diagnostics": ["Wichita Area", "Kansas City (KS) Area", "Topeka Area"],
+    "CRL":               ["Wichita Area", "Kansas City (KS) Area"]
+  },
+  "Kentucky": {
+    "LabCorp":           ["Louisville Area", "Lexington Area", "Bowling Green Area", "Northern Kentucky Area"],
+    "Quest Diagnostics": ["Louisville Area", "Lexington Area", "Northern Kentucky Area"],
+    "CRL":               ["Louisville Area", "Lexington Area"]
+  },
+  "Louisiana": {
+    "LabCorp":           ["New Orleans Area", "Baton Rouge Area", "Shreveport Area", "Lafayette Area"],
+    "Quest Diagnostics": ["New Orleans Area", "Baton Rouge Area", "Shreveport Area"],
+    "CRL":               ["New Orleans Area", "Baton Rouge Area"]
+  },
+  "Maine": {
+    "LabCorp":           ["Portland Area", "Bangor Area", "Lewiston / Auburn Area"],
+    "Quest Diagnostics": ["Portland Area", "Bangor Area"],
+    "CRL":               ["Portland Area"]
+  },
+  "Maryland": {
+    "LabCorp":           ["Baltimore Area", "Silver Spring / DC Suburban Area", "Frederick Area", "Salisbury Area"],
+    "Quest Diagnostics": ["Baltimore Area", "Silver Spring / DC Suburban Area", "Frederick Area"],
+    "CRL":               ["Baltimore Area", "Silver Spring / DC Suburban Area"]
+  },
+  "Minnesota": {
+    "LabCorp":           ["Minneapolis–St. Paul Area", "Rochester Area", "Duluth Area", "St. Cloud Area"],
+    "Quest Diagnostics": ["Minneapolis–St. Paul Area", "Rochester Area", "Duluth Area"],
+    "CRL":               ["Minneapolis–St. Paul Area", "Rochester Area"]
+  },
+  "Mississippi": {
+    "LabCorp":           ["Jackson Area", "Gulfport / Biloxi Area", "Hattiesburg Area", "Tupelo Area"],
+    "Quest Diagnostics": ["Jackson Area", "Gulfport / Biloxi Area"],
+    "CRL":               ["Jackson Area"]
+  },
+  "Montana": {
+    "LabCorp":           ["Billings Area", "Missoula Area", "Great Falls Area", "Bozeman Area"],
+    "Quest Diagnostics": ["Billings Area", "Missoula Area", "Great Falls Area"],
+    "CRL":               ["Billings Area", "Missoula Area"]
+  },
+  "Nebraska": {
+    "LabCorp":           ["Omaha Area", "Lincoln Area", "Grand Island Area"],
+    "Quest Diagnostics": ["Omaha Area", "Lincoln Area"],
+    "CRL":               ["Omaha Area", "Lincoln Area"]
+  },
+  "Nevada": {
+    "LabCorp":           ["Las Vegas Area", "Reno Area", "Carson City Area"],
+    "Quest Diagnostics": ["Las Vegas Area", "Reno Area"],
+    "CRL":               ["Las Vegas Area", "Reno Area"]
+  },
+  "New Hampshire": {
+    "LabCorp":           ["Manchester Area", "Nashua Area", "Concord Area"],
+    "Quest Diagnostics": ["Manchester Area", "Nashua Area"],
+    "CRL":               ["Manchester Area"]
+  },
+  "New Mexico": {
+    "LabCorp":           ["Albuquerque Area", "Santa Fe Area", "Las Cruces Area"],
+    "Quest Diagnostics": ["Albuquerque Area", "Santa Fe Area", "Las Cruces Area"],
+    "CRL":               ["Albuquerque Area", "Las Cruces Area"]
+  },
+  "North Dakota": {
+    "LabCorp":           ["Fargo Area", "Bismarck Area", "Grand Forks Area"],
+    "Quest Diagnostics": ["Fargo Area", "Bismarck Area"],
+    "CRL":               ["Fargo Area"]
+  },
+  "Oklahoma": {
+    "LabCorp":           ["Oklahoma City Area", "Tulsa Area", "Norman Area", "Lawton Area"],
+    "Quest Diagnostics": ["Oklahoma City Area", "Tulsa Area", "Norman Area"],
+    "CRL":               ["Oklahoma City Area", "Tulsa Area"]
+  },
+  "Oregon": {
+    "LabCorp":           ["Portland Area", "Salem Area", "Eugene Area", "Bend Area", "Medford Area"],
+    "Quest Diagnostics": ["Portland Area", "Salem Area", "Eugene Area"],
+    "CRL":               ["Portland Area", "Salem Area"]
+  },
+  "Rhode Island": {
+    "LabCorp":           ["Providence Area", "Warwick Area"],
+    "Quest Diagnostics": ["Providence Area", "Warwick Area"],
+    "CRL":               ["Providence Area"]
+  },
+  "South Carolina": {
+    "LabCorp":           ["Columbia Area", "Charleston Area", "Greenville Area", "Myrtle Beach Area"],
+    "Quest Diagnostics": ["Columbia Area", "Charleston Area", "Greenville Area"],
+    "CRL":               ["Columbia Area", "Charleston Area"]
+  },
+  "South Dakota": {
+    "LabCorp":           ["Sioux Falls Area", "Rapid City Area", "Aberdeen Area"],
+    "Quest Diagnostics": ["Sioux Falls Area", "Rapid City Area"],
+    "CRL":               ["Sioux Falls Area"]
+  },
+  "Vermont": {
+    "LabCorp":           ["Burlington Area", "Montpelier Area", "Rutland Area"],
+    "Quest Diagnostics": ["Burlington Area", "Rutland Area"],
+    "CRL":               ["Burlington Area"]
+  },
+  "West Virginia": {
+    "LabCorp":           ["Charleston Area", "Huntington Area", "Morgantown Area", "Parkersburg Area"],
+    "Quest Diagnostics": ["Charleston Area", "Huntington Area", "Morgantown Area"],
+    "CRL":               ["Charleston Area", "Huntington Area"]
+  },
+  "Wisconsin": {
+    "LabCorp":           ["Milwaukee Area", "Madison Area", "Green Bay Area", "Appleton Area"],
+    "Quest Diagnostics": ["Milwaukee Area", "Madison Area", "Green Bay Area"],
+    "CRL":               ["Milwaukee Area", "Madison Area"]
+  },
+  "Wyoming": {
+    "LabCorp":           ["Cheyenne Area", "Casper Area", "Laramie Area"],
+    "Quest Diagnostics": ["Cheyenne Area", "Casper Area"],
+    "CRL":               ["Cheyenne Area"]
+  }
+  // ── Add or edit states above using the same structure:
+  // "State Name": { "LabCorp": ["Region 1"], "Quest Diagnostics": ["Region 1"], "CRL": ["Region 1"] }
+};
+
+/* Brand → CSS class + display order (add new brands here if needed). */
+const BRAND_STYLE = { "LabCorp": "labcorp", "Quest Diagnostics": "quest", "CRL": "crl" };
+const BRAND_ORDER = ["LabCorp", "Quest Diagnostics", "CRL"];
+
+/* ── Populate the state dropdown ── */
+const select    = document.getElementById("stateSelect");
+const results   = document.getElementById("results");
+const stateName = document.getElementById("stateName");
+
+Object.keys(STATE_DATA).sort().forEach(state => {
+  const opt = document.createElement("option");
+  opt.value = state;
+  opt.textContent = state;
+  select.appendChild(opt);
+});
+
+const brandsEl = document.getElementById("brands");
+
+/* Escape text for safe insertion. */
+function esc(t) {
+  return String(t).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+/* Build one brand card. */
+function brandCard(brand, regions) {
+  const cls = BRAND_STYLE[brand] || "labcorp";
+  const items = (regions && regions.length)
+    ? regions.map(r => `<li>${esc(r)}</li>`).join("")
+    : `<li style="color:#94a3b8;font-style:italic;">No partner regions listed — order and we'll assign the nearest available clinic.</li>`;
+  return `
+    <div class="brand ${cls}">
+      <h3><span class="badge"></span>${esc(brand)}</h3>
+      <div class="cap">Service Regions</div>
+      <ul>${items}</ul>
+    </div>`;
+}
+
+/* ── Handle state selection ── */
+select.addEventListener("change", () => {
+  const state = select.value;
+  if (!state || !STATE_DATA[state]) {
+    results.classList.remove("show");
+    return;
+  }
+  const data = STATE_DATA[state];
+  stateName.textContent = state;
+
+  // Order known brands first, then any extras defined in the data.
+  const brands = [
+    ...BRAND_ORDER.filter(b => b in data),
+    ...Object.keys(data).filter(b => !BRAND_ORDER.includes(b))
+  ];
+  brandsEl.innerHTML = brands.map(b => brandCard(b, data[b])).join("");
+
+  results.classList.add("show");
+  results.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+</script>
+
+</body>
+</html>
