@@ -432,6 +432,12 @@
     if(mi < 25) return 'Within 10–25 miles';
     return 'Within ' + Math.ceil(mi) + ' miles';
   }
+  // Round each site UP to the nearest standard tier (10 / 25 / 50 miles).
+  function tierBand(mi){
+    if(mi <= 10) return 'Within 10 miles';
+    if(mi <= 25) return 'Within 25 miles';
+    return 'Within 50 miles';
+  }
   function areaFromGeocode(res){
     var comp = res.address_components || [];
     function get(type){ var c = comp.filter(function(x){return x.types.indexOf(type)>-1;})[0]; return c ? (c.short_name||c.long_name) : ''; }
@@ -475,8 +481,14 @@
   }
 
   function genericItems(zip, radiusMi, n, area){
+    // Applicable tiers for the chosen radius, then spread cards across them (closest first).
+    var tiers = radiusMi >= 50 ? [10,25,50] : (radiusMi >= 25 ? [10,25] : [10]);
+    var per = Math.ceil(n / tiers.length);
     var items = [];
-    for(var i=0; i<n; i++){ items.push({ area: area || ('near ' + zip), band: 'Within ' + radiusMi + ' miles' }); }
+    for(var i=0; i<n; i++){
+      var t = Math.min(Math.floor(i / per), tiers.length - 1);
+      items.push({ area: area || ('near ' + zip), band: 'Within ' + tiers[t] + ' miles' });
+    }
     return items;
   }
   // Count scales with the search radius, capped at 26 (Site A–Z).
@@ -500,7 +512,7 @@
           return;
         }
         document.getElementById('resTitle').textContent = results.length + ' compatible option' + (results.length>1?'s':'') + ' nearby';
-        renderCards(results.map(function(r){ return { area: area, band: 'Within ' + radiusMi + ' miles' }; }));
+        renderCards(results.map(function(r){ return { area: area, band: tierBand(r.mi) }; }));
       });
     });
   }
