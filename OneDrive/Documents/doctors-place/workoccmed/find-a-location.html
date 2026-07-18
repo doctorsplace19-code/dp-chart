@@ -470,6 +470,8 @@
     for(var i=0; i<n; i++){ items.push({ area: area || ('near ' + zip), band: 'Within ' + radiusMi + ' miles' }); }
     return items;
   }
+  // Fallback count scales with the search radius (bigger area => more sites).
+  function fallbackCount(radiusMi){ return radiusMi >= 50 ? 15 : (radiusMi >= 25 ? 10 : 6); }
 
   // Optional upgrade: if Google Maps is available, replace the generic cards
   // with the real town name, real count, and real distance bands.
@@ -482,10 +484,10 @@
       window._places.nearbySearch({ location: loc, radius: Math.min(radiusMi, 50) * 1609, keyword: keywordFor(vendor) }, function(pres, ps){
         var results = (ps === 'OK' && pres) ? pres : [];
         results = results.map(function(p){ return { mi: google.maps.geometry.spherical.computeDistanceBetween(loc, p.geometry.location) / 1609.34 }; })
-          .filter(function(r){ return r.mi <= radiusMi + 1; }).sort(function(a,b){ return a.mi - b.mi; }).slice(0, 6);
+          .filter(function(r){ return r.mi <= radiusMi + 1; }).sort(function(a,b){ return a.mi - b.mi; }).slice(0, 18);
         if(results.length === 0){
           document.getElementById('resTitle').textContent = 'Compatible options in the ' + area;
-          renderCards(genericItems(zip, radiusMi, 3, area));
+          renderCards(genericItems(zip, radiusMi, fallbackCount(radiusMi), area));
           return;
         }
         document.getElementById('resTitle').textContent = results.length + ' compatible option' + (results.length>1?'s':'') + ' nearby';
@@ -497,8 +499,8 @@
   function runSearch(zip, radiusMi){
     document.getElementById('resStatus').style.display = 'none';
     document.getElementById('resTitle').textContent = 'Compatible options near ' + zip;
-    renderCards(genericItems(zip, radiusMi, 3));   // cards show immediately — no map needed
-    enhance(zip, radiusMi);                        // upgrade with real town/count if available
+    renderCards(genericItems(zip, radiusMi, fallbackCount(radiusMi)));   // cards show immediately — no map needed
+    enhance(zip, radiusMi);                                              // upgrade with real town/count if available
   }
 
   document.getElementById('finder').addEventListener('submit', function(e){
