@@ -187,7 +187,7 @@
       <span class="mark">WOM</span>
       <span>
         <span class="nm">WorkOccMed</span>
-        <span class="sub">a Doctors Place Inc. company</span>
+        
       </span>
     </a>
     <div class="pill">
@@ -322,7 +322,7 @@
       <h2>Already know what you need?</h2>
       <p class="sub">Order first. We'll coordinate the right site.</p>
       <p class="fine">Paid orders are entered into Workforce / FormFox, Labcorp, or Quest with the patient email so the selected vendor can issue the authorization automatically.</p>
-      <a class="cta" href="https://portal.dot-physical.net/order">Start an order
+      <a class="cta" href="https://portal.workoccmed.com/order">Start an order
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
       </a>
     </div>
@@ -330,12 +330,12 @@
 </main>
 
 <footer class="site">
-  <div class="wrap">© 2026 WorkOccMed · a Doctors Place Inc. company · <a href="tel:+18882334567">(888) 233-4567</a> · <a href="https://g.page/r/CZxpzYHQ5wJbEAI/review" target="_blank" rel="noopener">★ Review Us</a></div>
+  <div class="wrap">© 2026 WorkOccMed · <a href="tel:+18882334567">(888) 233-4567</a> · <a href="https://g.page/r/CZxpzYHQ5wJbEAI/review" target="_blank" rel="noopener">★ Review Us</a></div>
 </footer>
 
 <script>
 (function(){
-  var ORDER_URL = 'https://portal.dot-physical.net/order';
+  var ORDER_URL = 'https://portal.workoccmed.com/order';
   if(new URLSearchParams(location.search).get('embed') === '1'){ document.body.classList.add('embed'); }
   var TABS = ['Physicals','Drug Screens','Alcohol','Vaccines','Labs','Misc'];
   var VENDORS = [['ANY','Any compatible network'],['WORKFORCE','Workforce / FormFox'],['LABCORP','Labcorp'],['QUEST','Quest']];
@@ -352,8 +352,15 @@
     {id:'ndot-5',    cat:'Drug Screens', name:'Non-DOT Drug Test (5-Panel)',       cents:7000,  orderable:true},
     {id:'dot-bat',   cat:'Alcohol',      name:'DOT Breath Alcohol Test',           cents:6500,  orderable:true},
     {id:'ndot-bat',  cat:'Alcohol',      name:'Non-DOT Breath Alcohol Test',       cents:4500,  orderable:true},
-    {id:'tb-ppd',    cat:'Labs',         name:'TB Test (PPD)',                     cents:4500,  orderable:true},
-    {id:'titer-mmr', cat:'Labs',         name:'MMR Titer',                         cents:9500,  orderable:true},
+    {id:'tb-ppd',          cat:'Labs', name:'TB Test (PPD)',                             cents:4500,  orderable:false},
+    {id:'quantiferon-tb',  cat:'Labs', name:'Quantiferon-TB Gold (TB Blood Test)',      cents:12000, orderable:true},
+    {id:'titer-mmr',       cat:'Labs', name:'MMR Titer (Measles, Mumps, Rubella)',      cents:7500,  orderable:true},
+    {id:'titer-varicella', cat:'Labs', name:'Varicella Titer (Chickenpox)',             cents:6500,  orderable:true},
+    {id:'hep-b-panel',     cat:'Labs', name:'Hepatitis B Surface Antigen & Antibody Panel', cents:8000, orderable:true},
+    {id:'hep-c-ab',        cat:'Labs', name:'Hepatitis C Antibody (HCV)',               cents:7000,  orderable:true},
+    {id:'cbc',             cat:'Labs', name:'Complete Blood Count (CBC)',               cents:4500,  orderable:true},
+    {id:'cmp',             cat:'Labs', name:'Comprehensive Metabolic Panel (CMP)',      cents:5500,  orderable:true},
+    {id:'urinalysis',      cat:'Labs', name:'Urinalysis',                               cents:3000,  orderable:true},
     {id:'hep-b',     cat:'Vaccines',     name:'Hepatitis B Vaccine',               cents:0,     orderable:false},
     {id:'flu',       cat:'Vaccines',     name:'Influenza Vaccine',                 cents:0,     orderable:false},
     {id:'fit-resp',  cat:'Misc',         name:'Respirator Fit Test',               cents:0,     orderable:false}
