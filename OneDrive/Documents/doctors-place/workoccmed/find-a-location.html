@@ -169,6 +169,13 @@
   footer.site{background:var(--navy);color:var(--sky3);border-top:1px solid rgba(255,255,255,.08);padding:24px 0;text-align:center;font-size:12px;}
   footer.site a{color:var(--sky3);text-decoration:none;}
   footer.site a:hover{color:#fff;}
+
+  /* Embed mode (?embed=1) — hides marketing chrome so it fits inside the portal */
+  body.embed header.site, body.embed footer.site, body.embed .band { display:none; }
+  body.embed .hero{ background:var(--page); color:var(--ink); padding:20px 0 8px; overflow:visible; }
+  body.embed .hero .ring{ display:none; }
+  body.embed .hero-grid{ grid-template-columns:1fr; gap:0; }
+  body.embed .hero-grid > div{ display:none; }   /* hide the left marketing column */
 </style>
 </head>
 <body>
@@ -329,6 +336,7 @@
 <script>
 (function(){
   var ORDER_URL = 'https://portal.dot-physical.net/order';
+  if(new URLSearchParams(location.search).get('embed') === '1'){ document.body.classList.add('embed'); }
   var TABS = ['Physicals','Drug Screens','Alcohol','Vaccines','Labs','Misc'];
   var VENDORS = [['ANY','Any compatible network'],['WORKFORCE','Workforce / FormFox'],['LABCORP','Labcorp'],['QUEST','Quest']];
 
