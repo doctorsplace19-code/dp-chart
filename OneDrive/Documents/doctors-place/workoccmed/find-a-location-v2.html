@@ -125,25 +125,30 @@
   .results .panel h3{font-size:19px;font-weight:800;}
   .results .panel p{margin-top:8px;color:var(--muted);font-size:15px;max-width:34rem;margin-left:auto;margin-right:auto;line-height:1.6;}
   .results .panel a.order{display:inline-flex;align-items:center;gap:8px;margin-top:20px;background:var(--blue);color:#fff;font-weight:800;padding:13px 26px;border-radius:10px;text-decoration:none;}
-  .res-grid{display:grid;gap:28px;align-items:stretch;}
-  @media(min-width:900px){.res-grid{grid-template-columns:1fr 1fr;}}
-  .res-left{background:#fff;border:1px solid var(--card-b);border-radius:16px;padding:28px;}
-  .cov-badge{display:inline-flex;align-items:center;gap:8px;background:#e7f7ef;color:#0f7a52;border:1px solid #b7e6cf;border-radius:999px;padding:7px 14px;font-size:12px;font-weight:800;letter-spacing:.02em;margin-bottom:14px;}
-  .res-left h2{font-size:clamp(1.4rem,2.6vw,1.8rem);font-weight:800;letter-spacing:-.02em;}
-  .res-lead{margin-top:8px;color:var(--muted);font-size:15px;line-height:1.6;}
-  .res-facts{margin-top:20px;display:flex;flex-direction:column;gap:1px;border:1px solid var(--card-b);border-radius:12px;overflow:hidden;}
-  .rf{display:flex;justify-content:space-between;gap:12px;padding:11px 16px;background:#f8fafc;}
-  .rf:nth-child(even){background:#fff;}
-  .rf-k{font-size:13px;color:var(--muted2);}
-  .rf-v{font-size:13px;font-weight:700;color:var(--ink);text-align:right;}
-  .res-privacy{margin-top:18px;display:flex;gap:10px;align-items:flex-start;background:#eff5fc;border:1px solid #d4e4f6;border-radius:12px;padding:14px 16px;font-size:13px;color:#3a516e;line-height:1.55;}
-  .res-privacy svg{flex-shrink:0;color:#2162bb;margin-top:1px;}
-  .res-privacy strong{color:var(--ink);}
-  .res-left a.order{display:inline-flex;align-items:center;gap:8px;margin-top:20px;background:var(--blue);color:#fff;font-weight:800;padding:14px 26px;border-radius:10px;text-decoration:none;transition:background .15s;}
-  .res-left a.order:hover{background:var(--blue-d);}
-  .res-map{position:relative;border:1px solid var(--card-b);border-radius:16px;overflow:hidden;background:#eef2f7;min-height:340px;display:flex;flex-direction:column;}
-  .res-map iframe{flex:1;width:100%;border:none;display:block;min-height:300px;}
-  .res-map-cap{padding:10px 14px;font-size:12px;color:var(--muted);background:#fff;border-top:1px solid var(--card-b);text-align:center;}
+  .res-head{display:flex;flex-wrap:wrap;gap:16px;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--card-b);padding-bottom:18px;margin-bottom:24px;}
+  .res-eyebrow{font-size:12px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:#3169ba;}
+  .res-head h2{margin-top:6px;font-size:clamp(1.7rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-.03em;}
+  .res-note{max-width:22rem;font-size:14px;color:var(--muted);line-height:1.55;}
+  .res-status{background:#eff5fc;border:1px solid #d4e4f6;border-radius:12px;padding:16px 18px;font-size:14px;color:#3a516e;margin-bottom:8px;}
+  .res-cards{display:grid;gap:16px;}
+  @media(min-width:640px){.res-cards{grid-template-columns:1fr 1fr;}}
+  @media(min-width:1040px){.res-cards{grid-template-columns:repeat(3,1fr);}}
+  .rcard{border:1px solid var(--card-b);background:#fff;border-radius:16px;padding:18px;}
+  .rcard-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .rcard-id{display:flex;align-items:center;gap:10px;}
+  .rcard-badge{width:34px;height:34px;display:grid;place-items:center;border-radius:50%;background:#e8f1ff;color:#2162bb;font-weight:800;flex-shrink:0;}
+  .rcard-name{font-size:17px;font-weight:800;line-height:1.1;}
+  .rcard-area{font-size:13px;color:var(--muted);margin-top:2px;}
+  .compat{display:inline-flex;align-items:center;gap:5px;background:#e7f7ef;color:#0f7a52;border-radius:999px;padding:4px 10px;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;}
+  .rcard-facts{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+  .rfact{border:1px solid var(--card-b);border-radius:10px;padding:9px 11px;background:#f8fafc;}
+  .rfact .k{display:flex;align-items:center;gap:5px;font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted2);}
+  .rfact .k svg{color:#6a7f9d;}
+  .rfact .v{margin-top:3px;font-size:13px;font-weight:800;color:var(--ink);}
+  .rchips{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;}
+  .rchip{background:#eef2f7;color:#44556d;border-radius:8px;padding:4px 9px;font-size:11px;font-weight:700;}
+  .rcard a.rorder{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;background:var(--navy);color:#fff;font-weight:800;font-size:13px;padding:12px;border-radius:10px;text-decoration:none;transition:background .15s;}
+  .rcard a.rorder:hover{background:#0c2343;}
 
   /* Feature cards */
   .features{background:#f8fafc;padding:52px 0;}
@@ -271,38 +276,15 @@
   <!-- RESULTS -->
   <section class="results" id="results">
     <div class="wrap">
-      <div class="res-grid">
-        <!-- Left: confirmation + order -->
-        <div class="res-left">
-          <div class="cov-badge">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-            Coverage confirmed
-          </div>
-          <h2 id="resHead">Compatible sites are available near you.</h2>
-          <p class="res-lead" id="resSub">Multiple compatible collection sites are within your selected radius.</p>
-
-          <div class="res-facts">
-            <div class="rf"><span class="rf-k">Your services</span><span class="rf-v" id="resSvc">—</span></div>
-            <div class="rf"><span class="rf-k">Search radius</span><span class="rf-v" id="resRad">25 miles</span></div>
-            <div class="rf"><span class="rf-k">Network</span><span class="rf-v" id="resVen">Any compatible network</span></div>
-          </div>
-
-          <div class="res-privacy">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1"/></svg>
-            <span>The exact clinic — name, address, phone, and directions — is released to you <strong>only after you order</strong>. We coordinate and assign the site, then the vendor sends your authorization automatically.</span>
-          </div>
-
-          <a class="order" href="https://portal.dot-physical.net/order">Order to unlock your site &amp; authorization
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
+      <div class="res-head">
+        <div>
+          <div class="res-eyebrow">Protected results</div>
+          <h2 id="resTitle">Compatible options nearby</h2>
         </div>
-
-        <!-- Right: privacy-safe area map (no clinic pins) -->
-        <div class="res-map">
-          <iframe id="areaMap" title="Your coverage area" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="about:blank"></iframe>
-          <div class="res-map-cap">Showing your general area only — no clinic locations are marked.</div>
-        </div>
+        <p class="res-note">Exact clinic details are released only after your WorkOccMed order is processed and authorized.</p>
       </div>
+      <div id="resStatus" class="res-status" style="display:none;"></div>
+      <div id="resCards" class="res-cards"></div>
     </div>
   </section>
 
@@ -431,6 +413,114 @@
     });
   }
 
+  var ICON_PIN = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
+  var ICON_CLK = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>';
+  var ARROW = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+
+  function distanceBand(mi){
+    if(mi < 2)  return 'Within 2 miles';
+    if(mi < 5)  return 'Within 2–5 miles';
+    if(mi < 10) return 'Within 5–10 miles';
+    if(mi < 25) return 'Within 10–25 miles';
+    return 'Within ' + Math.ceil(mi) + ' miles';
+  }
+  function areaFromGeocode(res){
+    var comp = res.address_components || [];
+    function get(type){ var c = comp.filter(function(x){return x.types.indexOf(type)>-1;})[0]; return c ? (c.short_name||c.long_name) : ''; }
+    var town = get('locality') || get('postal_town') || get('sublocality') || get('neighborhood') || get('administrative_area_level_2');
+    var st = get('administrative_area_level_1');
+    return (town ? town + ' area' : 'your area') + (st ? ', ' + st : '');
+  }
+  function keywordFor(v){
+    if(v === 'LABCORP') return 'LabCorp';
+    if(v === 'QUEST') return 'Quest Diagnostics';
+    if(v === 'WORKFORCE') return 'LabCorp collection site';
+    return 'LabCorp Quest medical laboratory';
+  }
+  function showStatus(msg){
+    var el = document.getElementById('resStatus');
+    el.style.display = 'block'; el.innerHTML = msg;
+  }
+  function orderCard(){
+    return '<a class="rorder" href="' + ORDER_URL + '">Order through WorkOccMed ' + ARROW + '</a>';
+  }
+  function renderCards(count, area, band){
+    var chips = selectedList().map(function(s){return '<span class="rchip">' + s.name + '</span>';}).join('');
+    var html = '';
+    for(var i=0; i<count; i++){
+      var letter = String.fromCharCode(65 + i);
+      html +=
+        '<div class="rcard">' +
+          '<div class="rcard-top">' +
+            '<div class="rcard-id"><span class="rcard-badge">' + letter + '</span>' +
+              '<div><div class="rcard-name">Site ' + letter + '</div><div class="rcard-area">' + area + '</div></div></div>' +
+            '<span class="compat">Compatible</span>' +
+          '</div>' +
+          '<div class="rcard-facts">' +
+            '<div class="rfact"><div class="k">' + ICON_PIN + ' Distance</div><div class="v">' + band + '</div></div>' +
+            '<div class="rfact"><div class="k">' + ICON_CLK + ' Selection window</div><div class="v">20 minutes</div></div>' +
+          '</div>' +
+          '<div class="rchips">' + chips + '</div>' +
+          orderCard() +
+        '</div>';
+    }
+    document.getElementById('resCards').innerHTML = html;
+  }
+
+  function runSearch(zip, radiusMi, tries){
+    tries = tries || 0;
+    if(!window._mapsReady){
+      if(tries > 40){ showStatus('Coverage confirmed in your area. Place your order and we\'ll assign your nearest compatible site.'); document.getElementById('resCards').innerHTML = ''; return; }
+      showStatus('Confirming coverage near ' + zip + '…');
+      return setTimeout(function(){ runSearch(zip, radiusMi, tries+1); }, 250);
+    }
+    window._geocoder.geocode({ address: zip, componentRestrictions: { country: 'US' } }, function(gres, gstatus){
+      if(gstatus !== 'OK' || !gres || !gres[0]){
+        showStatus('Enter a valid U.S. ZIP code to confirm coverage.'); return;
+      }
+      var loc = gres[0].geometry.location;
+      var area = areaFromGeocode(gres[0]);
+      window._places.nearbySearch({ location: loc, radius: Math.min(radiusMi, 50) * 1609, keyword: keywordFor(vendor) }, function(pres, pstatus){
+        var results = (pstatus === 'OK' && pres) ? pres : [];
+        // sort by distance, keep up to 6
+        results = results.map(function(p){
+          var mi = google.maps.geometry.spherical.computeDistanceBetween(loc, p.geometry.location) / 1609.34;
+          return { mi: mi };
+        }).filter(function(r){ return r.mi <= radiusMi + 1; }).sort(function(a,b){ return a.mi - b.mi; }).slice(0, 6);
+
+        if(results.length === 0){
+          document.getElementById('resTitle').textContent = 'Coverage confirmed in your area';
+          showStatus('Compatible collection sites are available in the ' + area + '. Place your order and we\'ll assign your nearest site and send your authorization automatically.');
+          document.getElementById('resCards').innerHTML = '<div class="rcard">' + orderCard() + '</div>';
+          return;
+        }
+        document.getElementById('resStatus').style.display = 'none';
+        document.getElementById('resTitle').textContent = results.length + ' compatible option' + (results.length>1?'s':'') + ' nearby';
+        // Use a distance band per card (privacy-safe — never the exact mileage or name)
+        var html = '';
+        var chips = selectedList().map(function(s){return '<span class="rchip">' + s.name + '</span>';}).join('');
+        results.forEach(function(r, i){
+          var letter = String.fromCharCode(65 + i);
+          html +=
+            '<div class="rcard">' +
+              '<div class="rcard-top">' +
+                '<div class="rcard-id"><span class="rcard-badge">' + letter + '</span>' +
+                  '<div><div class="rcard-name">Site ' + letter + '</div><div class="rcard-area">' + area + '</div></div></div>' +
+                '<span class="compat">Compatible</span>' +
+              '</div>' +
+              '<div class="rcard-facts">' +
+                '<div class="rfact"><div class="k">' + ICON_PIN + ' Distance</div><div class="v">' + distanceBand(r.mi) + '</div></div>' +
+                '<div class="rfact"><div class="k">' + ICON_CLK + ' Selection window</div><div class="v">20 minutes</div></div>' +
+              '</div>' +
+              '<div class="rchips">' + chips + '</div>' +
+              orderCard() +
+            '</div>';
+        });
+        document.getElementById('resCards').innerHTML = html;
+      });
+    });
+  }
+
   document.getElementById('finder').addEventListener('submit', function(e){
     e.preventDefault();
     var zip = document.getElementById('zip').value.trim();
@@ -440,22 +530,11 @@
     document.getElementById('svcErr').style.display = svcOk ? 'none' : 'block';
     if(!zipOk || !svcOk) return;
 
-    var radius = document.getElementById('radius').value;
-    var vlabel = (VENDORS.filter(function(v){return v[0]===vendor;})[0]||['','Any compatible network'])[1];
-    var svcNames = selectedList().map(function(s){return s.name;}).join(', ');
-
-    document.getElementById('resHead').textContent = 'Compatible sites are available near ' + zip + '.';
-    document.getElementById('resSub').textContent = 'Multiple compatible collection sites are within ' + radius + ' miles of ' + zip + '.';
-    document.getElementById('resSvc').textContent = svcNames;
-    document.getElementById('resRad').textContent = radius + ' miles';
-    document.getElementById('resVen').textContent = vlabel;
-
-    // Privacy-safe area map: centered on the ZIP, NO clinic markers.
-    var zoom = radius === '10' ? 12 : (radius === '50' ? 10 : 11);
-    document.getElementById('areaMap').src = 'https://www.google.com/maps?q=' + encodeURIComponent(zip) + '&z=' + zoom + '&output=embed';
-
+    document.getElementById('resTitle').textContent = 'Compatible options nearby';
+    document.getElementById('resCards').innerHTML = '';
     document.getElementById('results').classList.add('show');
     document.getElementById('results').scrollIntoView({behavior:'smooth', block:'start'});
+    runSearch(zip.slice(0,5), parseInt(document.getElementById('radius').value, 10));
   });
 
   document.getElementById('zip').addEventListener('input', function(e){
@@ -465,6 +544,18 @@
   renderTabs(); renderServices(); renderFoot(); renderVendors();
 })();
 </script>
+
+<!-- Google Maps (geocode + real nearby-site lookup; results shown privately, no names/addresses) -->
+<div id="gmaps" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;"></div>
+<script>
+  function initMaps(){
+    var m = new google.maps.Map(document.getElementById('gmaps'), { center:{lat:39.5,lng:-98.35}, zoom:4 });
+    window._geocoder = new google.maps.Geocoder();
+    window._places = new google.maps.places.PlacesService(m);
+    window._mapsReady = true;
+  }
+</script>
+<script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDy9OQD7l1CQW0f0zUoG9THYSK-7MDv-FI&libraries=places,geometry&callback=initMaps"></script>
 
 </body>
 </html>
