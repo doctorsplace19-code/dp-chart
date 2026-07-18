@@ -445,6 +445,7 @@
     return '<a class="rorder" href="' + ORDER_URL + '">Order through WorkOccMed ' + ARROW + '</a>';
   }
   function renderCards(items){
+    if(items.length > 26) items = items.slice(0, 26);   // Site A–Z max
     var chips = selectedList().map(function(s){return '<span class="rchip">' + s.name + '</span>';}).join('');
     var html = items.map(function(it, i){
       var letter = String.fromCharCode(65 + i);
@@ -470,8 +471,8 @@
     for(var i=0; i<n; i++){ items.push({ area: area || ('near ' + zip), band: 'Within ' + radiusMi + ' miles' }); }
     return items;
   }
-  // Fallback count scales with the search radius (bigger area => more sites).
-  function fallbackCount(radiusMi){ return radiusMi >= 50 ? 15 : (radiusMi >= 25 ? 10 : 6); }
+  // Count scales with the search radius, capped at 26 (Site A–Z).
+  function fallbackCount(radiusMi){ return radiusMi >= 50 ? 26 : (radiusMi >= 25 ? 16 : 8); }
 
   // Optional upgrade: if Google Maps is available, replace the generic cards
   // with the real town name, real count, and real distance bands.
@@ -484,14 +485,14 @@
       window._places.nearbySearch({ location: loc, radius: Math.min(radiusMi, 50) * 1609, keyword: keywordFor(vendor) }, function(pres, ps){
         var results = (ps === 'OK' && pres) ? pres : [];
         results = results.map(function(p){ return { mi: google.maps.geometry.spherical.computeDistanceBetween(loc, p.geometry.location) / 1609.34 }; })
-          .filter(function(r){ return r.mi <= radiusMi + 1; }).sort(function(a,b){ return a.mi - b.mi; }).slice(0, 18);
+          .filter(function(r){ return r.mi <= radiusMi + 1; }).sort(function(a,b){ return a.mi - b.mi; }).slice(0, 26);
         if(results.length === 0){
           document.getElementById('resTitle').textContent = 'Compatible options in the ' + area;
           renderCards(genericItems(zip, radiusMi, fallbackCount(radiusMi), area));
           return;
         }
         document.getElementById('resTitle').textContent = results.length + ' compatible option' + (results.length>1?'s':'') + ' nearby';
-        renderCards(results.map(function(r){ return { area: area, band: distanceBand(r.mi) }; }));
+        renderCards(results.map(function(r){ return { area: area, band: 'Within ' + radiusMi + ' miles' }; }));
       });
     });
   }
@@ -521,6 +522,14 @@
 
   document.getElementById('zip').addEventListener('input', function(e){
     e.target.value = e.target.value.replace(/[^0-9-]/g,'').slice(0,10);
+  });
+
+  // Changing the radius re-runs the search live (once results are showing).
+  document.getElementById('radius').addEventListener('change', function(){
+    var zip = document.getElementById('zip').value.trim();
+    if(document.getElementById('results').classList.contains('show') && /^\d{5}(?:-\d{4})?$/.test(zip)){
+      runSearch(zip.slice(0,5), parseInt(document.getElementById('radius').value, 10));
+    }
   });
 
   renderTabs(); renderServices(); renderFoot(); renderVendors();
