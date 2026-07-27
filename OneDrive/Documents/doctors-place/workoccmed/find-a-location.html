@@ -111,6 +111,8 @@
   .vbtn{border:1px solid var(--card-b);background:#fff;border-radius:12px;padding:10px;font-family:inherit;font-size:11px;font-weight:800;color:#44556d;cursor:pointer;transition:border-color .15s,background .15s,color .15s;}
   .vbtn:hover{border-color:#9eb7d7;}
   .vbtn.active{border-color:#2162bb;background:var(--tab);color:#fff;}
+  .vbtn.vdis{opacity:.4;cursor:not-allowed;background:#f1f5f9;}
+  .vbtn.vdis:hover{border-color:var(--card-b);}
   .find{margin-top:24px;width:100%;height:48px;display:flex;align-items:center;justify-content:center;gap:8px;border:none;border-radius:12px;background:var(--blue);color:#fff;font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;transition:background .15s;}
   .find:hover{background:var(--blue-d);}
   .privacy{margin-top:14px;display:flex;gap:8px;align-items:flex-start;font-size:12px;color:#6a7f9d;line-height:1.5;}
@@ -266,6 +268,7 @@
         <fieldset>
           <legend>Preferred network</legend>
           <div class="vgrid" id="vendors"></div>
+          <p id="vaxNetHint" style="display:none;font-size:12px;color:#2563eb;margin-top:8px;">Vaccines are administered through Workforce / FormFox only — Labcorp and Quest are not available for vaccines.</p>
         </fieldset>
 
         <button type="submit" class="find">
@@ -361,8 +364,17 @@
     {id:'cbc',             cat:'Labs', name:'Complete Blood Count (CBC)',               cents:4500,  orderable:true},
     {id:'cmp',             cat:'Labs', name:'Comprehensive Metabolic Panel (CMP)',      cents:5500,  orderable:true},
     {id:'urinalysis',      cat:'Labs', name:'Urinalysis',                               cents:3000,  orderable:true},
-    {id:'hep-b',     cat:'Vaccines',     name:'Hepatitis B Vaccine',               cents:0,     orderable:false},
-    {id:'flu',       cat:'Vaccines',     name:'Influenza Vaccine',                 cents:0,     orderable:false},
+    {id:'vac-flu',     cat:'Vaccines', name:'Influenza (Flu) Vaccine',                     cents:3500,  orderable:true},
+    {id:'vac-tdap',    cat:'Vaccines', name:'Tdap (Tetanus, Diphtheria, Pertussis)',       cents:7500,  orderable:true},
+    {id:'vac-td',      cat:'Vaccines', name:'Td (Tetanus, Diphtheria) Booster',            cents:5500,  orderable:true},
+    {id:'vac-hepa',    cat:'Vaccines', name:'Hepatitis A Vaccine',                         cents:11000, orderable:true},
+    {id:'vac-hepb',    cat:'Vaccines', name:'Hepatitis B Vaccine',                         cents:9500,  orderable:true},
+    {id:'vac-hepab',   cat:'Vaccines', name:'Hepatitis A & B Combination (Twinrix)',       cents:16000, orderable:true},
+    {id:'vac-mmr',     cat:'Vaccines', name:'MMR (Measles, Mumps, Rubella) Vaccine',       cents:11000, orderable:true},
+    {id:'vac-var',     cat:'Vaccines', name:'Varicella (Chickenpox) Vaccine',              cents:16500, orderable:true},
+    {id:'vac-menacwy', cat:'Vaccines', name:'Meningococcal (MenACWY) Vaccine',             cents:17500, orderable:true},
+    {id:'vac-pneumo',  cat:'Vaccines', name:'Pneumococcal (Pneumonia) Vaccine',            cents:13000, orderable:true},
+    {id:'vac-covid',   cat:'Vaccines', name:'COVID-19 Vaccine',                            cents:9500,  orderable:true},
     {id:'fit-resp',  cat:'Misc',         name:'Respirator Fit Test',               cents:0,     orderable:false}
   ];
 
@@ -405,7 +417,7 @@
         b.innerHTML =
           '<span class="cx"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>'+
           '<span class="nm"><b>'+s.name+'</b>'+ (s.orderable ? '<span class="price">'+money(s.cents)+'</span>' : '<span class="soontag">Coming soon</span>') +'</span>';
-        if(s.orderable){ b.onclick=function(){ if(selected[s.id]) delete selected[s.id]; else selected[s.id]=true; document.getElementById('svcErr').style.display='none'; renderTabs(); renderServices(); renderFoot(); }; }
+        if(s.orderable){ b.onclick=function(){ if(selected[s.id]) delete selected[s.id]; else selected[s.id]=true; document.getElementById('svcErr').style.display='none'; renderTabs(); renderServices(); renderFoot(); renderVendors(); }; }
         gridEl.appendChild(b);
       });
   }
@@ -417,15 +429,23 @@
     selTotal.textContent = money(total) + ' total';
   }
 
+  function hasVaccine(){ return selectedList().some(function(s){return s.cat==='Vaccines';}); }
+
   function renderVendors(){
     vendEl.innerHTML='';
+    var lockVax = hasVaccine();
+    if(lockVax && (vendor==='LABCORP' || vendor==='QUEST')) vendor='ANY';
     VENDORS.forEach(function(v){
+      var blocked = lockVax && (v[0]==='LABCORP' || v[0]==='QUEST');
       var b=document.createElement('button');
-      b.type='button'; b.className='vbtn'+(vendor===v[0]?' active':'');
+      b.type='button'; b.className='vbtn'+(vendor===v[0]?' active':'')+(blocked?' vdis':'');
       b.textContent=v[1];
-      b.onclick=function(){ vendor=v[0]; renderVendors(); };
+      if(blocked){ b.disabled=true; b.title='Vaccines are administered through Workforce / FormFox only'; }
+      else { b.onclick=function(){ vendor=v[0]; renderVendors(); }; }
       vendEl.appendChild(b);
     });
+    var hint = document.getElementById('vaxNetHint');
+    if(hint){ hint.style.display = lockVax ? 'block' : 'none'; }
   }
 
   var ICON_PIN = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
