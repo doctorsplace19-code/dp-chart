@@ -371,7 +371,13 @@
     {id:'vac-hepab',   cat:'Vaccines', name:'Hepatitis A & B Combination (Twinrix)',       cents:16000, orderable:true},
     {id:'vac-mmr',     cat:'Vaccines', name:'MMR (Measles, Mumps, Rubella) Vaccine',       cents:11000, orderable:true},
     {id:'vac-var',     cat:'Vaccines', name:'Varicella (Chickenpox) Vaccine',              cents:16500, orderable:true},
-    {id:'fit-resp',  cat:'Misc',         name:'Respirator Fit Test',               cents:0,     orderable:false}
+    {id:'misc-lift1',    cat:'Misc', name:'Lift Test Level 1',                          cents:6500,  orderable:true},
+    {id:'misc-osha-q',   cat:'Misc', name:'OSHA Medical Questionnaire',                 cents:4000,  orderable:true},
+    {id:'misc-pft',      cat:'Misc', name:'Pulmonary Function Test (PFT)',              cents:8500,  orderable:true},
+    {id:'misc-fit-qlft', cat:'Misc', name:'Respirator Fit Test — Qualitative (QLFT)',  cents:6500,  orderable:true},
+    {id:'misc-fit-qnft', cat:'Misc', name:'Respirator Fit Test — Quantitative (QNFT)', cents:8500,  orderable:true},
+    {id:'misc-tb-1step', cat:'Misc', name:'TB / PPD Skin Test — 1-Step',               cents:4500,  orderable:true},
+    {id:'misc-tb-2step', cat:'Misc', name:'TB / PPD Skin Test — 2-Step',               cents:6500,  orderable:true}
   ];
 
   var activeTab = 'Drug Screens';
@@ -425,23 +431,40 @@
     selTotal.textContent = money(total) + ' total';
   }
 
-  function hasVaccine(){ return selectedList().some(function(s){return s.cat==='Vaccines';}); }
+  // Per-category network eligibility. Categories not listed allow all networks.
+  var CAT_VENDORS = { 'Vaccines':['ANY','WORKFORCE'], 'Labs':['ANY','WORKFORCE','QUEST'], 'Misc':['WORKFORCE'] };
+  var VENDOR_LABEL = { 'ANY':'Any compatible network', 'WORKFORCE':'Workforce / FormFox', 'LABCORP':'Labcorp', 'QUEST':'Quest' };
+
+  function allowedVendors(){
+    var cats = {}; selectedList().forEach(function(s){ cats[s.cat]=true; });
+    var allowed = ['ANY','WORKFORCE','LABCORP','QUEST'];
+    Object.keys(cats).forEach(function(cat){
+      var av = CAT_VENDORS[cat];
+      if(av){ allowed = allowed.filter(function(v){ return av.indexOf(v)>=0; }); }
+    });
+    return allowed;
+  }
 
   function renderVendors(){
     vendEl.innerHTML='';
-    var lockVax = hasVaccine();
-    if(lockVax && (vendor==='LABCORP' || vendor==='QUEST')) vendor='ANY';
+    var allowed = allowedVendors();
+    if(allowed.indexOf(vendor)<0){ vendor = allowed.indexOf('ANY')>=0 ? 'ANY' : allowed[0]; }
     VENDORS.forEach(function(v){
-      var blocked = lockVax && (v[0]==='LABCORP' || v[0]==='QUEST');
+      var blocked = allowed.indexOf(v[0])<0;
       var b=document.createElement('button');
       b.type='button'; b.className='vbtn'+(vendor===v[0]?' active':'')+(blocked?' vdis':'');
       b.textContent=v[1];
-      if(blocked){ b.disabled=true; b.title='Vaccines are administered through Workforce / FormFox only'; }
+      if(blocked){ b.disabled=true; b.title='Not available for the selected service(s)'; }
       else { b.onclick=function(){ vendor=v[0]; renderVendors(); }; }
       vendEl.appendChild(b);
     });
     var hint = document.getElementById('vaxNetHint');
-    if(hint){ hint.style.display = lockVax ? 'block' : 'none'; }
+    if(hint){
+      if(allowed.length < 4){
+        hint.style.display='block';
+        hint.textContent = 'For the selected service(s), available networks: ' + allowed.map(function(v){return VENDOR_LABEL[v];}).join(', ') + '.';
+      } else { hint.style.display='none'; }
+    }
   }
 
   var ICON_PIN = '<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
