@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search — WorkOccMed</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:#f8fafc;color:#0f172a}
+  a{text-decoration:none;color:inherit}
+  nav{background:#0d1b2a;padding:0 40px;height:64px;display:flex;align-items:center;gap:24px;position:sticky;top:0;z-index:100}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:20px;color:#fff}
+  .brand .wom{background:#fff;color:#0d1b2a;font-size:13px;font-weight:800;padding:4px 7px;border-radius:6px}
+  nav .grow{flex:1}
+  nav .order{font-size:16px;font-weight:700;color:#fff;background:#1d4ed8;padding:8px 18px;border-radius:8px}
+  .wrap{max-width:820px;margin:0 auto;padding:40px 24px 80px}
+  h1{font-size:28px;font-weight:800;margin-bottom:6px}
+  .sub{color:#64748b;font-size:15px;margin-bottom:22px}
+  .searchbar{display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid #e2e8f0;border-radius:12px;padding:14px 18px;box-shadow:0 1px 3px rgba(0,0,0,.05)}
+  .searchbar:focus-within{border-color:#1d4ed8;box-shadow:0 0 0 3px rgba(29,78,216,.12)}
+  .searchbar input{flex:1;border:none;outline:none;font-size:18px;font-family:inherit;background:transparent}
+  .count{color:#64748b;font-size:14px;margin:22px 2px 8px}
+  .group{margin-top:20px}
+  .group h2{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#1d4ed8;margin-bottom:8px}
+  .result{display:block;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px 16px;margin-bottom:8px;transition:border-color .12s,box-shadow .12s}
+  .result:hover{border-color:#1d4ed8;box-shadow:0 2px 10px rgba(29,78,216,.08)}
+  .result .t{font-size:16px;font-weight:600;color:#0f172a;margin-bottom:3px}
+  .result .d{font-size:14px;color:#64748b;line-height:1.45}
+  .result mark{background:#dbeafe;color:#1e3a8a;border-radius:3px;padding:0 1px}
+  .empty{text-align:center;color:#64748b;padding:50px 20px;font-size:16px}
+  .empty a{color:#1d4ed8;font-weight:600}
+  @media(max-width:600px){nav{padding:0 16px;gap:12px}.brand span.full{display:none}.wrap{padding:28px 16px 60px}h1{font-size:23px}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="/" class="brand"><span class="wom">WOM</span><span class="full">WorkOccMed</span></a>
+  <span class="grow"></span>
+  <a href="https://portal.dot-physical.net/order" class="order">Order Now</a>
+</nav>
+<div class="wrap">
+  <h1>Search WorkOccMed</h1>
+  <p class="sub">Find services, guides, and locations across all 50 states.</p>
+  <div class="searchbar">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+    <input id="q" type="search" placeholder="Try “DOT physical”, “Texas”, or “clearinghouse”…" autocomplete="off" autofocus>
+  </div>
+  <div id="results"></div>
+</div>
+<script>
+const ORDER = ['Services','Guides','Locations'];
+let INDEX = [];
+const resultsEl = document.getElementById('results');
+const input = document.getElementById('q');
+
+function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function highlight(text, terms){
+  let out = esc(text);
+  for(const t of terms){ if(!t) continue;
+    out = out.replace(new RegExp('('+t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','ig'),'<mark>$1</mark>'); }
+  return out;
+}
+function score(item, terms){
+  const hay = (item.title+' '+item.description).toLowerCase();
+  let s = 0;
+  for(const t of terms){ if(!hay.includes(t)) return -1;
+    if(item.title.toLowerCase().includes(t)) s += 3; else s += 1; }
+  return s;
+}
+function render(q){
+  const terms = q.toLowerCase().split(/\s+/).filter(Boolean);
+  if(!terms.length){ resultsEl.innerHTML=''; return; }
+  const hits = INDEX.map(it=>({it,s:score(it,terms)})).filter(x=>x.s>=0)
+    .sort((a,b)=>b.s-a.s || a.it.title.length-b.it.title.length);
+  if(!hits.length){
+    resultsEl.innerHTML='<div class="empty">No pages match “'+esc(q)+'”.<br>Try a broader term, or <a href="/">browse the homepage</a>.</div>';
+    return;
+  }
+  const groups={};
+  for(const {it} of hits){ (groups[it.type]=groups[it.type]||[]).push(it); }
+  let html='<div class="count">'+hits.length+' result'+(hits.length>1?'s':'')+'</div>';
+  for(const type of ORDER){
+    const list=(groups[type]||[]).slice(0,60);
+    if(!list.length) continue;
+    html+='<div class="group"><h2>'+type+' ('+groups[type].length+')</h2>';
+    for(const it of list){
+      html+='<a class="result" href="'+esc(it.url)+'"><div class="t">'+highlight(it.title.replace(/ \| WorkOccMed$/,''),terms)+'</div>'
+        +(it.description?'<div class="d">'+highlight(it.description.slice(0,160),terms)+'</div>':'')+'</a>';
+    }
+    html+='</div>';
+  }
+  resultsEl.innerHTML=html;
+}
+input.addEventListener('input', ()=>render(input.value.trim()));
+fetch('/search-index.json').then(r=>r.json()).then(d=>{
+  INDEX=d;
+  const q=new URLSearchParams(location.search).get('q')||'';
+  if(q){ input.value=q; render(q.trim()); }
+});
+</script>
+</body>
+</html>
