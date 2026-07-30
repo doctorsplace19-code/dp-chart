@@ -1,0 +1,13 @@
+# Build/dev-only files — must NOT be served on workoccmed.com.
+# None of these are loaded at runtime (no page references a local .js).
+generate-guides.js
+generate-search-index.js
+generate-sitemap.js
+generate-state-pages.js
+geo-facts.js
+apply-megamenu.js
+enhance-city-seo.js
+
+# Editor/agent + stale artifacts
+.claude
+sitemap-new.xml
