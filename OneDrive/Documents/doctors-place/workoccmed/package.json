@@ -1,0 +1,19 @@
+{
+  "name": "workoccmed-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "workoccmed.com — static occupational-health marketing site (hand-authored HTML/CSS/JS with Node build scripts that generate the 50 state pages, 550 city pages, guides, sitemap, and search index).",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build:states": "node generate-state-pages.js",
+    "build:guides": "node generate-guides.js",
+    "build:search": "node generate-search-index.js",
+    "build:sitemap": "node generate-sitemap.js",
+    "build:city-seo": "node enhance-city-seo.js --apply",
+    "build": "node generate-state-pages.js && node generate-guides.js && node generate-search-index.js && node generate-sitemap.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
