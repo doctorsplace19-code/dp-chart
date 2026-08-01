@@ -23,15 +23,15 @@
   .caret{width:7px;height:7px;border-right:2px solid #94a3b8;border-bottom:2px solid #94a3b8;transform:rotate(45deg) translateY(-2px)}
   .portal{display:inline-flex;align-items:center;gap:8px;background:#1d80e8;color:#fff;font-weight:700;font-size:16px;padding:11px 22px;border-radius:10px}
   /* HERO — flush full-bleed image on the right, touching the top & right edges */
-  .hero{display:grid;grid-template-columns:1fr 1.05fr;align-items:stretch;height:560px}
-  .hero .copy{align-self:center;padding:0 56px 0 64px;max-width:640px;justify-self:end}
+  .hero{display:grid;grid-template-columns:1fr 1.05fr;align-items:stretch;min-height:560px}
+  .hero .copy{align-self:center;padding:48px 56px 48px 64px;max-width:640px;justify-self:end}
   .hero h1{font-size:clamp(2.6rem,5vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:20px}
   .hero p.sub{font-size:20px;color:#475569;max-width:440px;margin-bottom:32px}
   .cta{display:inline-flex;align-items:center;gap:10px;background:#1d80e8;color:#fff;font-size:20px;font-weight:700;padding:16px 34px;border-radius:12px;box-shadow:0 8px 24px rgba(29,128,232,.28)}
   .cta-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
   .cta-sec{font-size:17px;font-weight:600;color:#1d80e8}
-  .hero-img{position:relative;background:#eaf3fe;overflow:hidden}
-  .hero-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+  .hero-img{background:#eaf3fe;overflow:hidden;min-height:560px}
+  .hero-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
   .stats{max-width:1200px;margin:0 auto;padding:8px 48px 48px;display:flex;gap:40px;flex-wrap:wrap;color:#64748b;font-size:15px;font-weight:600}
   .stats b{color:#1d80e8;font-weight:800}
   .cards{max-width:1200px;margin:0 auto;padding:8px 48px 72px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -41,7 +41,7 @@
   .card h3{font-size:20px;font-weight:800;margin-bottom:8px}
   .card p{font-size:15px;color:#64748b;margin-bottom:16px}
   .card .more{font-size:15px;font-weight:700;color:#1d80e8}
-  @media(max-width:860px){.hero{grid-template-columns:1fr;height:auto}.hero-img{height:300px}.cards{grid-template-columns:1fr}.navlinks{display:none}nav{padding:16px 20px}.hero .copy{padding:44px 20px}.stats,.cards{padding-left:20px;padding-right:20px}}
+  @media(max-width:860px){.hero{grid-template-columns:1fr;height:auto}.hero-img{min-height:0;height:300px}.cards{grid-template-columns:1fr}.navlinks{display:none}nav{padding:16px 20px}.hero .copy{padding:44px 20px}.stats,.cards{padding-left:20px;padding-right:20px}}
 </style>
 </head>
 <body>
