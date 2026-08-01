@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>WorkOccMed — Clean Homepage Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Plus Jakarta Sans','Inter',sans-serif;background:#fff;color:#0f172a;line-height:1.6}
+  h1,h3,.brand .name,.cta,.portal{font-family:'Plus Jakarta Sans',sans-serif}
+  a{text-decoration:none;color:inherit}
+  .blue{color:#1d80e8}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 48px;border-bottom:1px solid #eef2f7;position:sticky;top:0;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);z-index:50}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .mark{width:52px;height:38px;background:#1d80e8;border-radius:9px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:17px;letter-spacing:.5px}
+  .brand .name{font-size:22px;font-weight:800;color:#1d80e8}
+  .navlinks{display:flex;gap:34px;align-items:center}
+  .navlinks a{font-size:16px;font-weight:600;color:#334155;display:flex;align-items:center;gap:5px}
+  .caret{width:7px;height:7px;border-right:2px solid #94a3b8;border-bottom:2px solid #94a3b8;transform:rotate(45deg) translateY(-2px)}
+  .portal{display:inline-flex;align-items:center;gap:8px;background:#1d80e8;color:#fff;font-weight:700;font-size:16px;padding:11px 22px;border-radius:10px}
+  /* HERO — flush full-bleed image on the right */
+  .hero{display:grid;grid-template-columns:1fr 1fr;align-items:stretch;min-height:540px}
+  .hero .copy{align-self:center;padding:56px 48px 56px 64px;max-width:640px;justify-self:end}
+  .hero h1{font-size:clamp(2.6rem,5vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:20px}
+  .hero p.sub{font-size:20px;color:#475569;max-width:440px;margin-bottom:32px}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:#1d80e8;color:#fff;font-size:20px;font-weight:700;padding:16px 34px;border-radius:12px;box-shadow:0 8px 24px rgba(29,128,232,.28)}
+  .cta-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+  .cta-sec{font-size:17px;font-weight:600;color:#1d80e8}
+  .hero-img{position:relative;background:#eaf3fe;overflow:hidden}
+  .hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .stats{max-width:1200px;margin:0 auto;padding:8px 48px 48px;display:flex;gap:40px;flex-wrap:wrap;color:#64748b;font-size:15px;font-weight:600}
+  .stats b{color:#1d80e8;font-weight:800}
+  .cards{max-width:1200px;margin:0 auto;padding:8px 48px 72px;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .card{border:1px solid #eef2f7;border-radius:16px;padding:30px 28px;transition:box-shadow .15s,transform .15s}
+  .card:hover{box-shadow:0 12px 30px rgba(15,23,42,.08);transform:translateY(-2px)}
+  .card .ico{width:52px;height:52px;color:#1d80e8;margin-bottom:16px}
+  .card h3{font-size:20px;font-weight:800;margin-bottom:8px}
+  .card p{font-size:15px;color:#64748b;margin-bottom:16px}
+  .card .more{font-size:15px;font-weight:700;color:#1d80e8}
+  @media(max-width:860px){.hero{grid-template-columns:1fr}.hero-img{min-height:280px}.cards{grid-template-columns:1fr}.navlinks{display:none}nav{padding:16px 20px}.hero .copy{padding:44px 20px}.stats,.cards{padding-left:20px;padding-right:20px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="brand"><div class="mark">WOM</div><div class="name">WorkOccMed</div></div>
+  <div class="navlinks">
+    <a>Services <span class="caret"></span></a>
+    <a>Locations <span class="caret"></span></a>
+    <a>For Employers <span class="caret"></span></a>
+  </div>
+  <a class="portal">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
+    Client Portal
+  </a>
+</nav>
+
+<section class="hero">
+  <div class="copy">
+    <h1>Nationwide<br>Occupational Health.<br><span class="blue">Simplified.</span></h1>
+    <p class="sub">DOT physicals, drug testing, and compliance for every industry — ordered online, done at a certified site near you.</p>
+    <div class="cta-row">
+      <a class="cta">Order Now <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a class="cta-sec">For Employers →</a>
+    </div>
+  </div>
+  <div class="hero-img">
+    <img src="images/wom-provider.png" alt="Occupational health provider">
+  </div>
+</section>
+
+<div class="stats">
+  <span><b>15,000+</b> certified sites</span>
+  <span><b>All 50</b> states</span>
+  <span><b>100%</b> FMCSA-compliant</span>
+  <span><b>Same-day</b> medical card</span>
+</div>
+
+<div class="cards">
+  <div class="card">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v8H3zM14 10h4l3 3v2h-7z"/><circle cx="7" cy="17" r="2"/><circle cx="18" cy="17" r="2"/></svg>
+    <h3>DOT Physicals</h3>
+    <p>FMCSA-certified exams performed by experienced providers. Fast, reliable, and compliant.</p>
+    <span class="more">Learn More →</span>
+  </div>
+  <div class="card">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 3h6M10 3v6l-4 8a3 3 0 0 0 3 4h6a3 3 0 0 0 3-4l-4-8V3"/></svg>
+    <h3>Drug &amp; Alcohol Testing</h3>
+    <p>Comprehensive testing with quick results and a nationwide chain of custody.</p>
+    <span class="more">Learn More →</span>
+  </div>
+  <div class="card">
+    <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.2"/><path d="M3 20a6 6 0 0 1 12 0M15 20a5 5 0 0 1 6-4.5"/></svg>
+    <h3>Consortium Management</h3>
+    <p>Seamless C-TPA administration to keep your random-testing program compliant and efficient.</p>
+    <span class="more">Learn More →</span>
+  </div>
+</div>
+</body>
+</html>
