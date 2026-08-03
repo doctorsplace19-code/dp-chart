@@ -13,7 +13,7 @@ const OUT = __dirname;
 const SITE = 'https://www.workoccmed.com';
 const ORDER = 'https://portal.dot-physical.net/order?service=dot-physical';
 const REVIEWED = 'Chantal Gabriel, MD';
-const REVIEWED_TITLE = 'Medical Director, Doctors Place Inc. · FMCSA-Certified Medical Examiner';
+const REVIEWED_TITLE = 'Medical Director, Doctors Place, PLLC · FMCSA-Certified Medical Examiner';
 const TODAY = 'July 2026';
 
 /* ---------- shared chrome ---------- */
@@ -103,7 +103,7 @@ const NAV = `
     </div>
     <span style="display:flex;flex-direction:column;line-height:1.05;">
       <span style="font-size:20px;font-weight:800;color:white;letter-spacing:-0.01em;">WorkOccMed</span>
-      <span style="font-size:11px;font-weight:500;color:#93c5fd;">a Doctors Place Inc. company</span>
+      <span style="font-size:11px;font-weight:500;color:#93c5fd;">a Doctors Place, PLLC company</span>
     </span>
   </a>
   <div class="nav-links-wrap" style="display:flex;gap:28px;align-items:center;flex:1;">
@@ -179,7 +179,7 @@ const CTA = `
 const FOOTER = `
 <footer style="background:#0d1b2a;color:#94a3b8;padding:40px 48px;text-align:center;">
   <div style="font-size:18px;font-weight:800;color:white;margin-bottom:4px;">WorkOccMed</div>
-  <div style="font-size:14px;color:#64748b;margin-bottom:16px;">A specialized division of Doctors Place Inc. · New Jersey</div>
+  <div style="font-size:14px;color:#64748b;margin-bottom:16px;">A specialized division of Doctors Place, PLLC · New Jersey</div>
   <div style="font-size:15px;">
     <a href="/" style="color:#94a3b8;text-decoration:none;">Home</a> &nbsp;·&nbsp;
     <a href="guides" style="color:#94a3b8;text-decoration:none;">Guides</a> &nbsp;·&nbsp;
@@ -188,7 +188,7 @@ const FOOTER = `
     <a href="tel:+18882334567" style="color:#94a3b8;text-decoration:none;">(888) 233-4567</a> &nbsp;·&nbsp;
     <a href="https://www.linkedin.com/company/workoccmed" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;">LinkedIn ↗</a> &nbsp;·&nbsp; <a href="https://g.page/r/CZxpzYHQ5wJbEAI/review" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;">★ Review Us</a>
   </div>
-  <div style="font-size:13px;color:#475569;margin-top:16px;">© 2026 Doctors Place Inc. · WorkOccMed is a national occupational health platform and a specialized division of Doctors Place Inc. · Corporate Headquarters: New Jersey, USA · 75 Summit Ave, Hackensack, NJ 07601 · FMCSA-certified DOT physicals nationwide.</div>
+  <div style="font-size:13px;color:#475569;margin-top:16px;">© 2026 Doctors Place, PLLC · WorkOccMed is a national occupational health platform and a specialized division of Doctors Place, PLLC · Corporate Headquarters: New Jersey, USA · 75 Summit Ave, Hackensack, NJ 07601 · FMCSA-certified DOT physicals nationwide.</div>
   <div style="font-size:12px;color:#475569;margin-top:12px;max-width:720px;margin-left:auto;margin-right:auto;">The information on this page is for general educational purposes and is not medical or legal advice. Regulations change; always confirm current requirements with the FMCSA and a certified medical examiner.</div>
 </footer>`;
 
@@ -281,7 +281,7 @@ function articleSchema(g){
     "description": g.desc,
     "author": { "@type":"Person", "name": REVIEWED, "jobTitle":"Medical Director" },
     "reviewedBy": { "@type":"Person", "name": REVIEWED },
-    "publisher": { "@type":"Organization", "name":"WorkOccMed", "parentOrganization":"Doctors Place Inc." },
+    "publisher": { "@type":"Organization", "name":"WorkOccMed", "parentOrganization":"Doctors Place, PLLC" },
     "mainEntityOfPage": `${SITE}/${g.slug}`,
     "dateModified": "2026-07-01"
   };

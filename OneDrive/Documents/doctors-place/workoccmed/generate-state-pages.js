@@ -503,7 +503,7 @@ function statePageHtml(state) {
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="f-legal">© 2026 Work OccMed · A Doctors Place Company · Doctors Place Inc.</div>
+      <div class="f-legal">© 2026 Work OccMed · A Doctors Place Company · Doctors Place, PLLC</div>
       <div class="f-legal"><a href="https://portal.dot-physical.net/privacy">Privacy Policy</a> · <a href="../">Work OccMed Home</a></div>
     </div>
   </div>
@@ -751,7 +751,7 @@ function cityPageHtml(state, city, cityIndex) {
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="f-legal">© 2026 Work OccMed · A Doctors Place Company · Doctors Place Inc.</div>
+      <div class="f-legal">© 2026 Work OccMed · A Doctors Place Company · Doctors Place, PLLC</div>
       <div class="f-legal"><a href="https://portal.dot-physical.net/privacy">Privacy Policy</a> · <a href="../">Work OccMed Home</a></div>
     </div>
   </div>
