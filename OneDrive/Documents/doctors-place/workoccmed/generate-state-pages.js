@@ -467,7 +467,7 @@ function statePageHtml(state) {
   <p>Set up your employer account in minutes. No setup fees.</p>
   <div class="cta-btns">
     <a href="https://portal.dot-physical.net/signup" class="cta-btn-primary">Create Free Account →</a>
-    <a href="mailto:occmed@doctors-place.com" class="cta-btn-outline">occmed@doctors-place.com</a>
+    <a href="mailto:info@workoccmed.com" class="cta-btn-outline">info@workoccmed.com</a>
     <a href="tel:+18882334567" class="cta-btn-outline">(888) 233-4567</a>
   </div>
 </div>
@@ -498,7 +498,7 @@ function statePageHtml(state) {
       <div class="f-col">
         <h4>Contact</h4>
         <a href="tel:+18882334567">(888) 233-4567</a>
-        <a href="mailto:occmed@doctors-place.com">occmed@doctors-place.com</a>
+        <a href="mailto:info@workoccmed.com">info@workoccmed.com</a>
         <a href="https://portal.dot-physical.net">Employer Portal</a>
       </div>
     </div>
@@ -746,7 +746,7 @@ function cityPageHtml(state, city, cityIndex) {
       <div class="f-col">
         <h4>Contact</h4>
         <a href="tel:+18882334567">(888) 233-4567</a>
-        <a href="mailto:occmed@doctors-place.com">occmed@doctors-place.com</a>
+        <a href="mailto:info@workoccmed.com">info@workoccmed.com</a>
         <a href="https://portal.dot-physical.net">Employer Portal</a>
       </div>
     </div>
