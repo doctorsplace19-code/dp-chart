@@ -1246,6 +1246,12 @@ function toggleFaq(btn) {
 })();
 </script>
 
+<!-- Live coverage ticker (honest: true service+location availability) -->
+<div id="wom-ticker" style="position:fixed;left:20px;bottom:20px;z-index:200;max-width:320px;background:#fff;border:1px solid #e6edf7;border-radius:14px;box-shadow:0 14px 38px rgba(15,23,42,.16);padding:13px 16px;display:flex;gap:12px;align-items:center;font-family:'Inter',sans-serif;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease">
+  <div style="width:38px;height:38px;border-radius:11px;background:#e8f0fe;display:flex;align-items:center;justify-content:center;color:#1d4ed8;font-weight:800;font-size:19px;flex-shrink:0">&#10003;</div>
+  <div style="line-height:1.25"><div id="wom-tk-s" style="font-size:14.5px;font-weight:700;color:#0f172a"></div><div id="wom-tk-l" style="font-size:12.5px;color:#64748b"></div></div>
+</div>
+<script>(function(){var a=[["DOT physical","Albuquerque, NM"],["TB testing","Austin, TX"],["Drug & alcohol testing","Newark, NJ"],["Pre-employment physical","Columbus, OH"],["DOT physical","Dallas, TX"],["Respirator fit testing","Phoenix, AZ"],["Drug screen","Charlotte, NC"],["DOT physical","Denver, CO"],["Titer testing","Chicago, IL"],["DOT physical","Atlanta, GA"],["Random pool enrollment","Houston, TX"],["Pre-employment physical","Nashville, TN"],["DOT physical","Birmingham, AL"],["Drug & alcohol testing","Sacramento, CA"]];for(var j=a.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1)),t=a[j];a[j]=a[k];a[k]=t;}var el=document.getElementById("wom-ticker"),s=document.getElementById("wom-tk-s"),l=document.getElementById("wom-tk-l"),i=0;function show(){var it=a[i%a.length];s.textContent=it[0]+" available";l.textContent="near "+it[1]+" · all 50 states";el.style.opacity="1";el.style.transform="translateY(0)";setTimeout(function(){el.style.opacity="0";el.style.transform="translateY(12px)";},4200);i++;}setTimeout(show,1500);setInterval(show,6200);})();</script>
 </body>
 </html>
 
