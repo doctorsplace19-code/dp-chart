@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Find a Location | WorkOccMed</title>
-<meta name="description" content="Find WorkOccMed partner testing regions by state. Order your DOT physical, drug test, breath alcohol test, or physical exam — WorkOccMed assigns the correct LabCorp, Quest, or CRL partner clinic." />
+<meta name="description" content="Find WorkOccMed partner testing regions by state. Order your DOT physical, drug test, breath alcohol test, or physical exam � WorkOccMed assigns the correct LabCorp, Quest, or CRL partner clinic." />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 <style>
   :root{
@@ -89,7 +89,7 @@
 <body>
 
 <!-- ANNOUNCEMENT -->
-<div class="bar"><p>FMCSA Certified &nbsp;·&nbsp; Nationwide Partner Network &nbsp;·&nbsp; Scheduled Through WorkOccMed &nbsp;·&nbsp; All 50 States</p></div>
+<div class="bar"><p>FMCSA Certified &nbsp;�&nbsp; Nationwide Partner Network &nbsp;�&nbsp; Scheduled Through WorkOccMed &nbsp;�&nbsp; All 50 States</p></div>
 
 <!-- NAV -->
 <nav>
@@ -109,7 +109,7 @@
   <!-- HERO -->
   <section class="hero">
     <h1>Find a Location</h1>
-    <p>WorkOccMed partners with the nation's leading collection networks. Choose your state to see the service regions available near you — then place your order and we'll assign the right partner clinic.</p>
+    <p>WorkOccMed partners with the nation's leading collection networks. Choose your state to see the service regions available near you � then place your order and we'll assign the right partner clinic.</p>
   </section>
 
   <!-- MANDATORY NOTICE -->
@@ -130,7 +130,7 @@
   <section class="selector">
     <label for="stateSelect">Select Your State</label>
     <select id="stateSelect">
-      <option value="">Choose a state…</option>
+      <option value="">Choose a state�</option>
     </select>
   </section>
 
@@ -157,13 +157,13 @@
 <!-- FOOTER -->
 <footer>
   <div class="fname">WorkOccMed</div>
-  <div class="fsub">A specialized division of Doctors Place, PLLC · New Jersey</div>
-  <div class="legal">© 2026 Doctors Place, PLLC · WorkOccMed is a national occupational health platform. Partner clinics (LabCorp, Quest Diagnostics, CRL) provide collection services and do not accept walk-ins or direct appointments for WorkOccMed clients. All services are scheduled and authorized through WorkOccMed.</div>
+  <div class="fsub">A specialized division of Doctors Place, PLLC � New Jersey</div>
+  <div class="legal">� 2026 Doctors Place, PLLC � WorkOccMed is a national occupational health platform. Partner clinics (LabCorp, Quest Diagnostics, CRL) provide collection services and do not accept walk-ins or direct appointments for WorkOccMed clients. All services are scheduled and authorized through WorkOccMed.</div>
 </footer>
 
 <script>
 /* ─────────────────────────────────────────────────────────────
-   REGION DATA — add more states by adding an entry here.
+   REGION DATA � add more states by adding an entry here.
    Each state lists region-only names per partner brand.
    ───────────────────────────────────────────────────────────── */
 const STATE_DATA = {
@@ -198,9 +198,9 @@ const STATE_DATA = {
     "CRL":               ["Northern Virginia Area", "Richmond Area"]
   },
   "North Carolina": {
-    "LabCorp":           ["Charlotte Area", "Raleigh–Durham Area", "Greensboro Area", "Winston-Salem Area", "Wilmington Area"],
-    "Quest Diagnostics": ["Charlotte Area", "Raleigh–Durham Area", "Greensboro Area"],
-    "CRL":               ["Charlotte Area", "Raleigh–Durham Area"]
+    "LabCorp":           ["Charlotte Area", "Raleigh�Durham Area", "Greensboro Area", "Winston-Salem Area", "Wilmington Area"],
+    "Quest Diagnostics": ["Charlotte Area", "Raleigh�Durham Area", "Greensboro Area"],
+    "CRL":               ["Charlotte Area", "Raleigh�Durham Area"]
   },
   "Georgia": {
     "LabCorp":           ["Atlanta Metro Area", "Savannah Area", "Augusta Area", "Columbus Area", "Macon Area"],
@@ -238,9 +238,9 @@ const STATE_DATA = {
     "CRL":               ["St. Louis Area", "Kansas City Area"]
   },
   "Texas": {
-    "LabCorp":           ["Houston Area", "Dallas–Fort Worth Area", "San Antonio Area", "Austin Area", "El Paso Area", "Laredo Area"],
-    "Quest Diagnostics": ["Houston Area", "Dallas–Fort Worth Area", "San Antonio Area", "Austin Area"],
-    "CRL":               ["Houston Area", "Dallas–Fort Worth Area", "San Antonio Area"]
+    "LabCorp":           ["Houston Area", "Dallas�Fort Worth Area", "San Antonio Area", "Austin Area", "El Paso Area", "Laredo Area"],
+    "Quest Diagnostics": ["Houston Area", "Dallas�Fort Worth Area", "San Antonio Area", "Austin Area"],
+    "CRL":               ["Houston Area", "Dallas�Fort Worth Area", "San Antonio Area"]
   },
   "Colorado": {
     "LabCorp":           ["Denver Metro Area", "Colorado Springs Area", "Fort Collins Area", "Pueblo Area"],
@@ -333,9 +333,9 @@ const STATE_DATA = {
     "CRL":               ["Baltimore Area", "Silver Spring / DC Suburban Area"]
   },
   "Minnesota": {
-    "LabCorp":           ["Minneapolis–St. Paul Area", "Rochester Area", "Duluth Area", "St. Cloud Area"],
-    "Quest Diagnostics": ["Minneapolis–St. Paul Area", "Rochester Area", "Duluth Area"],
-    "CRL":               ["Minneapolis–St. Paul Area", "Rochester Area"]
+    "LabCorp":           ["Minneapolis�St. Paul Area", "Rochester Area", "Duluth Area", "St. Cloud Area"],
+    "Quest Diagnostics": ["Minneapolis�St. Paul Area", "Rochester Area", "Duluth Area"],
+    "CRL":               ["Minneapolis�St. Paul Area", "Rochester Area"]
   },
   "Mississippi": {
     "LabCorp":           ["Jackson Area", "Gulfport / Biloxi Area", "Hattiesburg Area", "Tupelo Area"],
@@ -449,7 +449,7 @@ function brandCard(brand, regions) {
   const cls = BRAND_STYLE[brand] || "labcorp";
   const items = (regions && regions.length)
     ? regions.map(r => `<li>${esc(r)}</li>`).join("")
-    : `<li style="color:#94a3b8;font-style:italic;">No partner regions listed — order and we'll assign the nearest available clinic.</li>`;
+    : `<li style="color:#94a3b8;font-style:italic;">No partner regions listed � order and we'll assign the nearest available clinic.</li>`;
   return `
     <div class="brand ${cls}">
       <h3><span class="badge"></span>${esc(brand)}</h3>

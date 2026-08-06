@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Search — WorkOccMed</title>
+<title>Search � WorkOccMed</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -47,7 +47,7 @@
   <p class="sub">Find services, guides, and locations across all 50 states.</p>
   <div class="searchbar">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
-    <input id="q" type="search" placeholder="Try “DOT physical”, “Texas”, or “clearinghouse”…" autocomplete="off" autofocus>
+    <input id="q" type="search" placeholder="Try �DOT physical�, �Texas�, or �clearinghouse��" autocomplete="off" autofocus>
   </div>
   <div id="results"></div>
 </div>
@@ -77,7 +77,7 @@ function render(q){
   const hits = INDEX.map(it=>({it,s:score(it,terms)})).filter(x=>x.s>=0)
     .sort((a,b)=>b.s-a.s || a.it.title.length-b.it.title.length);
   if(!hits.length){
-    resultsEl.innerHTML='<div class="empty">No pages match “'+esc(q)+'”.<br>Try a broader term, or <a href="/">browse the homepage</a>.</div>';
+    resultsEl.innerHTML='<div class="empty">No pages match �'+esc(q)+'�.<br>Try a broader term, or <a href="/">browse the homepage</a>.</div>';
     return;
   }
   const groups={};

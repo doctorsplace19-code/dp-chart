@@ -13,7 +13,7 @@
   gtag('config', 'AW-18239837170');
 </script>
 <title>Find a Location | WorkOccMed</title>
-<meta name="description" content="Find a compatible collection site near you — privately. Confirm coverage before you order without exposing clinic names, addresses, or phone numbers. 15,000+ sites, all 50 states." />
+<meta name="description" content="Find a compatible collection site near you � privately. Confirm coverage before you order without exposing clinic names, addresses, or phone numbers. 15,000+ sites, all 50 states." />
 <link rel="canonical" href="https://www.workoccmed.com/find-a-location" />
 <meta name="robots" content="index, follow" />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -172,7 +172,7 @@
   footer.site a{color:var(--sky3);text-decoration:none;}
   footer.site a:hover{color:#fff;}
 
-  /* Embed mode (?embed=1) — hides marketing chrome so it fits inside the portal */
+  /* Embed mode (?embed=1) � hides marketing chrome so it fits inside the portal */
   body.embed header.site, body.embed footer.site, body.embed .band { display:none; }
   body.embed .hero{ background:var(--page); color:var(--ink); padding:20px 0 8px; overflow:visible; }
   body.embed .hero .ring{ display:none; }
@@ -211,7 +211,7 @@
           Private location search
         </div>
         <h1>Find care nearby.<span>Keep the clinic private.</span></h1>
-        <p class="lead">Check nearby availability before you order — a simple way to confirm a location is in range for your service.</p>
+        <p class="lead">Check nearby availability before you order � a simple way to confirm a location is in range for your service.</p>
         <div class="stats">
           <div class="s"><div class="v">15,000+</div><div class="l">nationwide sites</div></div>
           <div class="s"><div class="v">All 50</div><div class="l">states covered</div></div>
@@ -268,7 +268,7 @@
         <fieldset>
           <legend>Preferred network</legend>
           <div class="vgrid" id="vendors"></div>
-          <p id="vaxNetHint" style="display:none;font-size:12px;color:#2563eb;margin-top:8px;">Vaccines are administered through Workforce / FormFox only — Labcorp and Quest are not available for vaccines.</p>
+          <p id="vaxNetHint" style="display:none;font-size:12px;color:#2563eb;margin-top:8px;">Vaccines are administered through Workforce / FormFox only � Labcorp and Quest are not available for vaccines.</p>
         </fieldset>
 
         <button type="submit" class="find">
@@ -333,7 +333,7 @@
 </main>
 
 <footer class="site">
-  <div class="wrap">© 2026 WorkOccMed LLC · <a href="tel:+18882334567">(888) 233-4567</a> · <a href="https://g.page/r/CZxpzYHQ5wJbEAI/review" target="_blank" rel="noopener">★ Review Us</a></div>
+  <div class="wrap">� 2026 WorkOccMed LLC � <a href="tel:+18882334567">(888) 233-4567</a> � <a href="https://g.page/r/CZxpzYHQ5wJbEAI/review" target="_blank" rel="noopener">★ Review Us</a></div>
 </footer>
 
 <script>
@@ -374,10 +374,10 @@
     {id:'misc-lift1',    cat:'Misc', name:'Lift Test Level 1',                          cents:6500,  orderable:true},
     {id:'misc-osha-q',   cat:'Misc', name:'OSHA Medical Questionnaire',                 cents:4000,  orderable:true},
     {id:'misc-pft',      cat:'Misc', name:'Pulmonary Function Test (PFT)',              cents:8500,  orderable:true},
-    {id:'misc-fit-qlft', cat:'Misc', name:'Respirator Fit Test — Qualitative (QLFT)',  cents:6500,  orderable:true},
-    {id:'misc-fit-qnft', cat:'Misc', name:'Respirator Fit Test — Quantitative (QNFT)', cents:8500,  orderable:true},
-    {id:'misc-tb-1step', cat:'Misc', name:'TB / PPD Skin Test — 1-Step',               cents:4500,  orderable:true},
-    {id:'misc-tb-2step', cat:'Misc', name:'TB / PPD Skin Test — 2-Step',               cents:6500,  orderable:true}
+    {id:'misc-fit-qlft', cat:'Misc', name:'Respirator Fit Test � Qualitative (QLFT)',  cents:6500,  orderable:true},
+    {id:'misc-fit-qnft', cat:'Misc', name:'Respirator Fit Test � Quantitative (QNFT)', cents:8500,  orderable:true},
+    {id:'misc-tb-1step', cat:'Misc', name:'TB / PPD Skin Test � 1-Step',               cents:4500,  orderable:true},
+    {id:'misc-tb-2step', cat:'Misc', name:'TB / PPD Skin Test � 2-Step',               cents:6500,  orderable:true}
   ];
 
   var activeTab = 'Drug Screens';
@@ -473,9 +473,9 @@
 
   function distanceBand(mi){
     if(mi < 2)  return 'Within 2 miles';
-    if(mi < 5)  return 'Within 2–5 miles';
-    if(mi < 10) return 'Within 5–10 miles';
-    if(mi < 25) return 'Within 10–25 miles';
+    if(mi < 5)  return 'Within 2�5 miles';
+    if(mi < 10) return 'Within 5�10 miles';
+    if(mi < 25) return 'Within 10�25 miles';
     return 'Within ' + Math.ceil(mi) + ' miles';
   }
   // Round each site UP to the nearest standard tier (10 / 25 / 50 miles).
@@ -505,7 +505,7 @@
     return '<a class="rorder" href="' + ORDER_URL + '">Order through WorkOccMed ' + ARROW + '</a>';
   }
   function renderCards(items){
-    if(items.length > 26) items = items.slice(0, 26);   // Site A–Z max
+    if(items.length > 26) items = items.slice(0, 26);   // Site A�Z max
     var chips = selectedList().map(function(s){return '<span class="rchip">' + s.name + '</span>';}).join('');
     var html = items.map(function(it, i){
       var letter = String.fromCharCode(65 + i);
@@ -537,7 +537,7 @@
     }
     return items;
   }
-  // Count scales with the search radius, capped at 26 (Site A–Z).
+  // Count scales with the search radius, capped at 26 (Site A�Z).
   function fallbackCount(radiusMi){ return radiusMi >= 50 ? 26 : (radiusMi >= 25 ? 16 : 8); }
 
   // Optional upgrade: if Google Maps is available, replace the generic cards
@@ -566,7 +566,7 @@
   function runSearch(zip, radiusMi){
     document.getElementById('resStatus').style.display = 'none';
     document.getElementById('resTitle').textContent = 'Compatible options near ' + zip;
-    renderCards(genericItems(zip, radiusMi, fallbackCount(radiusMi)));   // cards show immediately — no map needed
+    renderCards(genericItems(zip, radiusMi, fallbackCount(radiusMi)));   // cards show immediately � no map needed
     enhance(zip, radiusMi);                                              // upgrade with real town/count if available
   }
 
