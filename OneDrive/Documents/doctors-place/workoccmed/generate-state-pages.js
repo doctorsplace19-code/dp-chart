@@ -477,7 +477,7 @@ function statePageHtml(state) {
     <div class="footer-top">
       <div>
         <div class="f-brand-name">Work OccMed</div>
-        <div class="f-brand-sub">A Doctors Place Company</div>
+        <div class="f-brand-sub">A WorkOccMed Medical Group Company</div>
         <p class="f-brand-desc">Full-service occupational health for employers nationwide. DOT physicals, drug testing, OSHA screenings, and return to duty — all managed online.</p>
       </div>
       <div class="f-col">
@@ -503,7 +503,7 @@ function statePageHtml(state) {
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="f-legal">© 2026 Work OccMed · A Doctors Place Company · Doctors Place, PLLC</div>
+      <div class="f-legal">© 2026 Work OccMed · A WorkOccMed Medical Group Company · WorkOccMed Medical Group, PLLC</div>
       <div class="f-legal"><a href="https://portal.dot-physical.net/privacy">Privacy Policy</a> · <a href="../">Work OccMed Home</a></div>
     </div>
   </div>
@@ -726,7 +726,7 @@ function cityPageHtml(state, city, cityIndex) {
     <div class="footer-top">
       <div>
         <div class="f-brand-name">Work OccMed</div>
-        <div class="f-brand-sub">A Doctors Place Company</div>
+        <div class="f-brand-sub">A WorkOccMed Medical Group Company</div>
         <p class="f-brand-desc">Full-service occupational health for employers nationwide. DOT physicals, drug testing, OSHA screenings, and return to duty — all managed online.</p>
       </div>
       <div class="f-col">
@@ -751,7 +751,7 @@ function cityPageHtml(state, city, cityIndex) {
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="f-legal">© 2026 Work OccMed · A Doctors Place Company · Doctors Place, PLLC</div>
+      <div class="f-legal">© 2026 Work OccMed · A WorkOccMed Medical Group Company · WorkOccMed Medical Group, PLLC</div>
       <div class="f-legal"><a href="https://portal.dot-physical.net/privacy">Privacy Policy</a> · <a href="../">Work OccMed Home</a></div>
     </div>
   </div>
