@@ -317,6 +317,22 @@
     .hero h1 { font-size: 2.2rem; }
     .hero-img-wrap { display: none; }
     .worker-photos { grid-template-columns: 1fr; }
+    body { padding-bottom: 64px; }
+  }
+  .mobile-sticky-cta { display: none; }
+  @media (max-width: 600px) {
+    .mobile-sticky-cta {
+      display: flex; position: fixed; bottom: 0; left: 0; right: 0; z-index: 500;
+      background: #0d1b2a; border-top: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.25);
+    }
+    .mobile-sticky-cta a {
+      flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 700;
+      padding: 14px 8px; text-decoration: none;
+    }
+    .mobile-sticky-cta a.call { color: white; background: transparent; }
+    .mobile-sticky-cta a.order { color: white; background: #16a34a; }
   }
   /* –– Mega-menu dropdowns –– */
   .wom-drop { position: relative; display: flex; align-items: center; height: 64px; }
@@ -1209,6 +1225,12 @@ function toggleFaq(btn) {
   <div style="line-height:1.25"><div id="wom-tk-s" style="font-size:14.5px;font-weight:700;color:#0f172a"></div><div id="wom-tk-l" style="font-size:12.5px;color:#64748b"></div></div>
 </div>
 <script>(function(){var a=[["DOT physical","Albuquerque, NM"],["TB testing","Austin, TX"],["Drug & alcohol testing","Newark, NJ"],["Pre-employment physical","Columbus, OH"],["DOT physical","Dallas, TX"],["Respirator fit testing","Phoenix, AZ"],["Drug screen","Charlotte, NC"],["DOT physical","Denver, CO"],["Titer testing","Chicago, IL"],["DOT physical","Atlanta, GA"],["Random pool enrollment","Houston, TX"],["Pre-employment physical","Nashville, TN"],["DOT physical","Birmingham, AL"],["Drug & alcohol testing","Sacramento, CA"]];for(var j=a.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1)),t=a[j];a[j]=a[k];a[k]=t;}var el=document.getElementById("wom-ticker"),s=document.getElementById("wom-tk-s"),l=document.getElementById("wom-tk-l"),i=0;function show(){var it=a[i%a.length];s.textContent=it[0]+" available";l.textContent="near "+it[1]+" – all 50 states";el.style.opacity="1";el.style.transform="translateY(0)";setTimeout(function(){el.style.opacity="0";el.style.transform="translateY(12px)";},4200);i++;}setTimeout(show,1500);setInterval(show,6200);})();</script>
+<!-- Sticky mobile CTA bar -->
+<div class="mobile-sticky-cta">
+  <a href="tel:+18882334567" class="call">&#128222; Call (888) 233-4567</a>
+  <a href="https://portal.dot-physical.net/order" class="order">Order Online &rarr;</a>
+</div>
+
 </body>
 </html>
 
