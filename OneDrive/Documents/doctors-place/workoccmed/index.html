@@ -101,9 +101,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
-    --teal: #1d4ed8;
+    --teal: #16a34a;
     --teal-dark: #1e3a8a;
-    --teal-light: #dbeafe;
+    --teal-light: #d1fae5;
     --navy: #0f172a;
     --text: #111827;
     --muted: #4b5563;
@@ -132,10 +132,10 @@
   .nav-logo-text { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 800; color: #0f172a; letter-spacing: -0.03em; }
   .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
   .nav-links a { color: #374151; text-decoration: none; font-size: 21px; font-weight: 500; transition: color 0.2s; }
-  .nav-links a:hover { color: #1d4ed8; }
+  .nav-links a:hover { color: #16a34a; }
   .btn-nav { padding: 9px 20px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
   .btn-login { background: transparent; border: 1.5px solid #d1d5db; color: #374151; }
-  .btn-login:hover { border-color: #1d4ed8; color: #1d4ed8; }
+  .btn-login:hover { border-color: #16a34a; color: #16a34a; }
   .btn-getstarted { background: #0f172a; color: white; border: 1.5px solid #0f172a; box-shadow: 0 2px 6px rgba(0,0,0,0.12); }
   .btn-getstarted:hover { background: #1e293b; }
   .hamburger-btn { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: #111827; }
@@ -194,7 +194,7 @@
   .stats-bar { background: #0f172a; display: grid; grid-template-columns: repeat(4, 1fr); }
   .stat-cell { padding: 26px; text-align: center; border-right: 1px solid rgba(255,255,255,0.06); }
   .stat-cell:last-child { border-right: none; }
-  .stat-num { font-family: 'Inter', sans-serif; font-size: 30px; font-weight: 800; color: #93c5fd; line-height: 1; letter-spacing: -0.02em; }
+  .stat-num { font-family: 'Inter', sans-serif; font-size: 30px; font-weight: 800; color: #86efac; line-height: 1; letter-spacing: -0.02em; }
   .stat-label { font-size: 16px; color: #64748b; margin-top: 6px; letter-spacing: 0.02em; }
 
   /* ––– FEATURES ("Your Partner") ––– */
@@ -204,7 +204,7 @@
   .features-subtitle { font-size: 21px; color: #6b7280; text-align: center; max-width: 600px; margin: 0 auto 56px; line-height: 1.7; }
   .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
   .feature-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 32px; transition: all 0.22s; }
-  .feature-card:hover { box-shadow: 0 8px 32px rgba(13,148,136,0.10); border-color: #bfdbfe; transform: translateY(-2px); }
+  .feature-card:hover { box-shadow: 0 8px 32px rgba(13,148,136,0.10); border-color: #bbf7d0; transform: translateY(-2px); }
   .feature-icon { width: 52px; height: 52px; background: var(--teal-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; }
   .feature-icon svg { width: 26px; height: 26px; stroke: var(--teal); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .feature-card h3 { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: var(--teal); margin-bottom: 10px; }
@@ -237,7 +237,7 @@
   /* ––– SERVICES ––– */
   .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 40px; }
   .service-card { background: white; border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: all 0.2s; }
-  .service-card:hover { box-shadow: 0 8px 24px rgba(13,148,136,0.10); border-color: #bfdbfe; transform: translateY(-2px); }
+  .service-card:hover { box-shadow: 0 8px 24px rgba(13,148,136,0.10); border-color: #bbf7d0; transform: translateY(-2px); }
   .service-card h3 { font-size: 21px; font-weight: 700; color: #0f172a; margin-bottom: 6px; }
   .service-card p { font-size: 21px; color: #6b7280; line-height: 1.6; }
   .service-tag { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 600; padding: 3px 10px; border-radius: 100px; }
@@ -321,16 +321,16 @@
   /* –– Mega-menu dropdowns –– */
   .wom-drop { position: relative; display: flex; align-items: center; height: 64px; }
   .wom-drop > a { display: flex; align-items: center; gap: 7px; }
-  .wom-caret { display: inline-block; width: 7px; height: 7px; border-right: 2px solid #93c5fd; border-bottom: 2px solid #93c5fd; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
+  .wom-caret { display: inline-block; width: 7px; height: 7px; border-right: 2px solid #86efac; border-bottom: 2px solid #86efac; transform: rotate(45deg) translateY(-2px); transition: transform .2s ease; }
   .wom-drop:hover .wom-caret { transform: rotate(225deg) translateY(-2px); }
-  .wom-panel { position: absolute; top: 64px; left: -24px; background: #0d1b2a; border-top: 3px solid #1d4ed8; border-radius: 0 0 14px 14px; box-shadow: 0 24px 48px rgba(0,0,0,.4); padding: 24px 28px; display: flex; gap: 40px; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 300; }
+  .wom-panel { position: absolute; top: 64px; left: -24px; background: #0d1b2a; border-top: 3px solid #16a34a; border-radius: 0 0 14px 14px; box-shadow: 0 24px 48px rgba(0,0,0,.4); padding: 24px 28px; display: flex; gap: 40px; opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 300; }
   .wom-drop:hover .wom-panel { opacity: 1; visibility: visible; transform: translateY(0); }
   .wom-col { display: flex; flex-direction: column; gap: 4px; min-width: 210px; }
   .wom-col-h { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #64748b; margin-bottom: 8px; }
   .wom-panel a { font-family: 'Inter', sans-serif; text-decoration: none; padding: 9px 12px; border-radius: 8px; display: block; transition: background .15s ease; }
   .wom-panel a:hover { background: rgba(29,78,216,.28); }
   .wom-panel a .wom-t { display: block; font-size: 16px; font-weight: 600; color: #fff; line-height: 1.3; }
-  .wom-panel a .wom-d { display: block; font-size: 13px; font-weight: 400; color: #93c5fd; margin-top: 1px; }
+  .wom-panel a .wom-d { display: block; font-size: 13px; font-weight: 400; color: #86efac; margin-top: 1px; }
   @media (max-width: 1140px) { .wom-drop { height: auto; } .wom-caret { display: none; } .wom-panel { display: none !important; } }
 </style>
 </head>
@@ -392,15 +392,15 @@
   </div>
   <div style="display:flex;align-items:center;gap:14px;">
     <a href="tel:+18882334567" style="font-family:'Inter',sans-serif;font-size:15px;font-weight:600;color:rgba(255,255,255,0.9);text-decoration:none;display:flex;align-items:center;gap:6px;">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.63 3.47 2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
       (888) 233-4567
     </a>
     <a href="search" aria-label="Search the site" title="Search" style="display:flex;align-items:center;color:white;text-decoration:none;">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
     </a>
     <a href="https://portal.dot-physical.net/sign-in" style="font-family:'Inter',sans-serif;font-size:15px;font-weight:500;color:rgba(255,255,255,0.7);text-decoration:none;">Employer Portal</a>
-    <a href="https://portal.dot-physical.net/partner-sign-in" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:600;color:white;border:1.5px solid #1d4ed8;padding:8px 18px;border-radius:8px;text-decoration:none;">Partner Login</a>
-    <a href="https://portal.dot-physical.net/order" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:700;color:white;background:#1d4ed8;padding:9px 20px;border-radius:8px;text-decoration:none;">Order Now</a>
+    <a href="https://portal.dot-physical.net/partner-sign-in" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:600;color:white;border:1.5px solid #16a34a;padding:8px 18px;border-radius:8px;text-decoration:none;">Partner Login</a>
+    <a href="https://portal.dot-physical.net/order" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:700;color:white;background:#16a34a;padding:9px 20px;border-radius:8px;text-decoration:none;">Order Now</a>
   </div>
 </nav>
 
@@ -413,8 +413,8 @@
   <a href="guides" onclick="document.getElementById('mobileNav').classList.remove('open')">Guides</a>
   <a href="partners" onclick="document.getElementById('mobileNav').classList.remove('open')">Become a Partner</a>
   <div class="mobile-cta">
-    <a href="https://portal.dot-physical.net/order" style="background:#1d4ed8;color:white;">Order Now</a>
-    <a href="https://portal.dot-physical.net/partner-sign-in" style="border:1.5px solid #1d4ed8;color:#1d4ed8;background:white;">Partner Login</a>
+    <a href="https://portal.dot-physical.net/order" style="background:#16a34a;color:white;">Order Now</a>
+    <a href="https://portal.dot-physical.net/partner-sign-in" style="border:1.5px solid #16a34a;color:#16a34a;background:white;">Partner Login</a>
     <a href="https://portal.dot-physical.net/sign-in" style="border:1.5px solid #d1d5db;color:#374151;background:white;">Employer Portal</a>
   </div>
 </div>
@@ -451,31 +451,31 @@
   <div style="position:relative;z-index:1;width:100%;max-width:100%;margin:0 auto;padding:72px 48px;display:grid;grid-template-columns:1fr 420px;gap:60px;align-items:center;">
     <!-- Left: copy -->
     <div>
-      <div style="font-family:'Inter',sans-serif;font-size:18px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#1d4ed8;margin-bottom:20px;">FMCSA CERTIFIED &middot; NATIONWIDE COVERAGE</div>
+      <div style="font-family:'Inter',sans-serif;font-size:18px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#16a34a;margin-bottom:20px;">FMCSA CERTIFIED &middot; NATIONWIDE COVERAGE</div>
       <h1 style="font-family:'Inter',sans-serif;font-size:56px;font-weight:900;line-height:1.05;color:white;margin:0 0 24px;">
-        Nationwide Occupational Health <span style="color:#1d4ed8;">for Employers</span>
+        Nationwide Occupational Health <span style="color:#16a34a;">for Employers</span>
       </h1>
       <p style="font-family:'Inter',sans-serif;font-size:22px;color:rgba(255,255,255,0.80);line-height:1.7;max-width:540px;margin:0 0 36px;">Schedule DOT physicals, drug tests, pre-employment physicals, titers, vaccines, and random testing programs &mdash; all from one employer portal. 15,000+ certified sites, all 50 states.</p>
       <div style="display:flex;gap:14px;flex-wrap:wrap;">
-        <a href="https://portal.dot-physical.net/signup" style="font-family:'Inter',sans-serif;font-size:21px;font-weight:700;color:white;background:#1d4ed8;padding:16px 32px;border-radius:10px;text-decoration:none;">Open Employer Account &rarr;</a>
+        <a href="https://portal.dot-physical.net/signup" style="font-family:'Inter',sans-serif;font-size:21px;font-weight:700;color:white;background:#16a34a;padding:16px 32px;border-radius:10px;text-decoration:none;">Open Employer Account &rarr;</a>
       </div>
     </div>
     <!-- Right: stat cards -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
       <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px 20px;text-align:center;">
-        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#1d4ed8;margin-bottom:6px;">15,000+</div>
+        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#16a34a;margin-bottom:6px;">15,000+</div>
         <div style="font-family:'Inter',sans-serif;font-size:19px;color:rgba(255,255,255,0.75);">Collection Sites</div>
       </div>
       <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px 20px;text-align:center;">
-        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#1d4ed8;margin-bottom:6px;">50</div>
+        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#16a34a;margin-bottom:6px;">50</div>
         <div style="font-family:'Inter',sans-serif;font-size:19px;color:rgba(255,255,255,0.75);">States Covered</div>
       </div>
       <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px 20px;text-align:center;">
-        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#1d4ed8;margin-bottom:6px;">24–48h</div>
+        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#16a34a;margin-bottom:6px;">24–48h</div>
         <div style="font-family:'Inter',sans-serif;font-size:19px;color:rgba(255,255,255,0.75);">Result Turnaround</div>
       </div>
       <div style="background:rgba(255,255,255,0.12);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.15);border-radius:16px;padding:28px 20px;text-align:center;">
-        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#1d4ed8;margin-bottom:6px;">100%</div>
+        <div style="font-family:'Inter',sans-serif;font-size:36px;font-weight:900;color:#16a34a;margin-bottom:6px;">100%</div>
         <div style="font-family:'Inter',sans-serif;font-size:19px;color:rgba(255,255,255,0.75);">FMCSA Compliant</div>
       </div>
     </div>
@@ -493,26 +493,26 @@
 
       <!-- Employer card -->
       <div style="background:#0f172a;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:18px;">
-        <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#93c5fd;">For Employers</div>
+        <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#86efac;">For Employers</div>
         <div style="font-size:28px;font-weight:800;color:white;line-height:1.25;">Make workforce compliance easier to manage.</div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:4px;">
-          <li style="font-size:18px;color:#cbd5e1;display:flex;align-items:center;gap:8px;"><span style="color:#60a5fa;font-weight:700;">&#10003;</span> One account for your entire workforce</li>
-          <li style="font-size:18px;color:#cbd5e1;display:flex;align-items:center;gap:8px;"><span style="color:#60a5fa;font-weight:700;">&#10003;</span> DOT consortium &amp; random pool included</li>
-          <li style="font-size:18px;color:#cbd5e1;display:flex;align-items:center;gap:8px;"><span style="color:#60a5fa;font-weight:700;">&#10003;</span> 15,000+ sites &middot; All 50 states</li>
+          <li style="font-size:18px;color:#cbd5e1;display:flex;align-items:center;gap:8px;"><span style="color:#4ade80;font-weight:700;">&#10003;</span> One account for your entire workforce</li>
+          <li style="font-size:18px;color:#cbd5e1;display:flex;align-items:center;gap:8px;"><span style="color:#4ade80;font-weight:700;">&#10003;</span> DOT consortium &amp; random pool included</li>
+          <li style="font-size:18px;color:#cbd5e1;display:flex;align-items:center;gap:8px;"><span style="color:#4ade80;font-weight:700;">&#10003;</span> 15,000+ sites &middot; All 50 states</li>
         </ul>
         <a href="https://portal.dot-physical.net/signup" style="display:block;background:white;color:#0f172a;font-family:'Inter',sans-serif;font-size:20px;font-weight:700;padding:14px 24px;border-radius:10px;text-decoration:none;text-align:center;margin-top:auto;">Create Employer Account →</a>
       </div>
 
       <!-- Individual card -->
       <div style="background:white;border:2px solid #e5e7eb;border-radius:20px;padding:40px;display:flex;flex-direction:column;gap:18px;">
-        <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1d4ed8;">For Individuals</div>
+        <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#16a34a;">For Individuals</div>
         <div style="font-size:28px;font-weight:800;color:#0f172a;line-height:1.25;">Get the service you need, without the runaround.</div>
         <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:4px;">
-          <li style="font-size:18px;color:#374151;display:flex;align-items:center;gap:8px;"><span style="color:#1d4ed8;font-weight:700;">&#10003;</span> No account required</li>
-          <li style="font-size:18px;color:#374151;display:flex;align-items:center;gap:8px;"><span style="color:#1d4ed8;font-weight:700;">&#10003;</span> Pay online &middot; Authorization in 1 hour</li>
-          <li style="font-size:18px;color:#374151;display:flex;align-items:center;gap:8px;"><span style="color:#1d4ed8;font-weight:700;">&#10003;</span> DOT physical $110 &middot; Drug screen $80</li>
+          <li style="font-size:18px;color:#374151;display:flex;align-items:center;gap:8px;"><span style="color:#16a34a;font-weight:700;">&#10003;</span> No account required</li>
+          <li style="font-size:18px;color:#374151;display:flex;align-items:center;gap:8px;"><span style="color:#16a34a;font-weight:700;">&#10003;</span> Pay online &middot; Authorization in 1 hour</li>
+          <li style="font-size:18px;color:#374151;display:flex;align-items:center;gap:8px;"><span style="color:#16a34a;font-weight:700;">&#10003;</span> DOT physical $110 &middot; Drug screen $80</li>
         </ul>
-        <a href="https://portal.dot-physical.net/order" style="display:block;background:#1d4ed8;color:white;font-family:'Inter',sans-serif;font-size:20px;font-weight:700;padding:14px 24px;border-radius:10px;text-decoration:none;text-align:center;margin-top:auto;">Order a Test →</a>
+        <a href="https://portal.dot-physical.net/order" style="display:block;background:#16a34a;color:white;font-family:'Inter',sans-serif;font-size:20px;font-weight:700;padding:14px 24px;border-radius:10px;text-decoration:none;text-align:center;margin-top:auto;">Order a Test →</a>
       </div>
 
     </div>
@@ -580,9 +580,9 @@
 <div style="background:#f8fafc;padding:80px 48px;">
   <div style="max-width:100%;margin:0 auto;">
     <div style="text-align:center;margin-bottom:52px;">
-      <div style="font-family:'Inter',sans-serif;font-size:19px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1d4ed8;margin-bottom:12px;">TRUSTED NATIONWIDE</div>
+      <div style="font-family:'Inter',sans-serif;font-size:19px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#16a34a;margin-bottom:12px;">TRUSTED NATIONWIDE</div>
       <h2 style="font-family:'Inter',sans-serif;font-size:36px;font-weight:800;color:#0d1b2a;margin:0 0 20px;">What Employers &amp; Drivers Say</h2>
-      <a href="https://g.page/r/CZxpzYHQ5wJbEAI/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#1d4ed8;color:white;font-family:'Inter',sans-serif;font-size:17px;font-weight:700;padding:12px 26px;border-radius:10px;text-decoration:none;box-shadow:0 4px 16px rgba(29,78,216,0.25);">
+      <a href="https://g.page/r/CZxpzYHQ5wJbEAI/review" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;background:#16a34a;color:white;font-family:'Inter',sans-serif;font-size:17px;font-weight:700;padding:12px 26px;border-radius:10px;text-decoration:none;box-shadow:0 4px 16px rgba(29,78,216,0.25);">
         <span style="color:#fbbf24;font-size:18px;">★</span> Leave us a Google Review →
       </a>
     </div>
@@ -627,7 +627,7 @@
 <div style="background:#eef4fb;padding:80px 48px;">
   <div style="max-width:100%;margin:0 auto;">
     <div style="text-align:center;margin-bottom:52px;">
-      <div style="font-family:'Inter',sans-serif;font-size:19px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1d4ed8;margin-bottom:12px;">WHO WE SERVE</div>
+      <div style="font-family:'Inter',sans-serif;font-size:19px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#16a34a;margin-bottom:12px;">WHO WE SERVE</div>
       <h2 style="font-family:'Inter',sans-serif;font-size:36px;font-weight:800;color:#0d1b2a;margin:0 0 16px;">Every Industry That Needs Occupational Health</h2>
       <p style="font-family:'Inter',sans-serif;font-size:22px;color:#4b5563;max-width:560px;margin:0 auto;line-height:1.7;">From single-truck owner-operators to Fortune 500 companies – WorkOccMed handles compliance for any employer, any size, anywhere in the US.</p>
     </div>
@@ -695,7 +695,7 @@
 <div style="background:#ffffff;padding:72px 48px;">
   <div style="max-width:100%;margin:0 auto;">
     <div style="text-align:center;margin-bottom:44px;">
-      <div style="font-family:'Inter',sans-serif;font-size:19px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1d4ed8;margin-bottom:12px;">OUR WORKFORCE</div>
+      <div style="font-family:'Inter',sans-serif;font-size:19px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#16a34a;margin-bottom:12px;">OUR WORKFORCE</div>
       <h2 style="font-family:'Inter',sans-serif;font-size:36px;font-weight:800;color:#0d1b2a;margin:0;">Keeping America's Workforce Healthy &amp; Compliant</h2>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
@@ -737,19 +737,19 @@
 <section style="background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);padding:56px 48px;">
   <div style="max-width:100%;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;flex-wrap:wrap;">
     <div>
-      <div style="font-size:18px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#93c5fd;margin-bottom:10px;">Individual Ordering – No Account Required</div>
+      <div style="font-size:18px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#86efac;margin-bottom:10px;">Individual Ordering – No Account Required</div>
       <h2 style="font-family:'Inter',sans-serif;font-size:clamp(1.6rem,2.5vw,2.2rem);color:white;margin-bottom:12px;line-height:1.2;font-weight:800;">Need a test for yourself?</h2>
       <p style="font-size:21px;color:rgba(255,255,255,0.75);line-height:1.65;max-width:520px;margin-bottom:0;">CDL drivers, job applicants, and individuals can order a DOT physical, drug screen, or pre-employment physical directly – no employer account needed. Pay online and receive your authorization within 1 hour during business hours.</p>
     </div>
     <div style="display:flex;flex-direction:column;gap:12px;min-width:220px;">
-      <a href="https://portal.dot-physical.net/order" style="display:block;background:white;color:#1e40af;font-family:'Inter',sans-serif;font-size:21px;font-weight:700;padding:16px 28px;border-radius:12px;text-decoration:none;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.25);white-space:nowrap;">Order Now – No Account →</a>
+      <a href="https://portal.dot-physical.net/order" style="display:block;background:white;color:#166534;font-family:'Inter',sans-serif;font-size:21px;font-weight:700;padding:16px 28px;border-radius:12px;text-decoration:none;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,0.25);white-space:nowrap;">Order Now – No Account →</a>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
         <a href="https://portal.dot-physical.net/order?service=dot-physical" style="display:block;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:18px;font-weight:600;padding:10px 12px;border-radius:8px;text-decoration:none;text-align:center;">DOT Physical<br><span style="font-weight:800;">$110</span></a>
         <a href="https://portal.dot-physical.net/order" style="display:block;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:18px;font-weight:600;padding:10px 12px;border-radius:8px;text-decoration:none;text-align:center;">Drug Screen<br><span style="font-weight:800;">$80</span></a>
         <a href="https://portal.dot-physical.net/order" style="display:block;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:18px;font-weight:600;padding:10px 12px;border-radius:8px;text-decoration:none;text-align:center;">DOT + Drug<br><span style="font-weight:800;">$180</span></a>
         <a href="https://portal.dot-physical.net/order?service=pre-employment" style="display:block;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);color:white;font-size:18px;font-weight:600;padding:10px 12px;border-radius:8px;text-decoration:none;text-align:center;">Pre-Employ Physical<br><span style="font-weight:800;">$110</span></a>
       </div>
-      <a href="corporate-invoicing" style="display:block;margin-top:6px;background:rgba(147,197,253,0.15);border:1.5px solid rgba(147,197,253,0.4);color:#dbeafe;font-size:15px;font-weight:600;padding:12px 16px;border-radius:10px;text-decoration:none;text-align:center;">–– Have more than 5 drivers? <span style="color:#fff;font-weight:800;">Request custom corporate invoicing →</span></a>
+      <a href="corporate-invoicing" style="display:block;margin-top:6px;background:rgba(134,239,172,0.15);border:1.5px solid rgba(134,239,172,0.4);color:#d1fae5;font-size:15px;font-weight:600;padding:12px 16px;border-radius:10px;text-decoration:none;text-align:center;">–– Have more than 5 drivers? <span style="color:#fff;font-weight:800;">Request custom corporate invoicing →</span></a>
     </div>
   </div>
 </section>
@@ -764,7 +764,7 @@
       <div class="service-card">
         <h3>Pre-Employment Physical</h3>
         <p>Fitness-for-duty evaluations for new hires in any industry – construction, healthcare, manufacturing, transportation, and staffing. Confirm employees can safely perform their job before day one.</p>
-        <span class="service-tag" style="background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe;">All industries – Non-DOT</span>
+        <span class="service-tag" style="background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;">All industries – Non-DOT</span>
       </div>
       <div class="service-card">
         <h3>DOT Physical Exam</h3>
@@ -814,7 +814,7 @@
       <div class="service-card">
         <h3>Vision & Color Testing</h3>
         <p>Snellen visual acuity and Ishihara color plate testing for pre-employment and annual occupational health screenings. Required for many safety-sensitive and transportation roles.</p>
-        <span class="service-tag" style="background:#eff6ff;color:#1e40af;border:1px solid #bfdbfe;">Pre-employment – Annual</span>
+        <span class="service-tag" style="background:#f0fdf4;color:#166534;border:1px solid #bbf7d0;">Pre-employment – Annual</span>
       </div>
       <div class="service-card">
         <h3>Vaccinations & Titer Testing</h3>
@@ -873,7 +873,7 @@
     <h2 class="section-title">Every Industry That Needs Occupational Health</h2>
     <p class="section-sub">From single-truck owner-operators to Fortune 500 companies – Work OccMed handles occupational health compliance for any employer, any size, anywhere in the US.</p>
     <div class="industries-grid">
-      <div class="industry-chip" style="background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8;">Trucking & Fleet</div>
+      <div class="industry-chip" style="background:#f0fdf4;border-color:#bbf7d0;color:#16a34a;">Trucking & Fleet</div>
       <div class="industry-chip" style="background:#fff7ed;border-color:#fed7aa;color:#c2410c;">Construction</div>
       <div class="industry-chip" style="background:#f0fdf4;border-color:#bbf7d0;color:#15803d;">Healthcare</div>
       <div class="industry-chip" style="background:#fdf4ff;border-color:#e9d5ff;color:#7e22ce;">Staffing Agencies</div>
@@ -883,7 +883,7 @@
       <div class="industry-chip" style="background:#fff7ed;border-color:#fed7aa;color:#c2410c;">Pipeline & Energy</div>
       <div class="industry-chip" style="background:#f0fdf4;border-color:#bbf7d0;color:#15803d;">Schools & Universities</div>
       <div class="industry-chip" style="background:#fdf4ff;border-color:#e9d5ff;color:#7e22ce;">First Responders</div>
-      <div class="industry-chip" style="background:#eff6ff;border-color:#bfdbfe;color:#1d4ed8;">Maritime & USCG</div>
+      <div class="industry-chip" style="background:#f0fdf4;border-color:#bbf7d0;color:#16a34a;">Maritime & USCG</div>
       <div class="industry-chip" style="background:#fefce8;border-color:#fde68a;color:#a16207;">Agriculture</div>
     </div>
   </div>
@@ -991,7 +991,7 @@
 <!-- Newsletter -->
 <section id="newsletter" style="background:#f8fafc;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;padding:64px 48px;">
   <div style="max-width:560px;margin:0 auto;text-align:center;">
-    <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#1d4ed8;margin-bottom:10px;">DOT Compliance Tips</div>
+    <div style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#16a34a;margin-bottom:10px;">DOT Compliance Tips</div>
     <h2 style="font-family:'Inter',sans-serif;font-size:clamp(1.6rem,2.5vw,2rem);font-weight:800;color:#0f172a;margin-bottom:12px;letter-spacing:-.02em;">Get Weekly DOT Compliance Updates</h2>
     <p style="font-family:'Inter',sans-serif;font-size:20px;color:#6b7280;line-height:1.6;margin-bottom:32px;">DOT rule changes, drug testing guides, and compliance tips delivered to your inbox. No spam – unsubscribe anytime.</p>
     <form id="newsletter-form" onsubmit="handleNewsletterSubmit(event)" style="display:flex;gap:10px;max-width:440px;margin:0 auto;">
@@ -1001,7 +1001,7 @@
         required
         placeholder="your@email.com"
         style="flex:1;border:1.5px solid #d1d5db;border-radius:8px;padding:12px 16px;font-family:'Inter',sans-serif;font-size:19px;outline:none;transition:border-color .2s;"
-        onfocus="this.style.borderColor='#1d4ed8'"
+        onfocus="this.style.borderColor='#16a34a'"
         onblur="this.style.borderColor='#d1d5db'"
       />
       <button type="submit" id="newsletter-btn" style="background:#0f172a;color:white;border:none;border-radius:8px;padding:12px 22px;font-family:'Inter',sans-serif;font-size:19px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s;" onmouseover="this.style.background='#1e3a8a'" onmouseout="this.style.background='#0f172a'">
@@ -1031,10 +1031,10 @@ async function handleNewsletterSubmit(e) {
     document.getElementById('newsletter-form').style.display = 'none';
     msg.style.display  = 'block';
     if (data.alreadySubscribed) {
-      msg.style.color   = '#1d4ed8';
+      msg.style.color   = '#16a34a';
       msg.textContent   = 'You\'re already subscribed – we\'ll keep you updated.';
     } else {
-      msg.style.color   = '#1e40af';
+      msg.style.color   = '#166534';
       msg.textContent   = 'You\'re subscribed! New compliance updates will arrive in your inbox.';
     }
   } catch {
@@ -1052,7 +1052,7 @@ async function handleNewsletterSubmit(e) {
   <h2>Ready to Set Up Your Employer Account?</h2>
   <p>Create a free account and start ordering occupational health services for your team in minutes – nationwide.</p>
   <div class="cta-btns">
-    <a href="https://portal.dot-physical.net/signup" style="display:inline-flex;align-items:center;gap:8px;background:white;color:#1e40af;font-family:'Inter',sans-serif;font-size:21px;font-weight:700;padding:14px 28px;border-radius:10px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.15);">Create Free Account →</a>
+    <a href="https://portal.dot-physical.net/signup" style="display:inline-flex;align-items:center;gap:8px;background:white;color:#166534;font-family:'Inter',sans-serif;font-size:21px;font-weight:700;padding:14px 28px;border-radius:10px;text-decoration:none;box-shadow:0 4px 20px rgba(0,0,0,0.15);">Create Free Account →</a>
     <a href="mailto:info@workoccmed.com" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);color:white;border:1.5px solid rgba(255,255,255,0.35);font-family:'Inter',sans-serif;font-size:21px;font-weight:600;padding:14px 28px;border-radius:10px;text-decoration:none;">info@workoccmed.com</a>
     <a href="tel:+18882334567" style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);color:white;border:1.5px solid rgba(255,255,255,0.35);font-family:'Inter',sans-serif;font-size:21px;font-weight:600;padding:14px 28px;border-radius:10px;text-decoration:none;">(888) 233-4567</a>
   </div>
@@ -1117,15 +1117,15 @@ function toggleFaq(btn) {
 
 <!-- ═══ AI CHATBOT ═══ -->
 <div id="womChat" style="position:fixed;bottom:24px;right:24px;z-index:9999;font-family:'Inter',sans-serif;">
-  <button id="womChatBtn" aria-label="Chat with us" style="width:60px;height:60px;border-radius:50%;background:#1d4ed8;border:none;cursor:pointer;box-shadow:0 6px 24px rgba(29,78,216,0.4);display:flex;align-items:center;justify-content:center;transition:transform .2s;">
+  <button id="womChatBtn" aria-label="Chat with us" style="width:60px;height:60px;border-radius:50%;background:#16a34a;border:none;cursor:pointer;box-shadow:0 6px 24px rgba(29,78,216,0.4);display:flex;align-items:center;justify-content:center;transition:transform .2s;">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
   </button>
   <div id="womChatPanel" style="display:none;position:absolute;bottom:74px;right:0;width:370px;max-width:calc(100vw - 32px);height:520px;max-height:calc(100vh - 120px);background:white;border-radius:18px;box-shadow:0 12px 48px rgba(0,0,0,0.22);overflow:hidden;flex-direction:column;">
     <div style="background:#0d1b2a;padding:16px 18px;display:flex;align-items:center;gap:10px;">
-      <div style="width:34px;height:34px;border-radius:8px;background:#1d4ed8;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:12px;">WOM</div>
+      <div style="width:34px;height:34px;border-radius:8px;background:#16a34a;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:12px;">WOM</div>
       <div style="flex:1;">
         <div style="color:white;font-weight:700;font-size:15px;">WorkOccMed Assistant</div>
-        <div style="color:#93c5fd;font-size:12px;">DOT physicals, drug testing &amp; more</div>
+        <div style="color:#86efac;font-size:12px;">DOT physicals, drug testing &amp; more</div>
       </div>
       <button id="womChatClose" aria-label="Close" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.7);font-size:22px;line-height:1;">&times;</button>
     </div>
@@ -1133,7 +1133,7 @@ function toggleFaq(btn) {
     <div style="padding:12px;border-top:1px solid #e5e7eb;display:flex;gap:8px;background:white;">
       <input id="womChatInput" type="text" placeholder="Ask a question–" autocomplete="off"
         style="flex:1;border:1.5px solid #d1d5db;border-radius:10px;padding:11px 14px;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
-      <button id="womChatSend" style="background:#1d4ed8;border:none;border-radius:10px;padding:0 16px;color:white;cursor:pointer;font-weight:700;font-size:14px;">Send</button>
+      <button id="womChatSend" style="background:#16a34a;border:none;border-radius:10px;padding:0 16px;color:white;cursor:pointer;font-weight:700;font-size:14px;">Send</button>
     </div>
   </div>
 </div>
@@ -1153,7 +1153,7 @@ function toggleFaq(btn) {
     var wrap = document.createElement('div');
     var isUser = role === 'user';
     wrap.style.cssText = 'max-width:82%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap;'+
-      (isUser ? 'align-self:flex-end;background:#1d4ed8;color:white;border-bottom-right-radius:4px;'
+      (isUser ? 'align-self:flex-end;background:#16a34a;color:white;border-bottom-right-radius:4px;'
               : 'align-self:flex-start;background:white;color:#111827;border:1px solid #e5e7eb;border-bottom-left-radius:4px;');
     wrap.textContent = text;
     msgs.appendChild(wrap);
@@ -1204,7 +1204,7 @@ function toggleFaq(btn) {
 
 <!-- Live coverage ticker (honest: true service+location availability) -->
 <div id="wom-ticker" style="position:fixed;left:20px;bottom:20px;z-index:200;max-width:320px;background:#fff;border:1px solid #e6edf7;border-radius:14px;box-shadow:0 14px 38px rgba(15,23,42,.16);padding:13px 16px;display:flex;gap:12px;align-items:center;font-family:'Inter',sans-serif;opacity:0;transform:translateY(12px);transition:opacity .4s ease,transform .4s ease">
-  <div style="width:38px;height:38px;border-radius:11px;background:#e8f0fe;display:flex;align-items:center;justify-content:center;color:#1d4ed8;font-weight:800;font-size:19px;flex-shrink:0">&#10003;</div>
+  <div style="width:38px;height:38px;border-radius:11px;background:#e8f0fe;display:flex;align-items:center;justify-content:center;color:#16a34a;font-weight:800;font-size:19px;flex-shrink:0">&#10003;</div>
   <div style="line-height:1.25"><div id="wom-tk-s" style="font-size:14.5px;font-weight:700;color:#0f172a"></div><div id="wom-tk-l" style="font-size:12.5px;color:#64748b"></div></div>
 </div>
 <script>(function(){var a=[["DOT physical","Albuquerque, NM"],["TB testing","Austin, TX"],["Drug & alcohol testing","Newark, NJ"],["Pre-employment physical","Columbus, OH"],["DOT physical","Dallas, TX"],["Respirator fit testing","Phoenix, AZ"],["Drug screen","Charlotte, NC"],["DOT physical","Denver, CO"],["Titer testing","Chicago, IL"],["DOT physical","Atlanta, GA"],["Random pool enrollment","Houston, TX"],["Pre-employment physical","Nashville, TN"],["DOT physical","Birmingham, AL"],["Drug & alcohol testing","Sacramento, CA"]];for(var j=a.length-1;j>0;j--){var k=Math.floor(Math.random()*(j+1)),t=a[j];a[j]=a[k];a[k]=t;}var el=document.getElementById("wom-ticker"),s=document.getElementById("wom-tk-s"),l=document.getElementById("wom-tk-l"),i=0;function show(){var it=a[i%a.length];s.textContent=it[0]+" available";l.textContent="near "+it[1]+" – all 50 states";el.style.opacity="1";el.style.transform="translateY(0)";setTimeout(function(){el.style.opacity="0";el.style.transform="translateY(12px)";},4200);i++;}setTimeout(show,1500);setInterval(show,6200);})();</script>
