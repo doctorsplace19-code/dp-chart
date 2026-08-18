@@ -188,7 +188,7 @@ const FOOTER = `
     <a href="tel:+18882334567" style="color:#94a3b8;text-decoration:none;">(888) 233-4567</a> &nbsp;·&nbsp;
     <a href="https://www.linkedin.com/company/workoccmed" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;">LinkedIn ↗</a> &nbsp;·&nbsp; <a href="https://g.page/r/CZxpzYHQ5wJbEAI/review" target="_blank" rel="noopener" style="color:#94a3b8;text-decoration:none;">★ Review Us</a>
   </div>
-  <div style="font-size:13px;color:#475569;margin-top:16px;">© 2026 WorkOccMed Medical Group, PLLC · WorkOccMed is a national occupational health platform and a specialized division of WorkOccMed Medical Group, PLLC · Corporate Headquarters: New Jersey, USA · 75 Summit Ave, Hackensack, NJ 07601 · FMCSA-certified DOT physicals nationwide.</div>
+  <div style="font-size:13px;color:#475569;margin-top:16px;">© 2026 WorkOccMed Medical Group, PLLC · WorkOccMed is a national occupational health platform and a specialized division of WorkOccMed Medical Group, PLLC · Corporate Headquarters: New Jersey, USA · 226 State St #1018, Hackensack, NJ 07601 · FMCSA-certified DOT physicals nationwide.</div>
   <div style="font-size:12px;color:#475569;margin-top:12px;max-width:720px;margin-left:auto;margin-right:auto;">The information on this page is for general educational purposes and is not medical or legal advice. Regulations change; always confirm current requirements with the FMCSA and a certified medical examiner.</div>
 </footer>`;
 
