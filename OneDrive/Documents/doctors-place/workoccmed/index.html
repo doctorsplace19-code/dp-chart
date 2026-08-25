@@ -102,7 +102,7 @@
 <style>
   :root {
     --teal: #16a34a;
-    --teal-dark: #1e3a8a;
+    --teal-dark: #15803d;
     --teal-light: #d1fae5;
     --navy: #0f172a;
     --text: #111827;
@@ -125,7 +125,7 @@
   }
   .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .nav-logo-mark {
-    width: 40px; height: 40px; background: #1e3a8a;
+    width: 40px; height: 40px; background: #15803d;
     border-radius: 10px; display: flex; align-items: center; justify-content: center;
     font-family: 'Inter', sans-serif; font-size: 20px; color: white; font-weight: 900; letter-spacing: -1px;
   }
@@ -245,7 +245,7 @@
   /* ––– HOW IT WORKS ––– */
   .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; margin-top: 48px; }
   .step-card { text-align: center; padding: 32px 20px; background: white; border-radius: 16px; border: 1px solid var(--border); }
-  .step-num { width: 48px; height: 48px; border-radius: 50%; background: #1e3a8a; color: white; font-weight: 800; font-size: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
+  .step-num { width: 48px; height: 48px; border-radius: 50%; background: #15803d; color: white; font-weight: 800; font-size: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
   .step-card h3 { font-size: 21px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
   .step-card p { font-size: 21px; color: #6b7280; line-height: 1.55; }
 
@@ -263,7 +263,7 @@
   .faq-a.open { display: block; }
 
   /* ––– STATES ––– */
-  .states-wrap { border-radius: 20px; padding: 40px; background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%); margin-top: 40px; }
+  .states-wrap { border-radius: 20px; padding: 40px; background: linear-gradient(135deg, #0f172a 0%, #15803d 100%); margin-top: 40px; }
   .states-title { font-family: 'Inter', sans-serif; font-size: 24px; font-weight: 800; color: white; margin-bottom: 8px; text-align: center; letter-spacing: -0.02em; }
   .states-sub { font-size: 20px; color: rgba(255,255,255,0.50); text-align: center; margin-bottom: 32px; }
   .states-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
@@ -435,7 +435,7 @@
 
 <!-- HERO -->
 <section id="hero-rotating-section" style="position:relative;min-height:580px;display:flex;align-items:center;overflow:hidden;background:#0d1b2a;">
-  <img id="hero-rotating-img" src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/XeUsTaVNPYdAwiHQ.png"
+  <img id="hero-rotating-img" src="images/hero-clinic.jpg"
     alt="WorkOccMed Occupational Health Clinic"
     style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.35;transition: opacity 1s ease-in-out;"
     onerror="this.style.display='none'">
@@ -443,11 +443,10 @@
     document.addEventListener('DOMContentLoaded', function() {
       const heroImg = document.getElementById('hero-rotating-img');
       const images = [
-        'https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/XeUsTaVNPYdAwiHQ.png', // Clinic
-        'https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/kcKEgpCzpwyteECM.png', // Truck Driver
-        'https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/kdXuaKAgdnGuOUFo.png', // Nurse
-        'https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/cjPMKJkOrqjbsfYM.png', // Construction
-        'https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/AuVJBgksTAoTdnrn.png'  // HR Manager
+        'images/hero-clinic.jpg',        // Clinic
+        'images/hero-truck-driver.jpg',  // Truck Driver
+        'images/hero-nurse.jpg',         // Nurse
+        'images/hero-construction.jpg'   // Construction
       ];
       let currentIndex = 0;
       images.forEach(src => { const img = new Image(); img.src = src; });
@@ -472,7 +471,7 @@
       <p style="font-family:'Inter',sans-serif;font-size:22px;color:rgba(255,255,255,0.80);line-height:1.7;max-width:540px;margin:0 0 36px;">Schedule DOT physicals, drug tests, pre-employment physicals, titers, vaccines, and random testing programs &mdash; all from one employer portal. 15,000+ certified sites, all 50 states.</p>
       <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start;">
         <div style="display:flex;gap:14px;flex-wrap:wrap;">
-          <a href="https://portal.dot-physical.net/order" style="font-family:'Inter',sans-serif;font-size:21px;font-weight:700;color:white;background:#2563eb;padding:16px 32px;border-radius:10px;text-decoration:none;">Order Now &mdash; No Account Needed &rarr;</a>
+          <a href="https://portal.dot-physical.net/order" style="font-family:'Inter',sans-serif;font-size:21px;font-weight:700;color:white;background:#16a34a;padding:16px 32px;border-radius:10px;text-decoration:none;">Order Now &mdash; No Account Needed &rarr;</a>
           <a href="https://portal.dot-physical.net/signup" style="font-family:'Inter',sans-serif;font-size:21px;font-weight:700;color:white;background:rgba(255,255,255,0.12);border:1.5px solid rgba(255,255,255,0.3);padding:16px 32px;border-radius:10px;text-decoration:none;">Free Employer Account</a>
         </div>
         <a href="https://portal.dot-physical.net/join-consortium" style="font-family:'Inter',sans-serif;font-size:17px;font-weight:600;color:white;background:rgba(255,255,255,0.06);border:1.5px solid rgba(255,255,255,0.25);padding:12px 24px;border-radius:10px;text-decoration:none;">Join DOT Consortium &mdash; $49/yr per driver &rarr;</a>
@@ -589,7 +588,7 @@
       <img class="photo-img"
         src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/AuVJBgksTAoTdnrn.png"
         alt="WorkOccMed Employer Portal Management"
-        onerror="this.style.background='linear-gradient(135deg,#1e3a8a,#0f172a)';this.removeAttribute('src')">
+        onerror="this.style.background='linear-gradient(135deg,#15803d,#0f172a)';this.removeAttribute('src')">
     </div>
   </div>
 </div>
@@ -684,7 +683,7 @@
 </div>
 
 <!-- INDIVIDUAL ORDER BANNER -->
-<section style="background:linear-gradient(135deg,#0f172a 0%,#1e3a8a 100%);padding:56px 48px;">
+<section style="background:linear-gradient(135deg,#0f172a 0%,#15803d 100%);padding:56px 48px;">
   <div style="max-width:100%;margin:0 auto;display:grid;grid-template-columns:1fr auto;align-items:center;gap:40px;flex-wrap:wrap;">
     <div>
       <div style="font-size:18px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#86efac;margin-bottom:10px;">Individual Ordering – No Account Required</div>
@@ -954,7 +953,7 @@
         onfocus="this.style.borderColor='#16a34a'"
         onblur="this.style.borderColor='#d1d5db'"
       />
-      <button type="submit" id="newsletter-btn" style="background:#0f172a;color:white;border:none;border-radius:8px;padding:12px 22px;font-family:'Inter',sans-serif;font-size:19px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s;" onmouseover="this.style.background='#1e3a8a'" onmouseout="this.style.background='#0f172a'">
+      <button type="submit" id="newsletter-btn" style="background:#0f172a;color:white;border:none;border-radius:8px;padding:12px 22px;font-family:'Inter',sans-serif;font-size:19px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background .2s;" onmouseover="this.style.background='#15803d'" onmouseout="this.style.background='#0f172a'">
         Subscribe →
       </button>
     </form>
