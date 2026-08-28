@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMS Opt-In &amp; Text Messaging Consent | Work OccMed</title>
+<meta name="description" content="Work OccMed's SMS text messaging program: consent language, how to opt in, and how to opt out. Message and data rates may apply.">
+<link rel="canonical" href="https://www.workoccmed.com/sms-opt-in">
+<meta name="robots" content="index, follow">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root { --navy:#1e40af; --teal:#0891b2; --text:#1e293b; --muted:#64748b; --border:#bfdbfe; --cream:#eff6ff; }
+  *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'DM Sans',sans-serif; background:#f8faff; color:var(--text); line-height:1.6; }
+
+  /* NAV */
+  nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.97); backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:space-between; padding:0 40px; height:68px; border-bottom:1px solid rgba(30,64,175,0.1); box-shadow:0 1px 12px rgba(0,0,0,0.06); }
+  .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .logo-mark { width:38px; height:38px; background:linear-gradient(135deg,#1e40af,#0891b2); border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:'DM Serif Display',serif; font-size:14px; color:white; font-weight:700; box-shadow:0 2px 8px rgba(30,64,175,0.3); }
+  .logo-name { font-family:'DM Serif Display',serif; font-size:17px; color:#1e293b; line-height:1.2; }
+  .logo-sub { font-size:10px; color:#94a3b8; letter-spacing:.12em; text-transform:uppercase; }
+  .nav-links { display:flex; align-items:center; gap:24px; list-style:none; }
+  .nav-links a { color:#475569; text-decoration:none; font-size:14px; font-weight:500; transition:color .2s; }
+  .nav-links a:hover { color:#1e40af; }
+  .btn { display:inline-flex; align-items:center; padding:8px 18px; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:13px; font-weight:600; text-decoration:none; white-space:nowrap; transition:all .2s; }
+  .btn-primary { background:linear-gradient(135deg,#1e40af,#0891b2); color:white; box-shadow:0 2px 8px rgba(30,64,175,0.3); }
+  .btn-primary:hover { filter:brightness(1.1); }
+  .btn-ghost { border:1px solid #e2e8f0; color:#475569; background:transparent; }
+  .btn-ghost:hover { border-color:#93c5fd; color:#1e40af; }
+  .hamburger-btn { display:none; background:none; border:none; cursor:pointer; padding:8px; color:#1e293b; }
+  .mobile-nav { display:none; position:fixed; top:68px; left:0; right:0; bottom:0; z-index:99; background:rgba(255,255,255,0.99); flex-direction:column; align-items:center; justify-content:center; gap:28px; padding:40px; }
+  .mobile-nav.open { display:flex; }
+  .mobile-nav a { color:#1e293b; text-decoration:none; font-size:22px; font-family:'DM Serif Display',serif; }
+  .mobile-cta { margin-top:16px; display:flex; flex-direction:column; gap:12px; width:100%; max-width:280px; }
+  .mobile-cta a { text-align:center; padding:14px; border-radius:10px; font-weight:600; font-size:15px; text-decoration:none; }
+
+  /* LEGAL CONTENT */
+  .legal-hero { padding:140px 24px 40px; max-width:800px; margin:0 auto; text-align:center; }
+  .legal-hero h1 { font-family:'DM Serif Display',serif; font-size:clamp(1.9rem,4vw,2.6rem); color:#0f172a; margin-bottom:10px; }
+  .legal-hero p { font-size:14px; color:var(--muted); }
+  .legal-wrap { max-width:800px; margin:0 auto; padding:0 24px 80px; }
+  .legal-card { background:white; border:1px solid var(--border); border-radius:16px; padding:44px; }
+  .legal-card h2 { font-family:'DM Serif Display',serif; font-size:1.35rem; color:#0f172a; margin:32px 0 12px; }
+  .legal-card h2:first-child { margin-top:0; }
+  .legal-card h3 { font-size:15px; font-weight:700; color:var(--text); margin:20px 0 8px; }
+  .legal-card p { font-size:14.5px; color:#334155; line-height:1.75; margin-bottom:12px; }
+  .legal-card ul { margin:0 0 12px 20px; }
+  .legal-card li { font-size:14.5px; color:#334155; line-height:1.75; margin-bottom:6px; }
+  .legal-card a { color:var(--navy); font-weight:600; }
+  .sms-box { background:var(--cream); border:1px solid var(--border); border-radius:12px; padding:22px 24px; margin:16px 0; }
+  .sms-box p:last-child { margin-bottom:0; }
+
+  /* OPT-IN FORM */
+  .optin-box { border:2px solid var(--navy); border-radius:14px; padding:28px 26px; margin:20px 0 8px; background:#fff; }
+  .optin-box h3 { font-family:'DM Serif Display',serif; font-size:1.1rem; color:#0f172a; margin-bottom:14px; }
+  .optin-box label.field { display:block; font-size:12.5px; font-weight:600; color:var(--text); margin-bottom:5px; }
+  .optin-box input[type=text], .optin-box input[type=tel] { width:100%; padding:10px 12px; border:1px solid #cbd5e1; border-radius:8px; font-family:'DM Sans',sans-serif; font-size:14px; margin-bottom:14px; }
+  .optin-box input[type=text]:focus, .optin-box input[type=tel]:focus { outline:none; border-color:var(--navy); }
+  .checkbox-row { display:flex; align-items:flex-start; gap:10px; margin:16px 0; }
+  .checkbox-row input[type=checkbox] { margin-top:3px; width:18px; height:18px; accent-color:var(--navy); flex-shrink:0; }
+  .checkbox-row label { font-size:13.5px; color:#334155; line-height:1.6; }
+  .checkbox-row label a { color:var(--navy); font-weight:600; }
+  .optin-submit { display:inline-flex; align-items:center; padding:12px 26px; border-radius:9px; border:none; background:linear-gradient(135deg,#1e40af,#0891b2); color:white; font-family:'DM Sans',sans-serif; font-size:14px; font-weight:600; cursor:pointer; }
+  .optin-submit:disabled { opacity:.5; cursor:not-allowed; }
+  .optin-note { font-size:12px; color:var(--muted); margin-top:10px; }
+  .confirm-msg { display:none; background:#ecfdf5; border:1px solid #6ee7b7; color:#065f46; border-radius:10px; padding:16px 18px; font-size:14px; margin-top:14px; }
+
+  /* FOOTER */
+  footer { background:#0f172a; color:#94a3b8; padding:48px; }
+  .footer-inner { max-width:1100px; margin:0 auto; }
+  .footer-top { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px; }
+  .f-brand-name { font-family:'DM Serif Display',serif; font-size:20px; color:white; margin-bottom:4px; }
+  .f-brand-desc { font-size:13px; color:#64748b; line-height:1.6; }
+  .f-col h4 { font-size:12px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#64748b; margin-bottom:16px; }
+  .f-col a { display:block; font-size:13px; color:#94a3b8; text-decoration:none; margin-bottom:10px; transition:color .2s; }
+  .f-col a:hover { color:white; }
+  .footer-bottom { border-top:1px solid #1e293b; padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+  .f-legal { font-size:12px; color:#475569; }
+  .f-legal a { color:#475569; text-decoration:none; }
+
+  @media (max-width:960px) {
+    nav { padding:0 20px; }
+    .nav-links, .nav-cta { display:none; }
+    .hamburger-btn { display:block; }
+    .legal-card { padding:28px 22px; }
+    .footer-top { grid-template-columns:1fr 1fr; }
+    footer { padding:40px 24px; }
+  }
+  @media (max-width:600px) {
+    .footer-top { grid-template-columns:1fr; }
+    .footer-bottom { flex-direction:column; text-align:center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">
+    <div class="logo-mark">WO</div>
+    <div>
+      <div class="logo-name">Work OccMed</div>
+      <div class="logo-sub">Occupational Health Services</div>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="guides">Guides</a></li>
+    <li><a href="return-to-duty">Return to Duty</a></li>
+    <li><a href="partners">Partners</a></li>
+  </ul>
+  <div class="nav-cta" style="display:flex;gap:10px;align-items:center;">
+    <a href="tel:+18882334567" class="btn btn-ghost">(888) 233-4567</a>
+    <a href="https://portal.dot-physical.net/signup" class="btn btn-primary">Employer Portal →</a>
+  </div>
+  <button class="hamburger-btn" onclick="document.getElementById('mobileNav').classList.toggle('open')" aria-label="Menu">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+</nav>
+
+<div id="mobileNav" class="mobile-nav">
+  <a href="index.html#services" onclick="document.getElementById('mobileNav').classList.remove('open')">Services</a>
+  <a href="guides" onclick="document.getElementById('mobileNav').classList.remove('open')">Guides</a>
+  <a href="return-to-duty" onclick="document.getElementById('mobileNav').classList.remove('open')">Return to Duty</a>
+  <a href="partners" onclick="document.getElementById('mobileNav').classList.remove('open')">Partners</a>
+  <div class="mobile-cta">
+    <a href="https://portal.dot-physical.net/signup" style="background:linear-gradient(135deg,#1e40af,#0891b2);color:white;">Employer Portal →</a>
+    <a href="tel:+18882334567" style="border:1px solid #e2e8f0;color:#475569;background:white;">(888) 233-4567</a>
+  </div>
+</div>
+
+<div class="legal-hero">
+  <h1>SMS Opt-In &amp; Text Messaging Consent</h1>
+  <p>Work OccMed LLC — how our text messaging program works, and how to opt in or out.</p>
+</div>
+
+<div class="legal-wrap">
+  <div class="legal-card">
+
+    <h2>Our Text Messaging Program</h2>
+    <p>If you provide your mobile phone number through a Work OccMed web form — such as a booking request, partner application, corporate account request, or contact request — you may opt in to receive text messages from Work OccMed at that number. Messages may include appointment confirmations and scheduling reminders, account and order updates, and occasional information about our services and consortium plans.</p>
+
+    <div class="sms-box">
+      <p><strong>Opt-in method:</strong> You opt in by checking the consent checkbox below (or the equivalent checkbox on our booking and application forms) and submitting your phone number to us. Consent is not a condition of purchasing any service.</p>
+      <p><strong>Message frequency:</strong> Message frequency varies based on your activity with us — for example, appointment reminders are only sent if you have a scheduled appointment.</p>
+      <p><strong>Message and data rates:</strong> Message and data rates may apply, depending on your mobile carrier and plan.</p>
+      <p><strong>Opt-out:</strong> You can opt out of text messages at any time by replying <strong>STOP</strong> to any message we send, or by contacting us at the phone number or email below.</p>
+      <p><strong>Help:</strong> Reply <strong>HELP</strong> to any message for assistance, or contact us at <a href="tel:+18882334567">(888) 233-4567</a> or <a href="mailto:info@workoccmed.com">info@workoccmed.com</a>.</p>
+      <p><strong>Carriers:</strong> Carriers are not liable for delayed or undelivered messages.</p>
+      <p><strong>No sharing of opt-in data:</strong> No mobile information, including text messaging originator opt-in data and consent, will be shared with any third party or affiliate for marketing or promotional purposes. This does not apply to information shared with our subcontractors and vendors solely to facilitate the SMS program on our behalf (for example, our messaging platform provider).</p>
+    </div>
+
+    <h2>Opt In to Text Messages</h2>
+    <p>Use the form below to opt in directly, or check the same consent box wherever you see it on our booking and application forms.</p>
+
+    <div class="optin-box">
+      <h3>Text Messaging Sign-Up</h3>
+      <form id="optinForm" onsubmit="return handleOptin(event)">
+        <label class="field" for="optinName">Full Name</label>
+        <input type="text" id="optinName" name="name" required>
+
+        <label class="field" for="optinPhone">Mobile Phone Number</label>
+        <input type="tel" id="optinPhone" name="phone" placeholder="(555) 555-5555" required>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="optinConsent" name="consent" required>
+          <label for="optinConsent">I consent to receive text messages from Work OccMed LLC at the mobile number provided, including appointment reminders, account updates, and information about Work OccMed services. Message and data rates may apply. Message frequency varies. Reply <strong>STOP</strong> to opt out or <strong>HELP</strong> for help at any time. Consent is not a condition of purchase. See our <a href="privacy-policy" target="_blank" rel="noopener">Privacy Policy</a> for details.</label>
+        </div>
+
+        <button type="submit" class="optin-submit">Opt In</button>
+        <p class="optin-note">This form documents your opt-in for our records. For an appointment, please use our <a href="find-a-location">Find a Location</a> page to book directly.</p>
+      </form>
+      <div id="optinConfirm" class="confirm-msg">Thanks — your text messaging opt-in has been recorded. You can text <strong>STOP</strong> at any time to opt out.</div>
+    </div>
+
+    <h2>Opt Out</h2>
+    <p>You may opt out of text messages at any time by replying <strong>STOP</strong> to any message we send. You may also request removal by contacting us using the details below.</p>
+
+    <h2>Privacy Policy</h2>
+    <p>This opt-in is governed by our full <a href="privacy-policy">Privacy Policy</a>, which explains what information we collect, how we use and share it, and your choices.</p>
+
+    <h2>Contact Us</h2>
+    <p>Work OccMed LLC<br>226 State St #1018, Hackensack, NJ 07601<br>Phone: <a href="tel:+18882334567">(888) 233-4567</a><br>Email: <a href="mailto:info@workoccmed.com">info@workoccmed.com</a></p>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="f-brand-name">Work OccMed</div>
+        <p class="f-brand-desc">Full-service occupational health for employers nationwide. DOT physicals, drug testing, OSHA screenings, return to duty, and white-label partner programs – all managed online.</p>
+      </div>
+      <div class="f-col">
+        <h4>Services</h4>
+        <a href="index.html#services">Pre-Employment Physical</a>
+        <a href="index.html#services">DOT Physical Exam</a>
+        <a href="index.html#services">Drug Testing</a>
+        <a href="return-to-duty">Return to Duty</a>
+      </div>
+      <div class="f-col">
+        <h4>Partners</h4>
+        <a href="partners">Become a Partner</a>
+        <a href="clinic-partners">Join as a Clinic</a>
+        <a href="https://portal.dot-physical.net/partner-sign-in">Partner Portal Login</a>
+      </div>
+      <div class="f-col">
+        <h4>Contact</h4>
+        <a href="tel:+18882334567">(888) 233-4567</a>
+        <a href="mailto:info@workoccmed.com">info@workoccmed.com</a>
+        <a href="https://portal.dot-physical.net">Employer Portal</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="f-legal">– 2026 WorkOccMed LLC – DOT Physical and WorkOccMed are services provided by WorkOccMed Medical Group, PLLC.</div>
+      <div class="f-legal"><a href="privacy-policy">Privacy Policy</a> – <a href="sms-opt-in">SMS Opt-In</a> – <a href="/">Work OccMed Home</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+function handleOptin(e) {
+  e.preventDefault();
+  document.getElementById('optinForm').style.display = 'none';
+  document.getElementById('optinConfirm').style.display = 'block';
+  return false;
+}
+</script>
+
+</body>
+</html>
