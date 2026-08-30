@@ -82,6 +82,12 @@ for (const state of STATES) {
   }
 }
 
+// Consortium + Return to Duty state pages
+for (const state of STATES) {
+  urls.push(url(`${BASE}/consortium-${state.slug}`, '0.6', 'monthly'));
+  urls.push(url(`${BASE}/return-to-duty-${state.slug}`, '0.6', 'monthly'));
+}
+
 const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${urls.join('\n')}
