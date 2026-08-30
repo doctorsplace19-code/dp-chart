@@ -790,8 +790,10 @@ export default function ExamForm({ companySlug }: { companySlug: string }) {
           DOT - {tab}{driverName?` - ${driverName}`:''}{ age!==null?` - Age ${age}`:''}{ dobDisplay?` - DOB ${dobDisplay}`:''}
         </div>
         <div style={{ display:'flex', gap:6, flexShrink:0 }}>
-          {[['FMCSA Standards','#111','#fff'],['Advisory Criteria','#5e7a89','#fff'],['Instructions','#f59e0b','#fff'],['Exam Index','#0ea5e9','#fff'],['Last Exam','#fff','#374151']].map(([lbl,bg,color])=>(
-            <button key={lbl as string} style={{ background:bg as string, color:color as string, border:bg==='#fff'?'1px solid #d1d5db':'none', padding:'4px 11px', borderRadius:4, fontSize:11.5, fontWeight:600, cursor:'pointer' }}>{lbl as string}</button>
+          {[['FMCSA Standards','#111','#fff','https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-391/subpart-E#p-391.41(b)'],['Advisory Criteria','#5e7a89','#fff',''],['Instructions','#f59e0b','#fff',''],['Exam Index','#0ea5e9','#fff',''],['Last Exam','#fff','#374151','']].map(([lbl,bg,color,href])=>(
+            href
+              ? <a key={lbl as string} href={href as string} target="_blank" rel="noopener noreferrer" style={{ background:bg as string, color:color as string, border:'none', padding:'4px 11px', borderRadius:4, fontSize:11.5, fontWeight:600, cursor:'pointer', textDecoration:'none', display:'inline-flex', alignItems:'center' }}>{lbl as string}</a>
+              : <button key={lbl as string} style={{ background:bg as string, color:color as string, border:bg==='#fff'?'1px solid #d1d5db':'none', padding:'4px 11px', borderRadius:4, fontSize:11.5, fontWeight:600, cursor:'pointer' }}>{lbl as string}</button>
           ))}
         </div>
       </div>
