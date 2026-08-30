@@ -112,6 +112,20 @@ function Field({ label, required, children, flex=1 }: { label?: React.ReactNode;
 function Row({ children, gap=8, mb=14 }: { children: React.ReactNode; gap?: number; mb?: number }) {
   return <div style={{ display:'flex', flexWrap:'wrap' as const, gap, marginBottom:mb }}>{children}</div>
 }
+function CS({ value, onChange, children }: { value: string; onChange: (v: string) => void; children: React.ReactNode }) {
+  return (
+    <div style={{ position:'relative' }}>
+      <select style={{ ...sel, paddingRight: value ? '44px' : undefined }} value={value} onChange={e => onChange(e.target.value)}>
+        {children}
+      </select>
+      {value && (
+        <span onClick={() => onChange('')}
+          style={{ position:'absolute', right:26, top:'50%', transform:'translateY(-50%)', color:'#9ca3af', cursor:'pointer', fontSize:18, lineHeight:1, userSelect:'none' as const, zIndex:1 }}>×</span>
+      )}
+    </div>
+  )
+}
+const lbStyle: React.CSSProperties = { display:'block', fontSize:12, fontWeight:600, color:'#374151', marginBottom:4 }
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return <div style={{ fontWeight:700, fontSize:14, borderBottom:'1px solid #e5e7eb', paddingBottom:8, marginBottom:14 }}>{children}</div>
 }
@@ -790,7 +804,7 @@ export default function ExamForm({ companySlug }: { companySlug: string }) {
           DOT - {tab}{driverName?` - ${driverName}`:''}{ age!==null?` - Age ${age}`:''}{ dobDisplay?` - DOB ${dobDisplay}`:''}
         </div>
         <div style={{ display:'flex', gap:6, flexShrink:0 }}>
-          {[['FMCSA Standards','#111','#fff','https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-391/subpart-E#p-391.41(b)'],['Advisory Criteria','#5e7a89','#fff',''],['Instructions','#f59e0b','#fff',''],['Exam Index','#0ea5e9','#fff',''],['Last Exam','#fff','#374151','']].map(([lbl,bg,color,href])=>(
+          {[['FMCSA Standards','#111','#fff','https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-391/subpart-E#p-391.41(b)'],['Advisory Criteria','#5e7a89','#fff','https://www.ecfr.gov/current/title-49/subtitle-B/chapter-III/subchapter-B/part-391/appendix-Appendix%20A%20to%20Part%20391'],['Instructions','#f59e0b','#fff',''],['Exam Index','#0ea5e9','#fff',''],['Last Exam','#fff','#374151','']].map(([lbl,bg,color,href])=>(
             href
               ? <a key={lbl as string} href={href as string} target="_blank" rel="noopener noreferrer" style={{ background:bg as string, color:color as string, border:'none', padding:'4px 11px', borderRadius:4, fontSize:11.5, fontWeight:600, cursor:'pointer', textDecoration:'none', display:'inline-flex', alignItems:'center' }}>{lbl as string}</a>
               : <button key={lbl as string} style={{ background:bg as string, color:color as string, border:bg==='#fff'?'1px solid #d1d5db':'none', padding:'4px 11px', borderRadius:4, fontSize:11.5, fontWeight:600, cursor:'pointer' }}>{lbl as string}</button>
@@ -836,9 +850,20 @@ export default function ExamForm({ companySlug }: { companySlug: string }) {
         {/* DRIVER */}
         {tab==='Driver' && (
           <div style={p}>
-            <div style={{ marginBottom:16 }}>
-              <h2 style={{ fontSize:15, fontWeight:700, margin:0 }}>{lang==='English'?'Driver':'Conductor'}</h2>
+            {/* Header */}
+            <div style={{ display:'flex', alignItems:'center', justifyContent:'space-between', marginBottom:20 }}>
+              <h2 style={{ fontSize:16, fontWeight:700, margin:0, color:'#111' }}>{lang==='English'?'Driver':'Conductor'}</h2>
+              <div style={{ display:'flex', gap:14, alignItems:'center' }}>
+                {(['English','Spanish'] as const).map(l=>(
+                  <label key={l} style={{ display:'flex', alignItems:'center', gap:5, fontSize:12.5, cursor:'pointer', color:lang===l?'#16a34a':'#6b7280', fontWeight:lang===l?600:400 }}>
+                    <input type="radio" name="driverLang" checked={lang===l} onChange={()=>setLang(l)} style={{ width:13, height:13, accentColor:'#16a34a' }} />
+                    {l}
+                  </label>
+                ))}
+              </div>
             </div>
+
+            {/* ID Verified By */}
             <Row>
               <Field label={t('idVerifiedBy',lang)} required flex={2}>
                 <select style={sel} value={idVerifiedBy} onChange={e=>{ setIdVerifiedBy(e.target.value); setWarningDismissed(false) }}>
@@ -847,67 +872,108 @@ export default function ExamForm({ companySlug }: { companySlug: string }) {
                 </select>
               </Field>
               <div style={{ flex:1, display:'flex', alignItems:'flex-end' }}>
-                <button type="button" style={{ background:'#16a34a', color:'#fff', border:'none', borderRadius:4, padding:'8px 14px', fontSize:12, fontWeight:600, cursor:'pointer' }}>✓ {t('updateVerifiedBy',lang)}</button>
+                <button type="button" style={{ background:'#16a34a', color:'#fff', border:'none', borderRadius:4, padding:'8px 14px', fontSize:12, fontWeight:600, cursor:'pointer', whiteSpace:'nowrap' as const }}>✓ {t('updateVerifiedBy',lang)}</button>
               </div>
             </Row>
+
+            {/* Name row */}
             <div style={{ display:'flex', gap:8, marginBottom:14 }}>
-              {[{l:t('firstName',lang),v:firstName,s:setFirstName,req:true,flex:2},{l:t('middleName',lang),v:middleName,s:setMiddleName,req:false,flex:2},{l:t('lastName',lang),v:lastName,s:setLastName,req:true,flex:2}].map(f=>(
+              {[{l:t('firstName',lang),v:firstName,s:setFirstName,req:true,flex:2},
+                {l:t('middleName',lang),v:middleName,s:setMiddleName,req:false,flex:2},
+                {l:t('lastName',lang),v:lastName,s:setLastName,req:true,flex:2}].map(f=>(
                 <div key={f.l} style={{ flex:f.flex, minWidth:0 }}>
-                  <label style={{ display:'block', fontSize:12, fontWeight:600, color:'#374151', marginBottom:4 }}>{f.l}{f.req&&<span style={{ color:'#dc2626', marginLeft:2 }}>*</span>}</label>
+                  <label style={lbStyle}>{f.l}{f.req&&<span style={{ color:'#dc2626', marginLeft:2 }}>*</span>}</label>
                   <input style={inp} value={f.v} onChange={e=>f.s(e.target.value)} />
                 </div>
               ))}
               <div style={{ flex:1, minWidth:0 }}>
-                <label style={{ display:'block', fontSize:12, fontWeight:600, color:'#374151', marginBottom:4 }}>{t('suffix',lang)}</label>
-                <select style={sel} value={suffix} onChange={e=>setSuffix(e.target.value)}><option value=""></option><option>Jr.</option><option>Sr.</option><option>II</option><option>III</option></select>
+                <label style={lbStyle}>{t('suffix',lang)}</label>
+                <select style={sel} value={suffix} onChange={e=>setSuffix(e.target.value)}>
+                  <option value=""></option><option>Jr.</option><option>Sr.</option><option>II</option><option>III</option>
+                </select>
               </div>
             </div>
+
+            {/* DOB / Gender / Email */}
             <Row>
-              <Field label={t('dob',lang)} required><input type="date" style={inp} value={dob} onChange={e=>setDob(e.target.value)} /></Field>
+              <Field label={t('dob',lang)} required>
+                <div style={{ display:'flex' }}>
+                  <input id="dob-input" type="date" style={{ ...inp, flex:1, borderRadius:'4px 0 0 4px', borderRight:'none' }} value={dob} onChange={e=>setDob(e.target.value)} />
+                  <label htmlFor="dob-input" style={{ background:'#16a34a', color:'#fff', padding:'0 11px', borderRadius:'0 4px 4px 0', cursor:'pointer', display:'flex', alignItems:'center', justifyContent:'center', fontSize:15, flexShrink:0 }}>🗓</label>
+                </div>
+              </Field>
               <Field label={t('gender',lang)}>
-                <select style={sel} value={gender} onChange={e=>setGender(e.target.value)}><option value=""></option><option>Male</option><option>Female</option><option>Other</option></select>
+                <CS value={gender} onChange={setGender}>
+                  <option value=""></option><option>Male</option><option>Female</option><option>Other</option>
+                </CS>
               </Field>
               <Field label={t('email',lang)}><input type="email" style={inp} value={email} onChange={e=>setEmail(e.target.value)} /></Field>
             </Row>
+
+            {/* Address / City / State */}
             <Row>
               <Field label={t('address1',lang)} required><input style={inp} value={address1} onChange={e=>setAddress1(e.target.value)} /></Field>
               <Field label={t('city',lang)} required><input style={inp} value={city} onChange={e=>setCity(e.target.value)} /></Field>
-              <Field label={t('stateProv',lang)} required><select style={sel} value={stateProv} onChange={e=>setStateProv(e.target.value)}><option value=""></option>{US_STATES.map(s=><option key={s}>{s}</option>)}</select></Field>
+              <Field label={t('stateProv',lang)} required>
+                <CS value={stateProv} onChange={setStateProv}>
+                  <option value=""></option>{US_STATES.map(s=><option key={s}>{s}</option>)}
+                </CS>
+              </Field>
             </Row>
+
+            {/* Zip / Phone / Cell */}
             <Row>
               <Field label={t('zipCode',lang)} required><input style={inp} value={zip} onChange={e=>setZip(e.target.value)} maxLength={10} /></Field>
-              <Field label={<>{t('primaryPhone',lang)} <span style={{ color:'#0ea5e9', cursor:'pointer', fontSize:11 }} onClick={()=>setCellPhone(primaryPhone)}>{t('copyToCell',lang)}</span></>} required><input type="tel" style={inp} value={primaryPhone} onChange={e=>setPrimaryPhone(e.target.value)} placeholder="(___) ___-____" /></Field>
-              <Field label={<>{t('cellPhone',lang)} <span style={{ color:'#0ea5e9', cursor:'pointer', fontSize:11 }} onClick={()=>setPrimaryPhone(cellPhone)}>{t('copyToPrimary',lang)}</span></>}><input type="tel" style={inp} value={cellPhone} onChange={e=>setCellPhone(e.target.value)} placeholder="(___) ___-____" /></Field>
+              <Field label={<>{t('primaryPhone',lang)} <span style={{ color:'#16a34a', cursor:'pointer', fontSize:11, marginLeft:5 }} onClick={()=>setCellPhone(primaryPhone)}>{t('copyToCell',lang)}</span></>} required>
+                <input type="tel" style={inp} value={primaryPhone} onChange={e=>setPrimaryPhone(e.target.value)} placeholder="(___) ___-____" />
+              </Field>
+              <Field label={<>{t('cellPhone',lang)} <span style={{ color:'#16a34a', cursor:'pointer', fontSize:11, marginLeft:5 }} onClick={()=>setPrimaryPhone(cellPhone)}>{t('copyToPrimary',lang)}</span></>}>
+                <input type="tel" style={inp} value={cellPhone} onChange={e=>setCellPhone(e.target.value)} placeholder="(___) ___-____" />
+              </Field>
             </Row>
+
+            {/* DL / Country / Issuing State */}
             <Row>
               <Field label={t('dlNumber',lang)} required><input style={inp} value={dlNumber} onChange={e=>setDlNumber(e.target.value)} /></Field>
-              <Field label={t('issuingCountry',lang)} required><select style={sel} value={dlCountry} onChange={e=>setDlCountry(e.target.value)}><option>United States</option><option>Canada</option><option>Mexico</option></select></Field>
-              <Field label={t('issuingState',lang)} required><select style={sel} value={dlState} onChange={e=>setDlState(e.target.value)}><option value=""></option>{US_STATES.map(s=><option key={s}>{s}</option>)}</select></Field>
+              <Field label={t('issuingCountry',lang)} required>
+                <select style={sel} value={dlCountry} onChange={e=>setDlCountry(e.target.value)}>
+                  <option>United States</option><option>Canada</option><option>Mexico</option>
+                </select>
+              </Field>
+              <Field label={t('issuingState',lang)} required>
+                <CS value={dlState} onChange={setDlState}>
+                  <option value=""></option>{US_STATES.map(s=><option key={s}>{s}</option>)}
+                </CS>
+              </Field>
             </Row>
-            <div style={{ display:'flex', gap:24, marginBottom:14 }}>
-              <div style={{ flex:2 }}>
-                <div style={{ fontSize:12, fontWeight:600, color:'#374151', marginBottom:8 }}>{t('certDenied',lang)}<span style={{ color:'#dc2626', marginLeft:2 }}>*</span></div>
-                <div style={{ display:'flex', gap:16 }}>
+
+            {/* USDOT cert denied + CDL status */}
+            <div style={{ display:'flex', gap:32, marginBottom:18, alignItems:'flex-start', flexWrap:'wrap' as const }}>
+              <div style={{ flex:2, minWidth:220 }}>
+                <div style={{ ...lbStyle, marginBottom:8 }}>{t('certDenied',lang)}<span style={{ color:'#dc2626', marginLeft:2 }}>*</span></div>
+                <div style={{ display:'flex', gap:20 }}>
                   {['Yes','No','Not Sure'].map(v=>(
-                    <label key={v} style={{ display:'flex', alignItems:'center', gap:5, fontSize:13, cursor:'pointer', color:certDenied===v?'#1d4ed8':'#374151', fontWeight:certDenied===v?700:400 }}>
-                      <input type="radio" name="certDenied" value={v} checked={certDenied===v} onChange={()=>setCertDenied(v)} style={{ width:14, height:14, accentColor:'#374151' }} />
+                    <label key={v} style={{ display:'flex', alignItems:'center', gap:5, fontSize:13, cursor:'pointer', color:certDenied===v?'#1d4ed8':'#374151', fontWeight:certDenied===v?600:400 }}>
+                      <input type="radio" name="certDenied" value={v} checked={certDenied===v} onChange={()=>setCertDenied(v)} style={{ width:14, height:14, accentColor:'#1d4ed8' }} />
                       {v==='Yes'?t('yes',lang):v==='No'?t('no',lang):t('notSure',lang)}
                     </label>
                   ))}
                 </div>
               </div>
-              <div style={{ flex:1 }}>
-                <div style={{ fontSize:12, fontWeight:600, color:'#374151', marginBottom:8 }}>{t('clpCdl',lang)}<span style={{ color:'#dc2626', marginLeft:2 }}>*</span></div>
-                {[['holder',t('cdlHolder',lang)],['applicant',t('cdlApplicant',lang)],['none',t('cdlNone',lang)]].map(([val,lbl])=>(
-                  <label key={val} style={{ display:'flex', alignItems:'center', gap:6, fontSize:12.5, cursor:'pointer', marginBottom:6, color:cdlStatus===val?'#1d4ed8':'#374151', fontWeight:cdlStatus===val?700:400 }}>
-                    <input type="radio" name="cdlStatus" value={val} checked={cdlStatus===val} onChange={()=>setCdlStatus(val)} style={{ width:13, height:13, accentColor:'#374151' }} />
-                    {lbl}
+              <div style={{ flex:1, minWidth:180 }}>
+                <div style={{ ...lbStyle, marginBottom:8 }}>{t('clpCdl',lang)}<span style={{ color:'#dc2626', marginLeft:2 }}>*</span></div>
+                {[['holder',t('cdlHolder',lang)],['applicant',t('cdlApplicant',lang)],['none',t('cdlNone',lang)]].map(([val,txt])=>(
+                  <label key={val} style={{ display:'flex', alignItems:'center', gap:6, fontSize:12.5, cursor:'pointer', marginBottom:7, color:cdlStatus===val?'#1d4ed8':'#374151', fontWeight:cdlStatus===val?600:400 }}>
+                    <input type="radio" name="cdlStatus" value={val} checked={cdlStatus===val} onChange={()=>setCdlStatus(val)} style={{ width:13, height:13, accentColor:'#1d4ed8' }} />
+                    {txt}
                   </label>
                 ))}
               </div>
             </div>
+
+            {/* Notification preference */}
             <div style={{ marginBottom:14 }}>
-              <label style={{ display:'block', fontSize:12, fontWeight:600, color:'#374151', marginBottom:4 }}>{t('notifPref',lang)}<span style={{ color:'#dc2626', marginLeft:2 }}>*</span></label>
+              <label style={lbStyle}>{t('notifPref',lang)}<span style={{ color:'#dc2626', marginLeft:2 }}>*</span></label>
               <select style={{ ...sel, maxWidth:320 }} value={notifPref} onChange={e=>setNotifPref(e.target.value)}>
                 <option value="">Select a Reminder Method ...</option>
                 <option>Email Only</option><option>Text Only</option><option>Email and Text</option><option>None</option>
