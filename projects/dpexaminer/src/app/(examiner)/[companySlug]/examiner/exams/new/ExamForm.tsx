@@ -1241,6 +1241,7 @@ export default function ExamForm({ companySlug }: { companySlug: string }) {
           <div style={p}>
             <SectionTitle>Sleep Screening (STOP BANG)</SectionTitle>
             <p style={{ fontSize:12, lineHeight:1.6, marginBottom:18 }}><strong>Note:</strong> This section is not a required part of the DOT Medical Exam. Information collected should be used at your discretion as part of your overall assessment of driver fitness.</p>
+            <div style={{ border:'1px solid #f3f4f6', borderRadius:6, overflow:'hidden', marginBottom:16 }}>
             {(() => {
               const yn = (v: string | undefined) => v === 'Yes' ? 'Yes' : v === 'No' ? 'No' : ''
               const bmiNum = parseFloat(bmi)
@@ -1295,7 +1296,7 @@ export default function ExamForm({ companySlug }: { companySlug: string }) {
               })
             })()}
             </div>
-            {stopScore>0&&<div style={{ fontSize:12.5, color:'#dc2626', fontWeight:700, marginBottom:12 }}>Total Score: {stopScore} ({stopRisk})</div>}
+            {stopScore > 0 && (<div style={{ fontSize:12.5, color:'#dc2626', fontWeight:700, marginBottom:12 }}>Total Score: {stopScore} ({stopRisk})</div>)}
             <button type="button" style={{ background:'#16a34a', color:'#fff', border:'none', borderRadius:4, padding:'7px 16px', fontSize:12, fontWeight:600, cursor:'pointer' }}>↻ Copy OSA Risk Score to Physical Exam Notes</button>
           </div>
         )}

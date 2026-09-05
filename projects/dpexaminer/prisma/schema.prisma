@@ -1,0 +1,553 @@
+// WorkOccMed Examiner — Prisma Schema
+// FMCSA DOT Physical Platform by WorkOccMed LLC
+
+generator client {
+  provider   = "prisma-client-js"
+  engineType = "library"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─────────────────────────────────────────────
+// ENUMS
+// ─────────────────────────────────────────────
+
+enum UserRole {
+  SUPER_ADMIN   // Doctors Place platform owner
+  COMPANY_ADMIN // Company owner/manager
+  FRONT_DESK    // Scheduler / admin staff
+  PRACTITIONER  // FMCSA-certified medical examiner
+}
+
+enum CompanyStatus {
+  ACTIVE
+  SUSPENDED
+  CANCELLED
+}
+
+enum PractitionerStatus {
+  PENDING_APPROVAL
+  ACTIVE
+  SUSPENDED
+  INACTIVE
+}
+
+enum ExamStatus {
+  DRAFT
+  IN_PROGRESS
+  COMPLETED
+  CERTIFIED
+  SUBMITTED
+  REJECTED
+}
+
+enum CertificateType {
+  QUALIFIED
+  QUALIFIED_WITH_WAIVER
+  DISQUALIFIED
+  INCOMPLETE
+}
+
+enum SubmissionStatus {
+  PENDING
+  SUBMITTED
+  ACCEPTED
+  REJECTED
+  ERROR
+}
+
+enum TpoDesignationStatus {
+  NOT_STARTED
+  INSTRUCTIONS_SENT
+  CONFIRMED
+  REVOKED
+}
+
+enum TpoAccountStatus {
+  NOT_REGISTERED
+  PENDING_APPROVAL
+  APPROVED
+  REVOKED
+}
+
+enum TransmissionEvent {
+  XML_GENERATED
+  SUBMIT_ATTEMPTED
+  SUBMIT_SUCCEEDED
+  SUBMIT_FAILED
+  RESPONSE_RECEIVED
+}
+
+enum SubscriptionStatus {
+  TRIALING
+  ACTIVE
+  PAST_DUE
+  CANCELLED
+}
+
+// ─────────────────────────────────────────────
+// USERS
+// ─────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  passwordHash  String?
+  firstName     String
+  lastName      String
+  phone         String?
+  avatarUrl     String?
+  isActive      Boolean   @default(true)
+  emailVerified DateTime?
+  lastLoginAt   DateTime?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  platformRole  UserRole  @default(FRONT_DESK)
+
+  memberships   CompanyMember[]
+  practitioner  Practitioner?
+  sessions      UserSession[]
+
+  @@index([email])
+}
+
+model UserSession {
+  id        String   @id @default(cuid())
+  userId    String
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ─────────────────────────────────────────────
+// COMPANIES (TENANTS)
+// ─────────────────────────────────────────────
+
+model Company {
+  id            String        @id @default(cuid())
+  slug          String        @unique
+  name          String
+  legalName     String?
+  logoUrl       String?
+  status        CompanyStatus @default(ACTIVE)
+  industry      String?
+
+  contactName   String?
+  contactEmail  String?
+  contactPhone  String?
+
+  address1      String?
+  city          String?
+  state         String?
+  zip           String?
+
+  stripeCustomerId     String?
+  subscriptionStatus   SubscriptionStatus @default(TRIALING)
+  stripeSubscriptionId String?
+  currentPeriodEnd     DateTime?
+  activePractitioners  Int       @default(0)
+  monthlyAmount        Float     @default(0)
+
+  approvedAt    DateTime?
+  approvedBy    String?
+
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  members         CompanyMember[]
+  practitioners   Practitioner[]
+  drivers         Driver[]
+  exams           Exam[]
+  subscription    Subscription?
+  intakeRequests  IntakeRequest[]
+
+  @@index([slug])
+}
+
+model CompanyMember {
+  id          String    @id @default(cuid())
+  companyId   String
+  userId      String
+  role        UserRole
+  isActive    Boolean   @default(true)
+  invitedAt   DateTime  @default(now())
+  acceptedAt  DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  company     Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([companyId, userId])
+  @@index([companyId, role])
+}
+
+model Subscription {
+  id                   String             @id @default(cuid())
+  companyId            String             @unique
+  stripeSubscriptionId String?            @unique
+  stripeCustomerId     String?
+  status               SubscriptionStatus @default(TRIALING)
+  pricePerPractitioner Float              @default(60)
+  activePractitioners  Int                @default(0)
+  currentPeriodStart   DateTime?
+  currentPeriodEnd     DateTime?
+  cancelAtPeriodEnd    Boolean            @default(false)
+  trialEndsAt          DateTime?
+  createdAt            DateTime           @default(now())
+  updatedAt            DateTime           @updatedAt
+
+  company              Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
+}
+
+// ─────────────────────────────────────────────
+// PRACTITIONERS (FMCSA-certified examiners)
+// ─────────────────────────────────────────────
+
+model Practitioner {
+  id                    String             @id @default(cuid())
+  userId                String             @unique
+  companyId             String
+
+  nrcmeNumber           String?
+  nrcmeExpiresAt        DateTime?
+  nrcmeVerifiedAt       DateTime?
+
+  npi                   String?
+  licenseNumber         String?
+  licenseState          String?
+  credentials           String?
+  specialty             String?
+
+  status                PractitionerStatus @default(PENDING_APPROVAL)
+  approvedAt            DateTime?
+  approvedBy            String?
+  rejectedAt            DateTime?
+  rejectionReason       String?
+
+  billingActive         Boolean            @default(false)
+
+  createdAt             DateTime           @default(now())
+  updatedAt             DateTime           @updatedAt
+
+  user                  User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company               Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  exams                 Exam[]
+  tpoDesignation        TpoDesignation?
+
+  @@index([companyId])
+  @@index([nrcmeNumber])
+}
+
+// ─────────────────────────────────────────────
+// FMCSA TPO DESIGNATION
+//
+// A Medical Examiner designates a Third-Party Organization (TPO) to
+// upload their exam results on their behalf. This designation happens
+// on FMCSA's own National Registry site (nationalregistry.fmcsa.dot.gov)
+// under the ME's personal account — it cannot be performed by this
+// application. This model only tracks whether/when that designation
+// has happened, based on confirmation the ME reports back to us.
+// ─────────────────────────────────────────────
+
+model TpoDesignation {
+  id                String                @id @default(cuid())
+  practitionerId    String                @unique
+
+  status            TpoDesignationStatus  @default(NOT_STARTED)
+  instructionsSentAt DateTime?
+
+  // Self-reported confirmation from the ME after they complete
+  // designation on FMCSA's site. Not independently verified by this
+  // app — verification requires the FMCSA TPO API/portal.
+  confirmedAt       DateTime?
+  confirmationRef   String?
+  confirmedByUserId String?
+
+  revokedAt         DateTime?
+  revokedReason     String?
+
+  notes             String?
+
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  practitioner      Practitioner @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+}
+
+// ─────────────────────────────────────────────
+// TPO ACCOUNT
+//
+// WorkOccMed LLC's own FMCSA registration as a Third Party
+// Organization — org-level, distinct from the per-ME
+// TpoDesignation above. Fields mirror what FMCSA's Third Party
+// Organization Agreement actually requires you to designate
+// during registration: a Point of Contact and an Authorized
+// Representative, plus the TPO ID# FMCSA issues on approval.
+// Singleton row (id fixed to "singleton") — one TPO account per
+// platform, since the account belongs to WorkOccMed LLC, not a
+// tenant Company.
+// ─────────────────────────────────────────────
+
+model TpoAccount {
+  id     String           @id @default("singleton")
+  status TpoAccountStatus @default(NOT_REGISTERED)
+
+  // Issued by FMCSA once the registration is approved
+  tpoId      String?
+  approvedAt DateTime?
+
+  // TPO Point of Contact — works with FMCSA to implement/maintain
+  // the system-to-system data exchange (Section 1 of the agreement)
+  pointOfContactName  String?
+  pointOfContactEmail String?
+  pointOfContactPhone String?
+
+  // TPO Authorized Representative — signs the agreement on behalf
+  // of the organization (Section 3 of the agreement)
+  authorizedRepName  String?
+  authorizedRepTitle String?
+  authorizedRepEmail String?
+
+  agreementSignedAt DateTime?
+
+  notes String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+// ─────────────────────────────────────────────
+// DRIVERS
+// ─────────────────────────────────────────────
+
+model Driver {
+  id            String    @id @default(cuid())
+  companyId     String
+
+  firstName     String
+  lastName      String
+  dateOfBirth   DateTime
+  gender        String?
+
+  email         String?
+  phone         String?
+
+  cdlNumber     String?
+  cdlState      String?
+  cdlClass      String?
+  dotNumber     String?
+
+  address1      String?
+  city          String?
+  state         String?
+  zip           String?
+
+  isActive      Boolean   @default(true)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  company       Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  exams         Exam[]
+
+  @@index([companyId])
+  @@index([companyId, lastName, firstName])
+}
+
+// ─────────────────────────────────────────────
+// EXAMS (DOT Physical — MCSA-5875)
+// ─────────────────────────────────────────────
+
+model Exam {
+  id              String          @id @default(cuid())
+  companyId       String
+  driverId        String
+  practitionerId  String
+
+  examDate        DateTime        @default(now())
+  status          ExamStatus      @default(DRAFT)
+  examType        String          @default("DOT_PHYSICAL")
+
+  // Health History
+  hxDiabetes        Boolean  @default(false)
+  hxHeartDisease    Boolean  @default(false)
+  hxHypertension    Boolean  @default(false)
+  hxEpilepsy        Boolean  @default(false)
+  hxMentalDisorder  Boolean  @default(false)
+  hxMuscular        Boolean  @default(false)
+  hxLimb            Boolean  @default(false)
+  hxSpinal          Boolean  @default(false)
+  hxVision          Boolean  @default(false)
+  hxHearing         Boolean  @default(false)
+  hxSleep           Boolean  @default(false)
+  hxLung            Boolean  @default(false)
+  hxKidney          Boolean  @default(false)
+  hxLiver           Boolean  @default(false)
+  hxOther           String?
+  currentMeds       String?
+
+  // Vitals
+  heightFt          Int?
+  heightIn          Int?
+  weightLbs         Int?
+  bpSystolic        Int?
+  bpDiastolic       Int?
+  pulse             Int?
+  urineProtein      String?
+  urineSugar        String?
+
+  // Vision
+  visionRightCorrected    Float?
+  visionLeftCorrected     Float?
+  visionBothCorrected     Float?
+  visionRightUncorrected  Float?
+  visionLeftUncorrected   Float?
+  wearsGlasses            Boolean @default(false)
+  colorVisionNormal       Boolean @default(false)
+
+  // Hearing
+  hearingRightFt    Float?
+  hearingLeftFt     Float?
+  wearsHearingAid   Boolean  @default(false)
+
+  // Physical exam
+  examNotes         String?
+  hernia            Boolean  @default(false)
+
+  // Drug screen
+  drugScreenRequired  Boolean   @default(false)
+  drugScreenResult    String?
+  drugScreenDate      DateTime?
+
+  // Determination
+  certificateType     CertificateType?
+  certifiedMonths     Int?
+  certifiedUntil      DateTime?
+  disqualifyReason    String?
+  waiverNumber        String?
+  examinerNotes       String?
+
+  fmcsaSubmission     FMCSASubmission?
+  certificate         Certificate?
+
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+
+  company           Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  driver            Driver       @relation(fields: [driverId], references: [id], onDelete: Cascade)
+  practitioner      Practitioner @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+
+  @@index([companyId])
+  @@index([driverId])
+  @@index([practitionerId])
+}
+
+// ─────────────────────────────────────────────
+// FMCSA SUBMISSION
+// ─────────────────────────────────────────────
+
+model FMCSASubmission {
+  id                  String           @id @default(cuid())
+  examId              String           @unique
+  status              SubmissionStatus @default(PENDING)
+
+  fmcsaExaminationId  String?
+  submittedAt         DateTime?
+  acceptedAt          DateTime?
+  rejectedAt          DateTime?
+  rejectionReason     String?
+  fmcsaResponseRaw    String?
+
+  // Generated payload — schema version lets us tell which structure
+  // (ours vs. the eventual certified FMCSA XSD) produced a given file.
+  xmlPayload          String?
+  xmlSchemaVersion     String?
+
+  attempts            Int              @default(0)
+  lastAttemptAt       DateTime?
+  errorMessage        String?
+
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  exam                Exam             @relation(fields: [examId], references: [id], onDelete: Cascade)
+  transmissionLogs    TransmissionLog[]
+}
+
+// ─────────────────────────────────────────────
+// TRANSMISSION LOG — audit trail
+//
+// One row per lifecycle event for a submission (generated, attempted,
+// succeeded, failed, response received). Kept for compliance/record
+// retention independent of the current FMCSASubmission row, which
+// only holds the latest state.
+// ─────────────────────────────────────────────
+
+model TransmissionLog {
+  id              String            @id @default(cuid())
+  submissionId    String
+
+  event           TransmissionEvent
+  status          SubmissionStatus?
+  message         String?
+  xmlPayload      String?
+  rawResponse     String?
+  httpStatus      Int?
+
+  createdAt       DateTime          @default(now())
+
+  submission      FMCSASubmission   @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  @@index([submissionId])
+  @@index([createdAt])
+}
+
+// ─────────────────────────────────────────────
+// CERTIFICATE (MCSA-5876)
+// ─────────────────────────────────────────────
+
+model Certificate {
+  id              String          @id @default(cuid())
+  examId          String          @unique
+  certificateType CertificateType
+  issuedAt        DateTime        @default(now())
+  expiresAt       DateTime?
+  pdfUrl          String?
+  fmcsaCertId     String?
+
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  exam            Exam            @relation(fields: [examId], references: [id], onDelete: Cascade)
+}
+
+// ─────────────────────────────────────────────
+// INTAKE REQUEST
+// Tracks drivers who have been sent an intake link
+// ─────────────────────────────────────────────
+
+model IntakeRequest {
+  id          String   @id @default(cuid())
+  companyId   String
+  driverName  String
+  phone       String?
+  email       String?
+  method      String
+  token       String   @unique
+  intakeUrl   String
+  status      String   @default("PENDING")
+  sentAt      DateTime @default(now())
+  expiresAt   DateTime
+
+  company     Company  @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@index([companyId])
+  @@index([token])
+}
