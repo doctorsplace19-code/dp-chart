@@ -214,7 +214,27 @@ function footer(name) {
 </html>`;
 }
 
-function head(title, description, canonical, keywords) {
+// Builds an FAQPage JSON-LD block from [{q, a}] pairs so the on-page
+// FAQ section (already present as HTML) also gets a shot at Google's
+// FAQ rich-result treatment. `a` should be plain text (HTML entities
+// like &mdash; are stripped since JSON-LD isn't rendered as HTML).
+function faqJsonLd(pairs) {
+  if (!pairs || !pairs.length) return '';
+  const plain = (s) => s.replace(/&mdash;/g, '—').replace(/&amp;/g, '&');
+  const entities = pairs.map(({ q, a }) => ({
+    '@type': 'Question',
+    name: plain(q),
+    acceptedAnswer: { '@type': 'Answer', text: plain(a) },
+  }));
+  const json = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: entities,
+  });
+  return `<script type="application/ld+json">${json}</script>\n`;
+}
+
+function head(title, description, canonical, keywords, faqPairs) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -235,7 +255,7 @@ function head(title, description, canonical, keywords) {
 <meta name="keywords" content="${keywords}">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>${SHARED_CSS}</style>
-</head>
+${faqJsonLd(faqPairs)}</head>
 <body>
 <nav>
   <a href="index.html" class="nav-logo">
@@ -262,7 +282,12 @@ function consortiumPageHtml(state) {
     `DOT Random Testing Consortium in ${name} — $49/yr | WorkOccMed`,
     `Join a DOT random drug &amp; alcohol testing consortium for ${name} fleets and owner-operators — from $49/yr per driver. Random pulls, MRO review, and FMCSA Clearinghouse reporting handled for you.`,
     `https://www.workoccmed.com/consortium-${slug}`,
-    `dot consortium ${name}, random drug testing consortium ${name}, dot random testing ${abbr}, c-tpa ${name}, fmcsa consortium ${name}`
+    `dot consortium ${name}, random drug testing consortium ${name}, dot random testing ${abbr}, c-tpa ${name}, fmcsa consortium ${name}`,
+    [
+      { q: 'Do I need a consortium if I only have one truck?', a: `Yes. FMCSA requires every CDL driver subject to DOT testing — including single-truck owner-operators in ${name} — to be enrolled in a random testing pool.` },
+      { q: 'How much does it cost?', a: `WorkOccMed's ${name} consortium enrollment starts at $49/year per driver, with no separate setup fee.` },
+      { q: 'What happens when a driver is selected?', a: `We notify you immediately. The driver must test the same day at a certified site near them in ${name} — we handle scheduling and reporting.` },
+    ]
   )}
 
 <section class="hero">
@@ -344,7 +369,12 @@ function rtdPageHtml(state) {
     `Return to Duty Process in ${name} | WorkOccMed`,
     `SAP evaluation coordination and DOT return-to-duty testing for ${name} drivers after a drug or alcohol violation. Get back to safety-sensitive duty compliantly.`,
     `https://www.workoccmed.com/return-to-duty-${slug}`,
-    `return to duty ${name}, dot return to duty ${abbr}, sap evaluation ${name}, follow-up testing ${name}, dot violation ${name}`
+    `return to duty ${name}, dot return to duty ${abbr}, sap evaluation ${name}, follow-up testing ${name}, dot violation ${name}`,
+    [
+      { q: `How long does the return-to-duty process take in ${name}?`, a: `It varies by driver — the SAP's recommended education or treatment sets the pace. Once cleared, the return-to-duty test itself can typically be scheduled same-day at a certified ${name} site.` },
+      { q: 'Who reports the return-to-duty test to the Clearinghouse?', a: 'WorkOccMed reports return-to-duty and follow-up test results to the FMCSA Clearinghouse on your behalf as your TPA.' },
+      { q: 'Does WorkOccMed provide the SAP evaluation itself?', a: 'We coordinate with SAPs and manage the paperwork, records release, and testing logistics; the SAP evaluation itself is performed by a qualified, independent Substance Abuse Professional.' },
+    ]
   )}
 
 <section class="hero">
