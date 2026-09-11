@@ -1,5 +1,5 @@
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import PrintBar from './PrintBar'
 
 async function getExam(iid: string) {
   if (!process.env.DATABASE_URL) return null
@@ -62,17 +62,10 @@ export default async function I693PrintPage({ params }: { params: Promise<{ comp
         .uscis-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
       `}</style>
 
-      {/* Print controls */}
-      <div className="no-print" style={{ background: '#1a3a1a', padding: '10px 20px', display: 'flex', gap: 12, alignItems: 'center' }}>
-        <span style={{ color: '#fff', fontWeight: 700, fontSize: 14 }}>I-693 — {exam.lastName}, {exam.firstName}</span>
-        <button onClick={() => window.print()} style={{ background: '#4ade80', color: '#14532d', border: 'none', borderRadius: 6, padding: '6px 16px', fontWeight: 700, cursor: 'pointer' }}>
-          Print / Save PDF
-        </button>
-        <Link href={`/${companySlug}/examiner/immigration/${iid}`} style={{ color: '#86efac', textDecoration: 'none', fontSize: 12 }}>← Back to Exam</Link>
-        <span style={{ color: 'rgba(255,255,255,.4)', fontSize: 11, marginLeft: 'auto' }}>
-          Seal completed form in envelope — hand to applicant unopened per 8 CFR 232.2
-        </span>
-      </div>
+      <PrintBar
+        name={`${exam.lastName}, ${exam.firstName}`}
+        backHref={`/${companySlug}/examiner/immigration/${iid}`}
+      />
 
       <div className="page">
 
