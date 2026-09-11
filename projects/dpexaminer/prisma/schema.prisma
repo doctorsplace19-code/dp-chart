@@ -159,12 +159,13 @@ model Company {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  members         CompanyMember[]
-  practitioners   Practitioner[]
-  drivers         Driver[]
-  exams           Exam[]
-  subscription    Subscription?
-  intakeRequests  IntakeRequest[]
+  members            CompanyMember[]
+  practitioners      Practitioner[]
+  drivers            Driver[]
+  exams              Exam[]
+  subscription       Subscription?
+  intakeRequests     IntakeRequest[]
+  immigrationExams   ImmigrationExam[]
 
   @@index([slug])
 }
@@ -238,6 +239,7 @@ model Practitioner {
   user                  User               @relation(fields: [userId], references: [id], onDelete: Cascade)
   company               Company            @relation(fields: [companyId], references: [id], onDelete: Cascade)
   exams                 Exam[]
+  immigrationExams      ImmigrationExam[]
   tpoDesignation        TpoDesignation?
 
   @@index([companyId])
@@ -550,4 +552,126 @@ model IntakeRequest {
 
   @@index([companyId])
   @@index([token])
+}
+
+// ─────────────────────────────────────────────
+// IMMIGRATION EXAM (I-693)
+// ─────────────────────────────────────────────
+
+model ImmigrationExam {
+  id              String   @id @default(cuid())
+  companyId       String
+  practitionerId  String
+
+  // Part 1 — Applicant
+  firstName       String
+  middleName      String?
+  lastName        String
+  sex             String?
+  dob             String?
+  cityBirth       String?
+  countryBirth    String?
+  idNumber        String?
+  idType          String?
+  uscisAccount    String?
+  alienReg        String?
+  overseasExam    Boolean  @default(false)
+  careOf          String?
+  street          String?
+  addrType        String?
+  aptNum          String?
+  city            String?
+  state           String?
+  zip             String?
+  country         String?
+
+  // Admin
+  notes           String?
+
+  // TB
+  noIGRA              Boolean  @default(false)
+  quantiferonDate     String?
+  tspotDate           String?
+  igraResult          String?
+  tbScreening         String?
+  sputumSmears        String?  // JSON array
+  tbClassification    String?
+  tbRemarks           String?
+
+  // Syphilis
+  syphCollectionDate  String?
+  syphReactive        String?
+  syphFinding         String?
+  syphRemarks         String?
+  syphDrugs           String?
+  syphDosage          String?
+  syphStart           String?
+  syphEnd             String?
+
+  // Gonorrhea
+  gonDate             String?
+  gonResult           String?
+  gonFinding          String?
+  gonRemarks          String?
+  gonDrugs            String?
+  gonDosage           String?
+  gonStart            String?
+  gonEnd              String?
+
+  // Disorders
+  disorderFinding     String?
+  disorderRemarks     String?
+  commFinding         String?
+  commRemarks         String?
+  substanceFinding    String?
+  substanceRemarks    String?
+
+  // Vaccinations (stored as JSON)
+  vaccData            String?  // JSON Record<label, VaccRow>
+  vaccOverall         String?  // JSON string[]
+  vaccRemarks         String?
+
+  // Other
+  otherClassB         String?
+  addlItems           String?  // JSON array of {page,part,item,text}
+
+  // Results
+  overallFindings     String?  // JSON string[]
+  examDate            String?
+  followup1           String?
+  followup2           String?
+  followup3           String?
+  preparer            String?  // JSON string[]
+  physician           String?
+  csFirst             String?
+  csMiddle            String?
+  csLast              String?
+  csDayPhone          String?
+  csCellPhone         String?
+  csEmail             String?
+  csOrg               String?
+  csid                String?
+  csStreet            String?
+  csAddrType          String?
+  csAptNum            String?
+  csCity              String?
+  csState             String?
+  csZip               String?
+  csMailStreet        String?
+  csMailAddrType      String?
+  csMailAptNum        String?
+  csMailCity          String?
+  csMailState         String?
+  csMailZip           String?
+
+  status          String   @default("draft")
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  company         Company      @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  practitioner    Practitioner @relation(fields: [practitionerId], references: [id], onDelete: Cascade)
+
+  @@index([companyId])
+  @@index([practitionerId])
 }

@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Shell from '@/components/layout/Shell'
 import { useParams } from 'next/navigation'
 
@@ -31,9 +32,13 @@ const VACC_GROUPS: { label: string; vaccines: string[]; gray?: boolean; showTite
 
 export default function NewI693Page() {
   const params = useParams()
+  const router = useRouter()
   const companySlug = params?.companySlug as string ?? ''
 
   const [tab, setTab] = useState(0)
+  const [examId, setExamId] = useState<string | null>(null)
+  const [saving, setSaving] = useState(false)
+  const [saveMsg, setSaveMsg] = useState('')
   const [medSub, setMedSub] = useState(0)
   const [adminSub, setAdminSub] = useState(0)
   const [resultsSub, setResultsSub] = useState(0)
@@ -153,6 +158,50 @@ export default function NewI693Page() {
   const [csMailCity, setCsMailCity] = useState('')
   const [csMailState, setCsMailState] = useState('')
   const [csMailZip, setCsMailZip] = useState('')
+
+  async function handleSave(redirect = false) {
+    if (!firstName.trim() || !lastName.trim()) {
+      setSaveMsg('First and last name are required.')
+      setTimeout(() => setSaveMsg(''), 4000)
+      setTab(0)
+      return
+    }
+    setSaving(true)
+    setSaveMsg('')
+    try {
+      const payload = {
+        companySlug, examId,
+        firstName, middleName, lastName, sex, dob, cityBirth, countryBirth,
+        idNumber, idType, uscisAccount, alienReg, overseasExam, careOf,
+        street, addrType, aptNum, city, state, zip, country,
+        notes,
+        noIGRA, quantiferonDate, tspotDate, igraResult, tbScreening,
+        sputumSmears, tbClassification, tbRemarks,
+        syphCollectionDate, syphReactive, syphFinding, syphRemarks,
+        syphDrugs, syphDosage, syphStart, syphEnd,
+        gonDate, gonResult, gonFinding, gonRemarks, gonDrugs, gonDosage, gonStart, gonEnd,
+        disorderFinding, disorderRemarks, commFinding, commRemarks,
+        substanceFinding, substanceRemarks,
+        vaccData, vaccOverall, vaccRemarks,
+        otherClassB, addlItems,
+        overallFindings, examDate, followup1, followup2, followup3, preparer,
+        physician, csFirst, csMiddle, csLast, csDayPhone, csCellPhone, csEmail,
+        csOrg, csid, csStreet, csAddrType, csAptNum, csCity, csState, csZip,
+        csMailStreet, csMailAddrType, csMailAptNum, csMailCity, csMailState, csMailZip,
+      }
+      const res = await fetch('/api/immigration', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error ?? 'Save failed')
+      setExamId(json.examId)
+      setSaveMsg('Saved')
+      setTimeout(() => setSaveMsg(''), 3000)
+      if (redirect) router.push(`/${companySlug}/examiner/immigration/${json.examId}`)
+    } catch (e: any) {
+      setSaveMsg(e.message ?? 'Save failed')
+    } finally {
+      setSaving(false)
+    }
+  }
 
   const inp: React.CSSProperties = { width:'100%', padding:'7px 10px', border:'1px solid #ccc', borderRadius:5, fontSize:13, boxSizing:'border-box' }
   const lbl: React.CSSProperties = { fontSize:11, color:'#555', display:'block', marginBottom:3 }
@@ -700,8 +749,8 @@ export default function NewI693Page() {
       <p style={{ fontSize:13, color:'var(--ink3)', maxWidth:500, margin:'0 auto 20px' }}>
         Save the exam first, then use the Print I-693 button on the exam detail page to generate the official sealed form.
       </p>
-      <button style={{ background:'#1a3a1a', color:'#fff', border:'none', padding:'10px 24px', borderRadius:6, fontSize:13, fontWeight:700, cursor:'pointer' }}>
-        Save &amp; Go to Exam
+      <button onClick={() => handleSave(true)} disabled={saving} style={{ background:'#1a3a1a', color:'#fff', border:'none', padding:'10px 24px', borderRadius:6, fontSize:13, fontWeight:700, cursor:'pointer' }}>
+        {saving ? 'Saving...' : 'Save & Go to Exam'}
       </button>
     </div>
   }
@@ -712,12 +761,13 @@ export default function NewI693Page() {
       role="PRACTITIONER" pageTitle="New I-693"
       nrcmeExpiry="12/14/2026"
       pageActions={
-        <div style={{ display:'flex', gap:8 }}>
-          <button style={{ background:'#1a73e8', color:'#fff', border:'none', padding:'7px 18px', borderRadius:6, fontSize:13, fontWeight:700, cursor:'pointer', display:'flex', alignItems:'center', gap:6 }}>
-            💾 Save
+        <div style={{ display:'flex', gap:8, alignItems:'center' }}>
+          {saveMsg && <span style={{ fontSize:12, color: saveMsg === 'Saved' ? '#16a34a' : '#dc2626', fontWeight:600 }}>{saveMsg}</span>}
+          <button onClick={() => handleSave(false)} disabled={saving} style={{ background:'#1a73e8', color:'#fff', border:'none', padding:'7px 18px', borderRadius:6, fontSize:13, fontWeight:700, cursor:saving?'wait':'pointer', opacity:saving?0.7:1, display:'flex', alignItems:'center', gap:6 }}>
+            {saving ? '...' : '💾 Save'}
           </button>
-          <button style={{ background:'#1a73e8', color:'#fff', border:'1px solid rgba(255,255,255,.3)', padding:'7px 14px', borderRadius:6, fontSize:13, fontWeight:700, cursor:'pointer' }}>
-            ⊕ More Options ▾
+          <button onClick={() => handleSave(true)} disabled={saving} style={{ background:'#1a73e8', color:'#fff', border:'1px solid rgba(255,255,255,.3)', padding:'7px 14px', borderRadius:6, fontSize:13, fontWeight:700, cursor:saving?'wait':'pointer', opacity:saving?0.7:1 }}>
+            ⊕ Save &amp; View ▾
           </button>
         </div>
       }

@@ -1,33 +1,21 @@
 import Shell from '@/components/layout/Shell'
 import { Badge, BtnPrimary, BtnSecondary } from '@/components/ui/dp-table'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 
-// Mock — replace with DB fetch by iid
-const exam = {
-  id: 'i001',
-  last: 'Ramirez', first: 'Maria', middle: 'Elena',
-  aNumber: 'A-212345678',
-  dob: '03/14/1985', sex: 'Female',
-  countryBirth: 'Mexico', countryNationality: 'Mexico',
-  address: '87 Main Street, Hackensack, NJ 07601',
-  examDate: '09/08/2026',
-  height: '5\'4"', weight: '140 lbs',
-  bp: '118/74', pulse: '72 bpm',
-  tbMethod: 'TST (Mantoux)', tbResult: 'Negative', tbInduration: '0 mm',
-  chestXray: 'Not indicated',
-  physicalFindings: 'All systems within normal limits.',
-  determination: 'No conditions found',
-  status: 'Completed',
-  civilSurgeon: 'Chantal Simpson-Gabriel, MD',
-  civilSurgeonDesig: 'CS-0012345',
-  signDate: '09/08/2026',
+async function getExam(iid: string) {
+  if (!process.env.DATABASE_URL) return null
+  try {
+    const { prisma } = await import('@/lib/prisma')
+    return await prisma.immigrationExam.findUnique({ where: { id: iid } })
+  } catch { return null }
 }
 
 function InfoRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div style={{ display: 'flex', gap: 8, padding: '5px 0', borderBottom: '1px solid var(--border)' }}>
       <span style={{ fontSize: 11, color: 'var(--ink3)', width: 180, flexShrink: 0 }}>{label}</span>
-      <span style={{ fontSize: 12, color: 'var(--ink)', fontWeight: 500 }}>{value}</span>
+      <span style={{ fontSize: 12, color: 'var(--ink)', fontWeight: 500 }}>{value || '—'}</span>
     </div>
   )
 }
@@ -45,11 +33,16 @@ function Section({ title, children }: { title: string; children: React.ReactNode
 
 export default async function ImmigrationExamDetailPage({ params }: { params: Promise<{ companySlug: string; iid: string }> }) {
   const { companySlug, iid } = await params
+  const exam = await getExam(iid)
+  if (!exam) notFound()
+
+  const status = exam.status === 'completed' ? 'Completed' : 'Draft'
+  const civilSurgeon = [exam.csFirst, exam.csMiddle, exam.csLast].filter(Boolean).join(' ') || '—'
 
   return (
     <Shell
       companySlug={companySlug} companyName="WorkOccMed Medical Group"
-      role="PRACTITIONER" pageTitle={`I-693 — ${exam.last}, ${exam.first} (${exam.aNumber})`}
+      role="PRACTITIONER" pageTitle={`I-693 — ${exam.lastName}, ${exam.firstName}${exam.alienReg ? ` (${exam.alienReg})` : ''}`}
       nrcmeExpiry="12/14/2026"
       pageActions={
         <div style={{ display: 'flex', gap: 8 }}>
@@ -60,56 +53,55 @@ export default async function ImmigrationExamDetailPage({ params }: { params: Pr
     >
       {/* Status banner */}
       <div style={{
-        background: exam.status === 'Completed' ? '#f0fdf4' : '#fef3c7',
-        border: `1px solid ${exam.status === 'Completed' ? '#bbf7d0' : '#fcd34d'}`,
+        background: status === 'Completed' ? '#f0fdf4' : '#fef3c7',
+        border: `1px solid ${status === 'Completed' ? '#bbf7d0' : '#fcd34d'}`,
         borderRadius: 10, padding: '12px 16px', marginBottom: 16,
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
       }}>
         <div>
-          <div style={{ fontWeight: 700, fontSize: 14, color: exam.status === 'Completed' ? '#14532d' : '#78350f' }}>
-            {exam.determination}
+          <div style={{ fontWeight: 700, fontSize: 14, color: status === 'Completed' ? '#14532d' : '#78350f' }}>
+            {exam.igraResult ? `TB IGRA: ${exam.igraResult}` : 'Immigration Medical Examination'}
           </div>
-          <div style={{ fontSize: 11, color: exam.status === 'Completed' ? '#166534' : '#92400e', marginTop: 2 }}>
-            Signed by {exam.civilSurgeon} · {exam.signDate}
+          <div style={{ fontSize: 11, color: status === 'Completed' ? '#166534' : '#92400e', marginTop: 2 }}>
+            {civilSurgeon !== '—' ? `Civil Surgeon: ${civilSurgeon}` : 'Civil surgeon not yet assigned'}{exam.examDate ? ` · ${exam.examDate}` : ''}
           </div>
         </div>
-        <Badge label={exam.status} color={exam.status === 'Completed' ? 'green' : 'amber'} />
+        <Badge label={status} color={status === 'Completed' ? 'green' : 'amber'} />
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
         <div>
           <Section title="Applicant Information">
-            <InfoRow label="Name" value={`${exam.last}, ${exam.first} ${exam.middle}`} />
-            <InfoRow label="A-Number" value={<span style={{ fontFamily: 'monospace' }}>{exam.aNumber}</span>} />
+            <InfoRow label="Name" value={`${exam.lastName}, ${exam.firstName}${exam.middleName ? ' ' + exam.middleName : ''}`} />
+            <InfoRow label="A-Number" value={exam.alienReg ? <span style={{ fontFamily: 'monospace' }}>{exam.alienReg}</span> : null} />
             <InfoRow label="Date of Birth" value={exam.dob} />
             <InfoRow label="Sex" value={exam.sex} />
             <InfoRow label="Country of Birth" value={exam.countryBirth} />
-            <InfoRow label="Nationality" value={exam.countryNationality} />
-            <InfoRow label="Address" value={exam.address} />
+            <InfoRow label="Address" value={[exam.street, exam.city, exam.state, exam.zip].filter(Boolean).join(', ')} />
             <InfoRow label="Exam Date" value={exam.examDate} />
           </Section>
 
-          <Section title="Physical Exam">
-            <InfoRow label="Height / Weight" value={`${exam.height} / ${exam.weight}`} />
-            <InfoRow label="Blood Pressure" value={exam.bp} />
-            <InfoRow label="Pulse" value={exam.pulse} />
-            <InfoRow label="Findings" value={exam.physicalFindings} />
+          <Section title="Tuberculosis Evaluation">
+            <InfoRow label="IGRA Result" value={exam.igraResult} />
+            <InfoRow label="Quantiferon Date" value={exam.quantiferonDate} />
+            <InfoRow label="T-Spot Date" value={exam.tspotDate} />
+            <InfoRow label="TB Screening" value={exam.tbScreening} />
+            <InfoRow label="Classification" value={exam.tbClassification} />
           </Section>
         </div>
 
         <div>
-          <Section title="Tuberculosis Evaluation">
-            <InfoRow label="Method" value={exam.tbMethod} />
-            <InfoRow label="Induration" value={exam.tbInduration} />
-            <InfoRow label="Result" value={<Badge label={exam.tbResult} color={exam.tbResult === 'Negative' ? 'green' : 'red'} />} />
-            <InfoRow label="Chest X-Ray" value={exam.chestXray} />
+          <Section title="Civil Surgeon Certification">
+            <InfoRow label="Civil Surgeon" value={civilSurgeon} />
+            <InfoRow label="CSID" value={exam.csid} />
+            <InfoRow label="Organization" value={exam.csOrg} />
+            <InfoRow label="Phone" value={exam.csDayPhone || exam.csCellPhone} />
           </Section>
 
-          <Section title="Civil Surgeon Certification">
-            <InfoRow label="Civil Surgeon" value={exam.civilSurgeon} />
-            <InfoRow label="Designation #" value={exam.civilSurgeonDesig} />
-            <InfoRow label="Date Signed" value={exam.signDate} />
-            <InfoRow label="Determination" value={exam.determination} />
+          <Section title="Overall Findings">
+            <InfoRow label="Findings" value={exam.overallFindings ? (JSON.parse(exam.overallFindings) as string[]).join('; ') : null} />
+            <InfoRow label="Date of First Exam" value={exam.examDate} />
+            <InfoRow label="Status" value={status} />
           </Section>
 
           {/* Print link */}
