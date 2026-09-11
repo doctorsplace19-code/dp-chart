@@ -275,7 +275,7 @@ function consortiumPageHtml(state) {
   const facts = STATE_FACTS[slug] || DEFAULT_FACTS;
   const cityLinks = cities.map(c => {
     const citySlug = `${slug}-${c.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-    return `<a href="cities/${citySlug}.html">${c}, ${abbr}</a>`;
+    return `<a href="cities/consortium-${citySlug}.html">${c}, ${abbr}</a>`;
   }).join('\n      ');
 
   return `${head(
@@ -362,7 +362,7 @@ function rtdPageHtml(state) {
   const facts = STATE_FACTS[slug] || DEFAULT_FACTS;
   const cityLinks = cities.map(c => {
     const citySlug = `${slug}-${c.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
-    return `<a href="cities/${citySlug}.html">${c}, ${abbr}</a>`;
+    return `<a href="cities/rtd-${citySlug}.html">${c}, ${abbr}</a>`;
   }).join('\n      ');
 
   return `${head(
