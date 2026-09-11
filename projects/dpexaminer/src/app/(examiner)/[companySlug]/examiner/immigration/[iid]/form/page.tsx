@@ -1,46 +1,45 @@
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 
-// Mock data — replace with DB fetch by iid
-const exam = {
-  last: 'Ramirez', first: 'Maria', middle: 'Elena',
-  aNumber: 'A-212345678',
-  dob: '03/14/1985', sex: 'Female',
-  countryBirth: 'Mexico', countryNationality: 'Mexico',
-  address: '87 Main Street, Hackensack, NJ 07601',
-  examDate: '09/08/2026',
-  determination: 'No conditions found that would make this applicant inadmissible on medical grounds',
-  tbMethod: 'TST',
-  tbDatePlaced: '09/01/2026', tbDateRead: '09/03/2026',
-  tbInduration: '0', tbResult: 'Negative',
-  chestXray: 'Not indicated',
-  height: 64, weight: 140,
-  bp: '118/74', pulse: 72,
-  physicalFindings: 'All systems within normal limits.',
-  civilSurgeon: 'Chantal Simpson-Gabriel, MD',
-  civilSurgeonDesig: 'CS-0012345',
-  office: '350 Prospect Ave, Hackensack, NJ 07601',
-  signDate: '09/08/2026',
+async function getExam(iid: string) {
+  if (!process.env.DATABASE_URL) return null
+  try {
+    const { prisma } = await import('@/lib/prisma')
+    return await prisma.immigrationExam.findUnique({ where: { id: iid } })
+  } catch { return null }
 }
 
-const vaccines = [
-  { name: 'COVID-19',          status: 'Up to date',             date: '01/15/2024' },
-  { name: 'Tdap',              status: 'Up to date',             date: '03/22/2021' },
-  { name: 'Hepatitis B',       status: 'Up to date',             date: '06/10/2010' },
-  { name: 'MMR',               status: 'Previously immune (titer)', date: '09/08/2026' },
-  { name: 'Varicella',         status: 'Previously immune (disease)', date: '' },
-  { name: 'Influenza',         status: 'Administered today',     date: '09/08/2026' },
-  { name: 'Pneumococcal',      status: 'Not age-appropriate',    date: '' },
-  { name: 'Hepatitis A',       status: 'Up to date',             date: '05/01/2019' },
-  { name: 'HPV',               status: 'Not age-appropriate',    date: '' },
-  { name: 'Meningococcal',     status: 'Not age-appropriate',    date: '' },
-  { name: 'Polio (IPV)',       status: 'Up to date',             date: '1990' },
-  { name: 'Hib',               status: 'Not age-appropriate',    date: '' },
-  { name: 'Rotavirus',         status: 'Not age-appropriate',    date: '' },
-  { name: 'Zoster',            status: 'Not age-appropriate',    date: '' },
+type VaccRow = {
+  received1: string; received2: string; received3: string; received4: string
+  given: boolean; complete: boolean
+  ageWaiver: boolean; ciWaiver: boolean; timeWaiver: boolean; seeBelow: boolean
+}
+
+const VACC_GROUPS = [
+  'DT/DTaP/DTP', 'Td/Tdap', 'OPV/IPV', 'MMR', 'Hib',
+  'Hep. B', 'Varicella', 'Pneumococcal', 'Influenza',
+  'Rotavirus', 'Hep. A', 'Meningococcal', 'COVID-19',
 ]
 
 export default async function I693PrintPage({ params }: { params: Promise<{ companySlug: string; iid: string }> }) {
   const { companySlug, iid } = await params
+  const exam = await getExam(iid)
+  if (!exam) notFound()
+
+  const civilSurgeon = [exam.csFirst, exam.csMiddle, exam.csLast].filter(Boolean).join(' ') || '—'
+  const csAddress = [exam.csStreet, exam.csCity, exam.csState, exam.csZip].filter(Boolean).join(', ') || '—'
+  const applicantAddress = [exam.street, exam.city, exam.state, exam.zip].filter(Boolean).join(', ') || '—'
+
+  const overallFindings: string[] = exam.overallFindings ? JSON.parse(exam.overallFindings) : []
+  const determination = overallFindings.length > 0
+    ? overallFindings.join('; ')
+    : 'No conditions found that would make this applicant inadmissible on medical grounds'
+
+  const vaccData: Record<string, VaccRow> = exam.vaccData ? JSON.parse(exam.vaccData) : {}
+
+  // TB method display
+  const tbMethod = exam.noIGRA ? 'TST' : exam.quantiferonDate ? 'Quantiferon Gold' : exam.tspotDate ? 'T-SPOT.TB' : 'IGRA'
+  const tbDate = exam.quantiferonDate || exam.tspotDate || '—'
 
   return (
     <>
@@ -55,9 +54,6 @@ export default async function I693PrintPage({ params }: { params: Promise<{ comp
         td, th { border: 1px solid #333; padding: 4px 7px; font-size: 10pt; vertical-align: top; }
         th { background: #e8e8e8; font-weight: bold; font-size: 9pt; text-align: left; }
         .section-header { background: #1a3a1a; color: #fff; font-weight: bold; font-size: 10pt; padding: 5px 8px; margin-top: 14px; margin-bottom: 0; }
-        .field-row { display: flex; gap: 0; border: 1px solid #333; margin-bottom: -1px; }
-        .field-cell { padding: 4px 8px; flex: 1; border-right: 1px solid #333; }
-        .field-cell:last-child { border-right: none; }
         .field-label { font-size: 8pt; color: #444; }
         .field-value { font-size: 11pt; font-weight: 600; }
         .sig-line { border-bottom: 1px solid #000; height: 28px; margin-top: 8px; }
@@ -68,7 +64,7 @@ export default async function I693PrintPage({ params }: { params: Promise<{ comp
 
       {/* Print controls */}
       <div className="no-print" style={{ background: '#1a3a1a', padding: '10px 20px', display: 'flex', gap: 12, alignItems: 'center' }}>
-        <span style={{ color: '#fff', fontWeight: 700, fontSize: 14 }}>I-693 — {exam.last}, {exam.first}</span>
+        <span style={{ color: '#fff', fontWeight: 700, fontSize: 14 }}>I-693 — {exam.lastName}, {exam.firstName}</span>
         <button onClick={() => window.print()} style={{ background: '#4ade80', color: '#14532d', border: 'none', borderRadius: 6, padding: '6px 16px', fontWeight: 700, cursor: 'pointer' }}>
           Print / Save PDF
         </button>
@@ -89,7 +85,7 @@ export default async function I693PrintPage({ params }: { params: Promise<{ comp
           </div>
           <div style={{ textAlign: 'right', fontSize: 9 }}>
             <div>OMB No. 1615-0033</div>
-            <div style={{ marginTop: 4 }}>Exam Date: <strong>{exam.examDate}</strong></div>
+            <div style={{ marginTop: 4 }}>Exam Date: <strong>{exam.examDate || '—'}</strong></div>
           </div>
         </div>
 
@@ -98,44 +94,57 @@ export default async function I693PrintPage({ params }: { params: Promise<{ comp
         <table style={{ marginBottom: 0 }}>
           <tbody>
             <tr>
-              <td><div className="field-label">Family Name (Last Name)</div><div className="field-value">{exam.last}</div></td>
-              <td><div className="field-label">Given Name (First Name)</div><div className="field-value">{exam.first}</div></td>
-              <td><div className="field-label">Middle Name</div><div className="field-value">{exam.middle}</div></td>
+              <td><div className="field-label">Family Name (Last Name)</div><div className="field-value">{exam.lastName}</div></td>
+              <td><div className="field-label">Given Name (First Name)</div><div className="field-value">{exam.firstName}</div></td>
+              <td><div className="field-label">Middle Name</div><div className="field-value">{exam.middleName || '—'}</div></td>
             </tr>
             <tr>
-              <td><div className="field-label">Alien Registration No. (A-Number)</div><div className="field-value">{exam.aNumber}</div></td>
-              <td><div className="field-label">Date of Birth (MM/DD/YYYY)</div><div className="field-value">{exam.dob}</div></td>
-              <td><div className="field-label">Sex</div><div className="field-value">{exam.sex}</div></td>
+              <td><div className="field-label">Alien Registration No. (A-Number)</div><div className="field-value">{exam.alienReg || '—'}</div></td>
+              <td><div className="field-label">Date of Birth (MM/DD/YYYY)</div><div className="field-value">{exam.dob || '—'}</div></td>
+              <td><div className="field-label">Sex</div><div className="field-value">{exam.sex || '—'}</div></td>
             </tr>
             <tr>
-              <td><div className="field-label">Country of Birth</div><div className="field-value">{exam.countryBirth}</div></td>
-              <td colSpan={2}><div className="field-label">Country of Citizenship/Nationality</div><div className="field-value">{exam.countryNationality}</div></td>
+              <td><div className="field-label">Country of Birth</div><div className="field-value">{exam.countryBirth || '—'}</div></td>
+              <td colSpan={2}><div className="field-label">USCIS Account Number</div><div className="field-value">{exam.uscisAccount || '—'}</div></td>
             </tr>
             <tr>
-              <td colSpan={3}><div className="field-label">Home Address</div><div className="field-value">{exam.address}</div></td>
+              <td colSpan={3}><div className="field-label">Home Address</div><div className="field-value">{applicantAddress}</div></td>
             </tr>
           </tbody>
         </table>
 
-        {/* Part 2 — Physical Exam */}
-        <div className="section-header">Part 2. General Medical Examination</div>
+        {/* Part 2 — Medical findings summary */}
+        <div className="section-header">Part 2. Medical Examination Findings</div>
         <table style={{ marginBottom: 0 }}>
           <tbody>
             <tr>
-              <td><div className="field-label">Height</div><div className="field-value">{exam.height}&quot;</div></td>
-              <td><div className="field-label">Weight</div><div className="field-value">{exam.weight} lbs</div></td>
-              <td><div className="field-label">Blood Pressure</div><div className="field-value">{exam.bp}</div></td>
-              <td><div className="field-label">Pulse</div><div className="field-value">{exam.pulse} bpm</div></td>
-            </tr>
-            <tr>
-              <td colSpan={4}><div className="field-label">Physical Examination Findings</div><div className="field-value">{exam.physicalFindings}</div></td>
-            </tr>
-            <tr>
-              <td colSpan={4}>
-                <div className="field-label">Medical / Mental Health History Findings</div>
-                <div className="field-value">No reportable conditions identified.</div>
+              <td colSpan={2}>
+                <div className="field-label">Syphilis Finding</div>
+                <div className="field-value">{exam.syphFinding || 'No finding'}</div>
+              </td>
+              <td colSpan={2}>
+                <div className="field-label">Gonorrhea Finding</div>
+                <div className="field-value">{exam.gonFinding || 'No finding'}</div>
               </td>
             </tr>
+            <tr>
+              <td colSpan={2}>
+                <div className="field-label">Physical / Mental Disorder Finding</div>
+                <div className="field-value">{exam.disorderFinding || 'No Class A/B Disorders'}</div>
+              </td>
+              <td colSpan={2}>
+                <div className="field-label">Drug Abuse Finding</div>
+                <div className="field-value">{exam.substanceFinding || 'No finding'}</div>
+              </td>
+            </tr>
+            {exam.otherClassB && (
+              <tr>
+                <td colSpan={4}>
+                  <div className="field-label">Other Class B Conditions</div>
+                  <div className="field-value">{exam.otherClassB}</div>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
 
@@ -144,15 +153,14 @@ export default async function I693PrintPage({ params }: { params: Promise<{ comp
         <table style={{ marginBottom: 0 }}>
           <tbody>
             <tr>
-              <td><div className="field-label">Test Method</div><div className="field-value">{exam.tbMethod}</div></td>
-              <td><div className="field-label">Date Placed</div><div className="field-value">{exam.tbDatePlaced}</div></td>
-              <td><div className="field-label">Date Read</div><div className="field-value">{exam.tbDateRead}</div></td>
-              <td><div className="field-label">Induration (mm)</div><div className="field-value">{exam.tbInduration} mm</div></td>
-              <td><div className="field-label">Result</div><div className="field-value">{exam.tbResult}</div></td>
+              <td><div className="field-label">Test Method</div><div className="field-value">{tbMethod}</div></td>
+              <td><div className="field-label">Test Date</div><div className="field-value">{tbDate}</div></td>
+              <td><div className="field-label">IGRA Result</div><div className="field-value">{exam.igraResult || '—'}</div></td>
+              <td><div className="field-label">TB Screening Result</div><div className="field-value">{exam.tbScreening || '—'}</div></td>
             </tr>
             <tr>
-              <td colSpan={2}><div className="field-label">Chest X-Ray</div><div className="field-value">{exam.chestXray}</div></td>
-              <td colSpan={3}><div className="field-label">Additional Notes</div><div className="field-value">&nbsp;</div></td>
+              <td><div className="field-label">Classification</div><div className="field-value">{exam.tbClassification || '—'}</div></td>
+              <td colSpan={3}><div className="field-label">Remarks</div><div className="field-value">{exam.tbRemarks || '—'}</div></td>
             </tr>
           </tbody>
         </table>
@@ -162,23 +170,35 @@ export default async function I693PrintPage({ params }: { params: Promise<{ comp
         <table>
           <thead>
             <tr>
-              <th style={{ width: '35%' }}>Vaccine Antigen</th>
-              <th style={{ width: '30%' }}>Status</th>
-              <th style={{ width: '20%' }}>Date(s) Given / Verified</th>
-              <th style={{ width: '15%' }}>Notes / Lot #</th>
+              <th style={{ width: '30%' }}>Vaccine Antigen</th>
+              <th style={{ width: '15%' }}>Date 1</th>
+              <th style={{ width: '15%' }}>Date 2</th>
+              <th style={{ width: '15%' }}>Date 3</th>
+              <th style={{ width: '12%' }}>Given Today</th>
+              <th style={{ width: '13%' }}>Series Complete</th>
             </tr>
           </thead>
           <tbody>
-            {vaccines.map(v => (
-              <tr key={v.name}>
-                <td>{v.name}</td>
-                <td>{v.status}</td>
-                <td>{v.date || '—'}</td>
-                <td>&nbsp;</td>
-              </tr>
-            ))}
+            {VACC_GROUPS.map(label => {
+              const row: VaccRow | undefined = vaccData[label]
+              return (
+                <tr key={label}>
+                  <td>{label}</td>
+                  <td>{row?.received1 || '—'}</td>
+                  <td>{row?.received2 || '—'}</td>
+                  <td>{row?.received3 || '—'}</td>
+                  <td style={{ textAlign: 'center' }}>{row?.given ? '✓' : ''}</td>
+                  <td style={{ textAlign: 'center' }}>{row?.complete ? '✓' : ''}</td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
+        {exam.vaccRemarks && (
+          <div style={{ border: '1px solid #333', borderTop: 'none', padding: '4px 8px', fontSize: 10 }}>
+            <strong>Vaccination Remarks:</strong> {exam.vaccRemarks}
+          </div>
+        )}
 
         {/* Civil Surgeon Certification */}
         <div className="section-header">Part 4. Civil Surgeon Certification</div>
@@ -187,16 +207,28 @@ export default async function I693PrintPage({ params }: { params: Promise<{ comp
             <tr>
               <td colSpan={2}>
                 <div className="field-label">Determination</div>
-                <div className="field-value" style={{ fontSize: 11 }}>{exam.determination}</div>
+                <div className="field-value" style={{ fontSize: 11 }}>{determination}</div>
               </td>
             </tr>
             <tr>
-              <td><div className="field-label">Civil Surgeon Name</div><div className="field-value">{exam.civilSurgeon}</div></td>
-              <td><div className="field-label">USCIS Civil Surgeon Designation Number</div><div className="field-value">{exam.civilSurgeonDesig}</div></td>
+              <td><div className="field-label">Civil Surgeon Name</div><div className="field-value">{civilSurgeon}</div></td>
+              <td><div className="field-label">USCIS Civil Surgeon Designation Number</div><div className="field-value">{exam.csid || '—'}</div></td>
             </tr>
             <tr>
-              <td colSpan={2}><div className="field-label">Office Address</div><div className="field-value">{exam.office}</div></td>
+              <td><div className="field-label">Organization</div><div className="field-value">{exam.csOrg || '—'}</div></td>
+              <td><div className="field-label">Phone</div><div className="field-value">{exam.csDayPhone || exam.csCellPhone || '—'}</div></td>
             </tr>
+            <tr>
+              <td colSpan={2}><div className="field-label">Office Address</div><div className="field-value">{csAddress}</div></td>
+            </tr>
+            {exam.followup1 && (
+              <tr>
+                <td colSpan={2}>
+                  <div className="field-label">Follow-up Appointments</div>
+                  <div className="field-value">{[exam.followup1, exam.followup2, exam.followup3].filter(Boolean).join(' · ')}</div>
+                </td>
+              </tr>
+            )}
             <tr>
               <td>
                 <div className="field-label">Civil Surgeon Signature</div>
@@ -204,7 +236,7 @@ export default async function I693PrintPage({ params }: { params: Promise<{ comp
               </td>
               <td>
                 <div className="field-label">Date of Signature (MM/DD/YYYY)</div>
-                <div className="field-value">{exam.signDate}</div>
+                <div className="field-value">{exam.examDate || '—'}</div>
               </td>
             </tr>
           </tbody>
