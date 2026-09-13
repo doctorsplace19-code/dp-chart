@@ -1,6 +1,6 @@
 # WorkOccMed — workoccmed.com
 
-The public marketing website for **WorkOccMed** (a Doctors Place company):
+The public marketing website for **WorkOccMed** (WorkOccMed Medical Group, PLLC):
 DOT physicals, drug & alcohol testing, and occupational-health compliance,
 nationwide.
 

@@ -3,7 +3,7 @@
  *
  * Scoped STRICTLY to doctors-place/workoccmed/cities/. Does NOT regenerate from
  * the (stale) generator, so every existing hand-edit — including the
- * "Doctors Place, LLC" legal footer — is preserved.
+ * "WorkOccMed Medical Group, PLLC" legal footer — is preserved.
  *
  * Two transforms per page:
  *   T1  H1 leads with the money keyword ("<City> DOT Physical & Drug Testing").
