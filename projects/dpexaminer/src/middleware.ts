@@ -1,8 +1,5 @@
-import NextAuth from 'next-auth'
-import { authConfig } from '@/auth.config'
-
-export default NextAuth(authConfig).auth
-
-export const config = {
-  matcher: ['/((?!_next/static|_next/image|favicon.ico|.*\\.png$|.*\\.svg$|.*\\.jpg$).*)'],
-}
+// Auth middleware temporarily disabled — re-enable before going live with real patient data
+// To re-enable: restore the NextAuth middleware below and remove this export
+import { NextResponse } from 'next/server'
+export default function middleware() { return NextResponse.next() }
+export const config = { matcher: [] }
