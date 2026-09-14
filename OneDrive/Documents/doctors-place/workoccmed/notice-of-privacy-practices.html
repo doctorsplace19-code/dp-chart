@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy | Work OccMed</title>
-<meta name="description" content="Work OccMed privacy policy, including our SMS/text messaging program terms — how we collect, use, and protect your information, and how to opt in or out of text messages.">
-<link rel="canonical" href="https://www.workoccmed.com/privacy-policy">
+<title>Notice of Privacy Practices | Work OccMed</title>
+<meta name="description" content="WorkOccMed Medical Group, PLLC's full HIPAA Notice of Privacy Practices — how we may use and disclose your health information, and your rights.">
+<link rel="canonical" href="https://www.workoccmed.com/notice-of-privacy-practices">
 <meta name="robots" content="index, follow">
 
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
@@ -15,7 +15,6 @@
   html { scroll-behavior:smooth; }
   body { font-family:'DM Sans',sans-serif; background:#f8faff; color:var(--text); line-height:1.6; }
 
-  /* NAV */
   nav { position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(255,255,255,0.97); backdrop-filter:blur(12px); display:flex; align-items:center; justify-content:space-between; padding:0 40px; height:68px; border-bottom:1px solid rgba(30,64,175,0.1); box-shadow:0 1px 12px rgba(0,0,0,0.06); }
   .nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
   .logo-mark { width:38px; height:38px; background:linear-gradient(135deg,#1e40af,#0891b2); border-radius:10px; display:flex; align-items:center; justify-content:center; font-family:'DM Serif Display',serif; font-size:14px; color:white; font-weight:700; box-shadow:0 2px 8px rgba(30,64,175,0.3); }
@@ -36,23 +35,22 @@
   .mobile-cta { margin-top:16px; display:flex; flex-direction:column; gap:12px; width:100%; max-width:280px; }
   .mobile-cta a { text-align:center; padding:14px; border-radius:10px; font-weight:600; font-size:15px; text-decoration:none; }
 
-  /* LEGAL CONTENT */
   .legal-hero { padding:140px 24px 40px; max-width:800px; margin:0 auto; text-align:center; }
-  .legal-hero h1 { font-family:'DM Serif Display',serif; font-size:clamp(1.9rem,4vw,2.6rem); color:#0f172a; margin-bottom:10px; }
+  .legal-hero h1 { font-family:'DM Serif Display',serif; font-size:clamp(1.7rem,4vw,2.3rem); color:#0f172a; margin-bottom:10px; }
   .legal-hero p { font-size:14px; color:var(--muted); }
+  .legal-hero .print-link { display:inline-block; margin-top:14px; font-size:13px; font-weight:600; }
   .legal-wrap { max-width:800px; margin:0 auto; padding:0 24px 80px; }
   .legal-card { background:white; border:1px solid var(--border); border-radius:16px; padding:44px; }
-  .legal-card h2 { font-family:'DM Serif Display',serif; font-size:1.35rem; color:#0f172a; margin:32px 0 12px; }
+  .legal-card h2 { font-family:'DM Serif Display',serif; font-size:1.3rem; color:#0f172a; margin:30px 0 12px; }
   .legal-card h2:first-child { margin-top:0; }
-  .legal-card h3 { font-size:15px; font-weight:700; color:var(--text); margin:20px 0 8px; }
+  .legal-card h3 { font-size:14.5px; font-weight:700; color:var(--text); margin:18px 0 6px; }
   .legal-card p { font-size:14.5px; color:#334155; line-height:1.75; margin-bottom:12px; }
   .legal-card ul { margin:0 0 12px 20px; }
   .legal-card li { font-size:14.5px; color:#334155; line-height:1.75; margin-bottom:6px; }
   .legal-card a { color:var(--navy); font-weight:600; }
-  .sms-box { background:var(--cream); border:1px solid var(--border); border-radius:12px; padding:22px 24px; margin:16px 0; }
-  .sms-box p:last-child { margin-bottom:0; }
+  .highlight { background:var(--cream); border:1px solid var(--border); border-radius:12px; padding:20px 22px; margin:16px 0; }
+  .highlight p:last-child { margin-bottom:0; }
 
-  /* FOOTER */
   footer { background:#0f172a; color:#94a3b8; padding:48px; }
   .footer-inner { max-width:1100px; margin:0 auto; }
   .footer-top { display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px; }
@@ -65,6 +63,12 @@
   .f-legal { font-size:12px; color:#475569; }
   .f-legal a { color:#475569; text-decoration:none; }
 
+  @media print {
+    nav, .mobile-nav, footer, .no-print { display:none !important; }
+    .legal-hero { padding-top:20px; }
+    .legal-card { border:none; padding:0; }
+    body { background:white; }
+  }
   @media (max-width:960px) {
     nav { padding:0 20px; }
     .nav-links, .nav-cta { display:none; }
@@ -81,7 +85,7 @@
 </head>
 <body>
 
-<nav>
+<nav class="no-print">
   <a href="/" class="nav-logo">
     <div class="logo-mark">WO</div>
     <div>
@@ -93,7 +97,7 @@
     <li><a href="index.html#services">Services</a></li>
     <li><a href="guides">Guides</a></li>
     <li><a href="return-to-duty">Return to Duty</a></li>
-    <li><a href="partners">Partners</a></li>
+    <li><a href="compliance">Compliance</a></li>
   </ul>
   <div class="nav-cta" style="display:flex;gap:10px;align-items:center;">
     <a href="tel:+18882334567" class="btn btn-ghost">(888) 233-4567</a>
@@ -104,11 +108,11 @@
   </button>
 </nav>
 
-<div id="mobileNav" class="mobile-nav">
+<div id="mobileNav" class="mobile-nav no-print">
   <a href="index.html#services" onclick="document.getElementById('mobileNav').classList.remove('open')">Services</a>
   <a href="guides" onclick="document.getElementById('mobileNav').classList.remove('open')">Guides</a>
   <a href="return-to-duty" onclick="document.getElementById('mobileNav').classList.remove('open')">Return to Duty</a>
-  <a href="partners" onclick="document.getElementById('mobileNav').classList.remove('open')">Partners</a>
+  <a href="compliance" onclick="document.getElementById('mobileNav').classList.remove('open')">Compliance</a>
   <div class="mobile-cta">
     <a href="https://portal.dot-physical.net/signup" style="background:linear-gradient(135deg,#1e40af,#0891b2);color:white;">Employer Portal →</a>
     <a href="tel:+18882334567" style="border:1px solid #e2e8f0;color:#475569;background:white;">(888) 233-4567</a>
@@ -116,64 +120,81 @@
 </div>
 
 <div class="legal-hero">
-  <h1>Privacy Policy</h1>
-  <p>Effective date: August 27, 2026 &nbsp;–&nbsp; WorkOccMed LLC</p>
+  <h1>Notice of Privacy Practices</h1>
+  <p>Effective date: September 14, 2026 &nbsp;–&nbsp; WorkOccMed Medical Group, PLLC</p>
+  <a href="javascript:window.print()" class="print-link no-print">🖨️ Print or Save as PDF</a>
 </div>
 
 <div class="legal-wrap">
   <div class="legal-card">
 
-    <h2>1. Introduction</h2>
-    <p>WorkOccMed LLC ("WorkOccMed," "we," "us," or "our") provides occupational health scheduling and compliance services, including DOT physicals, drug and alcohol testing, and consortium management, connecting employers and individuals with a nationwide network of certified collection sites. DOT Physical and WorkOccMed clinical services are provided by WorkOccMed Medical Group, PLLC. This Privacy Policy explains what information we collect through workoccmed.com and our related forms and portals, how we use it, and the choices available to you — including our text messaging (SMS) program.</p>
-    <p><strong>Health information (HIPAA):</strong> WorkOccMed Medical Group, PLLC is a HIPAA Covered Entity, and WorkOccMed LLC acts as its Business Associate. Protected Health Information created in the course of your examination or testing — as opposed to general website form data — is governed by our full <a href="notice-of-privacy-practices">Notice of Privacy Practices</a>, not this general website Privacy Policy. See our <a href="compliance">Compliance &amp; HIPAA</a> page for our named Medical Director, Medical Review Officer, and accreditation information.</p>
-
-    <h2>2. Information We Collect</h2>
-    <p>When you fill out a form on our site (for example, a partner application, clinic application, corporate account request, or contact request), we collect the information you provide, which may include your name, email address, phone number, company or clinic name, and any details you enter about your request. We also collect standard technical information (such as browser type and pages visited) through normal website operation.</p>
-
-    <h2>3. How We Use Your Information</h2>
-    <ul>
-      <li>To respond to inquiries and applications submitted through our forms</li>
-      <li>To schedule, confirm, and remind you about appointments and account requests</li>
-      <li>To provide customer support and answer questions</li>
-      <li>To operate, maintain, and improve our website and services</li>
-      <li>To comply with legal and regulatory obligations</li>
-    </ul>
-
-    <h2>4. Text Messaging (SMS) Program</h2>
-    <p>If you provide your mobile phone number through a WorkOccMed web form, you may opt in to receive text messages from WorkOccMed related to your inquiry — including appointment confirmations, scheduling reminders, account updates, and customer support follow-up.</p>
-    <div class="sms-box">
-      <p><strong>Opt-in:</strong> By submitting your phone number on a WorkOccMed form, you consent to receive text messages from WorkOccMed at that number regarding your request.</p>
-      <p><strong>Message frequency:</strong> Message frequency varies based on your activity with us (for example, appointment reminders are only sent if you have a scheduled appointment).</p>
-      <p><strong>Message and data rates:</strong> Message and data rates may apply, depending on your mobile carrier and plan.</p>
-      <p><strong>Opt-out:</strong> You can opt out of text messages at any time by replying <strong>STOP</strong> to any message we send. You may also contact us at the phone number or email below.</p>
-      <p><strong>Help:</strong> Reply <strong>HELP</strong> to any message for assistance, or contact us at <a href="tel:+18882334567">(888) 233-4567</a> or <a href="mailto:info@workoccmed.com">info@workoccmed.com</a>.</p>
-      <p><strong>Carriers:</strong> Carriers are not liable for delayed or undelivered messages.</p>
-      <p><strong>No sharing of opt-in data:</strong> No mobile information, including text messaging originator opt-in data and consent, will be shared with any third party or affiliate for marketing or promotional purposes. This does not apply to information shared with our subcontractors and vendors solely for the purpose of facilitating the SMS program on our behalf (for example, our messaging platform provider).</p>
+    <div class="highlight">
+      <p><strong>THIS NOTICE DESCRIBES HOW MEDICAL INFORMATION ABOUT YOU MAY BE USED AND DISCLOSED AND HOW YOU CAN GET ACCESS TO THIS INFORMATION. PLEASE REVIEW IT CAREFULLY.</strong></p>
     </div>
 
-    <h2>5. How We Share Information</h2>
-    <p>We do not sell your personal information. We may share information with service providers who help us operate our website, scheduling systems, and messaging program (such as our hosting, email, and SMS platform providers), and with certified collection sites and clinics as needed to fulfill a scheduling request you initiate. We may also disclose information if required by law.</p>
+    <h2>Who Is Covered by This Notice</h2>
+    <p>This Notice applies to WorkOccMed Medical Group, PLLC and any of its examining providers, clinical staff, and administrative affiliates (including WorkOccMed LLC, acting as our Business Associate) who create or receive Protected Health Information ("PHI") in connection with the examinations and testing we coordinate on your behalf, including DOT and non-DOT physical examinations, drug and alcohol testing, and related occupational health services.</p>
 
-    <h2>6. Data Security</h2>
-    <p>We use reasonable administrative and technical safeguards designed to protect the information you provide to us. No method of transmission or storage is completely secure, and we cannot guarantee absolute security.</p>
+    <h2>Our Commitment to Your Privacy</h2>
+    <p>We are required by law to maintain the privacy of your PHI, to provide you with this Notice describing our legal duties and privacy practices with respect to your PHI, and to abide by the terms of the Notice currently in effect.</p>
 
-    <h2>7. Your Choices</h2>
-    <p>You may opt out of text messages at any time by replying STOP, and you may request that we delete information you've submitted by contacting us using the details below.</p>
+    <h2>How We May Use and Disclose Your Health Information</h2>
 
-    <h2>8. Children's Privacy</h2>
-    <p>Our website and services are intended for individuals 18 years of age and older and are not directed to children.</p>
+    <h3>Treatment</h3>
+    <p>We may use and disclose your PHI to provide, coordinate, or manage your examination or testing, and to consult with other healthcare providers involved in your care.</p>
 
-    <h2>9. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. The effective date at the top of this page reflects the most recent revision.</p>
+    <h3>Payment</h3>
+    <p>We may use and disclose your PHI to bill and obtain payment from you, your employer, or a third-party payor for the services we provide.</p>
 
-    <h2>10. Contact Us</h2>
-    <p>WorkOccMed LLC<br>226 State St #1018, Hackensack, NJ 07601<br>Phone: <a href="tel:+18882334567">(888) 233-4567</a><br>Email: <a href="mailto:info@workoccmed.com">info@workoccmed.com</a></p>
+    <h3>Healthcare Operations</h3>
+    <p>We may use and disclose your PHI for our internal operations, including quality assessment, staff training, accreditation, and business management activities.</p>
+
+    <h3>DOT and Regulatory Reporting</h3>
+    <p>As required by 49 CFR Part 40 and related DOT agency regulations, we disclose specific testing results and related information to your employer's Designated Employer Representative (DER), to the reviewing Medical Review Officer (MRO), and, where a reportable violation occurs, to the FMCSA Drug &amp; Alcohol Clearinghouse. We limit these disclosures to the information required by applicable regulation.</p>
+
+    <h3>As Required by Law</h3>
+    <p>We will disclose PHI when required to do so by federal, state, or local law — for example, in response to a valid court order or subpoena, or as required for public health reporting.</p>
+
+    <h3>Other Permitted or Required Uses</h3>
+    <ul>
+      <li>To avert a serious threat to health or safety</li>
+      <li>For workers' compensation and similar programs, as authorized</li>
+      <li>For public health activities, such as reporting disease or injury</li>
+      <li>To health oversight agencies for audits, investigations, and inspections</li>
+    </ul>
+
+    <h3>Uses and Disclosures Requiring Your Written Authorization</h3>
+    <p>Uses and disclosures not described in this Notice will be made only with your written authorization. You may revoke that authorization in writing at any time, except to the extent we have already acted in reliance on it.</p>
+
+    <h2>Your Rights Regarding Your Health Information</h2>
+    <ul>
+      <li><strong>Right to Inspect and Copy.</strong> You have the right to inspect and obtain a copy of your PHI, with limited exceptions. Requests should be submitted in writing to our Privacy Officer.</li>
+      <li><strong>Right to Amend.</strong> You have the right to request that we amend your PHI if you believe it is incorrect or incomplete, for as long as we maintain it.</li>
+      <li><strong>Right to an Accounting of Disclosures.</strong> You have the right to request a list of certain disclosures we have made of your PHI.</li>
+      <li><strong>Right to Request Restrictions.</strong> You have the right to request restrictions on how we use or disclose your PHI. We are not required to agree to every request.</li>
+      <li><strong>Right to Request Confidential Communications.</strong> You have the right to request that we communicate with you about your PHI in a specific way or at a specific location.</li>
+      <li><strong>Right to a Paper Copy of This Notice.</strong> You have the right to obtain a paper copy of this Notice at any time, even if you agreed to receive it electronically.</li>
+      <li><strong>Right to File a Complaint.</strong> If you believe your privacy rights have been violated, you may file a complaint with us or with the U.S. Department of Health and Human Services. You will not be retaliated against for filing a complaint.</li>
+    </ul>
+
+    <h2>Changes to This Notice</h2>
+    <p>We reserve the right to change this Notice and to make the revised Notice effective for PHI we already maintain, as well as PHI we create or receive in the future. The current Notice will be available on this page and posted at our practice location.</p>
+
+    <h2>Complaints</h2>
+    <p>If you believe your privacy rights have been violated, you may file a complaint with our Privacy Officer or with the Secretary of the U.S. Department of Health and Human Services. To file with us, contact:</p>
+    <p><strong>WorkOccMed Medical Group, PLLC — Privacy Officer</strong><br>
+    226 State St #1018, Hackensack, NJ 07601<br>
+    Phone: <a href="tel:+18882334567">(888) 233-4567</a><br>
+    Email: <a href="mailto:privacy@workoccmed.com">privacy@workoccmed.com</a></p>
+    <p>To file with HHS: <a href="https://www.hhs.gov/ocr/complaints" target="_blank" rel="noopener">hhs.gov/ocr/complaints</a>. There will be no retaliation for filing a complaint.</p>
+
+    <p style="margin-top:24px;"><a href="compliance">← Back to Compliance &amp; HIPAA overview</a></p>
 
   </div>
 </div>
 
 <!-- FOOTER -->
-<footer>
+<footer class="no-print">
   <div class="footer-inner">
     <div class="footer-top">
       <div>
