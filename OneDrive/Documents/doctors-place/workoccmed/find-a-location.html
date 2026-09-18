@@ -142,6 +142,10 @@
   .rcard-name{font-size:17px;font-weight:800;line-height:1.1;}
   .rcard-area{font-size:13px;color:var(--muted);margin-top:2px;}
   .compat{display:inline-flex;align-items:center;gap:5px;background:#e7f7ef;color:#0f7a52;border-radius:999px;padding:4px 10px;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;}
+  .vbadge{display:inline-flex;align-items:center;gap:5px;border-radius:999px;padding:4px 10px;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;flex-shrink:0;margin-left:6px;}
+  .vbadge.labcorp{background:rgba(220,38,38,.1);color:#b91c1c;}
+  .vbadge.quest{background:rgba(9,132,227,.1);color:#0968b8;}
+  .vbadge.crl{background:rgba(108,63,197,.1);color:#6c3fc5;}
   .rcard-facts{margin-top:14px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
   .rfact{border:1px solid var(--card-b);border-radius:10px;padding:9px 11px;background:#f8fafc;}
   .rfact .k{display:flex;align-items:center;gap:5px;font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--muted2);}
@@ -498,6 +502,20 @@
     if(v === 'WORKFORCE') return 'LabCorp collection site';
     return 'LabCorp Quest medical laboratory';
   }
+  // Vendor badge label/class shown on each result card. 'ANY' mode runs
+  // separate per-vendor searches (see enhance()) so every real result is
+  // tagged with the specific network it actually matched under, rather
+  // than a single ambiguous combined-keyword search.
+  var VENDOR_BADGE = {
+    LABCORP:   { cls: 'labcorp', label: 'LabCorp' },
+    QUEST:     { cls: 'quest',   label: 'Quest' },
+    WORKFORCE: { cls: 'crl',     label: 'CRL Network' },
+  };
+  function vendorBadgeHtml(tag){
+    var v = VENDOR_BADGE[tag];
+    if(!v) return '';
+    return '<span class="vbadge ' + v.cls + '">' + v.label + '</span>';
+  }
   function showStatus(msg){
     var el = document.getElementById('resStatus');
     el.style.display = 'block'; el.innerHTML = msg;
@@ -514,7 +532,7 @@
           '<div class="rcard-top">' +
             '<div class="rcard-id"><span class="rcard-badge">' + letter + '</span>' +
               '<div><div class="rcard-name">Site ' + letter + '</div><div class="rcard-area">' + it.area + '</div></div></div>' +
-            '<span class="compat">Compatible</span>' +
+            '<span class="compat">Compatible</span>' + vendorBadgeHtml(it.vendorTag) +
           '</div>' +
           '<div class="rcard-facts">' +
             '<div class="rfact"><div class="k">' + ICON_PIN + ' Distance</div><div class="v">' + it.band + '</div></div>' +
@@ -527,39 +545,58 @@
     document.getElementById('resCards').innerHTML = html;
   }
 
-  function genericItems(zip, radiusMi, n, area){
+  function genericItems(zip, radiusMi, n, area, vendorTag){
     // Applicable tiers for the chosen radius, then spread cards across them (closest first).
     var tiers = radiusMi >= 50 ? [10,25,50] : (radiusMi >= 25 ? [10,25] : [10]);
     var per = Math.ceil(n / tiers.length);
     var items = [];
     for(var i=0; i<n; i++){
       var t = Math.min(Math.floor(i / per), tiers.length - 1);
-      items.push({ area: area || ('near ' + zip), band: 'Within ' + tiers[t] + ' miles' });
+      items.push({ area: area || ('near ' + zip), band: 'Within ' + tiers[t] + ' miles', vendorTag: vendorTag });
     }
     return items;
   }
   // Count scales with the search radius, capped at 26 (Site A–Z).
   function fallbackCount(radiusMi){ return radiusMi >= 50 ? 26 : (radiusMi >= 25 ? 16 : 8); }
 
+  // One Places nearbySearch for a single vendor tag, resolved as a promise
+  // of distance-tagged results so multiple vendor searches (ANY mode) can
+  // be run in parallel and merged.
+  function searchVendor(loc, radiusMi, vendorTag){
+    return new Promise(function(resolve){
+      window._places.nearbySearch({ location: loc, radius: Math.min(radiusMi, 50) * 1609, keyword: keywordFor(vendorTag) }, function(pres, ps){
+        var results = (ps === 'OK' && pres) ? pres : [];
+        resolve(results.map(function(p){
+          return { mi: google.maps.geometry.spherical.computeDistanceBetween(loc, p.geometry.location) / 1609.34, vendorTag: vendorTag };
+        }));
+      });
+    });
+  }
+
   // Optional upgrade: if Google Maps is available, replace the generic cards
-  // with the real town name, real count, and real distance bands.
+  // with the real town name, real count, real distance bands, and — per
+  // matched network — a vendor badge (LabCorp / Quest / CRL Network).
   function enhance(zip, radiusMi, tries){
     tries = tries || 0;
     if(!window._mapsReady){ if(tries > 30) return; return setTimeout(function(){ enhance(zip, radiusMi, tries+1); }, 250); }
     window._geocoder.geocode({ address: zip, componentRestrictions: { country: 'US' } }, function(gres, gs){
       if(gs !== 'OK' || !gres || !gres[0]) return;
       var loc = gres[0].geometry.location, area = areaFromGeocode(gres[0]);
-      window._places.nearbySearch({ location: loc, radius: Math.min(radiusMi, 50) * 1609, keyword: keywordFor(vendor) }, function(pres, ps){
-        var results = (ps === 'OK' && pres) ? pres : [];
-        results = results.map(function(p){ return { mi: google.maps.geometry.spherical.computeDistanceBetween(loc, p.geometry.location) / 1609.34 }; })
-          .filter(function(r){ return r.mi <= radiusMi + 1; }).sort(function(a,b){ return a.mi - b.mi; }).slice(0, 26);
+      // "Any compatible network" runs one search per real vendor so each
+      // result can be attributed correctly; a specific selection runs one.
+      var vendorTags = vendor === 'ANY' ? ['LABCORP', 'QUEST', 'WORKFORCE'] : [vendor];
+      Promise.all(vendorTags.map(function(v){ return searchVendor(loc, radiusMi, v); })).then(function(resultSets){
+        var results = [].concat.apply([], resultSets)
+          .filter(function(r){ return r.mi <= radiusMi + 1; })
+          .sort(function(a,b){ return a.mi - b.mi; })
+          .slice(0, 26);
         if(results.length === 0){
           document.getElementById('resTitle').textContent = 'Compatible options in the ' + area;
-          renderCards(genericItems(zip, radiusMi, fallbackCount(radiusMi), area));
+          renderCards(genericItems(zip, radiusMi, fallbackCount(radiusMi), area, vendor !== 'ANY' ? vendor : undefined));
           return;
         }
         document.getElementById('resTitle').textContent = results.length + ' compatible option' + (results.length>1?'s':'') + ' nearby';
-        renderCards(results.map(function(r){ return { area: area, band: tierBand(r.mi) }; }));
+        renderCards(results.map(function(r){ return { area: area, band: tierBand(r.mi), vendorTag: r.vendorTag }; }));
       });
     });
   }
@@ -567,7 +604,11 @@
   function runSearch(zip, radiusMi){
     document.getElementById('resStatus').style.display = 'none';
     document.getElementById('resTitle').textContent = 'Compatible options near ' + zip;
-    renderCards(genericItems(zip, radiusMi, fallbackCount(radiusMi)));   // cards show immediately – no map needed
+    // Only tag generic placeholder cards with a vendor badge when a single
+    // network is actually selected — in "Any compatible network" mode the
+    // vendor isn't known until enhance() resolves real per-vendor results.
+    var genericTag = vendor !== 'ANY' ? vendor : undefined;
+    renderCards(genericItems(zip, radiusMi, fallbackCount(radiusMi), null, genericTag));   // cards show immediately – no map needed
     enhance(zip, radiusMi);                                              // upgrade with real town/count if available
   }
 
