@@ -451,8 +451,12 @@
 <section id="hero-rotating-section" style="position:relative;min-height:580px;display:flex;align-items:center;overflow:hidden;background:#0d1b2a;">
   <img id="hero-rotating-img" src="images/hero-clinic.jpg"
     alt="WorkOccMed Occupational Health Clinic"
-    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.35;transition: opacity 1s ease-in-out;"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0.65;transition: opacity 1s ease-in-out;"
     onerror="this.style.display='none'">
+  <!-- Left-to-right gradient so the copy on the left stays readable while the
+       photo (and any faces in it) actually shows through clearly on the right,
+       instead of the whole image being washed out at a flat low opacity. -->
+  <div style="position:absolute;inset:0;background:linear-gradient(90deg, #0d1b2a 0%, rgba(13,27,42,0.92) 30%, rgba(13,27,42,0.55) 55%, rgba(13,27,42,0.25) 80%);"></div>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const heroImg = document.getElementById('hero-rotating-img');
@@ -469,7 +473,7 @@
         heroImg.style.opacity = '0';
         setTimeout(() => {
           heroImg.src = images[currentIndex];
-          heroImg.style.opacity = '0.35';
+          heroImg.style.opacity = '0.65';
         }, 1000);
       }
       setInterval(rotateImage, 5000);
