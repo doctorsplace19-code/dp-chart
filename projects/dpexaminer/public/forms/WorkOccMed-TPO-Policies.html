@@ -1,0 +1,581 @@
+<title>WorkOccMed TPO Policies</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Sans+3:wght@300;400;600;700&display=swap">
+<style>
+  :root {
+    --navy: #1C2B4A;
+    --slate: #4B5C72;
+    --slate-light: #7A8FA8;
+    --accent: #C5A028;
+    --section-bg: #E6EDF8;
+    --ground: #F8F9FB;
+    --surface: #FFFFFF;
+    --text: #1C2B4A;
+    --text-body: #2E3D52;
+    --rule: #D1DCE8;
+    --border: #B8C8D8;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --navy: #D4E0F0;
+      --slate: #A8BCD0;
+      --slate-light: #7A8FA8;
+      --accent: #D4A830;
+      --section-bg: #1A2538;
+      --ground: #111924;
+      --surface: #1A2538;
+      --text: #E8F0F8;
+      --text-body: #C8D8E8;
+      --rule: #2A3A50;
+      --border: #3A4E64;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --navy: #D4E0F0;
+    --slate: #A8BCD0;
+    --slate-light: #7A8FA8;
+    --accent: #D4A830;
+    --section-bg: #1A2538;
+    --ground: #111924;
+    --surface: #1A2538;
+    --text: #E8F0F8;
+    --text-body: #C8D8E8;
+    --rule: #2A3A50;
+    --border: #3A4E64;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
+    font-size: 10.5pt;
+    line-height: 1.65;
+    color: var(--text-body);
+    background: var(--ground);
+    padding-inline: 20px;
+    padding-block: 32px;
+  }
+
+  .doc {
+    max-width: 760px;
+    margin: 0 auto;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 56px 64px;
+  }
+
+  /* ── Header ── */
+  .doc-header {
+    border-bottom: 3px solid var(--navy);
+    padding-bottom: 22px;
+    margin-bottom: 28px;
+  }
+
+  .agency-line {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--slate-light);
+    margin-bottom: 10px;
+  }
+
+  .company-name {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 20pt;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.15;
+  }
+
+  .doc-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 13pt;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--slate);
+    margin-top: 4px;
+    margin-bottom: 18px;
+  }
+
+  .gold-rule {
+    height: 2px;
+    background: var(--accent);
+    border: none;
+    margin-bottom: 16px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    font-size: 8.5pt;
+  }
+
+  .meta-item { padding: 0 12px 0 0; }
+  .meta-item:not(:first-child) { padding-left: 12px; border-left: 1px solid var(--rule); }
+  .meta-label {
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--slate-light);
+    font-size: 7.5pt;
+    display: block;
+    margin-bottom: 2px;
+  }
+  .meta-value { color: var(--text); font-weight: 600; }
+
+  /* ── Preamble ── */
+  .preamble {
+    background: var(--section-bg);
+    border-left: 3px solid var(--navy);
+    padding: 14px 18px;
+    margin-bottom: 32px;
+    font-size: 9.5pt;
+    color: var(--slate);
+  }
+
+  /* ── Sections ── */
+  .section { margin-bottom: 30px; }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 8px 14px;
+    background: var(--section-bg);
+    border-top: 2px solid var(--navy);
+    margin-bottom: 14px;
+  }
+
+  .section-num {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 9pt;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: .05em;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 11.5pt;
+    font-weight: 700;
+    color: var(--navy);
+    text-wrap: balance;
+  }
+
+  .req-cite {
+    margin-left: auto;
+    font-size: 7.5pt;
+    letter-spacing: .06em;
+    color: var(--slate-light);
+    font-weight: 700;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .section p { margin-bottom: 10px; font-size: 10pt; }
+  .section p:last-child { margin-bottom: 0; }
+
+  .subsection { margin-bottom: 14px; }
+  .subsection-title {
+    font-weight: 700;
+    font-size: 9.5pt;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 6px;
+  }
+
+  ul.policy-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  ul.policy-list li {
+    padding: 4px 0 4px 18px;
+    position: relative;
+    font-size: 10pt;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  ul.policy-list li:last-child { border-bottom: none; }
+
+  ul.policy-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  table.policy-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin-top: 8px;
+  }
+
+  table.policy-table th {
+    background: var(--section-bg);
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 8pt;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 7px 10px;
+    text-align: left;
+    border: 1px solid var(--border);
+  }
+
+  table.policy-table td {
+    padding: 7px 10px;
+    border: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--text-body);
+  }
+
+  table.policy-table tr:nth-child(even) td {
+    background: var(--ground);
+  }
+
+  /* ── Signature block ── */
+  .sig-block {
+    margin-top: 36px;
+    border-top: 1px solid var(--border);
+    padding-top: 22px;
+  }
+
+  .sig-title {
+    font-family: 'Lora', Georgia, serif;
+    font-size: 10pt;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 22px;
+  }
+
+  .sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .sig-line {
+    border-bottom: 1px solid var(--navy);
+    height: 34px;
+    margin-bottom: 5px;
+  }
+
+  .sig-label {
+    font-size: 7.5pt;
+    color: var(--slate-light);
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  /* ── Footer ── */
+  .doc-footer {
+    margin-top: 28px;
+    border-top: 1px solid var(--rule);
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.5pt;
+    color: var(--slate-light);
+    letter-spacing: .03em;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .doc { border: none; padding: 36px 48px; max-width: 100%; }
+    .section-bg { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  }
+
+  @media (max-width: 600px) {
+    .doc { padding: 28px 20px; }
+    .meta-grid { grid-template-columns: 1fr 1fr; }
+    .sig-grid { grid-template-columns: 1fr; }
+    .req-cite { display: none; }
+  }
+</style>
+
+<div class="doc">
+
+  <div class="doc-header">
+    <div class="agency-line">Federal Motor Carrier Safety Administration — Third Party Organization Registration</div>
+    <div class="company-name">WorkOccMed LLC</div>
+    <div class="doc-title">Official Policies and Procedures for Third Party Organization Operations</div>
+    <hr class="gold-rule">
+    <div class="meta-grid">
+      <div class="meta-item">
+        <span class="meta-label">Document Type</span>
+        <span class="meta-value">TPO P&amp;P Manual</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Effective Date</span>
+        <span class="meta-value">September 15, 2026</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">FMCSA TPO ID</span>
+        <span class="meta-value">2245032109</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="preamble">
+    <strong>Purpose:</strong> This document establishes the official policies and procedures of WorkOccMed LLC ("the Company") in its capacity as a Third Party Organization (TPO) providing electronic medical record entry and submission services for FMCSA-certified Medical Examiners. These procedures are established pursuant to FMCSA National Registry requirements and 49 CFR Part 390.
+  </div>
+
+  <!-- Section 1 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§ 1</span>
+      <span class="section-title">Secure Data Protocols — Access, Processing, Storage, and Transmission</span>
+      <span class="req-cite">Requirement 1</span>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">1.1 Data Transmission Security</div>
+      <ul class="policy-list">
+        <li>All data transmitted between end users and the WorkOccMed Examiner platform is encrypted using TLS 1.3 (minimum TLS 1.2). Unencrypted HTTP connections are rejected at the network perimeter and redirected to HTTPS.</li>
+        <li>All API calls to the FMCSA National Registry are made over HTTPS with certificate validation enforced.</li>
+        <li>Session tokens are issued as cryptographically signed JWTs and expire after 24 hours of inactivity.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">1.2 Data Storage Security</div>
+      <ul class="policy-list">
+        <li>Driver examination data is stored in a managed PostgreSQL database (Neon, hosted on AWS us-east-1) with AES-256 encryption at rest.</li>
+        <li>Database access is restricted to the application server via private network connection strings; no direct public database port is exposed.</li>
+        <li>Automated daily backups are retained for 30 days with point-in-time recovery capability.</li>
+        <li>Database credentials are stored exclusively as environment variables on the hosting platform (Vercel) and are never committed to source code or version control repositories.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">1.3 Access Control</div>
+      <ul class="policy-list">
+        <li>The platform enforces role-based access control (RBAC) with defined roles: Super Admin, Company Admin, Practitioner, and Front Desk. Examination result data is accessible only to users with an active credentialed role for the associated medical practice.</li>
+        <li>All user accounts require email-verified login with bcrypt-hashed passwords (minimum cost factor 12). Multi-factor authentication is available and encouraged for all practitioner accounts.</li>
+        <li>User access activity, including login timestamps and data submission events, is logged and retained for a minimum of 3 years.</li>
+        <li>Former employees or revoked users are deactivated within 24 hours of separation. Deactivated accounts cannot authenticate and do not appear in active user listings.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">1.4 Infrastructure Security</div>
+      <ul class="policy-list">
+        <li>Application hosting is provided by Vercel (SOC 2 Type II certified). Database hosting is provided by Neon (SOC 2 Type II certified). Both providers maintain current security certifications, copies of which are available upon request.</li>
+        <li>Security patches and dependency updates are applied on a rolling basis. Critical security vulnerabilities are patched within 72 hours of disclosure.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 2 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§ 2</span>
+      <span class="section-title">Compliance with Federal and State Laws and Regulations</span>
+      <span class="req-cite">Requirement 2</span>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">2.1 Federal Regulatory Compliance</div>
+      <ul class="policy-list">
+        <li>WorkOccMed LLC operates in accordance with 49 CFR Part 390 (Federal Motor Carrier Safety Regulations) governing physical qualification of commercial motor vehicle drivers.</li>
+        <li>The platform is designed to capture and transmit only the data elements required by the FMCSA Medical Examination Results form (MCSA-5875) and the National Registry API specification.</li>
+        <li>All examination records include the FMCSA-assigned National Registry Number (NRN) of the certifying Medical Examiner. The platform rejects submissions for Medical Examiners whose NRN is not on record as active and valid.</li>
+        <li>The Company complies with the Health Insurance Portability and Accountability Act (HIPAA) Privacy Rule and Security Rule. A Notice of Privacy Practices is maintained and made available to patients upon request.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">2.2 State Law Compliance</div>
+      <ul class="policy-list">
+        <li>The Company is organized and in good standing under the laws of the State of New Jersey as a Limited Liability Company.</li>
+        <li>The Compliance Officer reviews applicable state health information privacy laws annually and implements required operational adjustments.</li>
+        <li>Where state law imposes requirements stricter than federal minimum standards (e.g., New Jersey Identity Theft Prevention Act), the stricter standard governs Company practice.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">2.3 Compliance Review Schedule</div>
+      <ul class="policy-list">
+        <li>A formal compliance review is conducted annually by the Company's designated Compliance Officer. Review findings are documented and any required remediation is tracked to completion.</li>
+        <li>Staff with access to examination data receive HIPAA and data security training upon hire and annually thereafter.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 3 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§ 3</span>
+      <span class="section-title">Data System Maintenance and Upgrade Procedures</span>
+      <span class="req-cite">Requirement 3</span>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">3.1 System Maintenance Standards</div>
+      <ul class="policy-list">
+        <li>The WorkOccMed Examiner platform is maintained to a target uptime of 99.9% (measured monthly, excluding scheduled maintenance windows announced at least 48 hours in advance).</li>
+        <li>Scheduled maintenance windows are communicated to all active Medical Examiners via email no less than 48 hours prior. Emergency maintenance is communicated as soon as practicable.</li>
+        <li>System health monitoring (uptime, error rates, API response times) is performed continuously with automated alerting to Company technical staff.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">3.2 FMCSA-Mandated Updates</div>
+      <ul class="policy-list">
+        <li>Upon issuance of any FMCSA regulatory change, policy memorandum, or API specification update affecting CMV driver examination data, the Company will implement required system changes within 30 days of the effective date (or such shorter period as FMCSA directs).</li>
+        <li>Mandatory form revisions (e.g., updates to MCSA-5875 data fields) are implemented prior to the compliance deadline published by FMCSA. Legacy form submissions are accepted only through the regulatory grace period.</li>
+        <li>The Company monitors the FMCSA National Registry announcements page and Federal Register for relevant regulatory updates on a bi-weekly basis.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">3.3 Change Management</div>
+      <ul class="policy-list">
+        <li>All system changes are tested in a staging environment before deployment to production. Changes affecting data submission formats are validated against the FMCSA test API environment prior to production release.</li>
+        <li>A change log is maintained documenting all material system updates, their dates, and the regulatory or operational basis for each change.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 4 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§ 4</span>
+      <span class="section-title">Timely Transmittal of Examination Results to the National Registry</span>
+      <span class="req-cite">Requirement 4</span>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">4.1 Submission Timeline</div>
+      <ul class="policy-list">
+        <li>Upon completion and authorization of an examination record by the certifying Medical Examiner within the platform, results are transmitted to the FMCSA National Registry within <strong>24 hours</strong> of the date of examination.</li>
+        <li>For examinations completed on weekend days or federal holidays, transmittal is completed no later than the next business day, in accordance with FMCSA regulatory guidance.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">4.2 Submission Validation</div>
+      <ul class="policy-list">
+        <li>All examination records undergo automated validation prior to submission (required fields, date formats, NRN verification, Medical Examiner Certificate number). Records failing validation are flagged to the Medical Examiner for correction before transmittal is attempted.</li>
+        <li>The platform records a submission timestamp and the FMCSA-issued confirmation identifier for every successful transmittal. These records are retained for a minimum of 7 years.</li>
+        <li>Failed transmission attempts trigger an automated retry sequence (3 attempts at 30-minute intervals). If transmission fails after three attempts, the Medical Examiner and Company technical staff are notified by email within 2 hours of the initial failure.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">4.3 Medical Examiner Confirmation</div>
+      <ul class="policy-list">
+        <li>Medical Examiners receive an in-platform notification and email confirmation upon each successful submission, including the FMCSA confirmation number and the date/time of transmittal.</li>
+        <li>Medical Examiners may view the submission history and status for all examinations associated with their NRN at any time through the platform dashboard.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Section 5 -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-num">§ 5</span>
+      <span class="section-title">Customer Service to Certified Medical Examiners</span>
+      <span class="req-cite">Requirement 5</span>
+    </div>
+
+    <table class="policy-table">
+      <thead>
+        <tr>
+          <th>Channel</th>
+          <th>Hours of Availability</th>
+          <th>Response Time Commitment</th>
+          <th>Contact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Email Support</strong></td>
+          <td>Monday – Friday, 8:00 AM – 6:00 PM ET</td>
+          <td>Same business day (within 4 hours during hours)</td>
+          <td>support@workoccmed.com</td>
+        </tr>
+        <tr>
+          <td><strong>Phone Support</strong></td>
+          <td>Monday – Friday, 9:00 AM – 5:00 PM ET</td>
+          <td>Live answer or callback within 2 hours</td>
+          <td>(888) 233-4567</td>
+        </tr>
+        <tr>
+          <td><strong>Urgent / After-Hours</strong></td>
+          <td>7 days, 8:00 AM – 8:00 PM ET</td>
+          <td>Response within 4 hours for data submission failures</td>
+          <td>support@workoccmed.com — "URGENT" subject line</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="subsection" style="margin-top: 14px;">
+      <div class="subsection-title">5.1 Support Scope</div>
+      <ul class="policy-list">
+        <li>Customer service is provided to all Medical Examiners whose NRN is registered with WorkOccMed LLC as a TPO-affiliated examiner.</li>
+        <li>Support covers: platform access and authentication, examination data entry questions, submission status inquiries, technical errors, and FMCSA National Registry submission issues.</li>
+        <li>Clinical guidance on examination findings is outside the scope of TPO customer service and is the responsibility of the individual Medical Examiner.</li>
+        <li>A help center with user guides, video walkthroughs, and common Q&amp;A is maintained at workoccmed.com/support and is accessible 24/7.</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <div class="subsection-title">5.2 Issue Escalation</div>
+      <ul class="policy-list">
+        <li>Issues that cannot be resolved at first contact are escalated to the Company's Technical Director within 2 hours with a documented resolution timeline provided to the Medical Examiner.</li>
+        <li>Systemic issues affecting multiple Medical Examiners are communicated proactively via email with estimated resolution time and workaround instructions where available.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Signature Block -->
+  <div class="sig-block">
+    <div class="sig-title">Authorized Certification</div>
+    <p style="font-size: 9.5pt; margin-bottom: 22px; color: var(--slate);">
+      The undersigned, acting as an authorized officer of WorkOccMed LLC, certifies that the policies and procedures set forth in this document are accurate and that the Company will operate in conformance with these procedures in its role as a Third Party Organization registered with the FMCSA National Registry.
+    </p>
+    <div class="sig-grid">
+      <div>
+        <div class="sig-line" style="display:flex;align-items:flex-end;padding-bottom:3px;">
+          <span style="font-family:'Lora',Georgia,serif;font-style:italic;font-size:15pt;color:var(--navy);line-height:1;">Chantal Gabriel</span>
+        </div>
+        <div class="sig-label">Signature of Authorized Officer</div>
+      </div>
+      <div>
+        <div class="sig-line" style="display:flex;align-items:flex-end;padding-bottom:3px;">
+          <span style="font-size:11pt;color:var(--text);font-weight:600;">9/15/2026</span>
+        </div>
+        <div class="sig-label">Date</div>
+      </div>
+      <div>
+        <div class="sig-line" style="display:flex;align-items:flex-end;padding-bottom:3px;">
+          <span style="font-size:11pt;color:var(--text);font-weight:600;">Chantal Gabriel</span>
+        </div>
+        <div class="sig-label">Printed Name</div>
+      </div>
+      <div>
+        <div class="sig-line" style="display:flex;align-items:flex-end;padding-bottom:3px;">
+          <span style="font-size:11pt;color:var(--text);font-weight:600;">Operations Manager</span>
+        </div>
+        <div class="sig-label">Title</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>WorkOccMed LLC · 226 State Street, Suite 1018, Hackensack, NJ 07601</span>
+    <span>TPO P&amp;P Manual Rev. 1.0 · September 15, 2026</span>
+  </div>
+
+</div>
