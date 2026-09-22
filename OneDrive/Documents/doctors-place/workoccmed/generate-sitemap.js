@@ -73,6 +73,7 @@ urls.push(url(`${BASE}/`, '1.0', 'weekly'));
 urls.push(url(`${BASE}/partners`, '0.8', 'monthly'));
 urls.push(url(`${BASE}/return-to-duty`, '0.8', 'monthly'));
 urls.push(url(`${BASE}/occupational-health-for-employers`, '0.9', 'monthly'));
+urls.push(url(`${BASE}/non-dot-drug-testing`, '0.9', 'monthly'));
 
 // State pages
 for (const state of STATES) {
