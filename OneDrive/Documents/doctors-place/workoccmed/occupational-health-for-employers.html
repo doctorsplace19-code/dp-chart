@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Occupational Health Services for Employers | Non-DOT Physicals, Drug Screening &amp; Vaccines | Work OccMed</title>
+<meta name="description" content="Non-DOT occupational health services for employers: pre-employment physicals, workplace drug &amp; alcohol screening, employee vaccinations, and lab/titer testing. 15,000+ locations nationwide, order online.">
+<link rel="canonical" href="https://workoccmed.com/occupational-health-for-employers">
+<meta property="og:title" content="Occupational Health Services for Employers | Work OccMed">
+<meta property="og:description" content="Pre-employment physicals, non-DOT drug screening, employee vaccinations, and lab/titer testing — order online, 15,000+ locations nationwide.">
+<meta property="og:url" content="https://workoccmed.com/occupational-health-for-employers">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Inter',sans-serif; color:#1f2937; line-height:1.6; }
+  a { text-decoration:none; color:inherit; }
+  .wrap { max-width:1180px; margin:0 auto; padding:0 24px; }
+
+  /* Nav */
+  nav { background:#0d1b2a; position:sticky; top:0; z-index:100; }
+  .navbar { display:flex; align-items:center; justify-content:space-between; padding:14px 24px; max-width:1180px; margin:0 auto; }
+  .logo { display:flex; align-items:center; gap:10px; color:white; font-weight:800; font-size:17px; }
+  .logo-mark { width:34px; height:34px; border-radius:8px; background:linear-gradient(135deg,#1d4ed8,#06b6d4); display:flex; align-items:center; justify-content:center; font-size:12px; }
+  .nav-links { display:flex; align-items:center; gap:28px; }
+  .nav-links a { color:#cbd5e1; font-size:14px; font-weight:500; }
+  .nav-links a:hover { color:white; }
+  .nav-cta { background:#1d4ed8; color:white !important; padding:9px 18px; border-radius:8px; font-weight:600; }
+  .nav-cta:hover { background:#1e40af; }
+  @media (max-width:900px){ .nav-links{ display:none; } }
+
+  /* Hero */
+  .hero { background:linear-gradient(135deg,#0d1b2a 0%,#122a44 100%); color:white; padding:70px 0 60px; }
+  .hero-inner { display:flex; align-items:center; gap:48px; flex-wrap:wrap; }
+  .hero-copy { flex:1; min-width:300px; }
+  .eyebrow { color:#67e8f9; font-weight:700; font-size:13px; letter-spacing:.06em; text-transform:uppercase; margin-bottom:14px; }
+  .hero h1 { font-size:clamp(28px,4vw,42px); font-weight:800; line-height:1.15; margin-bottom:18px; }
+  .hero p { color:#cbd5e1; font-size:16px; max-width:520px; margin-bottom:26px; }
+  .hero-actions { display:flex; gap:14px; flex-wrap:wrap; }
+  .btn-primary { background:#1d4ed8; color:white; padding:13px 26px; border-radius:9px; font-weight:700; font-size:15px; }
+  .btn-primary:hover { background:#1e40af; }
+  .btn-secondary { background:rgba(255,255,255,.08); color:white; padding:13px 26px; border-radius:9px; font-weight:700; font-size:15px; border:1px solid rgba(255,255,255,.25); }
+  .btn-secondary:hover { background:rgba(255,255,255,.16); }
+  .hero-stats { display:flex; gap:28px; margin-top:36px; flex-wrap:wrap; }
+  .stat b { display:block; font-size:24px; font-weight:800; color:#67e8f9; }
+  .stat span { font-size:12.5px; color:#94a3b8; }
+
+  /* Services */
+  .section { padding:64px 0; }
+  .section-head { text-align:center; max-width:640px; margin:0 auto 44px; }
+  .section-head h2 { font-size:30px; font-weight:800; color:#0d1b2a; margin-bottom:12px; }
+  .section-head p { color:#64748b; font-size:15.5px; }
+  .services-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:22px; }
+  .service-card { background:white; border:1px solid #e5e7eb; border-radius:16px; padding:28px; transition:box-shadow .15s, transform .15s; }
+  .service-card:hover { box-shadow:0 10px 28px rgba(13,27,42,.08); transform:translateY(-2px); }
+  .service-icon { width:46px; height:46px; border-radius:11px; background:#eff6ff; color:#1d4ed8; display:flex; align-items:center; justify-content:center; font-size:22px; margin-bottom:16px; }
+  .service-card h3 { font-size:18px; font-weight:700; color:#0d1b2a; margin-bottom:8px; }
+  .service-card p { color:#64748b; font-size:14px; margin-bottom:14px; }
+  .service-card a.link { color:#1d4ed8; font-weight:600; font-size:14px; }
+  .service-card a.link:hover { text-decoration:underline; }
+
+  /* Why band */
+  .why { background:#f8fafc; }
+  .why-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:26px; }
+  .why-item { text-align:center; }
+  .why-item .num { width:44px; height:44px; border-radius:50%; background:#0d1b2a; color:#67e8f9; font-weight:800; display:flex; align-items:center; justify-content:center; margin:0 auto 14px; }
+  .why-item h4 { font-size:15.5px; font-weight:700; color:#0d1b2a; margin-bottom:6px; }
+  .why-item p { font-size:13.5px; color:#64748b; }
+
+  /* How it works */
+  .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:22px; counter-reset:step; }
+  .step { background:white; border:1px solid #e5e7eb; border-radius:14px; padding:24px; position:relative; }
+  .step::before { counter-increment:step; content:counter(step); position:absolute; top:-14px; left:24px; width:28px; height:28px; border-radius:50%; background:#1d4ed8; color:white; font-weight:800; font-size:13px; display:flex; align-items:center; justify-content:center; }
+  .step h4 { font-size:15.5px; font-weight:700; margin:8px 0 6px; color:#0d1b2a; }
+  .step p { font-size:13.5px; color:#64748b; }
+
+  /* CTA band */
+  .cta-band { background:linear-gradient(135deg,#0d1b2a,#122a44); color:white; text-align:center; padding:60px 0; }
+  .cta-band h2 { font-size:28px; font-weight:800; margin-bottom:12px; }
+  .cta-band p { color:#cbd5e1; margin-bottom:26px; }
+
+  footer { background:#0d1b2a; color:#94a3b8; padding:40px 0 24px; font-size:13.5px; }
+  .footer-grid { display:flex; justify-content:space-between; flex-wrap:wrap; gap:24px; margin-bottom:24px; }
+  .footer-grid a { color:#94a3b8; }
+  .footer-grid a:hover { color:white; }
+  .footer-cols { display:flex; gap:48px; flex-wrap:wrap; }
+  .footer-cols h5 { color:white; font-size:13px; margin-bottom:10px; }
+  .footer-cols ul { list-style:none; display:flex; flex-direction:column; gap:7px; }
+  .footer-bottom { border-top:1px solid rgba(255,255,255,.08); padding-top:18px; text-align:center; font-size:12px; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="navbar">
+    <a href="/" class="logo"><span class="logo-mark">WOM</span> Work OccMed</a>
+    <div class="nav-links">
+      <a href="dot-physical">DOT Physicals</a>
+      <a href="drug-test">Drug Testing</a>
+      <a href="occupational-health-for-employers">Employer Services</a>
+      <a href="return-to-duty">Return to Duty</a>
+      <a href="partners">Partners</a>
+      <a href="https://portal.workoccmed.com/order" class="nav-cta">Order Now</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow">For Employers &amp; HR Teams</div>
+      <h1>Occupational health testing your company can order online</h1>
+      <p>Pre-employment physicals, workplace drug &amp; alcohol screening, employee vaccinations, and lab/titer testing — all bookable online with results delivered straight to your dashboard. No DOT requirement needed.</p>
+      <div class="hero-actions">
+        <a href="https://portal.workoccmed.com/order" class="btn-primary">Order Employee Testing →</a>
+        <a href="tel:+18882334567" class="btn-secondary">Call (888) 233-4567</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>15,000+</b><span>Clinic locations nationwide</span></div>
+        <div class="stat"><b>50</b><span>States covered</span></div>
+        <div class="stat"><b>24–48 hr</b><span>Typical result turnaround</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Services for non-DOT employers</h2>
+      <p>Whether or not your workforce is DOT-regulated, we help you screen and clear employees quickly and compliantly.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">✚</div>
+        <h3>Pre-Employment Physicals</h3>
+        <p>General physical exams to confirm a new hire is fit for the role, with same-day scheduling at nationwide clinic locations.</p>
+        <a href="pre-employment-physical" class="link">Learn more →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧪</div>
+        <h3>Non-DOT Drug &amp; Alcohol Screening</h3>
+        <p>Pre-employment, random, reasonable-suspicion, and post-accident testing for employers who are not federally regulated.</p>
+        <a href="drug-test" class="link">Learn more →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💉</div>
+        <h3>Employee Vaccinations</h3>
+        <p>Flu, Hepatitis B, TB testing, and other workplace-required vaccinations administered at our network locations.</p>
+        <a href="https://portal.workoccmed.com/order" class="link">Order vaccines →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📋</div>
+        <h3>Lab &amp; Titer Testing</h3>
+        <p>Immunity titers, general lab panels, and other diagnostic testing required for onboarding or ongoing compliance.</p>
+        <a href="https://portal.workoccmed.com/order" class="link">Order lab testing →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section why">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Why employers use Work OccMed</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="num">1</div>
+        <h4>One portal, every order</h4>
+        <p>Order and track every employee's testing status from a single employer dashboard.</p>
+      </div>
+      <div class="why-item">
+        <div class="num">2</div>
+        <h4>Nationwide network</h4>
+        <p>15,000+ clinic and collection sites, so employees can test near home or the jobsite.</p>
+      </div>
+      <div class="why-item">
+        <div class="num">3</div>
+        <h4>Fast results</h4>
+        <p>Most results are available within 24–48 hours, delivered directly to your dashboard.</p>
+      </div>
+      <div class="why-item">
+        <div class="num">4</div>
+        <h4>No contracts required</h4>
+        <p>Order as needed — pay per test, with invoicing available for larger accounts.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How it works</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h4>Create a free employer account</h4>
+        <p>Set up your company profile in minutes — no cost to register.</p>
+      </div>
+      <div class="step">
+        <h4>Order testing for your employee</h4>
+        <p>Choose the service, enter employee details, and we generate a testing authorization.</p>
+      </div>
+      <div class="step">
+        <h4>Employee tests at a nearby location</h4>
+        <p>Your employee visits any location in our 15,000+ site network to complete testing.</p>
+      </div>
+      <div class="step">
+        <h4>Results land in your dashboard</h4>
+        <p>Track status and view results securely online as soon as they're ready.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Ready to order employee testing?</h2>
+    <p>Create a free employer account and place your first order today.</p>
+    <a href="https://portal.workoccmed.com/order" class="btn-primary">Get Started →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-cols">
+        <div>
+          <h5>Services</h5>
+          <ul>
+            <li><a href="pre-employment-physical">Pre-Employment Physicals</a></li>
+            <li><a href="drug-test">Drug &amp; Alcohol Testing</a></li>
+            <li><a href="dot-physical">DOT Physicals</a></li>
+            <li><a href="return-to-duty">Return to Duty</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="partners">Partners</a></li>
+            <li><a href="https://portal.workoccmed.com/order">Order Online</a></li>
+            <li><a href="tel:+18882334567">(888) 233-4567</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© <span id="yr"></span> Work OccMed · a WorkOccMed LLC company · Phone (888) 233-4567 · Fax (234) 204-6965 · info@workoccmed.com</div>
+  </div>
+</footer>
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+
+<div id="womChatBtn" style="position:fixed;bottom:22px;right:22px;width:58px;height:58px;border-radius:50%;background:#1d4ed8;box-shadow:0 6px 18px rgba(29,78,216,.4);display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:999;">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+</div>
+<div id="womChatPanel" style="display:none;position:fixed;bottom:90px;right:22px;width:340px;max-width:calc(100vw - 40px);height:460px;background:white;border-radius:16px;box-shadow:0 12px 40px rgba(0,0,0,.2);z-index:999;flex-direction:column;overflow:hidden;">
+  <div style="background:#0d1b2a;padding:16px;display:flex;align-items:center;gap:10px;">
+    <div style="width:34px;height:34px;border-radius:8px;background:#1d4ed8;display:flex;align-items:center;justify-content:center;color:white;font-weight:800;font-size:12px;">WOM</div>
+    <div style="flex:1;">
+      <div style="color:white;font-weight:700;font-size:15px;">WorkOccMed Assistant</div>
+      <div style="color:#93c5fd;font-size:12px;">Pre-employment &amp; occupational health</div>
+    </div>
+    <button id="womChatClose" aria-label="Close" style="background:none;border:none;cursor:pointer;color:rgba(255,255,255,0.7);font-size:22px;line-height:1;">&times;</button>
+  </div>
+  <div id="womChatMsgs" style="flex:1;overflow-y:auto;padding:16px;background:#f8fafc;display:flex;flex-direction:column;gap:12px;"></div>
+  <div style="padding:12px;border-top:1px solid #e5e7eb;display:flex;gap:8px;background:white;">
+    <input id="womChatInput" type="text" placeholder="Ask a question–" autocomplete="off"
+      style="flex:1;border:1.5px solid #d1d5db;border-radius:10px;padding:11px 14px;font-family:'Inter',sans-serif;font-size:14px;outline:none;">
+    <button id="womChatSend" style="background:#1d4ed8;border:none;border-radius:10px;padding:0 16px;color:white;cursor:pointer;font-weight:700;font-size:14px;">Send</button>
+  </div>
+</div>
+<script>
+(function(){
+  var API = 'https://portal.dot-physical.net/api/chat';
+  var btn = document.getElementById('womChatBtn');
+  var panel = document.getElementById('womChatPanel');
+  var closeBtn = document.getElementById('womChatClose');
+  var msgs = document.getElementById('womChatMsgs');
+  var input = document.getElementById('womChatInput');
+  var send = document.getElementById('womChatSend');
+  var history = [];
+  var greeted = false;
+  function bubble(role, text){
+    var wrap = document.createElement('div');
+    var isUser = role === 'user';
+    wrap.style.cssText = 'max-width:82%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.5;white-space:pre-wrap;'+
+      (isUser ? 'align-self:flex-end;background:#1d4ed8;color:white;border-bottom-right-radius:4px;'
+              : 'align-self:flex-start;background:white;color:#111827;border:1px solid #e5e7eb;border-bottom-left-radius:4px;');
+    wrap.textContent = text; msgs.appendChild(wrap); msgs.scrollTop = msgs.scrollHeight; return wrap;
+  }
+  function open(){ panel.style.display='flex'; if(!greeted){ greeted=true; bubble('assistant',"Hi! Looking to set up employee testing or vaccinations? I can help you get started."); } input.focus(); }
+  function close(){ panel.style.display='none'; }
+  btn.addEventListener('click', function(){ panel.style.display==='flex' ? close() : open(); });
+  closeBtn.addEventListener('click', close);
+  async function sendMsg(){
+    var text = input.value.trim(); if(!text) return;
+    bubble('user', text); history.push({role:'user',content:text}); input.value='';
+    var typing = bubble('assistant','–'); send.disabled = true;
+    try{
+      var res = await fetch(API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:history})});
+      var data = await res.json();
+      typing.textContent = data.message || data.error || 'Sorry, please call (888) 233-4567.';
+      if(data.message) history.push({role:'assistant',content:data.message});
+    }catch(e){ typing.textContent = 'Connection issue – please call (888) 233-4567.'; }
+    send.disabled = false; msgs.scrollTop = msgs.scrollHeight;
+  }
+  send.addEventListener('click', sendMsg);
+  input.addEventListener('keydown', function(e){ if(e.key==='Enter') sendMsg(); });
+})();
+</script>
+
+</body>
+</html>
