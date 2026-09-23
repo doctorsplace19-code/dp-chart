@@ -168,6 +168,71 @@ function InlineYN({ name, value, onChange }: { name:string; value:string; onChan
   )
 }
 
+const SB_QUESTIONS = [
+  'Do you SNORE loudly?',
+  'Do you often feel TIRED, fatigued, or sleepy during the daytime?',
+  'Has anyone OBSERVED you stop breathing during your sleep?',
+  'Do you have or are you being treated for high blood PRESSURE?',
+  'Are you obese/ very overweight – BMI more than 35 kg/m2?',
+  'AGE over 50 years old?',
+  'NECK Circumference (Measured around Adams apple)\nMale ≥ 17 in, Female ≥ 16 in?',
+  'GENDER: Male?',
+]
+
+function StopBangRows({ condAnswers, bmi, neckSize, gender, age, stopBang, setStopBang }: {
+  condAnswers: Record<number, string>
+  bmi: string; neckSize: string; gender: string; age: number | null
+  stopBang: Record<number, string>
+  setStopBang: React.Dispatch<React.SetStateAction<Record<number, string>>>
+}) {
+  const yn = (v: string | undefined) => v === 'Yes' ? 'Yes' : v === 'No' ? 'No' : ''
+  const bmiNum = parseFloat(bmi)
+  const neckNum = parseFloat(neckSize)
+  const isMale = gender === 'Male'
+  const sbDerived = [
+    yn(condAnswers[24]),
+    yn(condAnswers[24]),
+    yn(condAnswers[24]),
+    yn(condAnswers[6]),
+    bmiNum ? (bmiNum > 35 ? 'Yes' : 'No') : '',
+    age !== null ? (age > 50 ? 'Yes' : 'No') : '',
+    neckNum ? ((isMale ? neckNum >= 17 : neckNum >= 16) ? 'Yes' : 'No') : '',
+    gender ? (isMale ? 'Yes' : 'No') : '',
+  ]
+  const sbHints = [
+    condAnswers[24] ? `Auto from Health Hx 25 (${condAnswers[24]})` : undefined,
+    condAnswers[24] ? `Auto from Health Hx 25 (${condAnswers[24]})` : undefined,
+    condAnswers[24] ? `Auto from Health Hx 25 (${condAnswers[24]})` : undefined,
+    condAnswers[6]  ? `Auto from Health Hx 7 (${condAnswers[6]})`  : undefined,
+    bmi             ? `BMI: ${bmi}` : undefined,
+    age !== null    ? `Age: ${age}` : undefined,
+    neckSize        ? `Neck: ${neckSize} in` : undefined,
+    gender          ? `Gender: ${gender}` : undefined,
+  ]
+  return (
+    <>
+      {SB_QUESTIONS.map((q, i) => {
+        const derived = sbDerived[i]
+        const current = stopBang[i] || derived
+        const isAuto  = !stopBang[i] && !!derived
+        return (
+          <div key={i} style={{ display:'flex', alignItems:'flex-start', padding:'10px 14px', background:i%2===0?'#fff':'#f9fafb', borderBottom:'1px solid #f3f4f6' }}>
+            <span style={{ fontSize:12.5, flex:1, whiteSpace:'pre-line' as const }}>{i+1}. {q}</span>
+            <div style={{ display:'flex', alignItems:'center', gap:10, flexShrink:0, marginLeft:12 }}>
+              <InlineYN name={`sb${i}`} value={current} onChange={v=>setStopBang(prev=>({...prev,[i]:v}))} />
+              {sbHints[i] && (
+                <span style={{ fontSize:10.5, color: isAuto ? '#2563eb' : '#9ca3af', whiteSpace:'nowrap' as const, background: isAuto ? '#eff6ff' : 'transparent', borderRadius:3, padding: isAuto ? '1px 5px' : 0 }}>
+                  {isAuto ? '⚡ ' : ''}{sbHints[i]}
+                </span>
+              )}
+            </div>
+          </div>
+        )
+      })}
+    </>
+  )
+}
+
 function FreqCommentBox({ value, onChange, placeholder='Enter Comments ...' }: { value:string; onChange:(v:string)=>void; placeholder?:string }) {
   const [freq, setFreq] = useState('')
   return (
@@ -1242,59 +1307,15 @@ export default function ExamForm({ companySlug }: { companySlug: string }) {
             <SectionTitle>Sleep Screening (STOP BANG)</SectionTitle>
             <p style={{ fontSize:12, lineHeight:1.6, marginBottom:18 }}><strong>Note:</strong> This section is not a required part of the DOT Medical Exam. Information collected should be used at your discretion as part of your overall assessment of driver fitness.</p>
             <div style={{ border:'1px solid #f3f4f6', borderRadius:6, overflow:'hidden', marginBottom:16 }}>
-            {(() => {
-              const yn = (v: string | undefined) => v === 'Yes' ? 'Yes' : v === 'No' ? 'No' : ''
-              const bmiNum = parseFloat(bmi)
-              const neckNum = parseFloat(neckSize)
-              const isMale = gender === 'Male'
-              const sbDerived: string[] = [
-                yn(condAnswers[24]),                        // 0 SNORE — sleep disorder hx
-                yn(condAnswers[24]),                        // 1 TIRED
-                yn(condAnswers[24]),                        // 2 OBSERVED
-                yn(condAnswers[6]),                         // 3 PRESSURE — hypertension hx
-                bmiNum ? (bmiNum > 35 ? 'Yes' : 'No') : '',// 4 OBESE
-                age !== null ? (age > 50 ? 'Yes' : 'No') : '',// 5 AGE
-                neckNum ? ((isMale ? neckNum >= 17 : neckNum >= 16) ? 'Yes' : 'No') : '',// 6 NECK
-                gender ? (isMale ? 'Yes' : 'No') : '',     // 7 MALE
-              ]
-              const sbHints = [
-                condAnswers[24] ? `Auto from Health Hx 25 (${condAnswers[24]})` : undefined,
-                condAnswers[24] ? `Auto from Health Hx 25 (${condAnswers[24]})` : undefined,
-                condAnswers[24] ? `Auto from Health Hx 25 (${condAnswers[24]})` : undefined,
-                condAnswers[6]  ? `Auto from Health Hx 7 (${condAnswers[6]})`  : undefined,
-                bmi             ? `BMI: ${bmi}` : undefined,
-                age !== null    ? `Age: ${age}` : undefined,
-                neckSize        ? `Neck: ${neckSize} in` : undefined,
-                gender          ? `Gender: ${gender}` : undefined,
-              ]
-              return [
-                'Do you SNORE loudly?',
-                'Do you often feel TIRED, fatigued, or sleepy during the daytime?',
-                'Has anyone OBSERVED you stop breathing during your sleep?',
-                'Do you have or are you being treated for high blood PRESSURE?',
-                'Are you obese/ very overweight – BMI more than 35 kg/m2?',
-                'AGE over 50 years old?',
-                'NECK Circumference (Measured around Adams apple)\nMale ≥ 17 in, Female ≥ 16 in?',
-                'GENDER: Male?',
-              ].map((q, i) => {
-                const derived = sbDerived[i]
-                const current = stopBang[i] || derived
-                const isAuto  = !stopBang[i] && !!derived
-                return (
-                  <div key={i} style={{ display:'flex', alignItems:'flex-start', padding:'10px 14px', background:i%2===0?'#fff':'#f9fafb', borderBottom:'1px solid #f3f4f6' }}>
-                    <span style={{ fontSize:12.5, flex:1, whiteSpace:'pre-line' as const }}>{i+1}. {q}</span>
-                    <div style={{ display:'flex', alignItems:'center', gap:10, flexShrink:0, marginLeft:12 }}>
-                      <InlineYN name={`sb${i}`} value={current} onChange={v=>setStopBang(prev=>({...prev,[i]:v}))} />
-                      {sbHints[i] && (
-                        <span style={{ fontSize:10.5, color: isAuto ? '#2563eb' : '#9ca3af', whiteSpace:'nowrap' as const, background: isAuto ? '#eff6ff' : 'transparent', borderRadius:3, padding: isAuto ? '1px 5px' : 0 }}>
-                          {isAuto ? '⚡ ' : ''}{sbHints[i]}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                )
-              })
-            })()}
+            <StopBangRows
+              condAnswers={condAnswers}
+              bmi={bmi}
+              neckSize={neckSize}
+              gender={gender}
+              age={age}
+              stopBang={stopBang}
+              setStopBang={setStopBang}
+            />
             </div>
             {stopScore > 0 && (<div style={{ fontSize:12.5, color:'#dc2626', fontWeight:700, marginBottom:12 }}>Total Score: {stopScore} ({stopRisk})</div>)}
             <button type="button" style={{ background:'#16a34a', color:'#fff', border:'none', borderRadius:4, padding:'7px 16px', fontSize:12, fontWeight:600, cursor:'pointer' }}>↻ Copy OSA Risk Score to Physical Exam Notes</button>
