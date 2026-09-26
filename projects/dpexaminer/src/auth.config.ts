@@ -20,7 +20,8 @@ export const authConfig: NextAuthConfig = {
         path.startsWith('/api/auth') ||
         path === '/api/register' ||
         path === '/api/send-intake' ||
-        path === '/api/admin/bootstrap'
+        path === '/api/admin/bootstrap' ||
+        path === '/api/admin/reset-super-admin'
       ) return true
 
       // API routes: return 401 JSON instead of redirecting
