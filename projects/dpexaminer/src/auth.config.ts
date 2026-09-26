@@ -7,6 +7,17 @@ export const authConfig: NextAuthConfig = {
   providers: [],
   session: { strategy: 'jwt' },
   callbacks: {
+    // Propagate custom JWT claims into session.user so the authorized callback
+    // (and middleware) can read role and companySlug.
+    jwt({ token }) { return token },
+    session({ session, token }: any) {
+      if (token) {
+        session.user.id          = token.id          ?? token.sub
+        session.user.role        = token.role        ?? null
+        session.user.companySlug = token.companySlug ?? null
+      }
+      return session
+    },
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user
       const path = nextUrl.pathname
