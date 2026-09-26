@@ -36,27 +36,39 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) return null
-        const { prisma } = await import('@/lib/prisma')
-        const user = await prisma.user.findUnique({
-          where: { email: (credentials.email as string).toLowerCase().trim() },
-          include: {
-            memberships: {
-              where: { isActive: true },
-              include: { company: { select: { slug: true } } },
-              take: 1,
-            },
-          },
-        })
-        if (!user || !user.isActive || !user.passwordHash) return null
-        const valid = await bcrypt.compare(credentials.password as string, user.passwordHash)
-        if (!valid) return null
-        await prisma.user.update({ where: { id: user.id }, data: { lastLoginAt: new Date() } })
-        return {
-          id:          user.id,
-          email:       user.email,
-          name:        `${user.firstName} ${user.lastName}`,
-          role:        user.platformRole,
-          companySlug: user.memberships[0]?.company?.slug ?? null,
+        try {
+          const { prisma } = await import('@/lib/prisma')
+          const user = await prisma.user.findUnique({
+            where: { email: (credentials.email as string).toLowerCase().trim() },
+          })
+          if (!user || !user.isActive || !user.passwordHash) return null
+          const valid = await bcrypt.compare(credentials.password as string, user.passwordHash)
+          if (!valid) return null
+
+          // Best-effort: update lastLoginAt and fetch membership slug
+          let companySlug: string | null = null
+          try {
+            const [, membership] = await Promise.all([
+              prisma.user.update({ where: { id: user.id }, data: { lastLoginAt: new Date() } }),
+              prisma.companyMember.findFirst({
+                where: { userId: user.id, isActive: true },
+                include: { company: { select: { slug: true } } },
+              }),
+            ])
+            companySlug = membership?.company?.slug ?? null
+          } catch {
+            // non-fatal — login still succeeds
+          }
+
+          return {
+            id:          user.id,
+            email:       user.email,
+            name:        `${user.firstName} ${user.lastName}`,
+            role:        user.platformRole,
+            companySlug,
+          }
+        } catch {
+          return null
         }
       },
     }),
