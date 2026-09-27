@@ -2,8 +2,9 @@
 
 import { signIn } from '@/auth'
 import { AuthError } from 'next-auth'
+import { redirect } from 'next/navigation'
 
-export async function loginAction(_: unknown, formData: FormData) {
+export async function loginAction(formData: FormData) {
   try {
     await signIn('credentials', {
       email: formData.get('email') as string,
@@ -12,13 +13,8 @@ export async function loginAction(_: unknown, formData: FormData) {
     })
   } catch (error) {
     if (error instanceof AuthError) {
-      return { error: 'Invalid email or password.' }
+      redirect('/login?error=CredentialsSignin')
     }
-    // NextAuth throws NEXT_REDIRECT on success; catch it and signal the client
-    // to navigate (useActionState can't follow server-thrown redirects)
-    if ((error as any)?.digest?.startsWith?.('NEXT_REDIRECT')) {
-      return { success: true as const }
-    }
-    throw error
+    throw error // re-throw NEXT_REDIRECT so Next.js sets the session cookie
   }
 }

@@ -1,6 +1,5 @@
 'use client'
 import Link from 'next/link'
-import { useActionState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { loginAction } from './actions'
@@ -8,17 +7,10 @@ import { loginAction } from './actions'
 function LoginForm() {
   const searchParams = useSearchParams()
   const urlError = searchParams.get('error')
-  const [state, formAction, pending] = useActionState(loginAction, null)
-  const error = (state as any)?.error ?? (urlError ? 'Invalid email or password.' : '')
-
-  useEffect(() => {
-    if ((state as any)?.success) {
-      window.location.href = '/me'
-    }
-  }, [state])
+  const error = urlError ? 'Invalid email or password.' : ''
 
   return (
-    <form action={formAction} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+    <form action={loginAction} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       {error && (
         <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 7, padding: '8px 12px', fontSize: 12.5, color: '#dc2626' }}>
           {error}
@@ -37,9 +29,9 @@ function LoginForm() {
         <input name="password" type="password" autoComplete="current-password" placeholder="••••••••" required
           style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: 7, fontSize: 13, color: 'var(--ink)', boxSizing: 'border-box' }} />
       </div>
-      <button type="submit" disabled={pending}
-        style={{ width: '100%', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 0', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 4, opacity: pending ? 0.7 : 1 }}>
-        {pending ? 'Signing in…' : 'Sign In'}
+      <button type="submit"
+        style={{ width: '100%', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 0', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 4 }}>
+        Sign In
       </button>
     </form>
   )
