@@ -14,6 +14,11 @@ export async function loginAction(_: unknown, formData: FormData) {
     if (error instanceof AuthError) {
       return { error: 'Invalid email or password.' }
     }
-    throw error // re-throw redirect (it's not an error)
+    // NextAuth throws NEXT_REDIRECT on success; catch it and signal the client
+    // to navigate (useActionState can't follow server-thrown redirects)
+    if ((error as any)?.digest?.startsWith?.('NEXT_REDIRECT')) {
+      return { success: true as const }
+    }
+    throw error
   }
 }

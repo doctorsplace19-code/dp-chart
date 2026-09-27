@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link'
-import { useState, useActionState } from 'react'
+import { useActionState, useEffect } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 import { loginAction } from './actions'
@@ -9,7 +9,13 @@ function LoginForm() {
   const searchParams = useSearchParams()
   const urlError = searchParams.get('error')
   const [state, formAction, pending] = useActionState(loginAction, null)
-  const error = state?.error ?? (urlError ? 'Invalid email or password.' : '')
+  const error = (state as any)?.error ?? (urlError ? 'Invalid email or password.' : '')
+
+  useEffect(() => {
+    if ((state as any)?.success) {
+      window.location.href = '/me'
+    }
+  }, [state])
 
   return (
     <form action={formAction} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
