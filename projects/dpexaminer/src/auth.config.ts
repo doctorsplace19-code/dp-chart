@@ -45,11 +45,7 @@ export const authConfig: NextAuthConfig = {
       // All other pages require login
       if (!isLoggedIn) return false
 
-      // /admin requires SUPER_ADMIN
-      if (path.startsWith('/admin')) {
-        return (auth?.user as any)?.role === 'SUPER_ADMIN'
-      }
-
+      // /admin role check is enforced server-side in the layout
       return true
     },
   },
