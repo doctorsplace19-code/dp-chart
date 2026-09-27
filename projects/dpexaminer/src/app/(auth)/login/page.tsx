@@ -1,36 +1,18 @@
 'use client'
 import Link from 'next/link'
-import { useState } from 'react'
-import { signIn } from 'next-auth/react'
+import { useState, useActionState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
+import { loginAction } from './actions'
 
 function LoginForm() {
   const searchParams = useSearchParams()
-  const callbackUrl = searchParams.get('callbackUrl') || '/me'
   const urlError = searchParams.get('error')
-
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState(urlError ? 'Invalid email or password.' : '')
-  const [loading, setLoading] = useState(false)
-
-  async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setError('')
-    if (!email || !password) { setError('Please enter email and password.'); return }
-    setLoading(true)
-    const result = await signIn('credentials', { email, password, redirect: false })
-    setLoading(false)
-    if (!result?.ok || result.error) {
-      setError('Invalid email or password.')
-    } else {
-      window.location.href = callbackUrl
-    }
-  }
+  const [state, formAction, pending] = useActionState(loginAction, null)
+  const error = state?.error ?? (urlError ? 'Invalid email or password.' : '')
 
   return (
-    <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+    <form action={formAction} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       {error && (
         <div style={{ background: '#fef2f2', border: '1px solid #fecaca', borderRadius: 7, padding: '8px 12px', fontSize: 12.5, color: '#dc2626' }}>
           {error}
@@ -38,7 +20,7 @@ function LoginForm() {
       )}
       <div>
         <label style={{ display: 'block', fontSize: 11, fontWeight: 700, color: 'var(--ink3)', textTransform: 'uppercase', letterSpacing: '.06em', marginBottom: 6 }}>Email address</label>
-        <input type="email" autoComplete="email" placeholder="you@company.com" value={email} onChange={e => setEmail(e.target.value)}
+        <input name="email" type="email" autoComplete="email" placeholder="you@company.com" required
           style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: 7, fontSize: 13, color: 'var(--ink)', boxSizing: 'border-box' }} />
       </div>
       <div>
@@ -46,12 +28,12 @@ function LoginForm() {
           <label style={{ fontSize: 11, fontWeight: 700, color: 'var(--ink3)', textTransform: 'uppercase', letterSpacing: '.06em' }}>Password</label>
           <Link href="/forgot-password" style={{ fontSize: 11, color: 'var(--accent)', textDecoration: 'none', fontWeight: 600 }}>Forgot password?</Link>
         </div>
-        <input type="password" autoComplete="current-password" placeholder="••••••••" value={password} onChange={e => setPassword(e.target.value)}
+        <input name="password" type="password" autoComplete="current-password" placeholder="••••••••" required
           style={{ width: '100%', padding: '9px 12px', border: '1px solid var(--border)', borderRadius: 7, fontSize: 13, color: 'var(--ink)', boxSizing: 'border-box' }} />
       </div>
-      <button type="submit" disabled={loading}
-        style={{ width: '100%', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 0', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 4, opacity: loading ? 0.7 : 1 }}>
-        {loading ? 'Signing in…' : 'Sign In'}
+      <button type="submit" disabled={pending}
+        style={{ width: '100%', background: 'var(--accent)', color: '#fff', border: 'none', borderRadius: 8, padding: '10px 0', fontSize: 13, fontWeight: 700, cursor: 'pointer', marginTop: 4, opacity: pending ? 0.7 : 1 }}>
+        {pending ? 'Signing in…' : 'Sign In'}
       </button>
     </form>
   )
