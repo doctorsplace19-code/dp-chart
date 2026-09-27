@@ -2,17 +2,17 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { signIn } from 'next-auth/react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { Suspense } from 'react'
 
 function LoginForm() {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const callbackUrl = searchParams.get('callbackUrl') || '/me'
+  const urlError = searchParams.get('error')
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
+  const [error, setError] = useState(urlError ? 'Invalid email or password.' : '')
   const [loading, setLoading] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
@@ -20,13 +20,8 @@ function LoginForm() {
     setError('')
     if (!email || !password) { setError('Please enter email and password.'); return }
     setLoading(true)
-    const result = await signIn('credentials', { email, password, redirect: false })
+    await signIn('credentials', { email, password, redirectTo: callbackUrl })
     setLoading(false)
-    if (result?.error) {
-      setError('Invalid email or password.')
-    } else {
-      router.push(callbackUrl)
-    }
   }
 
   return (
