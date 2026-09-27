@@ -20,8 +20,13 @@ function LoginForm() {
     setError('')
     if (!email || !password) { setError('Please enter email and password.'); return }
     setLoading(true)
-    await signIn('credentials', { email, password, redirectTo: callbackUrl })
+    const result = await signIn('credentials', { email, password, redirect: false })
     setLoading(false)
+    if (!result?.ok || result.error) {
+      setError('Invalid email or password.')
+    } else {
+      window.location.href = callbackUrl
+    }
   }
 
   return (
