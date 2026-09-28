@@ -12,9 +12,10 @@ export async function loginAction(formData: FormData) {
       redirectTo: '/me',
     })
   } catch (error) {
+    console.log('[loginAction] caught error type=', (error as any)?.constructor?.name, 'digest=', (error as any)?.digest)
     if (error instanceof AuthError) {
       redirect('/login?error=CredentialsSignin')
     }
-    throw error // re-throw NEXT_REDIRECT so Next.js sets the session cookie
+    throw error
   }
 }
