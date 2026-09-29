@@ -24,16 +24,17 @@ export const authConfig: NextAuthConfig = {
 
       // Always public
       if (
+        path === '/' ||
         path === '/login' ||
         path === '/register' ||
         path === '/setup' ||
+        path === '/privacy' ||
+        path === '/terms' ||
         path.startsWith('/driver') ||
         path.startsWith('/api/auth') ||
         path === '/api/register' ||
         path === '/api/send-intake' ||
-        path === '/api/admin/bootstrap' ||
-        path === '/api/admin/reset-super-admin' ||
-        path === '/api/admin/debug-login'
+        path === '/api/admin/bootstrap'
       ) return true
 
       // API routes: return 401 JSON instead of redirecting
