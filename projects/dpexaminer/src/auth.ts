@@ -38,14 +38,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         if (!credentials?.email || !credentials?.password) return null
         try {
           const { prisma } = await import('@/lib/prisma')
-          console.log('[auth] authorize: looking up', credentials.email)
           const user = await prisma.user.findUnique({
             where: { email: (credentials.email as string).toLowerCase().trim() },
           })
-          console.log('[auth] authorize: user found=', !!user, 'isActive=', user?.isActive)
           if (!user || !user.isActive || !user.passwordHash) return null
           const valid = await bcrypt.compare(credentials.password as string, user.passwordHash)
-          console.log('[auth] authorize: passwordMatch=', valid)
           if (!valid) return null
 
           let companySlug: string | null = null
@@ -58,11 +55,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
               }),
             ])
             companySlug = membership?.company?.slug ?? null
-          } catch (e) {
-            console.log('[auth] authorize: membership fetch error (non-fatal)', e)
+          } catch {
+            // non-fatal — login still succeeds
           }
 
-          console.log('[auth] authorize: returning user id=', user.id, 'role=', user.platformRole)
           return {
             id:          user.id,
             email:       user.email,
@@ -70,8 +66,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
             role:        user.platformRole,
             companySlug,
           }
-        } catch (e) {
-          console.error('[auth] authorize: fatal error', e)
+        } catch {
           return null
         }
       },
