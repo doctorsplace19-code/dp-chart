@@ -3,5 +3,507 @@
   "outputDirectory": "OneDrive/Documents/doctors-place/workoccmed",
   "installCommand": "",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/dot-physical-alabama.html",
+      "destination": "/states/alabama",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-alabama",
+      "destination": "/states/alabama",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-alaska.html",
+      "destination": "/states/alaska",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-alaska",
+      "destination": "/states/alaska",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-arizona.html",
+      "destination": "/states/arizona",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-arizona",
+      "destination": "/states/arizona",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-arkansas.html",
+      "destination": "/states/arkansas",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-arkansas",
+      "destination": "/states/arkansas",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-california.html",
+      "destination": "/states/california",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-california",
+      "destination": "/states/california",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-colorado.html",
+      "destination": "/states/colorado",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-colorado",
+      "destination": "/states/colorado",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-connecticut.html",
+      "destination": "/states/connecticut",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-connecticut",
+      "destination": "/states/connecticut",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-delaware.html",
+      "destination": "/states/delaware",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-delaware",
+      "destination": "/states/delaware",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-florida.html",
+      "destination": "/states/florida",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-florida",
+      "destination": "/states/florida",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-georgia.html",
+      "destination": "/states/georgia",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-georgia",
+      "destination": "/states/georgia",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-hawaii.html",
+      "destination": "/states/hawaii",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-hawaii",
+      "destination": "/states/hawaii",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-idaho.html",
+      "destination": "/states/idaho",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-idaho",
+      "destination": "/states/idaho",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-illinois.html",
+      "destination": "/states/illinois",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-illinois",
+      "destination": "/states/illinois",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-indiana.html",
+      "destination": "/states/indiana",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-indiana",
+      "destination": "/states/indiana",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-iowa.html",
+      "destination": "/states/iowa",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-iowa",
+      "destination": "/states/iowa",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-kansas.html",
+      "destination": "/states/kansas",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-kansas",
+      "destination": "/states/kansas",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-kentucky.html",
+      "destination": "/states/kentucky",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-kentucky",
+      "destination": "/states/kentucky",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-louisiana.html",
+      "destination": "/states/louisiana",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-louisiana",
+      "destination": "/states/louisiana",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-maine.html",
+      "destination": "/states/maine",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-maine",
+      "destination": "/states/maine",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-maryland.html",
+      "destination": "/states/maryland",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-maryland",
+      "destination": "/states/maryland",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-massachusetts.html",
+      "destination": "/states/massachusetts",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-massachusetts",
+      "destination": "/states/massachusetts",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-michigan.html",
+      "destination": "/states/michigan",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-michigan",
+      "destination": "/states/michigan",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-minnesota.html",
+      "destination": "/states/minnesota",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-minnesota",
+      "destination": "/states/minnesota",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-mississippi.html",
+      "destination": "/states/mississippi",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-mississippi",
+      "destination": "/states/mississippi",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-missouri.html",
+      "destination": "/states/missouri",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-missouri",
+      "destination": "/states/missouri",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-montana.html",
+      "destination": "/states/montana",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-montana",
+      "destination": "/states/montana",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-nebraska.html",
+      "destination": "/states/nebraska",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-nebraska",
+      "destination": "/states/nebraska",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-nevada.html",
+      "destination": "/states/nevada",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-nevada",
+      "destination": "/states/nevada",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-new-hampshire.html",
+      "destination": "/states/new-hampshire",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-new-hampshire",
+      "destination": "/states/new-hampshire",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-new-jersey.html",
+      "destination": "/states/new-jersey",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-new-jersey",
+      "destination": "/states/new-jersey",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-new-mexico.html",
+      "destination": "/states/new-mexico",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-new-mexico",
+      "destination": "/states/new-mexico",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-new-york.html",
+      "destination": "/states/new-york",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-new-york",
+      "destination": "/states/new-york",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-north-carolina.html",
+      "destination": "/states/north-carolina",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-north-carolina",
+      "destination": "/states/north-carolina",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-north-dakota.html",
+      "destination": "/states/north-dakota",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-north-dakota",
+      "destination": "/states/north-dakota",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-ohio.html",
+      "destination": "/states/ohio",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-ohio",
+      "destination": "/states/ohio",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-oklahoma.html",
+      "destination": "/states/oklahoma",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-oklahoma",
+      "destination": "/states/oklahoma",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-oregon.html",
+      "destination": "/states/oregon",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-oregon",
+      "destination": "/states/oregon",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-pennsylvania.html",
+      "destination": "/states/pennsylvania",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-pennsylvania",
+      "destination": "/states/pennsylvania",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-rhode-island.html",
+      "destination": "/states/rhode-island",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-rhode-island",
+      "destination": "/states/rhode-island",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-south-carolina.html",
+      "destination": "/states/south-carolina",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-south-carolina",
+      "destination": "/states/south-carolina",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-south-dakota.html",
+      "destination": "/states/south-dakota",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-south-dakota",
+      "destination": "/states/south-dakota",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-tennessee.html",
+      "destination": "/states/tennessee",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-tennessee",
+      "destination": "/states/tennessee",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-texas.html",
+      "destination": "/states/texas",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-texas",
+      "destination": "/states/texas",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-utah.html",
+      "destination": "/states/utah",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-utah",
+      "destination": "/states/utah",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-vermont.html",
+      "destination": "/states/vermont",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-vermont",
+      "destination": "/states/vermont",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-virginia.html",
+      "destination": "/states/virginia",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-virginia",
+      "destination": "/states/virginia",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-washington.html",
+      "destination": "/states/washington",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-washington",
+      "destination": "/states/washington",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-west-virginia.html",
+      "destination": "/states/west-virginia",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-west-virginia",
+      "destination": "/states/west-virginia",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-wisconsin.html",
+      "destination": "/states/wisconsin",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-wisconsin",
+      "destination": "/states/wisconsin",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-wyoming.html",
+      "destination": "/states/wyoming",
+      "permanent": true
+    },
+    {
+      "source": "/dot-physical-wyoming",
+      "destination": "/states/wyoming",
+      "permanent": true
+    }
+  ]
 }
