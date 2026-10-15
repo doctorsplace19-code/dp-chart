@@ -169,6 +169,43 @@
     <priority>0.85</priority>
   </url>
 
+  <!-- More return-to-duty and consortium guides -->
+  <url>
+    <loc>https://www.workoccmed.com/dot-return-to-duty-test-cost</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.workoccmed.com/how-long-does-dot-return-to-duty-take</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.workoccmed.com/dot-follow-up-testing-plan</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.workoccmed.com/what-happens-when-selected-for-dot-random-test</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.workoccmed.com/owner-operator-fmcsa-clearinghouse-registration</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.workoccmed.com/dot-consortium-for-small-fleets</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
   <!-- Consortium guide pages -->
   <url>
     <loc>https://www.workoccmed.com/dot-consortium-cost</loc>
