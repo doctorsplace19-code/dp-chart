@@ -507,23 +507,23 @@
     },
     {
       "source": "/dot-physical-puerto-rico.html",
-      "destination": "/states/puerto-rico",
-      "permanent": true
+      "destination": "/",
+      "permanent": false
     },
     {
       "source": "/dot-physical-puerto-rico",
-      "destination": "/states/puerto-rico",
-      "permanent": true
+      "destination": "/",
+      "permanent": false
     },
     {
       "source": "/puerto-rico.html",
-      "destination": "/states/puerto-rico",
-      "permanent": true
+      "destination": "/",
+      "permanent": false
     },
     {
       "source": "/puerto-rico",
-      "destination": "/states/puerto-rico",
-      "permanent": true
+      "destination": "/",
+      "permanent": false
     }
   ],
   "headers": [

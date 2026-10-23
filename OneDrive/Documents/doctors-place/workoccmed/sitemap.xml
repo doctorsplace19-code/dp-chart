@@ -862,11 +862,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://www.workoccmed.com/states/puerto-rico</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.workoccmed.com/cities/delaware-wilmington</loc>
     <lastmod>2026-09-22</lastmod>
     <changefreq>monthly</changefreq>
