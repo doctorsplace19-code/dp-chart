@@ -579,26 +579,6 @@
       "source": "/dot-physical-wyoming",
       "destination": "/states/wyoming",
       "permanent": true
-    },
-    {
-      "source": "/dot-physical-puerto-rico.html",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/dot-physical-puerto-rico",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/puerto-rico.html",
-      "destination": "/",
-      "permanent": false
-    },
-    {
-      "source": "/puerto-rico",
-      "destination": "/",
-      "permanent": false
     }
   ],
   "headers": [
