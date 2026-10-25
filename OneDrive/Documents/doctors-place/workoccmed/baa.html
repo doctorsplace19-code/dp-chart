@@ -1,0 +1,261 @@
+<title>BAA — WorkOccMed</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg2: #f7f7f5;
+    --fg: #1a1a1a;
+    --fg2: #555;
+    --border: #d4d4d0;
+    --accent: #0d5c63;
+    --accent-light: #e6f2f3;
+    --serif: 'Libre Baskerville', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141414; --bg2: #1e1e1c; --fg: #f0ede8; --fg2: #999;
+      --border: #333330; --accent: #3fa8b0; --accent-light: #0d2e30;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141414; --bg2: #1e1e1c; --fg: #f0ede8; --fg2: #999;
+    --border: #333330; --accent: #3fa8b0; --accent-light: #0d2e30;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font-family: var(--sans); font-size: 15px; line-height: 1.6;
+    margin: 0; padding-inline: 16px; padding-block: 2rem 4rem;
+  }
+  .page { max-width: 760px; margin: 0 auto; }
+
+  .doc-header { text-align: center; padding-bottom: 2rem; border-bottom: 2px solid var(--accent); margin-bottom: 2.5rem; }
+  .doc-header .wordmark { font-family: var(--sans); font-weight: 600; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .doc-header h1 { font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2rem); font-weight: 700; margin: 0 0 0.4rem; text-wrap: balance; }
+  .doc-header .subtitle { font-size: 0.9rem; color: var(--fg2); }
+
+  .notice { background: var(--accent-light); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 0.75rem 1rem; font-size: 0.875rem; color: var(--fg); margin-bottom: 2rem; }
+
+  .parties-block { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 1.25rem 1.5rem; margin-bottom: 2rem; display: grid; gap: 1rem; }
+  .parties-block label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg2); margin-bottom: 0.3rem; }
+  .parties-block .party-value { font-family: var(--serif); font-size: 1.05rem; font-weight: 700; color: var(--fg); }
+  .parties-block input[type="text"] { width: 100%; font-family: var(--serif); font-size: 1.05rem; font-weight: 700; background: var(--bg); border: 1.5px solid var(--border); border-radius: 6px; padding: 0.5rem 0.75rem; color: var(--fg); outline: none; transition: border-color 0.15s; }
+  .parties-block input[type="text"]:focus { border-color: var(--accent); }
+  .parties-block input[type="text"]::placeholder { color: var(--fg2); font-style: italic; font-weight: 400; }
+  .term-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .term-row > div { flex: 1; min-width: 140px; }
+
+  .section { margin-bottom: 1.75rem; }
+  .section h2 { font-family: var(--serif); font-size: 1rem; font-weight: 700; font-style: italic; color: var(--accent); margin: 0 0 0.5rem; padding-bottom: 0.3rem; border-bottom: 1px solid var(--border); }
+  .section p { margin: 0; font-size: 0.92rem; color: var(--fg); line-height: 1.75; }
+  .section p + p { margin-top: 0.6rem; }
+
+  .sig-section { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border); }
+  .sig-section h2 { font-family: var(--serif); font-size: 1.1rem; font-weight: 700; margin: 0 0 1.5rem; }
+  .sig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  @media (max-width: 560px) { .sig-grid { grid-template-columns: 1fr; } }
+  .sig-party h3 { font-family: var(--sans); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fg2); margin: 0 0 1rem; }
+  .sig-field { margin-bottom: 1rem; }
+  .sig-field label { display: block; font-size: 0.72rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--fg2); margin-bottom: 0.25rem; }
+  .sig-field input[type="text"], .sig-field input[type="date"] { width: 100%; background: transparent; border: none; border-bottom: 1.5px solid var(--border); border-radius: 0; padding: 0.35rem 0; font-size: 0.95rem; color: var(--fg); font-family: var(--sans); outline: none; transition: border-color 0.15s; }
+  .sig-field input:focus { border-color: var(--accent); }
+  .sig-field input::placeholder { color: var(--border); }
+  .sig-field .prefilled { font-size: 0.95rem; padding: 0.35rem 0; border-bottom: 1.5px solid var(--border); color: var(--fg2); }
+
+  .actions { margin-top: 2.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+  .btn-primary { background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 0.65rem 1.4rem; font-family: var(--sans); font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
+  .btn-primary:hover { opacity: 0.88; }
+  .success { display: none; background: var(--accent-light); border: 1px solid var(--accent); border-radius: 8px; padding: 1.25rem 1.5rem; font-size: 0.9rem; margin-top: 1.5rem; }
+  .success strong { display: block; font-size: 1rem; margin-bottom: 0.3rem; }
+
+  .doc-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); font-size: 0.78rem; color: var(--fg2); display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; }
+</style>
+
+<div class="page">
+
+  <div class="doc-header">
+    <div class="wordmark">WorkOccMed LLC</div>
+    <h1>Business Associate Agreement</h1>
+    <p class="subtitle">HIPAA-compliant agreement for occupational health services</p>
+  </div>
+
+  <div class="notice">
+    Complete the employer information below, then sign. Both parties will receive a copy upon submission.
+  </div>
+
+  <div class="parties-block">
+    <div>
+      <label>Covered Entity (Employer)</label>
+      <input type="text" id="employer-name" placeholder="Enter employer / organization name" oninput="updateName(this.value)" autocomplete="organization">
+    </div>
+    <div class="term-row">
+      <div>
+        <label>Effective Date</label>
+        <div class="party-value" id="effective-date-display"></div>
+      </div>
+      <div>
+        <label>Expiration Date</label>
+        <div class="party-value" id="expiration-date-display"></div>
+      </div>
+    </div>
+    <div>
+      <label>Business Associate</label>
+      <div class="party-value">WorkOccMed LLC</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>1. Definitions and Scope</h2>
+    <p>Capitalized terms not defined in this Agreement have the meanings given in the HIPAA Rules, including 45 C.F.R. Parts 160 and 164. HIPAA Rules means the federal Privacy, Security, Breach Notification, and Enforcement Rules, as amended. Protected Health Information (PHI), Electronic PHI (ePHI), Breach, Security Incident, Unsecured PHI, and Required by Law have the meanings assigned under the HIPAA Rules.</p>
+    <p>PHI under this Agreement means PHI that Business Associate creates, receives, maintains, or transmits on behalf of Covered Entity in performing the Services. This Agreement applies only to the extent Business Associate is acting as a business associate of Covered Entity with respect to that PHI.</p>
+  </div>
+
+  <div class="section">
+    <h2>2. Services and Permitted Uses and Disclosures</h2>
+    <p>Covered Entity engages Business Associate to arrange, schedule, coordinate, and administer occupational health examinations and related laboratory, blood, and other testing requested by Covered Entity; receive and route results; coordinate follow-up; and perform related administrative services (Services).</p>
+    <p>Business Associate may use or disclose PHI only as reasonably necessary to perform the Services, as this Agreement permits or requires, or as Required by Law. Permitted activities include identifying the examinee and the examination or test ordered; scheduling and communicating appointment instructions; transmitting orders and relevant information to a participating clinic, laboratory, collection site, or other authorized provider; receiving, matching, organizing, and securely transmitting examination or test results to the examinee and to Covered Entity's authorized occupational health contact; and coordinating repeat testing, referrals, or follow-up.</p>
+    <p>Nothing in this Agreement authorizes disclosure of an entire clinical record or detailed results to an employer contact when a limited fitness, clearance, restriction, or other summary is sufficient or required. Business Associate will not use or disclose PHI in a manner that would violate the HIPAA Rules if done by Covered Entity, and will make reasonable efforts to limit each use, disclosure, and request to the minimum necessary.</p>
+  </div>
+
+  <div class="section">
+    <h2>3. Safeguards and Business Associate Obligations</h2>
+    <p>Business Associate will use appropriate administrative, physical, and technical safeguards to prevent use or disclosure of PHI other than as this Agreement permits. For ePHI, Business Associate will comply with the applicable requirements of the HIPAA Security Rule and implement reasonable and appropriate security measures, including access controls, workforce authorization, secure transmission and storage, and protection against unauthorized access.</p>
+    <p>Business Associate will ensure that any workforce member who has access to PHI is subject to appropriate confidentiality obligations and receives training appropriate to that person's role. Business Associate will not use or disclose PHI for marketing or sale, or combine PHI with other information for purposes unrelated to the Services.</p>
+    <p>Business Associate will make its internal practices, books, and records relating to PHI available to the Secretary of the U.S. Department of Health and Human Services as required to determine compliance with the HIPAA Rules.</p>
+  </div>
+
+  <div class="section">
+    <h2>4. Security Incidents and Breach Reporting</h2>
+    <p>Business Associate will report to Covered Entity any use or disclosure of PHI not permitted by this Agreement, any Security Incident, and any Breach of Unsecured PHI, without unreasonable delay and no later than ten (10) business days after discovery. The initial report will include, to the extent then known, the nature and date of the event; the date of discovery; the types of PHI involved; the identities of affected individuals, if known; steps taken to contain and investigate the event; and a contact for follow-up.</p>
+    <p>Business Associate will cooperate with Covered Entity's investigation and take reasonable steps to mitigate harmful effects and prevent recurrence. Business Associate will not notify affected individuals, regulators, or the media on Covered Entity's behalf unless Covered Entity authorizes it in writing or applicable law requires it to do so.</p>
+  </div>
+
+  <div class="section">
+    <h2>5. Subcontractors and Service Providers</h2>
+    <p>Business Associate may use subcontractors to perform activities involving PHI — including laboratories, collection sites, clinics, and technology vendors — provided Business Associate first obtains a written agreement requiring the subcontractor to protect the PHI with restrictions and conditions at least as protective as those in this Agreement. Business Associate remains responsible for its obligations under this Agreement.</p>
+  </div>
+
+  <div class="section">
+    <h2>6. Individual Rights</h2>
+    <p>Business Associate will make PHI available to Covered Entity within fifteen (15) calendar days of a written request as reasonably necessary for Covered Entity to fulfill an individual's rights of access, amendment, and accounting of disclosures under 45 C.F.R. §§ 164.524, 164.526, and 164.528. If Business Associate receives an individual's request relating to PHI, it will promptly forward the request to Covered Entity.</p>
+  </div>
+
+  <div class="section">
+    <h2>7. Covered Entity Responsibilities</h2>
+    <p>Covered Entity will not request Business Associate to use or disclose PHI in a manner that would be impermissible under the HIPAA Rules. Covered Entity will provide Business Associate with the information and lawful instructions reasonably necessary to perform the Services and will identify the personnel authorized to receive PHI or results. Covered Entity will notify Business Associate of relevant limitations in its notice of privacy practices or any restriction or change in an individual's permission that may affect Business Associate's use or disclosure of PHI.</p>
+  </div>
+
+  <div class="section">
+    <h2>8. PHI and Employer-Held Records</h2>
+    <p>Employment records held by Covered Entity in its capacity as employer — including DOT-mandated test results provided to its Designated Employer Representative — are generally not protected by the HIPAA Privacy Rule under 45 CFR 160.103. After Covered Entity lawfully receives information for its employer functions, Covered Entity's copy becomes an employer-held record governed by applicable employment law; this Agreement does not convert that copy into PHI held by Business Associate on Covered Entity's behalf.</p>
+  </div>
+
+  <div class="section">
+    <h2>9. Term and Termination</h2>
+    <p>This Agreement is effective on the Effective Date and expires one (1) year thereafter, unless earlier terminated. Either party may terminate this Agreement for the other party's material breach if the breach remains uncured thirty (30) days after written notice. Upon termination or expiration, Business Associate will, if feasible, return or securely destroy all PHI received from or created on behalf of Covered Entity, including PHI held by subcontractors, and retain no copies. If return or destruction is infeasible, Business Associate will notify Covered Entity, continue to protect the PHI under this Agreement, and limit further uses to those that make return or destruction infeasible.</p>
+  </div>
+
+  <div class="section">
+    <h2>10. General Terms</h2>
+    <p>This Agreement is governed by the HIPAA Rules and, to the extent not preempted, the laws of the State of New Jersey. Any ambiguity will be interpreted to permit compliance with the HIPAA Rules and applicable law. This Agreement may be signed electronically and in counterparts, each of which will be treated as an original. Any amendment must be in a writing signed by both parties. If a provision is unenforceable, the remaining provisions remain in effect.</p>
+  </div>
+
+  <div class="sig-section">
+    <h2>Signatures</h2>
+    <div class="sig-grid">
+
+      <div class="sig-party">
+        <h3>Covered Entity — <span id="employer-label">Employer</span></h3>
+        <div class="sig-field">
+          <label>Signature</label>
+          <input type="text" id="ce-sig" placeholder="Type full name to sign">
+        </div>
+        <div class="sig-field">
+          <label>Name</label>
+          <input type="text" id="ce-name" placeholder="">
+        </div>
+        <div class="sig-field">
+          <label>Title</label>
+          <input type="text" id="ce-title" placeholder="">
+        </div>
+        <div class="sig-field">
+          <label>Date</label>
+          <input type="date" id="ce-date">
+        </div>
+      </div>
+
+      <div class="sig-party">
+        <h3>Business Associate — WorkOccMed LLC</h3>
+        <div class="sig-field">
+          <label>Signature</label>
+          <div class="prefilled">Chantal Gabriel</div>
+        </div>
+        <div class="sig-field">
+          <label>Name</label>
+          <div class="prefilled">Chantal Gabriel</div>
+        </div>
+        <div class="sig-field">
+          <label>Title</label>
+          <div class="prefilled">Managing Member</div>
+        </div>
+        <div class="sig-field">
+          <label>Date</label>
+          <div class="prefilled" id="wom-date"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="actions">
+      <button class="btn-primary" onclick="submitBAA()">Submit Signed Agreement</button>
+    </div>
+
+    <div class="success" id="success-msg">
+      <strong>Agreement received.</strong>
+      Thank you. WorkOccMed LLC will send a countersigned copy to the contact on file. Questions? Call (888) 233-4567 or email chantalg@workoccmed.com.
+    </div>
+  </div>
+
+  <div class="doc-footer">
+    <span>WorkOccMed LLC &bull; 411 Hackensack Ave, Suite 200, Hackensack, NJ 07601</span>
+    <span>(888) 233-4567</span>
+    <span>chantalg@workoccmed.com</span>
+    <span>workoccmed.com</span>
+  </div>
+
+</div>
+
+<script>
+  const today = new Date();
+  const expiry = new Date(today);
+  expiry.setFullYear(expiry.getFullYear() + 1);
+
+  function fmt(d) { return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }); }
+
+  document.getElementById('effective-date-display').textContent = fmt(today);
+  document.getElementById('expiration-date-display').textContent = fmt(expiry);
+  document.getElementById('wom-date').textContent = fmt(today);
+  document.getElementById('ce-date').value = today.toISOString().split('T')[0];
+
+  const params = new URLSearchParams(location.search);
+  const co = params.get('company');
+  if (co) { document.getElementById('employer-name').value = co; updateName(co); }
+
+  function updateName(val) {
+    document.getElementById('employer-label').textContent = val.trim() || 'Employer';
+  }
+
+  function submitBAA() {
+    const employer = document.getElementById('employer-name').value.trim();
+    const sig = document.getElementById('ce-sig').value.trim();
+    if (!employer) { document.getElementById('employer-name').style.borderColor = '#c0392b'; document.getElementById('employer-name').focus(); return; }
+    if (!sig) { document.getElementById('ce-sig').style.borderColor = '#c0392b'; document.getElementById('ce-sig').focus(); return; }
+    document.getElementById('success-msg').style.display = 'block';
+    document.querySelector('.actions').style.display = 'none';
+  }
+</script>
