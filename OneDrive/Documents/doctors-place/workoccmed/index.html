@@ -218,6 +218,23 @@
   .photo-text p { font-size: 20px; color: #4b5563; line-height: 1.8; margin-bottom: 16px; }
   .photo-img { width: 100%; border-radius: 20px; object-fit: cover; aspect-ratio: 4/3; box-shadow: 0 24px 64px rgba(0,0,0,0.12); display: block; }
 
+  .portal-mock { background: #fff; padding: 0; overflow: hidden; border: 1px solid #e2e8f0; }
+  .portal-mock .pm-bar { background: #0f172a; color: #fff; padding: 14px 18px; display: flex; align-items: center; gap: 7px; font-family: 'Inter', sans-serif; }
+  .portal-mock .pm-bar span { width: 10px; height: 10px; border-radius: 50%; background: #475569; }
+  .portal-mock .pm-bar b { margin-left: 10px; font-size: 15px; font-weight: 700; }
+  .portal-mock .pm-body { padding: 16px; font-family: 'Inter', sans-serif; background: #f8fafc; height: calc(100% - 46px); }
+  .portal-mock .pm-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .portal-mock .pm-stats div { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 12px 10px; text-align: center; }
+  .portal-mock .pm-stats em { display: block; font-style: normal; font-size: 30px; font-weight: 800; color: #0f172a; line-height: 1.1; }
+  .portal-mock .pm-stats em.ok { color: #16a34a; }
+  .portal-mock .pm-stats small { display: block; margin-top: 6px; font-size: 12px; color: #64748b; font-weight: 600; }
+  .portal-mock .pm-list { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; }
+  .portal-mock .pm-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; border-bottom: 1px solid #f1f5f9; font-size: 14px; color: #0f172a; font-weight: 600; }
+  .portal-mock .pm-row:last-child { border-bottom: 0; }
+  .portal-mock .pm-row i { font-style: normal; font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 99px; }
+  .portal-mock .pm-row i.g { background: #dcfce7; color: #15803d; }
+  .portal-mock .pm-row i.a { background: #fef3c7; color: #b45309; }
+
   /* ––– WORKER PHOTOS ROW ––– */
   .worker-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
   .worker-photo-card { position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 4/3; }
@@ -603,10 +620,22 @@
       <a href="https://portal.dot-physical.net/signup" style="display:inline-flex;align-items:center;gap:8px;margin-top:8px;background:#0f172a;color:white;font-family:'Inter',sans-serif;font-size:21px;font-weight:700;padding:13px 26px;border-radius:10px;text-decoration:none;">Create Free Account →</a>
     </div>
     <div>
-      <img class="photo-img"
-        src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/AuVJBgksTAoTdnrn.png"
-        alt="WorkOccMed Employer Portal Management"
-        onerror="this.style.background='linear-gradient(135deg,#15803d,#0f172a)';this.removeAttribute('src')">
+      <div class="photo-img portal-mock" role="img" aria-label="WorkOccMed employer portal dashboard">
+        <div class="pm-bar"><span></span><span></span><span></span><b>Employer Portal</b></div>
+        <div class="pm-body">
+          <div class="pm-stats">
+            <div><em>48</em><small>Drivers enrolled</small></div>
+            <div><em>12</em><small>Tests this month</small></div>
+            <div><em class="ok">&#10003;</em><small>Random pool compliant</small></div>
+          </div>
+          <div class="pm-list">
+            <div class="pm-row"><span>DOT Physical</span><i class="g">Cleared</i></div>
+            <div class="pm-row"><span>5-Panel Drug Test</span><i class="g">Negative</i></div>
+            <div class="pm-row"><span>Clearinghouse Query</span><i class="g">Complete</i></div>
+            <div class="pm-row"><span>Pre-Employment Physical</span><i class="a">In progress</i></div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -687,7 +716,7 @@
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;">
       <div style="border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10);background:#0d1b2a;">
-        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/kcKEgpCzpwyteECM.png"
+        <img src="images/hero-truck-driver.jpg"
           alt="CDL truck driver"
           style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;"
           onerror="this.style.display='none'">
@@ -697,7 +726,7 @@
         </div>
       </div>
       <div style="border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10);background:#0d1b2a;">
-        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/cjPMKJkOrqjbsfYM.png"
+        <img src="images/hero-construction.jpg"
           alt="Construction worker on site"
           style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;"
           onerror="this.style.display='none'">
@@ -707,7 +736,7 @@
         </div>
       </div>
       <div style="border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.10);background:#0d1b2a;">
-        <img src="https://files.manuscdn.com/user_upload_by_module/session_file/310519663753977282/kdXuaKAgdnGuOUFo.png"
+        <img src="images/hero-nurse.jpg"
           alt="Nurse and healthcare worker"
           style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;"
           onerror="this.style.display='none'">
