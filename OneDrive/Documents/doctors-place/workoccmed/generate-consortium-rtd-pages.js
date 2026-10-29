@@ -181,7 +181,7 @@ function footer(name) {
     <div class="footer-top">
       <div>
         <div class="f-brand-name">Work OccMed</div>
-        <div class="f-brand-sub">A WorkOccMed Medical Group Company</div>
+        <div class="f-brand-sub">A WorkOccMed Company</div>
         <p class="f-brand-desc">Full-service occupational health for employers nationwide. DOT physicals, drug testing, consortiums, and return to duty &mdash; all managed online.</p>
       </div>
       <div class="f-col">
@@ -205,7 +205,7 @@ function footer(name) {
       </div>
     </div>
     <div class="footer-bottom">
-      <div class="f-legal">&copy; 2026 Work OccMed &middot; A WorkOccMed Medical Group Company</div>
+      <div class="f-legal">&copy; 2026 Work OccMed &middot; A WorkOccMed Company</div>
       <div class="f-legal"><a href="privacy-policy">Privacy Policy</a> &middot; <a href="index.html">Work OccMed Home</a></div>
     </div>
   </div>
